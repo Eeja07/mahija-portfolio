@@ -1,6 +1,7 @@
 import React from "react"
 import Navbar from "@/components/layout/Navbar"
 import Hero from "@/components/sections/Hero"
+import Projects from "@/components/sections/Projects"
 import Footer from "@/components/layout/Footer"
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
       {/* Main content body containing page sections */}
       <main className="flex-1 flex flex-col w-full">
         <Hero />
-        {/* Subsequent sections (Projects, Experience, Infrastructure, Skills, Resume, Contact) will be appended here */}
+        <Projects />
       </main>
 
       {/* Semantic Footer */}
