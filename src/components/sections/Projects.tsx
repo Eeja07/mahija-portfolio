@@ -118,7 +118,7 @@ export default function Projects() {
                   <CardTitle className="font-sans text-lg font-semibold text-foreground mt-1.5 leading-tight">
                     {project.title}
                   </CardTitle>
-                  <CardDescription className="text-xs text-muted-foreground mt-1">
+                  <CardDescription className="text-xs text-muted-foreground mt-1 line-clamp-2">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
@@ -132,7 +132,7 @@ export default function Projects() {
                       Key Outcomes
                     </span>
                     <ul className="text-xs font-mono text-foreground flex flex-col gap-1.5">
-                      {project.metrics.map((metric, i) => (
+                      {project.metrics.slice(0, 2).map((metric, i) => (
                         <li key={i} className="flex items-start gap-1.5 leading-normal">
                           <span className="text-primary mt-0.5">&bull;</span>
                           <span>{metric}</span>
@@ -147,7 +147,7 @@ export default function Projects() {
                       Implementation Highlights
                     </span>
                     <ul className="text-xs text-muted-foreground list-disc list-outside pl-4 space-y-2 leading-relaxed">
-                      {project.highlights.map((highlight, idx) => (
+                      {project.highlights.slice(0, 3).map((highlight, idx) => (
                         <li key={idx}>{highlight}</li>
                       ))}
                     </ul>
@@ -170,6 +170,7 @@ export default function Projects() {
                   <AnimatePresence initial={false}>
                     {activeArchId === project.id && (
                       <motion.div
+                        id={`arch-panel-${project.id}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -227,9 +228,25 @@ export default function Projects() {
                     variant="ghost"
                     size="sm"
                     onClick={() => toggleArchitecture(project.id)}
-                    className="text-xs text-muted-foreground hover:text-foreground font-medium ml-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    aria-expanded={activeArchId === project.id}
+                    aria-controls={`arch-panel-${project.id}`}
+                    className="text-xs text-muted-foreground hover:text-foreground font-medium ml-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary flex items-center gap-1.5"
                   >
-                    {activeArchId === project.id ? "Hide Pipeline" : "Architecture"}
+                    <span>Architecture</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={`size-3 transition-transform duration-100 ease-out ${
+                        activeArchId === project.id ? "rotate-180" : ""
+                      }`}
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
                   </Button>
                 </CardFooter>
               </Card>
