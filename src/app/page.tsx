@@ -4,6 +4,9 @@ import Hero from "@/components/sections/Hero"
 import Projects from "@/components/sections/Projects"
 import Experience from "@/components/sections/Experience"
 import Infrastructure from "@/components/sections/Infrastructure"
+import Skills from "@/components/sections/Skills"
+import Resume from "@/components/sections/Resume"
+import Contact from "@/components/sections/Contact"
 import Footer from "@/components/layout/Footer"
 
 export default function Home() {
@@ -20,6 +23,9 @@ export default function Home() {
         <Projects />
         <Experience />
         <Infrastructure />
+        <Skills />
+        <Resume />
+        <Contact />
       </main>
 
       {/* Semantic Footer */}

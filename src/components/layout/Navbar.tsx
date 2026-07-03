@@ -19,6 +19,7 @@ const navigationLinks = [
   { name: "Experience", href: "#experience" },
   { name: "Infrastructure", href: "#infrastructure" },
   { name: "Skills", href: "#skills" },
+  { name: "Resume", href: "#resume" },
   { name: "Contact", href: "#contact" },
 ]
 
@@ -31,6 +32,10 @@ export default function Navbar() {
   // Avoid hydration mismatch for theme toggle
   useEffect(() => {
     setMounted(true)
+
+    // Ensure page-wide anchor offsets respect the sticky navbar header
+    document.documentElement.style.scrollPaddingTop = "80px"
+    document.documentElement.style.scrollBehavior = "smooth"
 
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -59,7 +64,14 @@ export default function Navbar() {
     
     const targetElement = document.querySelector(href)
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" })
+      const headerOffset = 80 // 80px (5rem) offset to prevent header overlap
+      const elementPosition = targetElement.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.scrollY - headerOffset
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      })
     }
   }
 
