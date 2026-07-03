@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import { Download, ExternalLink, Printer, FileText, Check } from "lucide-react"
+import { Download, Printer, FileText, Check, Globe } from "lucide-react"
 import { resumeMetadata } from "@/data/resume"
 
 export default function Resume() {
@@ -60,7 +60,7 @@ export default function Resume() {
             Resume
           </h2>
           <p className="text-base text-muted-foreground font-sans leading-relaxed">
-            Access, download, or print a copy of my professional background for offline review.
+            Access, download, or print copies of my professional background in English or Indonesian.
           </p>
         </div>
 
@@ -83,7 +83,7 @@ export default function Resume() {
                       variant="secondary"
                       className="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider"
                     >
-                      v{resumeMetadata.version}
+                      {resumeMetadata.version}
                     </Badge>
                     {resumeMetadata.atsFriendly && (
                       <Badge 
@@ -94,6 +94,16 @@ export default function Resume() {
                         ATS Friendly
                       </Badge>
                     )}
+                    
+                    {/* Resume Language Indicators */}
+                    <Badge 
+                      variant="outline"
+                      className="border-border text-muted-foreground px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1"
+                    >
+                      <Globe className="size-3 text-primary" />
+                      {resumeMetadata.english.language} / {resumeMetadata.indonesian.language}
+                    </Badge>
+
                     <span className="text-[11px] font-mono text-muted-foreground/80">
                       Updated {resumeMetadata.updated}
                     </span>
@@ -109,43 +119,45 @@ export default function Resume() {
                   </div>
 
                   <CardDescription className="text-xs text-muted-foreground font-sans leading-relaxed">
-                    Designed for automated scanner parsing and quick recruiter review. Optimized to print on a single page using standard letter dimensions.
+                    Designed for automated scanner parsing and quick recruiter review. Optimized to print on a single page using standard letter dimensions. Available in English (EN) and Indonesian (ID).
                   </CardDescription>
                 </div>
 
-                {/* Right Side: Action Triggers */}
-                <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto shrink-0 select-none">
+                {/* Right Side: Action Triggers (Desktop: inline, Mobile: stacked) */}
+                <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto shrink-0 select-none">
                   
+                  {/* English Resume (Primary) */}
                   <a
-                    href={resumeMetadata.pdfPath}
-                    download={`Mahija_Resume_v${resumeMetadata.version}.pdf`}
+                    href={resumeMetadata.english.file}
+                    download={`Mahija_Resume_${resumeMetadata.english.language}.pdf`}
                     className={cn(
                       buttonVariants({ variant: "default", size: "sm" }),
-                      "w-full md:w-48 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center"
+                      "w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center px-5 py-2.5 h-10 flex items-center"
                     )}
                   >
                     <Download className="size-3.5 mr-2" />
-                    {resumeMetadata.downloadLabel}
+                    {resumeMetadata.english.label}
                   </a>
 
+                  {/* Resume Indonesia (Outline) */}
                   <a
-                    href={resumeMetadata.pdfPath}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={resumeMetadata.indonesian.file}
+                    download={`Mahija_Resume_${resumeMetadata.indonesian.language}.pdf`}
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "w-full md:w-48 border-border text-xs hover:bg-muted font-medium justify-center"
+                      "w-full md:w-auto border-border text-xs hover:bg-muted font-medium justify-center px-5 py-2.5 h-10 flex items-center"
                     )}
                   >
-                    <ExternalLink className="size-3.5 mr-2" />
-                    {resumeMetadata.openLabel}
+                    <Download className="size-3.5 mr-2" />
+                    {resumeMetadata.indonesian.label}
                   </a>
 
+                  {/* Print Resume (Ghost) */}
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="sm"
                     onClick={handlePrint}
-                    className="w-full md:w-48 border-border text-xs hover:bg-muted font-medium justify-center"
+                    className="w-full md:w-auto text-xs text-muted-foreground hover:text-foreground font-medium justify-center px-5 py-2.5 h-10"
                   >
                     <Printer className="size-3.5 mr-2" />
                     Print Resume
