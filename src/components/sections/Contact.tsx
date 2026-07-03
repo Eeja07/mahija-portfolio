@@ -3,8 +3,9 @@
 import React, { useState } from "react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Card, CardDescription, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 
 // Inline SVGs for self-contained robustness
 const MailIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -188,17 +189,18 @@ export default function Contact() {
                 </div>
 
                 <div className="pt-4 mt-auto">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full border-border text-xs hover:bg-muted font-medium justify-between select-none"
-                    render={
-                      <a href={channel.href} target="_blank" rel="noopener noreferrer">
-                        Connect
-                        <ArrowUpRightIcon className="size-3.5 ml-1.5 opacity-60" />
-                      </a>
-                    }
-                  />
+                  <a
+                    href={channel.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "sm" }),
+                      "w-full border-border text-xs hover:bg-muted font-medium justify-between select-none"
+                    )}
+                  >
+                    Connect
+                    <ArrowUpRightIcon className="size-3.5 ml-1.5 opacity-60" />
+                  </a>
                 </div>
               </Card>
             </motion.div>

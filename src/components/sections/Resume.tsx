@@ -3,8 +3,9 @@
 import React from "react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 import { Download, ExternalLink, Printer, FileText, Check } from "lucide-react"
 import { resumeMetadata } from "@/data/resume"
 
@@ -115,29 +116,30 @@ export default function Resume() {
                 {/* Right Side: Action Triggers */}
                 <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto shrink-0 select-none">
                   
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="w-full md:w-48 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center"
-                    render={
-                      <a href={resumeMetadata.pdfPath} download={`Mahija_Resume_v${resumeMetadata.version}.pdf`}>
-                        <Download className="size-3.5 mr-2" />
-                        {resumeMetadata.downloadLabel}
-                      </a>
-                    }
-                  />
+                  <a
+                    href={resumeMetadata.pdfPath}
+                    download={`Mahija_Resume_v${resumeMetadata.version}.pdf`}
+                    className={cn(
+                      buttonVariants({ variant: "default", size: "sm" }),
+                      "w-full md:w-48 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center"
+                    )}
+                  >
+                    <Download className="size-3.5 mr-2" />
+                    {resumeMetadata.downloadLabel}
+                  </a>
 
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full md:w-48 border-border text-xs hover:bg-muted font-medium justify-center"
-                    render={
-                      <a href={resumeMetadata.pdfPath} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="size-3.5 mr-2" />
-                        {resumeMetadata.openLabel}
-                      </a>
-                    }
-                  />
+                  <a
+                    href={resumeMetadata.pdfPath}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "sm" }),
+                      "w-full md:w-48 border-border text-xs hover:bg-muted font-medium justify-center"
+                    )}
+                  >
+                    <ExternalLink className="size-3.5 mr-2" />
+                    {resumeMetadata.openLabel}
+                  </a>
 
                   <Button
                     variant="outline"

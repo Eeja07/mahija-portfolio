@@ -2,9 +2,10 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 
 // Bulletproof inline SVGs matching Linear's design system
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -139,34 +140,39 @@ export default function Hero() {
               variants={itemVariants}
               className="flex flex-wrap items-center gap-3 mt-4"
             >
-              <Button
-                variant="default"
-                size="default"
-                className="font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150"
-                render={<a href="#resume">Resume</a>}
-              />
-              <Button
-                variant="outline"
-                size="default"
-                className="font-medium border-border hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150"
-                render={
-                  <a href="https://github.com/Eeja07" target="_blank" rel="noopener noreferrer">
-                    <GithubIcon className="size-4 mr-2" />
-                    GitHub
-                  </a>
-                }
-              />
-              <Button
-                variant="outline"
-                size="default"
-                className="font-medium border-border hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150"
-                render={
-                  <a href="https://linkedin.com/in/mahija-ibad-pradipta" target="_blank" rel="noopener noreferrer">
-                    <LinkedinIcon className="size-4 mr-2" />
-                    LinkedIn
-                  </a>
-                }
-              />
+              <a
+                href="#resume"
+                className={cn(
+                  buttonVariants({ variant: "default", size: "default" }),
+                  "font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150"
+                )}
+              >
+                Resume
+              </a>
+              <a
+                href="https://github.com/Eeja07"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "default" }),
+                  "font-medium border-border hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150"
+                )}
+              >
+                <GithubIcon className="size-4 mr-2" />
+                GitHub
+              </a>
+              <a
+                href="https://linkedin.com/in/mahija-ibad-pradipta"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "default" }),
+                  "font-medium border-border hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150"
+                )}
+              >
+                <LinkedinIcon className="size-4 mr-2" />
+                LinkedIn
+              </a>
             </motion.div>
           </div>
 

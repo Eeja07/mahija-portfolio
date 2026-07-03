@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { Menu, Sun, Moon } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Sheet,
   SheetContent,
@@ -130,12 +130,15 @@ export default function Navbar() {
               </Button>
             )}
 
-            <Button
-              variant="default"
-              size="sm"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150 shadow-none border-none"
-              render={<a href="#resume">Resume</a>}
-            />
+            <a
+              href="#resume"
+              className={cn(
+                buttonVariants({ variant: "default", size: "sm" }),
+                "bg-primary text-primary-foreground hover:bg-primary/90 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150 shadow-none border-none"
+              )}
+            >
+              Resume
+            </a>
           </div>
         </div>
 
@@ -193,16 +196,16 @@ export default function Navbar() {
               </div>
 
               <div className="flex flex-col gap-4 mt-auto">
-                <Button
-                  variant="default"
-                  size="lg"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none"
-                  render={
-                    <a href="#resume" onClick={() => setIsOpen(false)}>
-                      Resume
-                    </a>
-                  }
-                />
+                <a
+                  href="#resume"
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    buttonVariants({ variant: "default", size: "lg" }),
+                    "w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center text-center flex"
+                  )}
+                >
+                  Resume
+                </a>
               </div>
             </SheetContent>
           </Sheet>

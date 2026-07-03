@@ -4,9 +4,10 @@ import React, { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { projects } from "@/data/projects"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 
 // Inline SVGs for actions
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -200,29 +201,31 @@ export default function Projects() {
 
                 <CardFooter className="pt-3 border-t border-border/30 gap-2 select-none">
                   {/* Action Buttons */}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-border text-xs hover:bg-muted font-medium"
-                    render={
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <GithubIcon className="size-3.5 mr-1.5" />
-                        GitHub
-                      </a>
-                    }
-                  />
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "sm" }),
+                      "border-border text-xs hover:bg-muted font-medium"
+                    )}
+                  >
+                    <GithubIcon className="size-3.5 mr-1.5" />
+                    GitHub
+                  </a>
 
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-border text-xs hover:bg-muted font-medium"
-                    render={
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        <ExternalLinkIcon className="size-3.5 mr-1.5" />
-                        Demo
-                      </a>
-                    }
-                  />
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "sm" }),
+                      "border-border text-xs hover:bg-muted font-medium"
+                    )}
+                  >
+                    <ExternalLinkIcon className="size-3.5 mr-1.5" />
+                    Demo
+                  </a>
 
                   <Button
                     variant="ghost"
