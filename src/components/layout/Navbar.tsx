@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
-import { Menu, Sun, Moon } from "lucide-react"
+import { Menu, Sun, Moon, Download } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Sheet,
@@ -12,6 +12,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu"
+import { Badge } from "@/components/ui/badge"
+import { resumeVariants, resumeMetadata } from "@/data/resume"
 import { cn } from "@/lib/utils"
 
 const navigationLinks = [
@@ -130,15 +138,39 @@ export default function Navbar() {
               </Button>
             )}
 
-            <a
-              href="#resume"
-              className={cn(
-                buttonVariants({ variant: "default", size: "sm" }),
-                "bg-primary text-primary-foreground hover:bg-primary/90 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150 shadow-none border-none"
-              )}
-            >
-              Resume
-            </a>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={cn(
+                  buttonVariants({ variant: "default", size: "sm" }),
+                  "bg-primary text-primary-foreground hover:bg-primary/90 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150 shadow-none border-none cursor-pointer flex items-center gap-1.5"
+                )}
+              >
+                <span>Resume</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3 transition-transform duration-150 group-data-[state=open]/dropdown-menu-trigger:rotate-180">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {resumeVariants.map((variant) => (
+                  <DropdownMenuItem
+                    key={variant.id}
+                    nativeButton={false}
+                    render={
+                      <a
+                        href={variant.href}
+                        download={`Mahija_Resume_${variant.language}.pdf`}
+                      />
+                    }
+                  >
+                    <Download className="size-3.5 text-muted-foreground" />
+                    <span>{variant.label}</span>
+                    <Badge variant="outline" className="ml-auto font-mono text-[9px] px-1.5 py-0 select-none border-border/60">
+                      {variant.language}
+                    </Badge>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
 
@@ -195,16 +227,30 @@ export default function Navbar() {
                 </nav>
               </div>
 
-              <div className="flex flex-col gap-4 mt-auto">
+              <div className="flex flex-col gap-3 mt-auto">
                 <a
-                  href="#resume"
+                  href={resumeMetadata.english.file}
+                  download={`Mahija_Resume_${resumeMetadata.english.language}.pdf`}
                   onClick={() => setIsOpen(false)}
                   className={cn(
                     buttonVariants({ variant: "default", size: "lg" }),
-                    "w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center text-center flex"
+                    "w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center text-center flex items-center gap-2"
                   )}
                 >
-                  Resume
+                  <Download className="size-4" />
+                  {resumeMetadata.english.label}
+                </a>
+                <a
+                  href={resumeMetadata.indonesian.file}
+                  download={`Mahija_Resume_${resumeMetadata.indonesian.language}.pdf`}
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "w-full border border-border text-foreground hover:bg-muted font-semibold justify-center text-center flex items-center gap-2"
+                  )}
+                >
+                  <Download className="size-4" />
+                  {resumeMetadata.indonesian.label}
                 </a>
               </div>
             </SheetContent>

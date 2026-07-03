@@ -59,14 +59,14 @@ interface ContactChannel {
 const contactChannels: ContactChannel[] = [
   {
     name: "Email",
-    handle: "mahija.eeja@gmail.com",
-    href: "mailto:mahija.eeja@gmail.com",
+    handle: "mahijapradipta86@gmail.com",
+    href: "mailto:mahijapradipta86@gmail.com",
     icon: <MailIcon className="size-4" />,
   },
   {
     name: "LinkedIn",
-    handle: "linkedin.com/in/mahija",
-    href: "https://linkedin.com/in/mahija",
+    handle: "linkedin.com/in/mahijaibad",
+    href: "https://linkedin.com/in/mahijaibad",
     icon: <LinkedinIcon className="size-4" />,
   },
   {
@@ -77,8 +77,8 @@ const contactChannels: ContactChannel[] = [
   },
   {
     name: "WhatsApp",
-    handle: "+62 812-3456-7890",
-    href: "https://wa.me/6281234567890",
+    handle: "+62 812-8809-2766",
+    href: "https://wa.me/6281288092766",
     icon: <MessageSquareIcon className="size-4" />,
   },
 ]
