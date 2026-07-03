@@ -130,3 +130,57 @@
     @apply font-sans antialiased;
   }
 }
+
+@media print {
+  header,
+  nav,
+  footer,
+  button,
+  [data-slot="button"],
+  [role="button"],
+  [aria-label*="theme"],
+  [id^="arch-panel-"],
+  #infrastructure {
+    display: none !important;
+  }
+
+  body,
+  html,
+  main,
+  section,
+  div,
+  p,
+  span,
+  h1,
+  h2,
+  h3,
+  h4,
+  ul,
+  li,
+  a {
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+  }
+
+  .grid,
+  .flex {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  body {
+    padding: 2cm !important;
+    margin: 0 !important;
+    font-size: 12pt !important;
+  }
+
+  section {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 2rem !important;
+  }
+}

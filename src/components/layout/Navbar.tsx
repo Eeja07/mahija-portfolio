@@ -121,7 +121,7 @@ export default function Navbar() {
             <Button
               variant="default"
               size="sm"
-              className="font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150 shadow-none border-none"
               render={<a href="#resume">Resume</a>}
             />
           </div>
@@ -184,7 +184,7 @@ export default function Navbar() {
                 <Button
                   variant="default"
                   size="lg"
-                  className="w-full font-medium"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none"
                   render={
                     <a href="#resume" onClick={() => setIsOpen(false)}>
                       Resume
