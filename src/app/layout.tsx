@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "Portfolio of Mahija, optimized for recruiters and engineering managers. Specializing in Debian 12 infrastructure, Docker orchestrations, Cloudflare Tunnels, IoT, Edge AI, and full-stack SaaS development.",
   metadataBase: new URL("https://eeja.fun"),
   alternates: {
-    canonical: "https://eeja.fun/",
+    canonical: "https://eeja.fun",
   },
   openGraph: {
     title: "Mahija | Infrastructure & Fullstack & Edge AI Engineer",
@@ -35,12 +35,21 @@ export const metadata: Metadata = {
     siteName: "Mahija Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Mahija Ibad Pradipta - Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Mahija | Infrastructure & Fullstack Engineer",
     description:
       "Portfolio of Mahija, optimized for recruiters and engineering managers.",
+    images: ["/og.png"],
   },
   robots: {
     index: true,
