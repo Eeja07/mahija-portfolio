@@ -2,6 +2,7 @@ import React from "react"
 import Navbar from "@/components/layout/Navbar"
 import Hero from "@/components/sections/Hero"
 import Projects from "@/components/sections/Projects"
+import Experience from "@/components/sections/Experience"
 import Footer from "@/components/layout/Footer"
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="flex-1 flex flex-col w-full">
         <Hero />
         <Projects />
+        <Experience />
       </main>
 
       {/* Semantic Footer */}
