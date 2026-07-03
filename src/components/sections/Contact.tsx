@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -41,6 +41,13 @@ const ArrowUpRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
+const CopyIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+  </svg>
+)
+
 interface ContactChannel {
   name: string
   handle: string
@@ -76,6 +83,20 @@ const contactChannels: ContactChannel[] = [
 ]
 
 export default function Contact() {
+  const [copiedChannel, setCopiedChannel] = useState<string | null>(null)
+
+  const handleCopy = async (value: string, name: string) => {
+    try {
+      await navigator.clipboard.writeText(value)
+      setCopiedChannel(name)
+      setTimeout(() => {
+        setCopiedChannel(null)
+      }, 2000)
+    } catch (err) {
+      console.error("Failed to copy handles: ", err)
+    }
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -145,9 +166,24 @@ export default function Contact() {
                     <CardTitle className="font-sans text-sm font-bold text-foreground">
                       {channel.name}
                     </CardTitle>
-                    <CardDescription className="text-xs font-mono text-muted-foreground truncate" title={channel.handle}>
-                      {channel.handle}
-                    </CardDescription>
+                    <div className="flex items-center justify-between gap-2">
+                      <CardDescription className="text-xs font-mono text-muted-foreground truncate flex-1" title={channel.handle}>
+                        {channel.handle}
+                      </CardDescription>
+                      <button
+                        onClick={() => handleCopy(channel.handle, channel.name)}
+                        aria-label={`Copy ${channel.name} handle to clipboard`}
+                        className="text-muted-foreground hover:text-foreground transition-colors duration-150 p-1 rounded hover:bg-muted/80 shrink-0"
+                      >
+                        {copiedChannel === channel.name ? (
+                          <span className="text-[10px] text-emerald-500 font-sans font-bold" aria-live="polite">
+                            Copied!
+                          </span>
+                        ) : (
+                          <CopyIcon className="size-3.5" />
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
 

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Download, ExternalLink, Printer, FileText, Check } from "lucide-react"
+import { resumeMetadata } from "@/data/resume"
 
 export default function Resume() {
   const containerVariants = {
@@ -81,17 +82,19 @@ export default function Resume() {
                       variant="secondary"
                       className="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider"
                     >
-                      v2.4.0
+                      v{resumeMetadata.version}
                     </Badge>
-                    <Badge 
-                      variant="outline"
-                      className="border-border text-muted-foreground px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1"
-                    >
-                      <Check className="size-3 text-emerald-500" />
-                      ATS Friendly
-                    </Badge>
+                    {resumeMetadata.atsFriendly && (
+                      <Badge 
+                        variant="outline"
+                        className="border-border text-muted-foreground px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1"
+                      >
+                        <Check className="size-3 text-emerald-500" />
+                        ATS Friendly
+                      </Badge>
+                    )}
                     <span className="text-[11px] font-mono text-muted-foreground/80">
-                      Updated July 2026
+                      Updated {resumeMetadata.updated}
                     </span>
                   </div>
 
@@ -117,9 +120,9 @@ export default function Resume() {
                     size="sm"
                     className="w-full md:w-48 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center"
                     render={
-                      <a href="/resume.pdf" download="Mahija_Resume.pdf">
+                      <a href={resumeMetadata.pdfPath} download={`Mahija_Resume_v${resumeMetadata.version}.pdf`}>
                         <Download className="size-3.5 mr-2" />
-                        Download PDF
+                        {resumeMetadata.downloadLabel}
                       </a>
                     }
                   />
@@ -129,9 +132,9 @@ export default function Resume() {
                     size="sm"
                     className="w-full md:w-48 border-border text-xs hover:bg-muted font-medium justify-center"
                     render={
-                      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                      <a href={resumeMetadata.pdfPath} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="size-3.5 mr-2" />
-                        Open PDF
+                        {resumeMetadata.openLabel}
                       </a>
                     }
                   />

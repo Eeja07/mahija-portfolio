@@ -5,45 +5,7 @@ import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-
-interface SkillGroup {
-  category: string
-  description: string
-  skills: string[]
-}
-
-const skillGroups: SkillGroup[] = [
-  {
-    category: "Infrastructure",
-    description: "Virtualization, container orchestrations, and homelab environments.",
-    skills: ["Docker", "Docker Compose", "Linux (Debian)", "Proxmox VE", "Portainer", "Nginx", "Systemd"],
-  },
-  {
-    category: "Backend",
-    description: "Server architecture, API endpoints development, and relational datastores.",
-    skills: ["Laravel", "PHP", "Node.js", "Express", "REST APIs", "PostgreSQL", "MySQL", "Redis"],
-  },
-  {
-    category: "Frontend",
-    description: "Responsive layouts, dynamic client states, and interactive animations.",
-    skills: ["React", "Next.js", "TypeScript", "JavaScript", "TailwindCSS", "HTML5", "CSS3", "Motion"],
-  },
-  {
-    category: "AI",
-    description: "Computer vision models execution, dataset processing, and neural engines.",
-    skills: ["PyTorch", "TensorFlow", "OpenCV", "CNNs", "Computer Vision", "NumPy", "Pandas"],
-  },
-  {
-    category: "Networking",
-    description: "Network routing, edge ingress configuration, and client-broker protocols.",
-    skills: ["VLANs", "Subnetting", "Cloudflare Tunnels", "MQTT Protocol", "Firewalls", "DHCP / DNS"],
-  },
-  {
-    category: "Tools",
-    description: "Development environments, CLI execution systems, and design workflow platforms.",
-    skills: ["Git / GitHub", "VS Code", "Postman", "Bash Scripting", "MinIO", "Figma", "Linux CLI"],
-  },
-]
+import { skillGroups } from "@/data/skills"
 
 export default function Skills() {
   const containerVariants = {
@@ -104,12 +66,12 @@ export default function Skills() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {skillGroups.map((group) => (
-            <motion.div key={group.category} variants={itemVariants}>
+            <motion.div key={group.title} variants={itemVariants}>
               <Card className="border border-border bg-card/40 shadow-sm transition-all duration-150 ease-in-out hover:border-primary/50 h-full flex flex-col justify-between">
                 <div>
                   <CardHeader className="pb-3">
                     <CardTitle className="font-sans text-base font-bold text-foreground leading-snug">
-                      {group.category}
+                      {group.title}
                     </CardTitle>
                     <p className="text-xs text-muted-foreground font-sans leading-relaxed mt-1">
                       {group.description}
@@ -122,7 +84,7 @@ export default function Skills() {
                 
                 <CardContent className="pt-0 pb-6 flex-1 flex items-start">
                   <div className="flex flex-wrap gap-1.5 w-full select-none">
-                    {group.skills.map((skill) => (
+                    {group.items.map((skill) => (
                       <Badge 
                         key={skill} 
                         variant="secondary" 
