@@ -162,28 +162,24 @@ export default function Experience() {
                     </CardHeader>
 
                     {/* Content Details */}
-                    <CardContent className="flex flex-col gap-4">
-                      <Separator />
-
-                      {/* Brief description of the role */}
-                      <CardDescription className="text-xs text-foreground/90 font-sans leading-relaxed">
-                        {exp.description}
-                      </CardDescription>
-
+                    <CardContent className="flex flex-col gap-3 pt-0 pb-4">
                       {/* Achievements bullets */}
-                      <div className="flex flex-col gap-1.5">
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-medium select-none">
-                          Core Contributions
-                        </span>
-                        <ul className="text-xs text-muted-foreground list-disc list-outside pl-4 space-y-2 leading-relaxed">
-                          {exp.achievements.map((ach, index) => (
-                            <li key={index}>{ach}</li>
-                          ))}
+                      <div className="flex flex-col gap-1">
+                        <ul className="text-xs text-muted-foreground list-disc list-outside pl-4 space-y-1.5 leading-relaxed">
+                          {exp.achievements.slice(0, 3).map((ach, index) => {
+                            const words = ach.split(" ");
+                            const formatted = words.length > 18 ? words.slice(0, 18).join(" ") + "..." : ach;
+                            return (
+                              <li key={index}>
+                                {formatted}
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
 
                       {/* Technologies used */}
-                      <div className="flex flex-wrap gap-1.5 mt-1 select-none">
+                      <div className="flex flex-wrap gap-1.5 pt-1 select-none">
                         {exp.technologies.map((tech) => (
                           <Badge 
                             key={tech} 
