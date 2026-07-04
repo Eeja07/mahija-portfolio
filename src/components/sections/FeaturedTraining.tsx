@@ -38,7 +38,7 @@ export default function FeaturedTraining() {
     <section
       id="training"
       aria-labelledby="training-heading"
-      className="w-full py-20 bg-background border-t border-zinc-800"
+      className="w-full py-20 bg-background border-t border-border"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -46,13 +46,13 @@ export default function FeaturedTraining() {
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-zinc-800 py-1.5 px-3 bg-zinc-950/40 text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Development
           </Badge>
           <h2 
             id="training-heading"
-            className="text-3xl font-sans font-semibold tracking-tight text-zinc-50"
+            className="text-3xl font-sans font-semibold tracking-tight text-foreground"
           >
             Featured Training
           </h2>
@@ -68,25 +68,25 @@ export default function FeaturedTraining() {
         >
           {featuredTraining.map((t) => (
             <motion.div key={t.id} variants={itemVariants}>
-              <Card className="border border-zinc-800 bg-zinc-950/40 rounded-2xl shadow-sm hover:border-zinc-700 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
+              <Card className="border border-border bg-card/40 rounded-2xl shadow-sm hover:border-border/80 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between font-mono text-sm text-zinc-400">
+                  <div className="flex items-center justify-between font-mono text-sm text-muted-foreground">
                     <span className="font-semibold uppercase">{t.role}</span>
                     <span>{t.period}</span>
                   </div>
 
                   <div>
-                    <h3 className="font-sans text-xl font-medium text-zinc-50 leading-tight">
+                    <h3 className="font-sans text-xl font-medium text-foreground leading-tight">
                       {t.title}
                     </h3>
                   </div>
 
-                  <p className="font-sans text-base text-zinc-400 font-normal leading-relaxed">
+                  <p className="font-sans text-base text-muted-foreground font-normal leading-relaxed">
                     {t.summary}
                   </p>
 
                   {t.bullets && t.bullets.length > 0 && (
-                    <ul className="list-disc pl-4 text-sm text-zinc-500 flex flex-col gap-1.5 leading-relaxed mt-1">
+                    <ul className="list-disc pl-4 text-sm text-muted-foreground/80 flex flex-col gap-1.5 leading-relaxed mt-1">
                       {t.bullets.slice(0, 3).map((bullet, i) => (
                         <li key={i}>{bullet}</li>
                       ))}
@@ -104,11 +104,11 @@ export default function FeaturedTraining() {
             href="/training"
             className={cn(
               buttonVariants({ variant: "outline", size: "default" }),
-              "font-sans font-medium px-6 py-2 border-zinc-800 text-zinc-200 bg-zinc-950/40 hover:bg-zinc-800 transition-colors duration-150 flex items-center gap-2 cursor-pointer text-sm"
+              "font-sans font-medium px-6 py-2 border-border text-foreground bg-card/40 hover:bg-muted transition-colors duration-150 flex items-center gap-2 cursor-pointer text-sm"
             )}
           >
             <span>View All Training</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 text-zinc-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 text-muted-foreground">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>

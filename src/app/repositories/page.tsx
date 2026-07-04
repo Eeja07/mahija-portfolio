@@ -57,14 +57,14 @@ export default function RepositoriesArchive() {
           <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
             <Badge 
               variant="outline" 
-              className="w-fit border-zinc-800 py-1.5 px-3 bg-zinc-950/40 text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
+              className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
             >
               Complete Codebase
             </Badge>
-            <h1 className="text-3xl font-sans font-semibold tracking-tight text-zinc-50">
+            <h1 className="text-3xl font-sans font-semibold tracking-tight text-foreground">
               GitHub Repositories Archive
             </h1>
-            <p className="text-base text-zinc-400 font-sans font-normal leading-8">
+            <p className="text-base text-muted-foreground font-sans font-normal leading-8">
               Explore the complete catalog of 46 source repositories containing academic platforms, embedded modules, and utility configurations.
             </p>
           </div>
@@ -76,10 +76,10 @@ export default function RepositoriesArchive() {
               placeholder="Search by repository name, language, or description..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full border border-zinc-800 bg-zinc-950/40 rounded-xl px-4 py-2.5 font-sans text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-zinc-700 transition-colors duration-150"
+              className="w-full border border-border bg-card/40 rounded-xl px-4 py-2.5 font-sans text-sm text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-muted-foreground/50 transition-colors duration-150"
             />
             {searchQuery && (
-              <p className="font-mono text-xs text-zinc-500 mt-2">
+              <p className="font-mono text-xs text-muted-foreground mt-2">
                 Found {filteredRepos.length} matching {filteredRepos.length === 1 ? "repository" : "repositories"}
               </p>
             )}
@@ -97,36 +97,36 @@ export default function RepositoriesArchive() {
                   className="block h-full group"
                 >
                   <Card 
-                    className="border border-zinc-800 bg-zinc-950/40 rounded-2xl p-6 flex flex-col justify-between text-left gap-4 h-full group-hover:border-zinc-700 transition-colors duration-150"
+                    className="border border-border bg-card/40 rounded-2xl p-6 flex flex-col justify-between text-left gap-4 h-full group-hover:border-border/80 transition-colors duration-150"
                   >
                     <div className="flex flex-col gap-3">
-                      <div className="flex items-center justify-between font-mono text-sm text-zinc-400">
-                        <div className="flex items-center gap-2 text-zinc-300">
-                          <FolderIcon className="size-4 text-zinc-400 group-hover:text-zinc-200 transition-colors duration-150" />
-                          <h2 className="font-sans text-xl font-medium text-zinc-50 leading-tight">
+                      <div className="flex items-center justify-between font-mono text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2 text-foreground">
+                          <FolderIcon className="size-4 text-muted-foreground group-hover:text-foreground transition-colors duration-150" />
+                          <h2 className="font-sans text-xl font-medium text-foreground leading-tight">
                             {repo.name}
                           </h2>
                         </div>
                         <Badge 
                           variant="secondary" 
-                          className="border border-zinc-800 px-3 py-1 text-sm text-zinc-400 bg-zinc-950/40 font-mono"
+                          className="border border-border px-3 py-1 text-sm text-muted-foreground bg-card/40 font-mono"
                         >
                           {repo.language}
                         </Badge>
                       </div>
 
-                      <p className="font-sans text-base text-zinc-400 font-normal leading-relaxed">
+                      <p className="font-sans text-base text-muted-foreground font-normal leading-relaxed">
                         {repo.description}
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-4 pt-3 border-t border-zinc-800/60 text-sm text-zinc-500 font-mono select-none">
+                    <div className="flex items-center gap-4 pt-3 border-t border-border text-sm text-muted-foreground font-mono select-none">
                       <div className="flex items-center gap-1.5">
-                        <StarIcon className="size-4 text-zinc-500" />
+                        <StarIcon className="size-4 text-muted-foreground" />
                         <span>{repo.stars} stars</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <ForkIcon className="size-4 text-zinc-500" />
+                        <ForkIcon className="size-4 text-muted-foreground" />
                         <span>{repo.forks} forks</span>
                       </div>
                     </div>
@@ -135,8 +135,8 @@ export default function RepositoriesArchive() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 border border-zinc-850 bg-zinc-950/20 rounded-2xl">
-              <p className="font-sans text-zinc-500 text-sm">No repositories found matching &quot;{searchQuery}&quot;</p>
+            <div className="text-center py-12 border border-border bg-muted/10 rounded-2xl">
+              <p className="font-sans text-muted-foreground text-sm">No repositories found matching &quot;{searchQuery}&quot;</p>
             </div>
           )}
 

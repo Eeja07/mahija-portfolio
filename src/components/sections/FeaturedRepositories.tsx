@@ -59,7 +59,7 @@ export default function FeaturedRepositories() {
     <section
       id="repositories"
       aria-labelledby="repositories-heading"
-      className="w-full py-20 bg-background border-t border-zinc-800"
+      className="w-full py-20 bg-background border-t border-border"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -67,13 +67,13 @@ export default function FeaturedRepositories() {
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-zinc-800 py-1.5 px-3 bg-zinc-950/40 text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Codebase
           </Badge>
           <h2 
             id="repositories-heading"
-            className="text-3xl font-sans font-semibold tracking-tight text-zinc-50"
+            className="text-3xl font-sans font-semibold tracking-tight text-foreground"
           >
             Featured Repositories
           </h2>
@@ -95,35 +95,35 @@ export default function FeaturedRepositories() {
                 rel="noopener noreferrer"
                 className="block h-full group"
               >
-                <Card className="border border-zinc-800 bg-zinc-950/40 rounded-2xl shadow-sm group-hover:border-zinc-700 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
+                <Card className="border border-border bg-card/40 rounded-2xl shadow-sm hover:border-border/80 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between font-mono text-sm text-zinc-400">
-                      <div className="flex items-center gap-2 text-zinc-300">
-                        <FolderIcon className="size-4 text-zinc-400 group-hover:text-zinc-200 transition-colors duration-150" />
-                        <h3 className="font-sans text-xl font-medium text-zinc-50 leading-tight">
+                    <div className="flex items-center justify-between font-mono text-sm text-muted-foreground">
+                      <div className="flex items-center gap-2 text-foreground">
+                        <FolderIcon className="size-4 text-muted-foreground group-hover:text-foreground transition-colors duration-150" />
+                        <h3 className="font-sans text-xl font-medium text-foreground leading-tight">
                           {repo.name}
                         </h3>
                       </div>
                       <Badge 
                         variant="secondary" 
-                        className="border border-zinc-800 px-3 py-1 text-sm text-zinc-400 bg-zinc-950/40 font-mono"
+                        className="border border-border px-3 py-1 text-sm text-muted-foreground bg-card/40 font-mono"
                       >
                         {repo.language}
                       </Badge>
                     </div>
 
-                    <p className="font-sans text-base text-zinc-400 font-normal leading-relaxed">
+                    <p className="font-sans text-base text-muted-foreground font-normal leading-relaxed">
                       {repo.description}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-4 pt-3 border-t border-zinc-800/60 text-sm text-zinc-500 font-mono select-none">
+                  <div className="flex items-center gap-4 pt-3 border-t border-border text-sm text-muted-foreground font-mono select-none">
                     <div className="flex items-center gap-1.5">
-                      <StarIcon className="size-4 text-zinc-500" />
+                      <StarIcon className="size-4 text-muted-foreground/80" />
                       <span>{repo.stars} stars</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <ForkIcon className="size-4 text-zinc-500" />
+                      <ForkIcon className="size-4 text-muted-foreground/80" />
                       <span>{repo.forks} forks</span>
                     </div>
                   </div>
@@ -139,11 +139,11 @@ export default function FeaturedRepositories() {
             href="/repositories"
             className={cn(
               buttonVariants({ variant: "outline", size: "default" }),
-              "font-sans font-medium px-6 py-2 border-zinc-800 text-zinc-200 bg-zinc-950/40 hover:bg-zinc-800 transition-colors duration-150 flex items-center gap-2 cursor-pointer text-sm"
+              "font-sans font-medium px-6 py-2 border-border text-foreground bg-card/40 hover:bg-muted transition-colors duration-150 flex items-center gap-2 cursor-pointer text-sm"
             )}
           >
             <span>View All Repositories (46)</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 text-zinc-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 text-muted-foreground">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>

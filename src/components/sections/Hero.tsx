@@ -34,6 +34,7 @@ export default function Hero() {
       opacity: 1,
       transition: {
         staggerChildren: 0.05,
+        delayChildren: 0.05,
       },
     },
   }
@@ -44,19 +45,21 @@ export default function Hero() {
       opacity: 1,
       y: 0,
       transition: {
+        type: "spring" as const,
+        stiffness: 300,
+        damping: 30,
         duration: 0.15,
-        ease: [0.16, 1, 0.3, 1] as const,
       },
     },
   }
 
-  const handleScrollToWork = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
+  const handleScrollToWork = () => {
     const targetElement = document.querySelector("#featured-engineering")
     if (targetElement) {
       const headerOffset = 80
       const elementPosition = targetElement.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.scrollY - headerOffset
+      
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
@@ -66,32 +69,30 @@ export default function Hero() {
 
   return (
     <section 
-      id="hero"
-      aria-label="Introduction and Career Summary"
-      className="relative w-full min-h-[75vh] pt-24 pb-12 flex items-center justify-center bg-background"
+      aria-label="Introduction Summary"
+      className="relative flex items-center justify-start py-24 md:py-32 w-full select-none"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl flex flex-col gap-6 text-left"
+          className="flex flex-col gap-6 max-w-3xl text-left"
         >
-          {/* Subtitle Badge */}
+          {/* Label Badge */}
           <motion.div variants={itemVariants}>
             <Badge 
               variant="outline" 
-              className="gap-1.5 border-zinc-800 py-1.5 px-3 bg-zinc-950/40 text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
+              className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-xs uppercase tracking-widest select-none"
             >
-              <span className="size-1.5 rounded-full bg-zinc-400" />
-              Computer Engineering ITS
+              Engineering Showcase & Career Archive
             </Badge>
           </motion.div>
 
           {/* Name Title */}
           <motion.h1 
             variants={itemVariants}
-            className="text-6xl md:text-7xl font-sans font-semibold tracking-tight text-zinc-50 leading-[1.05]"
+            className="text-6xl md:text-7xl font-sans font-semibold tracking-tight text-foreground leading-[1.05]"
           >
             Mahija Ibad Pradipta
           </motion.h1>
@@ -99,7 +100,7 @@ export default function Hero() {
           {/* Description */}
           <motion.p 
             variants={itemVariants}
-            className="text-lg text-zinc-400 font-sans font-normal leading-8"
+            className="text-lg text-muted-foreground font-sans font-normal leading-8"
           >
             Building self-hosted systems, IoT platforms, autonomous robotics, and infrastructure.
           </motion.p>
@@ -113,7 +114,7 @@ export default function Hero() {
               <Badge
                 key={tech}
                 variant="secondary"
-                className="px-3 py-1.5 border border-zinc-800 font-mono text-sm text-zinc-400 bg-zinc-950/40"
+                className="px-3 py-1.5 border border-border/40 font-mono text-sm text-muted-foreground bg-card/40"
               >
                 {tech}
               </Badge>
@@ -127,7 +128,7 @@ export default function Hero() {
           >
             <Button
               onClick={handleScrollToWork}
-              className="font-medium bg-zinc-200 text-zinc-800 hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-200 transition-transform duration-150 cursor-pointer"
+              className="font-medium bg-foreground text-background hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-transform duration-150 cursor-pointer"
             >
               View Work
             </Button>
@@ -138,7 +139,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className={cn(
                 buttonVariants({ variant: "outline", size: "default" }),
-                "font-medium border-zinc-800 text-zinc-200 bg-zinc-950/40 hover:bg-zinc-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-800 transition-transform duration-150"
+                "font-medium border-border text-foreground bg-card/40 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-transform duration-150"
               )}
             >
               <GithubIcon className="size-4 mr-2" />
@@ -150,15 +151,15 @@ export default function Hero() {
                 <DropdownMenuTrigger
                   className={cn(
                     buttonVariants({ variant: "outline", size: "default" }),
-                    "font-medium border-zinc-800 text-zinc-200 bg-zinc-950/40 hover:bg-zinc-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-800 transition-transform duration-150 cursor-pointer flex items-center gap-1.5"
+                    "font-medium border-border text-foreground bg-card/40 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-transform duration-150 cursor-pointer flex items-center gap-1.5"
                   )}
                 >
                   <span>Resume</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3 text-zinc-400">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3 text-muted-foreground animate-none">
                     <path d="m6 9 6 6 6-6" />
                   </svg>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="border border-zinc-800 bg-zinc-950 shadow-md">
+                <DropdownMenuContent align="start" className="border border-border bg-background shadow-md">
                   {resumeVariants.map((variant) => (
                     <DropdownMenuItem
                       key={variant.id}
@@ -169,10 +170,10 @@ export default function Hero() {
                           download={`Mahija_Resume_${variant.language}.pdf`}
                         />
                       }
-                      className="flex items-center gap-2 cursor-pointer hover:bg-zinc-800 text-sm font-sans text-zinc-200"
+                      className="flex items-center gap-2 cursor-pointer hover:bg-muted text-sm font-sans text-foreground"
                     >
                       <span>{variant.label}</span>
-                      <Badge variant="outline" className="ml-auto font-mono text-[9px] px-1 py-0 border-zinc-800 text-zinc-400 bg-zinc-950/40">
+                      <Badge variant="outline" className="ml-auto font-mono text-[9px] px-1 py-0 border-border text-muted-foreground bg-card/40">
                         {variant.language}
                       </Badge>
                     </DropdownMenuItem>
@@ -185,7 +186,7 @@ export default function Hero() {
           {/* Simplified Metrics Block */}
           <motion.div 
             variants={itemVariants}
-            className="grid grid-cols-3 gap-6 border border-zinc-800 bg-zinc-950/40 rounded-2xl p-5 mt-4 max-w-xl text-left"
+            className="grid grid-cols-3 gap-6 border border-border bg-card/40 rounded-2xl p-5 mt-4 max-w-xl text-left"
           >
             {[
               { label: "40+ Repositories", sub: "Source control" },
@@ -193,8 +194,8 @@ export default function Hero() {
               { label: "2.5M Stored Images", sub: "CCTV database files" },
             ].map((metric) => (
               <div key={metric.label} className="flex flex-col gap-1">
-                <span className="font-mono text-base font-semibold text-zinc-200 leading-none">{metric.label}</span>
-                <span className="font-sans text-xs text-zinc-500">{metric.sub}</span>
+                <span className="font-mono text-base font-semibold text-foreground leading-none">{metric.label}</span>
+                <span className="font-sans text-xs text-muted-foreground">{metric.sub}</span>
               </div>
             ))}
           </motion.div>

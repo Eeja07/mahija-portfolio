@@ -33,7 +33,7 @@ export default function Awards() {
     <section
       id="awards"
       aria-labelledby="awards-heading"
-      className="w-full py-20 bg-background border-t border-zinc-800"
+      className="w-full py-20 bg-background border-t border-border"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -41,13 +41,13 @@ export default function Awards() {
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-zinc-800 py-1.5 px-3 bg-zinc-950/40 text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Achievements
           </Badge>
           <h2 
             id="awards-heading"
-            className="text-3xl font-sans font-semibold tracking-tight text-zinc-50"
+            className="text-3xl font-sans font-semibold tracking-tight text-foreground"
           >
             Awards & Recognition
           </h2>
@@ -63,25 +63,25 @@ export default function Awards() {
         >
           {awards.map((award, i) => (
             <motion.div key={i} variants={itemVariants}>
-              <Card className="border border-zinc-800 bg-zinc-950/40 rounded-2xl shadow-sm hover:border-zinc-700 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
+              <Card className="border border-border bg-card/40 rounded-2xl shadow-sm hover:border-border/80 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between font-mono text-sm text-zinc-400">
+                  <div className="flex items-center justify-between font-mono text-sm text-muted-foreground">
                     <span className="font-semibold uppercase">{award.competition}</span>
                     <span>{award.period}</span>
                   </div>
 
                   <div>
-                    <h3 className="font-sans text-xl font-medium text-zinc-50 leading-tight">
+                    <h3 className="font-sans text-xl font-medium text-foreground leading-tight">
                       {award.title}
                     </h3>
                   </div>
 
-                  <p className="font-sans text-base text-zinc-400 font-normal leading-relaxed">
+                  <p className="font-sans text-base text-muted-foreground font-normal leading-relaxed">
                     {award.summary}
                   </p>
 
                   {award.bullets && award.bullets.length > 0 && (
-                    <ul className="list-disc pl-4 text-sm text-zinc-500 flex flex-col gap-1.5 leading-relaxed mt-1">
+                    <ul className="list-disc pl-4 text-sm text-muted-foreground/80 flex flex-col gap-1.5 leading-relaxed mt-1">
                       {award.bullets.map((bullet, idx) => (
                         <li key={idx}>{bullet}</li>
                       ))}
