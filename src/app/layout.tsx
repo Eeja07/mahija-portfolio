@@ -23,15 +23,15 @@ export const metadata: Metadata = {
   },
   description:
     "Portfolio of Mahija, optimized for recruiters and engineering managers. Specializing in Debian 12 infrastructure, Docker orchestrations, Cloudflare Tunnels, IoT, Edge AI, and full-stack SaaS development.",
-  metadataBase: new URL("https://eeja.fun"),
+  metadataBase: new URL("https://portfolio.eeja.fun"),
   alternates: {
-    canonical: "https://eeja.fun",
+    canonical: "https://portfolio.eeja.fun",
   },
   openGraph: {
     title: "Mahija | Infrastructure & Fullstack & Edge AI Engineer",
     description:
       "Portfolio of Mahija, optimized for recruiters and engineering managers. Specializing in Debian 12 infrastructure, Docker orchestrations, Cloudflare Tunnels, IoT, Edge AI, and full-stack SaaS development.",
-    url: "https://eeja.fun",
+    url: "https://portfolio.eeja.fun",
     siteName: "Mahija Portfolio",
     locale: "en_US",
     type: "website",

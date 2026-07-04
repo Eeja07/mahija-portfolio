@@ -234,12 +234,12 @@ export default function Hero() {
               className="grid grid-cols-2 sm:grid-cols-3 gap-3 border border-border/60 bg-card/20 rounded-xl p-4 mt-4 max-w-xl"
             >
               {[
-                { label: "40+ repositories", sub: "Source control" },
-                { label: "6 deployed devices", sub: "Physical IoT nodes" },
-                { label: "2.5M images processed", sub: "Edge CCTV inference" },
-                { label: "Intel NUC homelab", sub: "Host virtualization" },
-                { label: "3 public deployments", sub: "Live production services" },
-                { label: "4 years building", sub: "Systems & fullstack" },
+                { label: "40+ Repositories", sub: "Source control" },
+                { label: "6 Active Nodes", sub: "Physical IoT devices" },
+                { label: "2.5M+ Images Stored", sub: "Edge CCTV database" },
+                { label: "4 Years Building", sub: "Systems development" },
+                { label: "Intel NUC Homelab", sub: "Bare-metal virtualization" },
+                { label: "3 Public Services", sub: "Live production gateways" },
               ].map((metric) => (
                 <div key={metric.label} className="flex flex-col">
                   <span className="font-mono text-xs font-bold text-foreground">{metric.label}</span>
