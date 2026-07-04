@@ -39,10 +39,8 @@ export default function Projects() {
     setActiveArchId(activeArchId === id ? null : id)
   }
 
-  // Filter projects for the primary Featured Showcase
   const featuredProjects = projects.filter((p) => p.featured)
 
-  // Filter projects for the Project Library (excluding academic which are in their own collapsed drawer)
   const libraryProjects = projects.filter((p) => {
     if (p.featured) return false
     if (p.category === "Academic") return false
@@ -50,20 +48,9 @@ export default function Projects() {
     return p.category === libraryFilter
   })
 
-  // Count and gather academic/coursework projects
   const academicProjects = projects.filter((p) => p.category === "Academic")
 
-  const categories = ["All", "Infrastructure", "Robotics", "AI", "Fullstack", "Systems", "Security"]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
-  }
+  const categories = ["All", "Infrastructure", "Robotics", "AI", "Fullstack", "Systems", "Security", "IoT", "Edge AI"]
 
   const itemVariants = {
     hidden: { opacity: 0, y: 8 },
@@ -72,9 +59,104 @@ export default function Projects() {
       y: 0,
       transition: {
         duration: 0.15,
-        ease: [0.16, 1, 0.3, 1] as const,
+        ease: "easeOut" as const,
       },
     },
+  }
+
+  // Visual vectors mapping to simulate interface previews/schematics instead of logs
+  const renderVisualMockup = (projectId: string) => {
+    if (projectId === "smart-cctv") {
+      return (
+        <svg viewBox="0 0 240 135" className="absolute inset-0 size-full bg-zinc-950 p-3 text-muted-foreground select-none" aria-hidden="true">
+          <rect width="240" height="135" rx="8" fill="none" />
+          <path d="M15 15 L225 15 L225 120 L15 120 Z" fill="none" stroke="var(--border)" strokeWidth="0.8" />
+          {/* Camera aperture grid */}
+          <circle cx="120" cy="67.5" r="30" fill="none" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="3 3" />
+          {/* Human detection overlay */}
+          <rect x="95" y="45" width="40" height="60" rx="2" fill="none" stroke="var(--primary)" strokeWidth="1.5" />
+          <text x="95" y="40" fill="var(--primary)" className="font-mono text-[7px] font-bold">human: 0.98</text>
+          <circle cx="115" cy="55" r="1.5" fill="var(--primary)" />
+          {/* Diagnostic Overlay */}
+          <rect x="25" y="25" width="55" height="25" rx="2" fill="var(--card)" stroke="var(--border)" strokeWidth="0.5" />
+          <text x="30" y="34" fill="var(--foreground)" className="font-mono text-[5.5px]">FPS: 10.2</text>
+          <text x="30" y="42" fill="var(--primary)" className="font-mono text-[5.5px]">LATENCY: 120ms</text>
+          <text x="20" y="112" fill="var(--muted-foreground)" className="font-mono text-[6px]">EDGE_NODE_01</text>
+        </svg>
+      )
+    }
+
+    if (projectId === "human-search-drone") {
+      return (
+        <svg viewBox="0 0 240 135" className="absolute inset-0 size-full bg-zinc-950 p-3 text-muted-foreground select-none" aria-hidden="true">
+          <rect width="240" height="135" rx="8" fill="none" />
+          {/* Radar scope */}
+          <circle cx="120" cy="67.5" r="50" fill="none" stroke="var(--border)" strokeWidth="0.5" />
+          <circle cx="120" cy="67.5" r="30" fill="none" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="2 2" />
+          <line x1="120" y1="10" x2="120" y2="125" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="2 2" />
+          <line x1="65" y1="67.5" x2="175" y2="67.5" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="2 2" />
+          {/* Search sweep line */}
+          <line x1="120" y1="67.5" x2="160" y2="35" stroke="var(--primary)" strokeWidth="1" />
+          {/* Targets */}
+          <circle cx="150" cy="45" r="2.5" fill="var(--primary)" />
+          <circle cx="150" cy="45" r="6" fill="none" stroke="var(--primary)" strokeWidth="0.5" className="animate-pulse" />
+          {/* Compass labels */}
+          <text x="120" y="22" fill="var(--muted-foreground)" className="font-mono text-[6px] font-bold" textAnchor="middle">000° N</text>
+          <text x="120" y="122" fill="var(--muted-foreground)" className="font-mono text-[6px] font-bold" textAnchor="middle">180° S</text>
+          <text x="25" y="122" fill="var(--foreground)" className="font-mono text-[6px]">ALT: 4.5m</text>
+          <text x="180" y="122" fill="var(--primary)" className="font-mono text-[6px]">OFFBOARD</text>
+        </svg>
+      )
+    }
+
+    if (projectId === "homelab-infra") {
+      return (
+        <svg viewBox="0 0 240 135" className="absolute inset-0 size-full bg-zinc-950 p-3 text-muted-foreground select-none" aria-hidden="true">
+          <rect width="240" height="135" rx="8" fill="none" />
+          {/* Rack visual */}
+          <rect x="35" y="20" width="170" height="95" rx="4" fill="none" stroke="var(--border)" strokeWidth="1" />
+          {/* Node 1 */}
+          <rect x="42" y="30" width="156" height="18" rx="2" fill="none" stroke="var(--primary)" strokeWidth="0.8" />
+          <circle cx="50" cy="39" r="2" fill="var(--primary)" />
+          <line x1="60" y1="39" x2="100" y2="39" stroke="var(--border)" strokeWidth="1" />
+          <text x="180" y="42" fill="var(--primary)" className="font-mono text-[6px] font-bold" textAnchor="end">DEBIAN_HOST</text>
+          {/* Node 2 */}
+          <rect x="42" y="55" width="156" height="18" rx="2" fill="none" stroke="var(--border)" strokeWidth="0.8" />
+          <circle cx="50" cy="64" r="2" fill="var(--foreground)" />
+          <line x1="60" y1="64" x2="120" y2="64" stroke="var(--border)" strokeWidth="1" />
+          <text x="180" y="67" fill="var(--foreground)" className="font-mono text-[6px]" textAnchor="end">DOCKER_ENG</text>
+          {/* Node 3 */}
+          <rect x="42" y="80" width="156" height="18" rx="2" fill="none" stroke="var(--border)" strokeWidth="0.8" />
+          <circle cx="50" cy="89" r="2" fill="var(--foreground)" />
+          <line x1="60" y1="89" x2="90" y2="89" stroke="var(--border)" strokeWidth="1" />
+          <text x="180" y="92" fill="var(--muted-foreground)" className="font-mono text-[6px]" textAnchor="end">TUNNEL_GATE</text>
+        </svg>
+      )
+    }
+
+    // Default or UNTERN
+    return (
+      <svg viewBox="0 0 240 135" className="absolute inset-0 size-full bg-zinc-950 p-3 text-muted-foreground select-none" aria-hidden="true">
+        <rect width="240" height="135" rx="8" fill="none" />
+        {/* Browser window top bar */}
+        <path d="M 15 15 L 225 15 L 225 25 L 15 25 Z" fill="none" stroke="var(--border)" strokeWidth="0.8" />
+        <circle cx="25" cy="20" r="1.5" fill="var(--border)" />
+        <circle cx="30" cy="20" r="1.5" fill="var(--border)" />
+        <circle cx="35" cy="20" r="1.5" fill="var(--border)" />
+        {/* Browser Body grid */}
+        <rect x="15" y="30" width="210" height="90" rx="2" fill="none" stroke="var(--border)" strokeWidth="0.8" />
+        {/* Mock List Item 1 */}
+        <rect x="25" y="40" width="190" height="18" rx="2" fill="none" stroke="var(--primary)" strokeWidth="0.6" />
+        <text x="35" y="51" fill="var(--foreground)" className="font-mono text-[6.5px] font-bold">SOFTWARE_DEV_INTERN</text>
+        <rect x="165" y="44" width="40" height="10" rx="1.5" fill="var(--primary)" />
+        <text x="185" y="51" fill="var(--primary-foreground)" className="font-mono text-[5px] font-bold" textAnchor="middle">APPLY</text>
+        {/* Mock List Item 2 */}
+        <rect x="25" y="65" width="190" height="18" rx="2" fill="none" stroke="var(--border)" strokeWidth="0.6" />
+        <text x="35" y="76" fill="var(--muted-foreground)" className="font-mono text-[6.5px]">INFRASTRUCTURE_ENG</text>
+        <rect x="165" y="69" width="40" height="10" rx="1.5" fill="none" stroke="var(--border)" strokeWidth="0.6" />
+        <text x="185" y="76" fill="var(--muted-foreground)" className="font-mono text-[5px]" textAnchor="middle">PENDING</text>
+      </svg>
+    )
   }
 
   return (
@@ -91,7 +173,7 @@ export default function Projects() {
             variant="outline" 
             className="w-fit border-border py-1 px-3 bg-muted/30 text-muted-foreground font-mono font-medium text-[11px] uppercase tracking-wider select-none"
           >
-            Engineering Showcase
+            Engineering Exhibition
           </Badge>
           
           <h2 
@@ -102,7 +184,7 @@ export default function Projects() {
           </h2>
           
           <p className="text-base text-muted-foreground font-sans leading-relaxed">
-            Production-grade systems, hardware platforms, and custom infrastructure built to operate under strict constraints and trade-offs.
+            Highly optimized hardware platforms and systems built to operate under strict constraints and trade-offs.
           </p>
         </div>
 
@@ -117,30 +199,11 @@ export default function Projects() {
               variants={itemVariants}
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 border border-border bg-card/20 rounded-2xl overflow-hidden p-6 lg:p-8"
             >
-              {/* Left Side: Mock Media Terminal / Metrics */}
+              {/* Left Side: Curated Graphic Mockup / Metrics */}
               <div className="lg:col-span-5 flex flex-col gap-4">
-                {/* Visual Placeholder mimicking video / terminal output */}
-                <div className="relative aspect-video rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden flex flex-col justify-between p-3 font-mono select-none">
-                  {/* Terminal Header */}
-                  <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className="size-2.5 rounded-full bg-zinc-800" />
-                      <span className="size-2.5 rounded-full bg-zinc-800" />
-                      <span className="size-2.5 rounded-full bg-zinc-800" />
-                    </div>
-                    <span className="text-[10px] text-zinc-600 font-semibold">{project.id}_diagnostic.sh</span>
-                  </div>
-
-                  {/* Terminal Output */}
-                  <div className="flex-1 py-4 flex flex-col justify-center gap-1 text-[10px] text-zinc-500 leading-normal">
-                    <div><span className="text-zinc-600">$</span> ./run_diagnostics --verbose</div>
-                    <div><span className="text-emerald-500">✔</span> Ingress node connectivity verified</div>
-                    <div><span className="text-emerald-500">✔</span> Pipeline latency: <span className="text-foreground">{project.metrics[1]?.split(" ")[1] || "120ms"}</span></div>
-                    <div><span className="text-emerald-500">✔</span> Target metric: <span className="text-foreground">{project.metrics[0]}</span></div>
-                    <div className="text-[9px] text-zinc-600 mt-2 font-sans italic border-t border-zinc-900 pt-2">
-                      [Autoplay stream simulation active in production environments]
-                    </div>
-                  </div>
+                {/* Visual mockup representation */}
+                <div className="relative aspect-video rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden select-none">
+                  {renderVisualMockup(project.id)}
 
                   {/* Video Overlay Tag */}
                   {project.mediaUrl && (
@@ -157,21 +220,21 @@ export default function Projects() {
 
                 {/* Key Metrics Dashboard */}
                 <div className="grid grid-cols-2 gap-2.5">
-                  {project.metrics.map((metric, i) => {
+                  {project.metrics.slice(0, 2).map((metric, i) => {
                     const parts = metric.split(" ");
                     const val = parts[0];
                     const desc = parts.slice(1).join(" ");
                     return (
                       <div key={i} className="border border-border/40 bg-muted/20 rounded-xl p-3 flex flex-col justify-center">
-                        <span className="font-mono text-sm font-bold text-foreground leading-none">{val}</span>
-                        <span className="font-sans text-[10px] text-muted-foreground mt-1 leading-normal">{desc}</span>
+                        <span className="font-mono text-xs font-bold text-foreground leading-none">{val}</span>
+                        <span className="font-sans text-[9px] text-muted-foreground mt-1 leading-normal">{desc}</span>
                       </div>
                     )
                   })}
                 </div>
 
                 {/* Action Links */}
-                <div className="flex gap-2.5 select-none mt-2">
+                <div className="flex gap-2.5 select-none mt-1">
                   {project.github && (
                     <a
                       href={project.github}
@@ -207,7 +270,7 @@ export default function Projects() {
               <div className="lg:col-span-7 flex flex-col justify-between gap-6">
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-bold text-primary uppercase tracking-wider">
+                    <span className="font-mono text-[9px] font-bold text-primary uppercase tracking-wider">
                       {project.category}
                     </span>
                     <span className="font-mono text-xs text-muted-foreground font-medium">
@@ -215,37 +278,31 @@ export default function Projects() {
                     </span>
                   </div>
 
-                  <h3 className="font-sans text-xl font-bold text-foreground mt-2 leading-tight">
+                  <h3 className="font-sans text-lg font-bold text-foreground mt-2 leading-tight">
                     {project.title}
                   </h3>
 
-                  <p className="text-xs text-muted-foreground font-sans mt-2 leading-relaxed">
+                  <p className="text-xs text-muted-foreground font-sans mt-1.5 leading-relaxed">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-col gap-4 mt-6">
+                  <div className="flex flex-col gap-3 mt-4">
                     {project.problem && (
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground font-bold">The Problem</span>
-                        <p className="font-sans text-xs text-foreground mt-0.5 leading-relaxed">{project.problem}</p>
+                      <div className="flex flex-col text-left">
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-muted-foreground font-bold">The Problem</span>
+                        <p className="font-sans text-xs text-foreground mt-0.5 leading-normal">{project.problem}</p>
                       </div>
                     )}
                     {project.approach && (
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground font-bold">Approach & Implementation</span>
-                        <p className="font-sans text-xs text-foreground mt-0.5 leading-relaxed">{project.approach}</p>
+                      <div className="flex flex-col text-left">
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-muted-foreground font-bold">Approach & Implementation</span>
+                        <p className="font-sans text-xs text-foreground mt-0.5 leading-normal">{project.approach}</p>
                       </div>
                     )}
                     {project.tradeoffs && (
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground font-bold">Trade-offs & Constraints</span>
-                        <p className="font-sans text-xs text-foreground mt-0.5 leading-relaxed">{project.tradeoffs}</p>
-                      </div>
-                    )}
-                    {project.challenges && (
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground font-bold">Key Challenges Overcome</span>
-                        <p className="font-sans text-xs text-foreground mt-0.5 leading-relaxed">{project.challenges}</p>
+                      <div className="flex flex-col text-left">
+                        <span className="font-mono text-[8px] uppercase tracking-wider text-muted-foreground font-bold">Trade-offs & Constraints</span>
+                        <p className="font-sans text-xs text-foreground mt-0.5 leading-normal">{project.tradeoffs}</p>
                       </div>
                     )}
                   </div>
@@ -253,12 +310,12 @@ export default function Projects() {
 
                 <div>
                   {/* Stack Badges */}
-                  <div className="flex flex-wrap gap-1.5 select-none mb-4">
+                  <div className="flex flex-wrap gap-1.5 select-none mb-3">
                     {project.stack.map((tech) => (
                       <Badge 
                         key={tech} 
                         variant="secondary" 
-                        className="border border-border/40 px-2 py-0.5 font-mono text-[10px] text-muted-foreground bg-muted/40"
+                        className="border border-border/40 px-1.5 py-0 font-mono text-[9px] text-muted-foreground bg-muted/40"
                       >
                         {tech}
                       </Badge>
@@ -267,7 +324,7 @@ export default function Projects() {
 
                   {/* Architecture Snapshot Toggle */}
                   {project.architecture && (
-                    <div className="border-t border-border/50 pt-4 select-none">
+                    <div className="border-t border-border/40 pt-3 select-none">
                       <Button
                         variant="ghost"
                         size="sm"
@@ -276,7 +333,7 @@ export default function Projects() {
                         className="text-xs text-muted-foreground hover:text-foreground font-medium p-0 h-auto flex items-center gap-1.5 cursor-pointer"
                       >
                         <CpuIcon className="size-3.5 text-primary" />
-                        <span>How It Works (Architecture Snapshot)</span>
+                        <span>Architecture Snapshot</span>
                         <svg
                           viewBox="0 0 24 24"
                           fill="none"
@@ -299,11 +356,11 @@ export default function Projects() {
                             transition={{ duration: 0.15, ease: "easeOut" }}
                             className="overflow-hidden"
                           >
-                            <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1.5 font-mono text-[10px] text-foreground bg-muted/15 rounded-xl p-3 border border-border/40">
+                            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1.5 font-mono text-[9px] text-foreground bg-muted/15 rounded-xl p-2.5 border border-border/40">
                               {project.architecture.map((node, index) => (
                                 <React.Fragment key={node}>
                                   {index > 0 && <span className="text-muted-foreground/40 font-sans">&rarr;</span>}
-                                  <span className="border border-border/60 bg-background rounded px-2 py-0.5 shadow-sm text-foreground">
+                                  <span className="border border-border/60 bg-background rounded px-1.5 py-0.5 shadow-sm text-foreground">
                                     {node}
                                   </span>
                                 </React.Fragment>
@@ -334,7 +391,7 @@ export default function Projects() {
                 Project Library
               </h2>
               <p className="text-xs text-muted-foreground font-sans mt-1">
-                A structured catalogue of secondary modules, system utilities, and full-stack utilities.
+                A structured catalogue of secondary modules, system utilities, and coursework.
               </p>
             </div>
 
@@ -358,7 +415,7 @@ export default function Projects() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {libraryProjects.map((p) => (
               <Card key={p.id} className="border border-border bg-card/25 shadow-sm flex flex-col justify-between">
-                <CardHeader className="pb-3">
+                <CardHeader className="pb-3 text-left">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-[9px] text-primary uppercase font-bold">{p.category}</span>
                     <span className="font-mono text-[10px] text-muted-foreground">{p.year}</span>
@@ -368,7 +425,7 @@ export default function Projects() {
                     {p.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pb-4 pt-0">
+                <CardContent className="pb-4 pt-0 text-left">
                   <div className="flex flex-wrap gap-1 select-none">
                     {p.stack.map((s) => (
                       <Badge key={s} variant="secondary" className="px-1.5 py-0 font-mono text-[9px] text-muted-foreground bg-muted/40 border border-border/20">
