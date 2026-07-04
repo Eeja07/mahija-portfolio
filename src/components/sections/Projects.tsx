@@ -8,6 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import { Image as ImageIcon } from "lucide-react"
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -34,6 +35,7 @@ export default function Projects() {
   const [activeArchId, setActiveArchId] = useState<string | null>(null)
   const [libraryFilter, setLibraryFilter] = useState<string>("All")
   const [academicExpanded, setAcademicExpanded] = useState<boolean>(false)
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({})
 
   const toggleArchitecture = (id: string) => {
     setActiveArchId(activeArchId === id ? null : id)
@@ -64,99 +66,23 @@ export default function Projects() {
     },
   }
 
-  // Visual vectors mapping to simulate interface previews/schematics instead of logs
-  const renderVisualMockup = (projectId: string) => {
-    if (projectId === "smart-cctv") {
-      return (
-        <svg viewBox="0 0 240 135" className="absolute inset-0 size-full bg-zinc-950 p-3 text-muted-foreground select-none" aria-hidden="true">
-          <rect width="240" height="135" rx="8" fill="none" />
-          <path d="M15 15 L225 15 L225 120 L15 120 Z" fill="none" stroke="var(--border)" strokeWidth="0.8" />
-          {/* Camera aperture grid */}
-          <circle cx="120" cy="67.5" r="30" fill="none" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="3 3" />
-          {/* Human detection overlay */}
-          <rect x="95" y="45" width="40" height="60" rx="2" fill="none" stroke="var(--primary)" strokeWidth="1.5" />
-          <text x="95" y="40" fill="var(--primary)" className="font-mono text-[7px] font-bold">human: 0.98</text>
-          <circle cx="115" cy="55" r="1.5" fill="var(--primary)" />
-          {/* Diagnostic Overlay */}
-          <rect x="25" y="25" width="55" height="25" rx="2" fill="var(--card)" stroke="var(--border)" strokeWidth="0.5" />
-          <text x="30" y="34" fill="var(--foreground)" className="font-mono text-[5.5px]">FPS: 10.2</text>
-          <text x="30" y="42" fill="var(--primary)" className="font-mono text-[5.5px]">LATENCY: 120ms</text>
-          <text x="20" y="112" fill="var(--muted-foreground)" className="font-mono text-[6px]">EDGE_NODE_01</text>
-        </svg>
-      )
-    }
+  const handleImageError = (id: string) => {
+    setFailedImages((prev) => ({ ...prev, [id]: true }))
+  }
 
-    if (projectId === "human-search-drone") {
-      return (
-        <svg viewBox="0 0 240 135" className="absolute inset-0 size-full bg-zinc-950 p-3 text-muted-foreground select-none" aria-hidden="true">
-          <rect width="240" height="135" rx="8" fill="none" />
-          {/* Radar scope */}
-          <circle cx="120" cy="67.5" r="50" fill="none" stroke="var(--border)" strokeWidth="0.5" />
-          <circle cx="120" cy="67.5" r="30" fill="none" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="2 2" />
-          <line x1="120" y1="10" x2="120" y2="125" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="2 2" />
-          <line x1="65" y1="67.5" x2="175" y2="67.5" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="2 2" />
-          {/* Search sweep line */}
-          <line x1="120" y1="67.5" x2="160" y2="35" stroke="var(--primary)" strokeWidth="1" />
-          {/* Targets */}
-          <circle cx="150" cy="45" r="2.5" fill="var(--primary)" />
-          <circle cx="150" cy="45" r="6" fill="none" stroke="var(--primary)" strokeWidth="0.5" className="animate-pulse" />
-          {/* Compass labels */}
-          <text x="120" y="22" fill="var(--muted-foreground)" className="font-mono text-[6px] font-bold" textAnchor="middle">000° N</text>
-          <text x="120" y="122" fill="var(--muted-foreground)" className="font-mono text-[6px] font-bold" textAnchor="middle">180° S</text>
-          <text x="25" y="122" fill="var(--foreground)" className="font-mono text-[6px]">ALT: 4.5m</text>
-          <text x="180" y="122" fill="var(--primary)" className="font-mono text-[6px]">OFFBOARD</text>
-        </svg>
-      )
-    }
+  // Authentic preview image configurations
+  const getProjectImagePath = (id: string) => {
+    if (id === "smart-cctv") return "/images/cctv_inference.png"
+    if (id === "human-search-drone") return "/images/drone_flight.png"
+    if (id === "homelab-infra") return "/images/homelab_grafana.png"
+    return "/images/untern_dashboard.png"
+  }
 
-    if (projectId === "homelab-infra") {
-      return (
-        <svg viewBox="0 0 240 135" className="absolute inset-0 size-full bg-zinc-950 p-3 text-muted-foreground select-none" aria-hidden="true">
-          <rect width="240" height="135" rx="8" fill="none" />
-          {/* Rack visual */}
-          <rect x="35" y="20" width="170" height="95" rx="4" fill="none" stroke="var(--border)" strokeWidth="1" />
-          {/* Node 1 */}
-          <rect x="42" y="30" width="156" height="18" rx="2" fill="none" stroke="var(--primary)" strokeWidth="0.8" />
-          <circle cx="50" cy="39" r="2" fill="var(--primary)" />
-          <line x1="60" y1="39" x2="100" y2="39" stroke="var(--border)" strokeWidth="1" />
-          <text x="180" y="42" fill="var(--primary)" className="font-mono text-[6px] font-bold" textAnchor="end">DEBIAN_HOST</text>
-          {/* Node 2 */}
-          <rect x="42" y="55" width="156" height="18" rx="2" fill="none" stroke="var(--border)" strokeWidth="0.8" />
-          <circle cx="50" cy="64" r="2" fill="var(--foreground)" />
-          <line x1="60" y1="64" x2="120" y2="64" stroke="var(--border)" strokeWidth="1" />
-          <text x="180" y="67" fill="var(--foreground)" className="font-mono text-[6px]" textAnchor="end">DOCKER_ENG</text>
-          {/* Node 3 */}
-          <rect x="42" y="80" width="156" height="18" rx="2" fill="none" stroke="var(--border)" strokeWidth="0.8" />
-          <circle cx="50" cy="89" r="2" fill="var(--foreground)" />
-          <line x1="60" y1="89" x2="90" y2="89" stroke="var(--border)" strokeWidth="1" />
-          <text x="180" y="92" fill="var(--muted-foreground)" className="font-mono text-[6px]" textAnchor="end">TUNNEL_GATE</text>
-        </svg>
-      )
-    }
-
-    // Default or UNTERN
-    return (
-      <svg viewBox="0 0 240 135" className="absolute inset-0 size-full bg-zinc-950 p-3 text-muted-foreground select-none" aria-hidden="true">
-        <rect width="240" height="135" rx="8" fill="none" />
-        {/* Browser window top bar */}
-        <path d="M 15 15 L 225 15 L 225 25 L 15 25 Z" fill="none" stroke="var(--border)" strokeWidth="0.8" />
-        <circle cx="25" cy="20" r="1.5" fill="var(--border)" />
-        <circle cx="30" cy="20" r="1.5" fill="var(--border)" />
-        <circle cx="35" cy="20" r="1.5" fill="var(--border)" />
-        {/* Browser Body grid */}
-        <rect x="15" y="30" width="210" height="90" rx="2" fill="none" stroke="var(--border)" strokeWidth="0.8" />
-        {/* Mock List Item 1 */}
-        <rect x="25" y="40" width="190" height="18" rx="2" fill="none" stroke="var(--primary)" strokeWidth="0.6" />
-        <text x="35" y="51" fill="var(--foreground)" className="font-mono text-[6.5px] font-bold">SOFTWARE_DEV_INTERN</text>
-        <rect x="165" y="44" width="40" height="10" rx="1.5" fill="var(--primary)" />
-        <text x="185" y="51" fill="var(--primary-foreground)" className="font-mono text-[5px] font-bold" textAnchor="middle">APPLY</text>
-        {/* Mock List Item 2 */}
-        <rect x="25" y="65" width="190" height="18" rx="2" fill="none" stroke="var(--border)" strokeWidth="0.6" />
-        <text x="35" y="76" fill="var(--muted-foreground)" className="font-mono text-[6.5px]">INFRASTRUCTURE_ENG</text>
-        <rect x="165" y="69" width="40" height="10" rx="1.5" fill="none" stroke="var(--border)" strokeWidth="0.6" />
-        <text x="185" y="76" fill="var(--muted-foreground)" className="font-mono text-[5px]" textAnchor="middle">PENDING</text>
-      </svg>
-    )
+  const getProjectFallbackLabel = (id: string) => {
+    if (id === "smart-cctv") return "edge_cctv_cv_inference.png"
+    if (id === "human-search-drone") return "drone_mavlink_grid_testing.png"
+    if (id === "homelab-infra") return "homelab_proxmox_telemetry.png"
+    return "untern_recruiter_dashboard.png"
   }
 
   return (
@@ -199,22 +125,34 @@ export default function Projects() {
               variants={itemVariants}
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 border border-border bg-card/20 rounded-2xl overflow-hidden p-6 lg:p-8"
             >
-              {/* Left Side: Curated Graphic Mockup / Metrics */}
+              {/* Left Side: Photo/Video Showcase or Fallback */}
               <div className="lg:col-span-5 flex flex-col gap-4">
-                {/* Visual mockup representation */}
-                <div className="relative aspect-video rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden select-none">
-                  {renderVisualMockup(project.id)}
-
-                  {/* Video Overlay Tag */}
-                  {project.mediaUrl && (
-                    <video
-                      src={project.mediaUrl}
-                      className="absolute inset-0 size-full object-cover opacity-0 hover:opacity-100 transition-opacity duration-200"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    />
+                <div className="relative aspect-video rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden select-none flex items-center justify-center">
+                  {failedImages[project.id] ? (
+                    <div className="flex flex-col items-center gap-2 p-4 text-center">
+                      <ImageIcon className="size-5 text-zinc-600" />
+                      <span className="font-mono text-xs text-zinc-400">[{getProjectFallbackLabel(project.id)}]</span>
+                      <span className="font-sans text-[9px] text-zinc-600">Save your screenshot to /public/images/ to load this layout</span>
+                    </div>
+                  ) : (
+                    <>
+                      <img
+                        src={getProjectImagePath(project.id)}
+                        alt={project.title}
+                        onError={() => handleImageError(project.id)}
+                        className="w-full h-full object-cover"
+                      />
+                      {project.mediaUrl && (
+                        <video
+                          src={project.mediaUrl}
+                          className="absolute inset-0 size-full object-cover opacity-0 hover:opacity-100 transition-opacity duration-200"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                        />
+                      )}
+                    </>
                   )}
                 </div>
 
