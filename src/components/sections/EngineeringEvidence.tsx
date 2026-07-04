@@ -28,8 +28,8 @@ export default function EngineeringEvidence() {
       category: "Robotics",
       description: "Flight testing photo showing physical UAV drone hovering during autonomous grid traversal.",
       details: "Fuses downward-facing optical flow sensor packets with LiDAR distance estimators to maintain drift-free position holds in GPS-denied environments.",
-      imagePath: "/images/evidence_drone_trajectory.png",
-      fallbackLabel: "drone_flight_field_test.png"
+      imagePath: "/images/evidence/drone-field.webp",
+      fallbackLabel: "evidence/drone-field.webp"
     },
     {
       id: "esp32-enclosure",
@@ -37,8 +37,8 @@ export default function EngineeringEvidence() {
       category: "IoT",
       description: "Macro photo of physical custom-wired ESP32 microcontroller and sensor breakout boards in plastic protective casing.",
       details: "Wired with a DHT22 ambient temperature module and powered by a rechargeable LiPo battery. Operates under strict deep-sleep cycles (25mA idle current).",
-      imagePath: "/images/evidence_esp32_hardware.png",
-      fallbackLabel: "esp32_dht22_enclosure_macro.png"
+      imagePath: "/images/evidence/esp32-node.webp",
+      fallbackLabel: "evidence/esp32-node.webp"
     },
     {
       id: "nuc-server",
@@ -46,8 +46,8 @@ export default function EngineeringEvidence() {
       category: "Systems",
       description: "Physical photograph of the self-hosted Intel NUC hardware gateway running inside the homelab server cluster cabinet.",
       details: "Provides the primary virtual computing workspace. Running Proxmox VE hypervisor executing multiple Debian Docker hosts.",
-      imagePath: "/images/evidence_nuc_setup.png",
-      fallbackLabel: "intel_nuc_rack_assembly.png"
+      imagePath: "/images/evidence/storage.webp",
+      fallbackLabel: "evidence/storage.webp"
     },
     {
       id: "yolo-detection",
@@ -55,8 +55,8 @@ export default function EngineeringEvidence() {
       category: "AI",
       description: "Active screenshot of local YOLOv8 inference stream overlaying real-time person bounding boxes and confidence indexes.",
       details: "Compiled into TensorRT execution engines to run directly on local GPU nodes, optimizing object recognition latency down to 12ms per frame.",
-      imagePath: "/images/evidence_yolo_bounding_box.png",
-      fallbackLabel: "yolov8_edge_bounding_box_feed.png"
+      imagePath: "/images/evidence/yolo.webp",
+      fallbackLabel: "evidence/yolo.webp"
     },
     {
       id: "cloudflare-ingress",
@@ -64,8 +64,8 @@ export default function EngineeringEvidence() {
       category: "Network",
       description: "Screenshot of the active Zero Trust dashboard monitoring local egress tunnel routing rules.",
       details: "Establishes egress-only secure connections, mapping local domain names (e.g. status.eeja.fun) dynamically without opening incoming firewall ports.",
-      imagePath: "/images/evidence_cloudflare_tunnel.png",
-      fallbackLabel: "cloudflare_zero_trust_tunnel_routes.png"
+      imagePath: "/images/evidence/tunnel.webp",
+      fallbackLabel: "evidence/tunnel.webp"
     }
   ]
 

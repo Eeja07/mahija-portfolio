@@ -67,8 +67,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Mahija Ibad Pradipta",
-  "url": "https://eeja.fun",
-  "image": "https://eeja.fun/og.png",
+  "url": "https://portfolio.eeja.fun",
+  "image": "https://portfolio.eeja.fun/og.png",
   "jobTitle": "Computer Engineering Student",
   "alumniOf": {
     "@type": "EducationalOrganization",
@@ -77,6 +77,18 @@ const jsonLd = {
   "sameAs": [
     "https://github.com/Eeja07",
     "https://linkedin.com/in/mahijaibad"
+  ],
+  "knowsAbout": [
+    "Docker",
+    "Linux",
+    "Debian",
+    "IoT",
+    "MQTT",
+    "Cloudflare",
+    "Computer Vision",
+    "ROS",
+    "Embedded Systems",
+    "Robotics"
   ]
 };
 

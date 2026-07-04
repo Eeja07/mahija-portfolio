@@ -72,17 +72,17 @@ export default function Projects() {
 
   // Authentic preview image configurations
   const getProjectImagePath = (id: string) => {
-    if (id === "smart-cctv") return "/images/cctv_inference.png"
-    if (id === "human-search-drone") return "/images/drone_flight.png"
-    if (id === "homelab-infra") return "/images/homelab_grafana.png"
-    return "/images/untern_dashboard.png"
+    if (id === "smart-cctv") return "/images/featured/cctv/inference.webp"
+    if (id === "human-search-drone") return "/images/featured/drone/flight.webp"
+    if (id === "homelab-infra") return "/images/featured/homelab/portainer.webp"
+    return "/images/featured/untern/home.webp"
   }
 
   const getProjectFallbackLabel = (id: string) => {
-    if (id === "smart-cctv") return "edge_cctv_cv_inference.png"
-    if (id === "human-search-drone") return "drone_mavlink_grid_testing.png"
-    if (id === "homelab-infra") return "homelab_proxmox_telemetry.png"
-    return "untern_recruiter_dashboard.png"
+    if (id === "smart-cctv") return "featured/cctv/inference.webp"
+    if (id === "human-search-drone") return "featured/drone/flight.webp"
+    if (id === "homelab-infra") return "featured/homelab/portainer.webp"
+    return "featured/untern/home.webp"
   }
 
   return (

@@ -36,7 +36,7 @@ export const projects: Project[] = [
     challenges: "Thermal throttling on the Pi 4 under continuous inference. Resolved by implementing adaptive frame-skipping and custom aluminum heatsink cooling, lowering operating temperatures by 15°C.",
     outcome: "A fully private, offline-first home security platform processing three camera feeds simultaneously with local notification triggers in under 120ms.",
     mediaType: "video",
-    mediaUrl: "/videos/cctv_demo.mp4",
+    mediaUrl: "/videos/cctv-demo.webm",
   },
   {
     id: "human-search-drone",
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     challenges: "Sensor drift in GPS-denied forest canopies. Solved by fusing optical flow downward-facing velocity data with LiDAR altimeter logs within the PX4 EKF2 filter.",
     outcome: "An autonomous aerial unit capable of flying pre-programmed search paths and locating targets inside a 100x100m grid completely offline within 6 minutes.",
     mediaType: "video",
-    mediaUrl: "/videos/drone_demo.mp4",
+    mediaUrl: "/videos/drone-demo.webm",
   },
   {
     id: "homelab-infra",
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     challenges: "Achieving zero-downtime container updates. Solved by writing automated health-check endpoints and configuring Nginx proxy rules to balance traffic to standby container clones during updates.",
     outcome: "Secure hosting for 10+ internal services (MQTT brokers, databases, dashboards, web apps) operating on 99.99% uptime with automated remote storage backups.",
     mediaType: "video",
-    mediaUrl: "/videos/homelab_demo.mp4",
+    mediaUrl: "/videos/homelab-demo.webm",
   },
   {
     id: "untern-platform",
@@ -147,7 +147,7 @@ export const projects: Project[] = [
     challenges: "Syncing job listings with third-party web scrapers. Solved by building a rate-limited queue system using Redis to queue import workers and prevent database locking.",
     outcome: "A production job portal facilitating over 500 validated internship matches with under 50ms listing search latency.",
     mediaType: "video",
-    mediaUrl: "/videos/untern_demo.mp4",
+    mediaUrl: "/videos/untern-demo.webm",
   },
 
   // Project Library - Non-Featured & Academic repositories
