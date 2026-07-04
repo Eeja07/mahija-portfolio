@@ -6,7 +6,7 @@ export const projects: Project[] = [
     slug: "diy-smart-cctv-platform",
     title: "DIY Smart CCTV Platform",
     description:
-      "Self-hosted edge computer vision platform for real-time video stream processing and offline object detection using low-power devices.",
+      "Designed a self-hosted surveillance platform supporting six ESP32-CAM nodes, realtime updates, and over 2.5 million stored images.",
     year: 2024,
     category: "IoT",
     stack: ["Python", "OpenCV", "PyTorch", "Docker", "Raspberry Pi 4", "MQTT", "Go"],
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     slug: "autonomous-human-search",
     title: "Autonomous Human Search Drone",
     description:
-      "Search-and-rescue UAV localization platform that performs autonomous pathing and onboard human detection in GPS-denied environments.",
+      "Developed an autonomous search platform combining PX4, YOLOv8n, and MAVSDK for real-time human detection missions.",
     year: 2025,
     category: "Edge AI",
     stack: ["C++", "Python", "ROS2", "YOLOv8", "NVIDIA Jetson Nano", "PX4 Autopilot"],
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     slug: "homelab-infrastructure",
     title: "Enterprise Homelab Infrastructure",
     description:
-      "Self-hosted enterprise grade infrastructure deployment serving web applications and telemetry pipelines on bare-metal virtualized nodes.",
+      "Operates a self-hosted Debian homelab running containerized applications behind Cloudflare Tunnel on Intel NUC infrastructure.",
     year: 2026,
     category: "Infrastructure",
     stack: ["Debian 12", "Docker", "Cloudflare Tunnel", "Proxmox VE", "Nginx Proxy Manager", "Prometheus", "Grafana"],

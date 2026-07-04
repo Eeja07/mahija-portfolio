@@ -55,6 +55,29 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", type: "image/x-icon" }
+    ],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mahija Ibad Pradipta",
+  "url": "https://eeja.fun",
+  "image": "https://eeja.fun/og.png",
+  "jobTitle": "Computer Engineering Student",
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Institut Teknologi Sepuluh Nopember (ITS)"
+  },
+  "sameAs": [
+    "https://github.com/Eeja07",
+    "https://linkedin.com/in/mahijaibad"
+  ]
 };
 
 export default function RootLayout({
@@ -72,6 +95,19 @@ export default function RootLayout({
         geistMono.variable
       )}
     >
+      <head>
+        {/* Privacy-friendly self-hosted analytics */}
+        <script
+          async
+          src="https://analytics.eeja.fun/script.js"
+          data-website-id="745cf199-059f-4889-ae2d-d74139187546"
+        />
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider
           attribute="class"
