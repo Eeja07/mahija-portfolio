@@ -3,7 +3,12 @@ export type ProjectCategory =
   | "IoT"
   | "Fullstack"
   | "Computer Vision"
-  | "Edge AI";
+  | "Edge AI"
+  | "Robotics"
+  | "AI"
+  | "Systems"
+  | "Security"
+  | "Academic";
 
 export interface Project {
   id: string;
@@ -20,4 +25,13 @@ export interface Project {
   architecture?: string[];
   image?: string;
   featured: boolean;
+  
+  // Engineering Showcase specifics
+  problem?: string;
+  approach?: string;
+  tradeoffs?: string;
+  challenges?: string;
+  outcome?: string;
+  mediaType?: "video" | "image";
+  mediaUrl?: string;
 }

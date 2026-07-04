@@ -3,10 +3,10 @@
 import React from "react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card"
+import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import { Download, Printer, FileText, Check, Globe } from "lucide-react"
+import { Download, FileText } from "lucide-react"
 import { resumeMetadata } from "@/data/resume"
 
 export default function Resume() {
@@ -21,7 +21,7 @@ export default function Resume() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 12 },
+    hidden: { opacity: 0, y: 8 },
     visible: {
       opacity: 1,
       y: 0,
@@ -30,11 +30,6 @@ export default function Resume() {
         ease: "easeOut" as const,
       },
     },
-  }
-
-  const handlePrint = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    window.print()
   }
 
   return (
@@ -46,12 +41,12 @@ export default function Resume() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-16 text-left max-w-2xl">
+        <div className="flex flex-col gap-3 mb-12 text-left max-w-2xl">
           <Badge 
             variant="outline" 
             className="w-fit border-border py-1 px-3 bg-muted/30 text-muted-foreground font-mono font-medium text-[11px] uppercase tracking-wider select-none"
           >
-            Curriculum Vitae
+            Documents
           </Badge>
           <h2 
             id="resume-heading"
@@ -60,109 +55,64 @@ export default function Resume() {
             Resume
           </h2>
           <p className="text-base text-muted-foreground font-sans leading-relaxed">
-            Access, download, or print copies of my professional background in English or Indonesian.
+            Download standard copies of my professional background in English or Indonesian.
           </p>
         </div>
 
-        {/* Resume CTA Layout */}
+        {/* Compact Resume CTA */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="w-full"
+          className="w-full max-w-3xl mx-auto"
         >
           <motion.div variants={itemVariants}>
-            <Card className="border border-border bg-card/40 shadow-sm overflow-hidden">
-              <CardContent className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <Card className="border border-border bg-card/25 shadow-sm overflow-hidden">
+              <CardContent className="p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
                 
-                {/* Left Side: Metadata and Badging */}
-                <div className="flex flex-col gap-3.5 max-w-xl">
-                  <div className="flex flex-wrap items-center gap-2 select-none">
-                    <Badge 
-                      variant="secondary"
-                      className="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider"
-                    >
-                      {resumeMetadata.version}
-                    </Badge>
-                    {resumeMetadata.atsFriendly && (
-                      <Badge 
-                        variant="outline"
-                        className="border-border text-muted-foreground px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1"
-                      >
-                        <Check className="size-3 text-emerald-500" />
-                        ATS Friendly
-                      </Badge>
-                    )}
-                    
-                    {/* Resume Language Indicators */}
-                    <Badge 
-                      variant="outline"
-                      className="border-border text-muted-foreground px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1"
-                    >
-                      <Globe className="size-3 text-primary" />
-                      {resumeMetadata.english.language} / {resumeMetadata.indonesian.language}
-                    </Badge>
-
-                    <span className="text-[11px] font-mono text-muted-foreground/80">
-                      Updated {resumeMetadata.updated}
-                    </span>
+                {/* Left Side: Title */}
+                <div className="flex items-center gap-3 text-left">
+                  <div className="p-2 bg-muted/30 border border-border/40 rounded-lg text-muted-foreground" aria-hidden="true">
+                    <FileText className="size-5" />
                   </div>
-
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 bg-muted/30 border border-border/40 rounded-lg text-muted-foreground" aria-hidden="true">
-                      <FileText className="size-5" />
-                    </div>
-                    <CardTitle className="font-sans text-lg font-bold text-foreground">
-                      Professional Resume PDF
-                    </CardTitle>
+                  <div>
+                    <h3 className="font-sans text-sm font-bold text-foreground">
+                      Professional Curriculum Vitae
+                    </h3>
+                    <p className="text-xs text-muted-foreground font-sans mt-0.5 leading-normal">
+                      Single-page formatted PDF tailored for engineering roles.
+                    </p>
                   </div>
-
-                  <CardDescription className="text-xs text-muted-foreground font-sans leading-relaxed">
-                    Designed for automated scanner parsing and quick recruiter review. Optimized to print on a single page using standard letter dimensions. Available in English (EN) and Indonesian (ID).
-                  </CardDescription>
                 </div>
 
-                {/* Right Side: Action Triggers (Desktop: inline, Mobile: stacked) */}
-                <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto shrink-0 select-none">
-                  
-                  {/* English Resume (Primary) */}
+                {/* Right Side: Direct download links */}
+                <div className="flex flex-wrap gap-2.5 w-full sm:w-auto shrink-0 select-none">
+                  {/* English Resume */}
                   <a
                     href={resumeMetadata.english.file}
                     download={`Mahija_Resume_${resumeMetadata.english.language}.pdf`}
                     className={cn(
                       buttonVariants({ variant: "default", size: "sm" }),
-                      "w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center px-5 py-2.5 h-10 flex items-center"
+                      "w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center px-4 py-2 flex items-center gap-1.5 cursor-pointer text-xs"
                     )}
                   >
-                    <Download className="size-3.5 mr-2" />
-                    {resumeMetadata.english.label}
+                    <Download className="size-3.5" />
+                    <span>English PDF</span>
                   </a>
 
-                  {/* Resume Indonesia (Outline) */}
+                  {/* Resume Indonesia */}
                   <a
                     href={resumeMetadata.indonesian.file}
                     download={`Mahija_Resume_${resumeMetadata.indonesian.language}.pdf`}
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "w-full md:w-auto border-border text-xs hover:bg-muted font-medium justify-center px-5 py-2.5 h-10 flex items-center"
+                      "w-full sm:w-auto border-border text-xs hover:bg-muted font-medium justify-center px-4 py-2 flex items-center gap-1.5 cursor-pointer"
                     )}
                   >
-                    <Download className="size-3.5 mr-2" />
-                    {resumeMetadata.indonesian.label}
+                    <Download className="size-3.5" />
+                    <span>Indonesia PDF</span>
                   </a>
-
-                  {/* Print Resume (Ghost) */}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handlePrint}
-                    className="w-full md:w-auto text-xs text-muted-foreground hover:text-foreground font-medium justify-center px-5 py-2.5 h-10"
-                  >
-                    <Printer className="size-3.5 mr-2" />
-                    Print Resume
-                  </Button>
-
                 </div>
 
               </CardContent>

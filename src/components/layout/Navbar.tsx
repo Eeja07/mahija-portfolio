@@ -23,11 +23,11 @@ import { resumeVariants, resumeMetadata } from "@/data/resume"
 import { cn } from "@/lib/utils"
 
 const navigationLinks = [
-  { name: "Projects", href: "#projects" },
+  { name: "Projects", href: "#featured-engineering" },
+  { name: "Decisions", href: "#engineering-decisions" },
+  { name: "Evidence", href: "#engineering-evidence" },
   { name: "Experience", href: "#experience" },
-  { name: "Infrastructure", href: "#infrastructure" },
-  { name: "Skills", href: "#skills" },
-  { name: "Resume", href: "#resume" },
+  { name: "Stack", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ]
 

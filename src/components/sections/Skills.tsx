@@ -3,9 +3,21 @@
 import React from "react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { skillGroups } from "@/data/skills"
+
+const coreTechnologies = [
+  "Docker",
+  "Linux",
+  "Debian",
+  "Cloudflare",
+  "MQTT",
+  "Laravel",
+  "YOLO",
+  "MAVSDK",
+  "ROS",
+  "Python",
+  "TypeScript",
+  "PostgreSQL"
+]
 
 export default function Skills() {
   const containerVariants = {
@@ -13,13 +25,13 @@ export default function Skills() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.03,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 12 },
+    hidden: { opacity: 0, y: 4 },
     visible: {
       opacity: 1,
       y: 0,
@@ -50,52 +62,28 @@ export default function Skills() {
             id="skills-heading"
             className="text-3xl font-sans font-bold tracking-tight text-foreground sm:text-4xl"
           >
-            Skills & Core Capabilities
+            Core Technologies
           </h2>
           <p className="text-base text-muted-foreground font-sans leading-relaxed">
-            Professional skill sets grouped by technical competencies and execution capabilities.
+            The core set of systems, protocols, environments, and languages relied upon for construction and deployment.
           </p>
         </div>
 
-        {/* 3-Column Skills Grid */}
+        {/* 12 Core Technologies Badges Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto select-none"
         >
-          {skillGroups.map((group) => (
-            <motion.div key={group.title} variants={itemVariants}>
-              <Card className="border border-border bg-card/40 shadow-sm transition-all duration-150 ease-in-out hover:border-primary/50 h-full flex flex-col justify-between">
-                <div>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="font-sans text-base font-bold text-foreground leading-snug">
-                      {group.title}
-                    </CardTitle>
-                    <p className="text-xs text-muted-foreground font-sans leading-relaxed mt-1">
-                      {group.description}
-                    </p>
-                  </CardHeader>
-                  <div className="px-6 pb-4">
-                    <Separator className="bg-border/40" />
-                  </div>
-                </div>
-                
-                <CardContent className="pt-0 pb-6 flex-1 flex items-start">
-                  <div className="flex flex-wrap gap-1.5 w-full select-none">
-                    {group.items.map((skill) => (
-                      <Badge 
-                        key={skill} 
-                        variant="secondary" 
-                        className="border border-border/40 px-2 py-0.5 font-mono text-[10px] text-muted-foreground bg-muted/40"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+          {coreTechnologies.map((tech) => (
+            <motion.div key={tech} variants={itemVariants}>
+              <div 
+                className="border border-border/80 bg-card/45 hover:border-primary/50 hover:bg-card transition-all duration-150 rounded-xl px-5 py-3 flex items-center justify-center font-mono text-xs font-semibold text-foreground shadow-sm"
+              >
+                {tech}
+              </div>
             </motion.div>
           ))}
         </motion.div>

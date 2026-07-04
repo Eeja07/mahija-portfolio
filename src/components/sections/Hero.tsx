@@ -1,25 +1,23 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "motion/react"
-import { buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu"
+import { resumeVariants } from "@/data/resume"
 import { cn } from "@/lib/utils"
 
-// Bulletproof inline SVGs matching Linear's design system
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
     <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-)
-
-const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
   </svg>
 )
 
@@ -72,6 +70,12 @@ const GlobeIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -83,7 +87,7 @@ export default function Hero() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 12 },
+    hidden: { opacity: 0, y: 8 },
     visible: {
       opacity: 1,
       y: 0,
@@ -94,19 +98,33 @@ export default function Hero() {
     },
   }
 
+  const handleScrollToWork = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    const targetElement = document.querySelector("#featured-engineering")
+    if (targetElement) {
+      const headerOffset = 80
+      const elementPosition = targetElement.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.scrollY - headerOffset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      })
+    }
+  }
+
   return (
     <section 
       aria-label="Introduction and Infrastructure Diagnostics"
-      className="relative w-full min-h-screen pt-24 pb-16 flex items-center justify-center bg-background"
+      className="relative w-full min-h-[90vh] pt-24 pb-12 flex items-center justify-center bg-background"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
         >
-          {/* Left Column: Core Value Proposition */}
+          {/* Left Column: Core Value Proposition & Metrics */}
           <div className="lg:col-span-7 flex flex-col gap-6 text-left">
             <motion.div variants={itemVariants}>
               <Badge 
@@ -122,33 +140,44 @@ export default function Hero() {
               variants={itemVariants}
               className="text-4xl sm:text-5xl lg:text-6xl font-sans font-bold tracking-tight text-foreground leading-[1.05]"
             >
-              Infrastructure
-              <br />
-              Fullstack
-              <br />
-              IoT & Edge AI
+              Mahija Ibad Pradipta
             </motion.h1>
 
             <motion.p 
               variants={itemVariants}
               className="text-base sm:text-lg text-muted-foreground max-w-xl font-sans leading-relaxed"
             >
-              Building end-to-end systems from embedded devices to self-hosted infrastructure and production-ready applications.
+              Building self-hosted systems, IoT platforms, autonomous robotics, and infrastructure.
             </motion.p>
 
+            {/* Stack Tags */}
             <motion.div 
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-3 mt-4"
+              className="flex flex-wrap gap-2 select-none"
             >
-              <a
-                href="#resume"
-                className={cn(
-                  buttonVariants({ variant: "default", size: "default" }),
-                  "font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150"
-                )}
+              {["Debian", "Docker", "Cloudflare", "MQTT", "YOLO", "PX4"].map((tech) => (
+                <Badge
+                  key={tech}
+                  variant="secondary"
+                  className="px-2 py-0.5 border border-border/40 font-mono text-[10px] text-muted-foreground bg-muted/40"
+                >
+                  {tech}
+                </Badge>
+              ))}
+            </motion.div>
+
+            {/* Compact Call to Actions */}
+            <motion.div 
+              variants={itemVariants}
+              className="flex flex-wrap items-center gap-3 mt-2"
+            >
+              <Button
+                onClick={handleScrollToWork}
+                className="font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150 cursor-pointer"
               >
-                Resume
-              </a>
+                View Work
+              </Button>
+
               <a
                 href="https://github.com/Eeja07"
                 target="_blank"
@@ -161,18 +190,62 @@ export default function Hero() {
                 <GithubIcon className="size-4 mr-2" />
                 GitHub
               </a>
-              <a
-                href="https://linkedin.com/in/mahija-ibad-pradipta"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "default" }),
-                  "font-medium border-border hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150"
-                )}
-              >
-                <LinkedinIcon className="size-4 mr-2" />
-                LinkedIn
-              </a>
+
+              {mounted && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "default" }),
+                      "font-medium border-border hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150 cursor-pointer flex items-center gap-1.5"
+                    )}
+                  >
+                    <span>Resume</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3">
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="border border-border bg-card shadow-md">
+                    {resumeVariants.map((variant) => (
+                      <DropdownMenuItem
+                        key={variant.id}
+                        nativeButton={false}
+                        render={
+                          <a
+                            href={variant.href}
+                            download={`Mahija_Resume_${variant.language}.pdf`}
+                          />
+                        }
+                        className="flex items-center gap-2 cursor-pointer hover:bg-muted text-sm font-sans"
+                      >
+                        <span>{variant.label}</span>
+                        <Badge variant="outline" className="ml-auto font-mono text-[9px] px-1 py-0 border-border/60">
+                          {variant.language}
+                        </Badge>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
+            </motion.div>
+
+            {/* Compact Metrics Grid */}
+            <motion.div 
+              variants={itemVariants}
+              className="grid grid-cols-2 sm:grid-cols-3 gap-3 border border-border/60 bg-card/20 rounded-xl p-4 mt-4 max-w-xl"
+            >
+              {[
+                { label: "40+ repositories", sub: "Source control" },
+                { label: "6 deployed devices", sub: "Physical IoT nodes" },
+                { label: "2.5M images processed", sub: "Edge CCTV inference" },
+                { label: "Intel NUC homelab", sub: "Host virtualization" },
+                { label: "3 public deployments", sub: "Live production services" },
+                { label: "4 years building", sub: "Systems & fullstack" },
+              ].map((metric) => (
+                <div key={metric.label} className="flex flex-col">
+                  <span className="font-mono text-xs font-bold text-foreground">{metric.label}</span>
+                  <span className="font-sans text-[10px] text-muted-foreground">{metric.sub}</span>
+                </div>
+              ))}
             </motion.div>
           </div>
 
