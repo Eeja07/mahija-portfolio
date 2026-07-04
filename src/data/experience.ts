@@ -90,4 +90,20 @@ export const experiences: Experience[] = [
     ],
     technologies: ["PostgreSQL", "Linux", "C++", "Python", "Git"],
   },
+  {
+    id: "robotics-instructor",
+    company: "Robotics Instructor",
+    role: "Technical Mentor",
+    location: "Surabaya, Indonesia",
+    startDate: "Jan 2024",
+    endDate: "Present",
+    current: true,
+    category: "Teaching Assistant",
+    description: "Mentored student teams in electronic hardware layouts, flight stabilization, and embedded firmware designs.",
+    achievements: [
+      "Mentored competition engineering teams on autonomous systems, sensor calibration, and PX4 hardware configurations",
+      "Formulated robotics training curriculum, teaching embedded C++ development and circuit schematics to 50+ students",
+    ],
+    technologies: ["C++", "PX4", "Embedded C", "Sensor Calibration", "Git"],
+  },
 ]

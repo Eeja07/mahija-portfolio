@@ -1,8 +1,10 @@
 "use client"
 
-import React from "react"
-import { motion } from "motion/react"
+import React, { useState } from "react"
+import { motion, AnimatePresence } from "motion/react"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 interface JourneyMilestone {
   year: string
@@ -19,6 +21,8 @@ const journey: JourneyMilestone[] = [
 ]
 
 export default function EngineeringJourney() {
+  const [isExpanded, setIsExpanded] = useState(false)
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -45,50 +49,70 @@ export default function EngineeringJourney() {
     <section
       id="engineering-journey"
       aria-labelledby="journey-heading"
-      className="w-full py-16 bg-background border-t border-border"
+      className="w-full py-10 bg-background/50 border-t border-border"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="flex flex-col gap-2 mb-10 text-left max-w-xl">
-          <Badge 
-            variant="outline" 
-            className="w-fit border-border py-0.5 px-2.5 bg-muted/30 text-muted-foreground font-mono font-medium text-[10px] uppercase tracking-wider select-none"
+        {/* Toggle Button / Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-4">
+          <div className="text-left">
+            <h2 
+              id="journey-heading"
+              className="text-lg font-mono font-bold tracking-tight text-muted-foreground flex items-center gap-2"
+            >
+              <span className="size-1.5 rounded-full bg-muted-foreground/50 animate-pulse" />
+              Engineering Journey Archive
+            </h2>
+            <p className="text-xs text-muted-foreground/75 font-sans mt-0.5">
+              Historical progression and developmental focus areas from 2022 to 2026.
+            </p>
+          </div>
+
+          <Button
+            variant="outline"
+            size="xs"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="font-mono text-xs cursor-pointer w-fit self-start sm:self-center"
           >
-            Progression
-          </Badge>
-          <h2 
-            id="journey-heading"
-            className="text-2xl font-sans font-bold tracking-tight text-foreground"
-          >
-            Engineering Journey
-          </h2>
+            {isExpanded ? "Collapse Timeline" : "Expand Journey Timeline"}
+          </Button>
         </div>
 
-        {/* Compressed high-density horizontal list */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-5 gap-4 select-none"
-        >
-          {journey.map((milestone) => (
-            <motion.div 
-              key={milestone.year} 
-              variants={itemVariants}
-              className="border-t border-border/80 pt-4 text-left flex flex-col gap-1"
+        {/* Compressed Timeline Box */}
+        <AnimatePresence initial={false}>
+          {isExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className="overflow-hidden mt-6"
             >
-              <div className="flex items-center gap-2 font-mono">
-                <span className="text-sm font-bold text-primary">{milestone.year}</span>
-                <span className="text-[10px] text-foreground font-semibold uppercase">{milestone.focus}</span>
-              </div>
-              <p className="font-sans text-[11px] text-muted-foreground leading-normal mt-0.5">
-                {milestone.details}
-              </p>
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="grid grid-cols-1 sm:grid-cols-5 gap-6 text-left"
+              >
+                {journey.map((milestone) => (
+                  <motion.div 
+                    key={milestone.year} 
+                    variants={itemVariants}
+                    className="border-t border-border/60 pt-4 flex flex-col gap-1"
+                  >
+                    <div className="flex items-center gap-2 font-mono">
+                      <span className="text-xs font-bold text-primary">{milestone.year}</span>
+                      <span className="text-[10px] text-foreground font-semibold uppercase">{milestone.focus}</span>
+                    </div>
+                    <p className="font-sans text-xs text-muted-foreground leading-normal mt-0.5">
+                      {milestone.details}
+                    </p>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
-          ))}
-        </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )

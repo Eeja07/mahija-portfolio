@@ -129,7 +129,7 @@ export default function Hero() {
             <motion.div variants={itemVariants}>
               <Badge 
                 variant="outline" 
-                className="gap-1.5 border-border py-1 px-3 bg-muted/30 text-muted-foreground font-mono font-medium text-[11px] uppercase tracking-wider select-none"
+                className="gap-1.5 border-border py-1.5 px-3 bg-muted/30 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
               >
                 <span className="size-1.5 rounded-full bg-primary" />
                 Computer Engineering ITS
@@ -138,14 +138,14 @@ export default function Hero() {
 
             <motion.h1 
               variants={itemVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-sans font-bold tracking-tight text-foreground leading-[1.05]"
+              className="text-6xl md:text-7xl font-sans font-bold tracking-tight text-foreground leading-[1.05]"
             >
               Mahija Ibad Pradipta
             </motion.h1>
 
             <motion.p 
               variants={itemVariants}
-              className="text-base sm:text-lg text-muted-foreground max-w-xl font-sans leading-relaxed"
+              className="text-lg md:text-xl text-muted-foreground max-w-3xl font-sans leading-relaxed md:leading-8"
             >
               Building self-hosted systems, IoT platforms, autonomous robotics, and infrastructure.
             </motion.p>
@@ -159,7 +159,7 @@ export default function Hero() {
                 <Badge
                   key={tech}
                   variant="secondary"
-                  className="px-2 py-0.5 border border-border/40 font-mono text-[10px] text-muted-foreground bg-muted/40"
+                  className="px-3 py-1.5 border border-border/40 font-mono text-sm text-muted-foreground bg-muted/40"
                 >
                   {tech}
                 </Badge>
