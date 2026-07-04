@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const http = require('http');
 
 http.get('http://localhost:3000', (res) => {
@@ -56,12 +57,7 @@ http.get('http://localhost:3000', (res) => {
       "/images/featured/cctv/inference.webp",
       "/images/featured/drone/flight.webp",
       "/images/featured/homelab/portainer.webp",
-      "/images/featured/untern/home.webp",
-      "/images/evidence/drone-field.webp",
-      "/images/evidence/esp32-node.webp",
-      "/images/evidence/storage.webp",
-      "/images/evidence/yolo.webp",
-      "/images/evidence/tunnel.webp"
+      "/images/featured/untern/home.webp"
     ];
     
     let missingImagesCount = 0;

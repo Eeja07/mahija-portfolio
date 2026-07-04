@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
-import { Menu, Sun, Moon, Download } from "lucide-react"
+import { Sun, Moon, Menu, Download } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Sheet,
@@ -23,13 +23,14 @@ import { resumeVariants, resumeMetadata } from "@/data/resume"
 import { cn } from "@/lib/utils"
 
 const navigationLinks = [
-  { name: "Projects", href: "#featured-engineering" },
-  { name: "Decisions", href: "#engineering-decisions" },
-  { name: "Library", href: "#project-library" },
-  { name: "Leadership", href: "#leadership-activities" },
-  { name: "Experience", href: "#experience" },
-  { name: "Resume", href: "#resume" },
-  { name: "Contact", href: "#contact" },
+  { name: "Projects", href: "/#featured-engineering" },
+  { name: "Experience", href: "/#experience" },
+  { name: "Organizations", href: "/#organizations" },
+  { name: "Training", href: "/#training" },
+  { name: "Awards", href: "/#awards" },
+  { name: "Repositories", href: "/#repositories" },
+  { name: "Resume", href: "/#resume" },
+  { name: "Contact", href: "/#contact" },
 ]
 
 export default function Navbar() {
@@ -56,7 +57,6 @@ export default function Navbar() {
     }
 
     window.addEventListener("scroll", handleScroll)
-    // Run once on mount in case page is already scrolled
     handleScroll()
 
     return () => {
@@ -69,19 +69,22 @@ export default function Navbar() {
   }
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    setIsOpen(false)
-    
-    const targetElement = document.querySelector(href)
-    if (targetElement) {
-      const headerOffset = 80 // 80px (5rem) offset to prevent header overlap
-      const elementPosition = targetElement.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.scrollY - headerOffset
+    if (href.startsWith("/#")) {
+      const targetId = href.substring(1) // e.g. "#featured-engineering"
+      const targetElement = document.querySelector(targetId)
       
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      })
+      if (targetElement && window.location.pathname === "/") {
+        e.preventDefault()
+        setIsOpen(false)
+        const headerOffset = 80
+        const elementPosition = targetElement.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.scrollY - headerOffset
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        })
+      }
     }
   }
 
@@ -91,7 +94,7 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 w-full h-16 flex items-center transition-all duration-150 ease-in-out",
         scrolled
-          ? "border-b border-border bg-background/80 backdrop-blur-sm"
+          ? "border-b border-zinc-800 bg-background/80 backdrop-blur-sm"
           : "border-b border-transparent bg-transparent"
       )}
     >
@@ -99,7 +102,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-sans font-semibold tracking-tight text-lg text-foreground hover:text-primary transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+          className="font-sans font-semibold tracking-tight text-lg text-zinc-50 hover:text-zinc-300 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-700"
         >
           Mahija
         </Link>
@@ -112,7 +115,7 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary rounded-sm px-1 py-0.5"
+                  className="text-sm font-medium text-zinc-400 hover:text-zinc-200 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-700 rounded-sm px-1 py-0.5"
                 >
                   {link.name}
                 </a>
@@ -120,7 +123,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="h-4 w-px bg-border" aria-hidden="true" />
+          <div className="h-4 w-px bg-zinc-800" aria-hidden="true" />
 
           {/* Theme Toggle & Primary Resume Button */}
           <div className="flex items-center gap-3">
@@ -130,7 +133,7 @@ export default function Navbar() {
                 size="icon-sm"
                 onClick={toggleTheme}
                 aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-                className="text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="text-zinc-400 hover:text-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-700"
               >
                 {theme === "dark" ? (
                   <Sun className="size-4" />
@@ -144,15 +147,15 @@ export default function Navbar() {
               <DropdownMenuTrigger
                 className={cn(
                   buttonVariants({ variant: "default", size: "sm" }),
-                  "bg-primary text-primary-foreground hover:bg-primary/90 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform duration-150 shadow-none border-none cursor-pointer flex items-center gap-1.5"
+                  "bg-zinc-200 text-zinc-800 hover:bg-zinc-50 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-700 transition-transform duration-150 shadow-none border-none cursor-pointer flex items-center gap-1.5"
                 )}
               >
                 <span>Resume</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3 transition-transform duration-150 group-data-[state=open]/dropdown-menu-trigger:rotate-180">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3 transition-transform duration-150">
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" className="border border-zinc-800 bg-zinc-950 shadow-md">
                 {resumeVariants.map((variant) => (
                   <DropdownMenuItem
                     key={variant.id}
@@ -163,10 +166,11 @@ export default function Navbar() {
                         download={`Mahija_Resume_${variant.language}.pdf`}
                       />
                     }
+                    className="flex items-center gap-2 cursor-pointer hover:bg-zinc-800 text-sm font-sans text-zinc-200"
                   >
-                    <Download className="size-3.5 text-muted-foreground" />
+                    <Download className="size-3.5 text-zinc-400" />
                     <span>{variant.label}</span>
-                    <Badge variant="outline" className="ml-auto font-mono text-[9px] px-1.5 py-0 select-none border-border/60">
+                    <Badge variant="outline" className="ml-auto font-mono text-[9px] px-1.5 py-0 select-none border-zinc-800 text-zinc-400 bg-zinc-950/40">
                       {variant.language}
                     </Badge>
                   </DropdownMenuItem>
@@ -184,7 +188,7 @@ export default function Navbar() {
               size="icon-sm"
               onClick={toggleTheme}
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-              className="text-muted-foreground hover:text-foreground"
+              className="text-zinc-400 hover:text-zinc-200"
             >
               {theme === "dark" ? (
                 <Sun className="size-4" />
@@ -201,16 +205,16 @@ export default function Navbar() {
                   variant="outline"
                   size="icon-sm"
                   aria-label="Open Navigation Menu"
-                  className="text-foreground border-border hover:bg-muted"
+                  className="text-zinc-200 border-zinc-800 bg-zinc-950/40 hover:bg-zinc-800"
                 >
                   <Menu className="size-4" />
                 </Button>
               }
             />
-            <SheetContent side="right" className="w-[280px] p-6 border-l border-border bg-background flex flex-col justify-between">
+            <SheetContent side="right" className="w-[280px] p-6 border-l border-zinc-800 bg-zinc-950 flex flex-col justify-between">
               <div className="flex flex-col gap-6">
                 <SheetHeader className="text-left p-0">
-                  <SheetTitle className="font-sans font-semibold tracking-tight text-lg text-foreground">
+                  <SheetTitle className="font-sans font-semibold tracking-tight text-lg text-zinc-50">
                     Mahija
                   </SheetTitle>
                 </SheetHeader>
@@ -221,7 +225,7 @@ export default function Navbar() {
                       key={link.name}
                       href={link.href}
                       onClick={(e) => handleLinkClick(e, link.href)}
-                      className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors duration-150 py-1.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                      className="text-base font-medium text-zinc-400 hover:text-zinc-200 transition-colors duration-150 py-1.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-700"
                     >
                       {link.name}
                     </a>
@@ -236,7 +240,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={cn(
                     buttonVariants({ variant: "default", size: "lg" }),
-                    "w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-none border-none justify-center text-center flex items-center gap-2"
+                    "w-full bg-zinc-200 text-zinc-800 hover:bg-zinc-50 font-medium justify-center text-center flex items-center gap-2 border-none"
                   )}
                 >
                   <Download className="size-4" />
@@ -248,7 +252,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
-                    "w-full border border-border text-foreground hover:bg-muted font-semibold justify-center text-center flex items-center gap-2"
+                    "w-full border border-zinc-800 text-zinc-200 bg-zinc-950/40 hover:bg-zinc-800 font-medium justify-center text-center flex items-center gap-2"
                   )}
                 >
                   <Download className="size-4" />

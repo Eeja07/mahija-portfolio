@@ -60,7 +60,7 @@ export default function Skills() {
     <section
       id="skills"
       aria-labelledby="skills-heading"
-      className="w-full py-20 bg-background border-t border-border"
+      className="w-full py-20 bg-background border-t border-zinc-800"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -68,17 +68,17 @@ export default function Skills() {
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-border py-1.5 px-3 bg-muted/30 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-zinc-800 py-1.5 px-3 bg-zinc-950/40 text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Technical Stack
           </Badge>
           <h2 
             id="skills-heading"
-            className="text-3xl font-sans font-bold tracking-tight text-foreground md:text-4xl"
+            className="text-3xl font-sans font-semibold tracking-tight text-zinc-50"
           >
             Core Technologies
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground font-sans leading-relaxed md:leading-8">
+          <p className="text-base text-zinc-400 font-sans font-normal leading-8">
             The core set of systems, protocols, environments, and languages relied upon for construction and deployment.
           </p>
         </div>
@@ -93,8 +93,8 @@ export default function Skills() {
         >
           {skillGroups.map((group) => (
             <motion.div key={group.category} variants={itemVariants}>
-              <Card className="border border-border bg-card/25 shadow-sm p-5 h-full flex flex-col gap-4 hover:border-primary/20 transition-colors duration-150 text-left">
-                <h3 className="font-mono text-sm font-bold text-primary uppercase tracking-wider border-b border-border/40 pb-2">
+              <Card className="border border-zinc-800 bg-zinc-950/40 rounded-2xl p-6 h-full flex flex-col gap-4 hover:border-zinc-700 transition-colors duration-150 text-left">
+                <h3 className="font-mono text-sm font-semibold text-zinc-400 uppercase tracking-wider border-b border-zinc-800 pb-2">
                   {group.category}
                 </h3>
                 <div className="flex flex-wrap gap-1.5 mt-1">
@@ -102,7 +102,7 @@ export default function Skills() {
                     <Badge 
                       key={tech} 
                       variant="secondary" 
-                      className="border border-border/40 px-3 py-1.5 font-mono text-sm text-muted-foreground bg-muted/40"
+                      className="border border-zinc-800 px-3 py-1.5 font-mono text-sm text-zinc-400 bg-zinc-950/40"
                     >
                       {tech}
                     </Badge>

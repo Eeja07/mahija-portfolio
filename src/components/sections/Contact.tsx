@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
-import { Card, CardDescription, CardTitle } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 // Inline SVGs for self-contained robustness
@@ -61,7 +61,7 @@ const contactChannels: ContactChannel[] = [
     name: "Email",
     handle: "mahijapradipta86@gmail.com",
     href: "mailto:mahijapradipta86@gmail.com",
-    icon: <MailIcon className="size-4" />,
+    icon: <MailIcon className="size-4 animate-pulse" />,
   },
   {
     name: "LinkedIn",
@@ -124,7 +124,7 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="w-full py-20 bg-background border-t border-border"
+      className="w-full py-20 bg-background border-t border-zinc-800"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -132,17 +132,17 @@ export default function Contact() {
         <div className="flex flex-col gap-3 mb-16 text-left max-w-2xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-border py-1 px-3 bg-muted/30 text-muted-foreground font-mono font-medium text-[11px] uppercase tracking-wider select-none"
+            className="w-fit border-zinc-800 py-1.5 px-3 bg-zinc-950/40 text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Connection Channels
           </Badge>
           <h2 
             id="contact-heading"
-            className="text-3xl font-sans font-bold tracking-tight text-foreground sm:text-4xl"
+            className="text-3xl font-sans font-semibold tracking-tight text-zinc-50"
           >
             Get in Touch
           </h2>
-          <p className="text-base text-muted-foreground font-sans leading-relaxed">
+          <p className="text-base text-zinc-400 font-sans font-normal leading-8">
             Reach out through any of these communication channels.
           </p>
         </div>
@@ -157,27 +157,27 @@ export default function Contact() {
         >
           {contactChannels.map((channel) => (
             <motion.div key={channel.name} variants={itemVariants}>
-              <Card className="border border-border bg-card/40 shadow-sm transition-all duration-150 ease-in-out hover:border-primary/50 h-full flex flex-col justify-between p-5">
+              <Card className="border border-zinc-800 bg-zinc-950/40 rounded-2xl shadow-sm transition-all duration-150 ease-in-out hover:border-zinc-700 h-full flex flex-col justify-between p-6 text-left gap-4">
                 <div className="flex flex-col gap-3">
-                  <div className="p-2 w-fit bg-muted/30 border border-border/40 rounded-lg text-muted-foreground" aria-hidden="true">
+                  <div className="p-2 w-fit bg-zinc-955 border border-zinc-800 rounded-lg text-zinc-400" aria-hidden="true">
                     {channel.icon}
                   </div>
                   
-                  <div className="flex flex-col gap-1">
-                    <CardTitle className="font-sans text-sm font-bold text-foreground">
+                  <div className="flex flex-col gap-1.5">
+                    <h3 className="font-sans text-xl font-medium text-zinc-50 leading-tight">
                       {channel.name}
-                    </CardTitle>
-                    <div className="flex items-center justify-between gap-2">
-                      <CardDescription className="text-xs font-mono text-muted-foreground truncate flex-1" title={channel.handle}>
+                    </h3>
+                    <div className="flex items-center justify-between gap-2 mt-1">
+                      <span className="text-sm font-mono text-zinc-400 truncate flex-1" title={channel.handle}>
                         {channel.handle}
-                      </CardDescription>
+                      </span>
                       <button
                         onClick={() => handleCopy(channel.handle, channel.name)}
                         aria-label={`Copy ${channel.name} handle to clipboard`}
-                        className="text-muted-foreground hover:text-foreground transition-colors duration-150 p-1 rounded hover:bg-muted/80 shrink-0"
+                        className="text-zinc-500 hover:text-zinc-300 transition-colors duration-150 p-1 rounded hover:bg-zinc-800 shrink-0 cursor-pointer"
                       >
                         {copiedChannel === channel.name ? (
-                          <span className="text-[10px] text-emerald-500 font-sans font-bold" aria-live="polite">
+                          <span className="text-xs text-zinc-300 font-sans font-semibold" aria-live="polite">
                             Copied!
                           </span>
                         ) : (
@@ -188,17 +188,17 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="pt-4 mt-auto">
+                <div className="pt-4 mt-auto border-t border-zinc-800/60 select-none">
                   <a
                     href={channel.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "w-full border-border text-xs hover:bg-muted font-medium justify-between select-none"
+                      "w-full border-zinc-800 text-zinc-300 bg-zinc-950/40 hover:bg-zinc-800 font-medium justify-between cursor-pointer"
                     )}
                   >
-                    Connect
+                    <span>Connect</span>
                     <ArrowUpRightIcon className="size-3.5 ml-1.5 opacity-60" />
                   </a>
                 </div>

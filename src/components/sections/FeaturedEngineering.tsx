@@ -22,7 +22,7 @@ const ExternalLinkIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 const CpuIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <rect width="16" height="16" x="4" y="4" rx="2" />
     <rect width="6" height="6" x="9" y="9" rx="1" />
     <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3" />
@@ -37,7 +37,11 @@ export default function FeaturedEngineering() {
     setActiveArchId(activeArchId === id ? null : id)
   }
 
-  const featuredProjects = projects.filter((p) => p.featured)
+  // Filter precisely to the 4 requested projects
+  const allowedProjectIds = ["smart-cctv", "human-search-drone", "homelab-infra", "untern-platform"]
+  const featuredProjects = allowedProjectIds
+    .map((id) => projects.find((p) => p.id === id))
+    .filter((p): p is NonNullable<typeof p> => !!p)
 
   const itemVariants = {
     hidden: { opacity: 0, y: 8 },
@@ -55,7 +59,6 @@ export default function FeaturedEngineering() {
     setFailedImages((prev) => ({ ...prev, [id]: true }))
   }
 
-  // Authentic preview image configurations
   const getProjectImagePath = (id: string) => {
     if (id === "smart-cctv") return "/images/featured/cctv/inference.webp"
     if (id === "human-search-drone") return "/images/featured/drone/flight.webp"
@@ -74,7 +77,7 @@ export default function FeaturedEngineering() {
     <section
       id="featured-engineering"
       aria-labelledby="projects-heading"
-      className="w-full py-20 bg-background border-t border-border"
+      className="w-full py-20 bg-background border-t border-zinc-800"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -82,24 +85,24 @@ export default function FeaturedEngineering() {
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-border py-1.5 px-3 bg-muted/30 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-zinc-800 py-1.5 px-3 bg-zinc-950/40 text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
-            Engineering Exhibition
+            Engineering Showcase
           </Badge>
           
           <h2 
             id="projects-heading"
-            className="text-3xl font-sans font-bold tracking-tight text-foreground md:text-4xl"
+            className="text-3xl font-sans font-semibold tracking-tight text-zinc-50"
           >
             Featured Engineering
           </h2>
           
-          <p className="text-base md:text-lg text-muted-foreground font-sans leading-relaxed md:leading-8">
+          <p className="text-base text-zinc-400 font-sans font-normal leading-8">
             Highly optimized hardware platforms and systems built to operate under strict constraints and trade-offs.
           </p>
         </div>
 
-        {/* Featured Projects Grid/List */}
+        {/* Featured Projects list */}
         <div className="flex flex-col gap-12">
           {featuredProjects.map((project) => (
             <motion.div
@@ -108,16 +111,16 @@ export default function FeaturedEngineering() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={itemVariants}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 border border-border bg-card/20 rounded-2xl overflow-hidden p-6 lg:p-8"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 border border-zinc-800 bg-zinc-950/40 rounded-2xl overflow-hidden p-6 lg:p-8"
             >
               {/* Left Side: Photo/Video Showcase or Fallback */}
               <div className="lg:col-span-5 flex flex-col gap-4">
                 <div className="relative aspect-video rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden select-none flex items-center justify-center">
                   {failedImages[project.id] ? (
                     <div className="flex flex-col items-center gap-2 p-4 text-center">
-                      <ImageIcon className="size-5 text-zinc-600" />
+                      <ImageIcon className="size-5 text-zinc-700" />
                       <span className="font-mono text-xs text-zinc-400">[{getProjectFallbackLabel(project.id)}]</span>
-                      <span className="font-sans text-[9px] text-zinc-600">Save your screenshot to /public/images/ to load this layout</span>
+                      <span className="font-sans text-[10px] text-zinc-500">Preview snapshot</span>
                     </div>
                   ) : (
                     <>
@@ -148,9 +151,9 @@ export default function FeaturedEngineering() {
                     const val = parts[0];
                     const desc = parts.slice(1).join(" ");
                     return (
-                      <div key={i} className="border border-border/40 bg-muted/20 rounded-xl p-3 flex flex-col justify-center">
-                        <span className="font-mono text-sm font-bold text-foreground leading-none">{val}</span>
-                        <span className="font-sans text-[10px] text-muted-foreground mt-1 leading-normal">{desc}</span>
+                      <div key={i} className="border border-zinc-800 bg-zinc-950/40 rounded-xl p-3 flex flex-col justify-center">
+                        <span className="font-mono text-sm font-semibold text-zinc-200 leading-none">{val}</span>
+                        <span className="font-sans text-xs text-zinc-500 mt-1 leading-normal">{desc}</span>
                       </div>
                     )
                   })}
@@ -165,10 +168,10 @@ export default function FeaturedEngineering() {
                       rel="noopener noreferrer"
                       className={cn(
                         buttonVariants({ variant: "outline", size: "sm" }),
-                        "flex-1 border-border text-sm hover:bg-muted font-medium cursor-pointer"
+                        "flex-1 border-zinc-800 text-sm text-zinc-300 bg-zinc-950/40 hover:bg-zinc-800 font-medium cursor-pointer"
                       )}
                     >
-                      <GithubIcon className="size-3.5 mr-1.5" />
+                      <GithubIcon className="size-3.5 mr-1.5 text-zinc-400" />
                       Source
                     </a>
                   )}
@@ -179,10 +182,10 @@ export default function FeaturedEngineering() {
                       rel="noopener noreferrer"
                       className={cn(
                         buttonVariants({ variant: "outline", size: "sm" }),
-                        "flex-1 border-border text-sm hover:bg-muted font-medium cursor-pointer"
+                        "flex-1 border-zinc-800 text-sm text-zinc-300 bg-zinc-950/40 hover:bg-zinc-800 font-medium cursor-pointer"
                       )}
                     >
-                      <ExternalLinkIcon className="size-3.5 mr-1.5" />
+                      <ExternalLinkIcon className="size-3.5 mr-1.5 text-zinc-400" />
                       Live Demo
                     </a>
                   )}
@@ -190,55 +193,55 @@ export default function FeaturedEngineering() {
               </div>
 
               {/* Right Side: Engineering Storytelling & Rationale */}
-              <div className="lg:col-span-7 flex flex-col justify-between gap-6">
-                <div>
+              <div className="lg:col-span-7 flex flex-col justify-between gap-6 text-left">
+                <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-sm font-bold text-primary uppercase tracking-wider">
+                    <span className="font-mono text-sm font-semibold text-zinc-400 uppercase tracking-wider">
                       {project.category}
                     </span>
-                    <span className="font-mono text-sm text-muted-foreground font-medium">
+                    <span className="font-mono text-sm text-zinc-400">
                       {project.year}
                     </span>
                   </div>
 
-                  <h3 className="font-sans text-xl font-bold text-foreground mt-2 leading-tight">
+                  <h3 className="font-sans text-xl font-medium text-zinc-50">
                     {project.title}
                   </h3>
 
-                  <p className="text-base text-muted-foreground font-sans mt-1.5 leading-7">
+                  <p className="text-base text-zinc-400 font-sans font-normal leading-7">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-col gap-5 mt-4">
+                  <div className="flex flex-col gap-4 mt-2">
                     {project.problem && (
                       <div className="flex flex-col text-left">
-                        <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground font-bold">The Problem</span>
-                        <p className="font-sans text-base text-foreground mt-0.5 leading-7">{project.problem}</p>
-                      </div>
-                    )}
-                    {project.approach && (
-                      <div className="flex flex-col text-left">
-                        <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground font-bold">Approach & Implementation</span>
-                        <p className="font-sans text-base text-foreground mt-0.5 leading-7">{project.approach}</p>
+                        <span className="font-mono text-xs uppercase tracking-wider text-zinc-500 font-semibold">The Problem</span>
+                        <p className="font-sans text-base text-zinc-400 mt-0.5 leading-7">{project.problem}</p>
                       </div>
                     )}
                     {project.tradeoffs && (
                       <div className="flex flex-col text-left">
-                        <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground font-bold">Trade-offs & Constraints</span>
-                        <p className="font-sans text-base text-foreground mt-0.5 leading-7">{project.tradeoffs}</p>
+                        <span className="font-mono text-xs uppercase tracking-wider text-zinc-500 font-semibold">Trade-offs & Constraints</span>
+                        <p className="font-sans text-base text-zinc-400 mt-0.5 leading-7">{project.tradeoffs}</p>
+                      </div>
+                    )}
+                    {project.outcome && (
+                      <div className="flex flex-col text-left">
+                        <span className="font-mono text-xs uppercase tracking-wider text-zinc-500 font-semibold">Outcome</span>
+                        <p className="font-sans text-base text-zinc-400 mt-0.5 leading-7">{project.outcome}</p>
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div>
+                <div className="flex flex-col gap-4">
                   {/* Stack Badges */}
-                  <div className="flex flex-wrap gap-1.5 select-none mb-3">
+                  <div className="flex flex-wrap gap-1.5 select-none">
                     {project.stack.map((tech) => (
                       <Badge 
                         key={tech} 
                         variant="secondary" 
-                        className="border border-border/40 px-3 py-1.5 font-mono text-sm text-muted-foreground bg-muted/40"
+                        className="border border-zinc-800 px-3 py-1.5 font-mono text-sm text-zinc-400 bg-zinc-950/40"
                       >
                         {tech}
                       </Badge>
@@ -247,15 +250,15 @@ export default function FeaturedEngineering() {
 
                   {/* Architecture Snapshot Toggle */}
                   {project.architecture && (
-                    <div className="border-t border-border/40 pt-3 select-none">
+                    <div className="border-t border-zinc-800/80 pt-3 select-none">
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => toggleArchitecture(project.id)}
                         aria-expanded={activeArchId === project.id}
-                        className="text-sm text-muted-foreground hover:text-foreground font-medium p-0 h-auto flex items-center gap-1.5 cursor-pointer"
+                        className="text-sm text-zinc-400 hover:text-zinc-200 hover:bg-transparent font-medium p-0 h-auto flex items-center gap-1.5 cursor-pointer"
                       >
-                        <CpuIcon className="size-3.5 text-primary" />
+                        <CpuIcon className="size-3.5 text-zinc-400" />
                         <span>Architecture Snapshot</span>
                         <svg
                           viewBox="0 0 24 24"
@@ -264,7 +267,7 @@ export default function FeaturedEngineering() {
                           strokeWidth="2.5"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className={cn("size-3 transition-transform duration-150", activeArchId === project.id && "rotate-180")}
+                          className={cn("size-3 transition-transform duration-150 text-zinc-500", activeArchId === project.id && "rotate-180")}
                         >
                           <path d="m6 9 6 6 6-6" />
                         </svg>
@@ -279,11 +282,11 @@ export default function FeaturedEngineering() {
                             transition={{ duration: 0.15, ease: "easeOut" }}
                             className="overflow-hidden"
                           >
-                            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1.5 font-mono text-sm text-foreground bg-muted/15 rounded-xl p-2.5 border border-border/40">
+                            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1.5 font-mono text-sm text-zinc-200 bg-zinc-950/20 rounded-xl p-3 border border-zinc-800">
                               {project.architecture.map((node, index) => (
                                 <React.Fragment key={node}>
-                                  {index > 0 && <span className="text-muted-foreground/40 font-sans">&rarr;</span>}
-                                  <span className="border border-border/60 bg-background rounded px-3 py-1.5 shadow-sm text-foreground">
+                                  {index > 0 && <span className="text-zinc-500/60 font-sans">&rarr;</span>}
+                                  <span className="border border-zinc-800 bg-zinc-950 rounded px-3 py-1.5 shadow-sm text-zinc-300">
                                     {node}
                                   </span>
                                 </React.Fragment>

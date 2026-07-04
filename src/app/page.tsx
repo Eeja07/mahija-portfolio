@@ -2,15 +2,13 @@ import React from "react"
 import Navbar from "@/components/layout/Navbar"
 import Hero from "@/components/sections/Hero"
 import FeaturedEngineering from "@/components/sections/FeaturedEngineering"
-import EngineeringDecisions from "@/components/sections/EngineeringDecisions"
-import Infrastructure from "@/components/sections/Infrastructure"
-import EngineeringEvidence from "@/components/sections/EngineeringEvidence"
-import ProjectLibrary from "@/components/sections/ProjectLibrary"
-import LeadershipActivities from "@/components/sections/LeadershipActivities"
 import Experience from "@/components/sections/Experience"
+import FeaturedOrganizations from "@/components/sections/FeaturedOrganizations"
+import FeaturedCommittees from "@/components/sections/FeaturedCommittees"
+import Awards from "@/components/sections/Awards"
+import FeaturedTraining from "@/components/sections/FeaturedTraining"
+import FeaturedRepositories from "@/components/sections/FeaturedRepositories"
 import Skills from "@/components/sections/Skills"
-import EngineeringPhilosophy from "@/components/sections/EngineeringPhilosophy"
-import EngineeringJourney from "@/components/sections/EngineeringJourney"
 import Resume from "@/components/sections/Resume"
 import Contact from "@/components/sections/Contact"
 import Footer from "@/components/layout/Footer"
@@ -23,19 +21,17 @@ export default function Home() {
         <Navbar />
       </header>
 
-      {/* Main content body containing page sections */}
+      {/* Main content body containing page sections in RC3 order */}
       <main className="flex-1 flex flex-col w-full">
         <Hero />
         <FeaturedEngineering />
-        <EngineeringDecisions />
-        <Infrastructure />
-        <EngineeringEvidence />
-        <ProjectLibrary />
-        <LeadershipActivities />
         <Experience />
+        <FeaturedOrganizations />
+        <FeaturedCommittees />
+        <Awards />
+        <FeaturedTraining />
+        <FeaturedRepositories />
         <Skills />
-        <EngineeringPhilosophy />
-        <EngineeringJourney />
         <Resume />
         <Contact />
       </main>
