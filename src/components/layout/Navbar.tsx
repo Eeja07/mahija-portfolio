@@ -39,6 +39,7 @@ export default function Navbar() {
 
   // Avoid hydration mismatch for theme toggle
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
 
     // Ensure page-wide anchor offsets respect the sticky navbar header

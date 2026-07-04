@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { Card, CardDescription, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
