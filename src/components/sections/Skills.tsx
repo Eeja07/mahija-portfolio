@@ -12,24 +12,36 @@ interface SkillGroup {
 
 const skillGroups: SkillGroup[] = [
   {
-    category: "Infrastructure",
-    items: ["Docker", "Docker Compose", "Linux (Debian)", "Proxmox VE", "Portainer", "Nginx", "Cloudflare Tunnel"]
+    category: "Programming Languages",
+    items: ["JavaScript", "Python", "C++", "Dart", "SQL"]
   },
   {
-    category: "Backend",
-    items: ["Laravel", "PostgreSQL", "MySQL", "PHP", "Go", "REST APIs", "gRPC / Protobuf"]
+    category: "Web Development",
+    items: ["Laravel", "Vite", "REST API", "PostgreSQL", "MySQL", "React"]
   },
   {
-    category: "Embedded",
-    items: ["MQTT", "ROS2", "PX4 Autopilot", "MAVSDK / MAVLink", "Raspberry Pi", "ESP32", "C++ / Embedded C"]
+    category: "Mobile Development",
+    items: ["Flutter"]
   },
   {
-    category: "AI",
-    items: ["PyTorch", "YOLOv8", "OpenCV", "Computer Vision", "CNNs", "TensorRT"]
+    category: "Infrastructure & DevOps",
+    items: ["Linux (Debian & Ubuntu)", "Docker", "Cloudflare Tunnel", "Webmin", "MinIO", "EMQX"]
   },
   {
-    category: "Frontend",
-    items: ["Next.js", "React", "TypeScript", "TailwindCSS", "Motion", "HTML5 / CSS3"]
+    category: "Networking",
+    items: ["TCP/IP", "MQTT", "Network Troubleshooting", "WebSocket"]
+  },
+  {
+    category: "AI & Computer Vision",
+    items: ["YOLO", "ONNX", "TensorFlow Lite", "OpenCV"]
+  },
+  {
+    category: "Tools",
+    items: ["Git", "GitHub", "Postman", "phpMyAdmin"]
+  },
+  {
+    category: "Languages",
+    items: ["Indonesian (Native)", "Javanese (Conversational)", "English (Professional Working)"]
   }
 ]
 
@@ -60,7 +72,7 @@ export default function Skills() {
     <section
       id="skills"
       aria-labelledby="skills-heading"
-      className="w-full py-20 bg-background border-t border-border"
+      className="w-full py-20 bg-background border-t border-zinc-200 dark:border-zinc-800"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -68,7 +80,7 @@ export default function Skills() {
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Technical Stack
           </Badge>
@@ -78,7 +90,7 @@ export default function Skills() {
           >
             Core Technologies
           </h2>
-          <p className="text-base text-muted-foreground font-sans font-normal leading-8">
+          <p className="text-base text-zinc-500 dark:text-zinc-400 font-sans font-normal leading-8">
             The core set of systems, protocols, environments, and languages relied upon for construction and deployment.
           </p>
         </div>
@@ -89,12 +101,12 @@ export default function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 select-none"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 select-none"
         >
           {skillGroups.map((group) => (
             <motion.div key={group.category} variants={itemVariants}>
-              <Card className="border border-border bg-card/40 rounded-2xl p-6 h-full flex flex-col gap-4 hover:border-border/80 transition-colors duration-150 text-left">
-                <h3 className="font-mono text-sm font-semibold text-muted-foreground uppercase tracking-wider border-b border-border pb-2">
+              <Card className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-6 h-full flex flex-col gap-4 hover:border-zinc-200/80 dark:hover:border-zinc-800/80 transition-colors duration-150 text-left">
+                <h3 className="font-mono text-sm font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider border-b border-zinc-200 dark:border-zinc-800 pb-2">
                   {group.category}
                 </h3>
                 <div className="flex flex-wrap gap-1.5 mt-1">
@@ -102,7 +114,7 @@ export default function Skills() {
                     <Badge 
                       key={tech} 
                       variant="secondary" 
-                      className="border border-border px-3 py-1.5 font-mono text-sm text-muted-foreground bg-card/40"
+                      className="border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 font-mono text-sm text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900"
                     >
                       {tech}
                     </Badge>

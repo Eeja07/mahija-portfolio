@@ -36,7 +36,7 @@ export default function Resume() {
     <section
       id="resume"
       aria-labelledby="resume-heading"
-      className="w-full py-20 bg-background border-t border-border"
+      className="w-full py-20 bg-background border-t border-zinc-200 dark:border-zinc-800"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -44,7 +44,7 @@ export default function Resume() {
         <div className="flex flex-col gap-3 mb-12 text-left max-w-2xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Documents
           </Badge>
@@ -54,7 +54,7 @@ export default function Resume() {
           >
             Resume
           </h2>
-          <p className="text-base text-muted-foreground font-sans font-normal leading-8">
+          <p className="text-base text-zinc-500 dark:text-zinc-400 font-sans font-normal leading-8">
             Download standard copies of my professional background in English or Indonesian.
           </p>
         </div>
@@ -68,19 +68,19 @@ export default function Resume() {
           className="w-full max-w-3xl mx-auto"
         >
           <motion.div variants={itemVariants}>
-            <Card className="border border-border bg-card/40 rounded-2xl shadow-sm overflow-hidden p-6 text-left">
+            <Card className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl shadow-sm overflow-hidden p-6 text-left">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                 
                 {/* Left Side: Title */}
                 <div className="flex items-center gap-3 text-left">
-                  <div className="p-2 bg-background border border-border rounded-lg text-muted-foreground animate-none" aria-hidden="true">
+                  <div className="p-2 bg-background border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400 animate-none" aria-hidden="true">
                     <FileText className="size-5" />
                   </div>
                   <div>
                     <h3 className="font-sans text-xl font-medium text-foreground leading-tight">
                       Curriculum Vitae
                     </h3>
-                    <p className="text-sm text-muted-foreground font-sans mt-1 leading-normal">
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 font-sans mt-1 leading-normal">
                       Single-page formatted PDF tailored for engineering roles.
                     </p>
                   </div>
@@ -107,7 +107,7 @@ export default function Resume() {
                     download={`Mahija_Resume_${resumeMetadata.indonesian.language}.pdf`}
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "w-full sm:w-auto border-border text-foreground bg-card/40 hover:bg-muted font-medium justify-center px-4 py-2 flex items-center gap-1.5 cursor-pointer text-sm"
+                      "w-full sm:w-auto border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 font-medium justify-center px-4 py-2 flex items-center gap-1.5 cursor-pointer text-sm"
                     )}
                   >
                     <Download className="size-3.5" />

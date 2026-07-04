@@ -124,7 +124,7 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="w-full py-20 bg-background border-t border-border"
+      className="w-full py-20 bg-background border-t border-zinc-200 dark:border-zinc-800"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -132,7 +132,7 @@ export default function Contact() {
         <div className="flex flex-col gap-3 mb-16 text-left max-w-2xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Connection Channels
           </Badge>
@@ -142,7 +142,7 @@ export default function Contact() {
           >
             Get in Touch
           </h2>
-          <p className="text-base text-muted-foreground font-sans font-normal leading-8">
+          <p className="text-base text-zinc-500 dark:text-zinc-400 font-sans font-normal leading-8">
             Reach out through any of these communication channels.
           </p>
         </div>
@@ -157,9 +157,9 @@ export default function Contact() {
         >
           {contactChannels.map((channel) => (
             <motion.div key={channel.name} variants={itemVariants}>
-              <Card className="border border-border bg-card/40 rounded-2xl shadow-sm transition-all duration-150 ease-in-out hover:border-border/80 h-full flex flex-col justify-between p-6 text-left gap-4">
+              <Card className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl shadow-sm transition-all duration-150 ease-in-out hover:border-zinc-200/80 dark:hover:border-zinc-800/80 h-full flex flex-col justify-between p-6 text-left gap-4">
                 <div className="flex flex-col gap-3">
-                  <div className="p-2 w-fit bg-background border border-border rounded-lg text-muted-foreground" aria-hidden="true">
+                  <div className="p-2 w-fit bg-background border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400" aria-hidden="true">
                     {channel.icon}
                   </div>
                   
@@ -168,13 +168,13 @@ export default function Contact() {
                       {channel.name}
                     </h3>
                     <div className="flex items-center justify-between gap-2 mt-1">
-                      <span className="text-sm font-mono text-muted-foreground truncate flex-1" title={channel.handle}>
+                      <span className="text-sm font-mono text-zinc-500 dark:text-zinc-400 truncate flex-1" title={channel.handle}>
                         {channel.handle}
                       </span>
                       <button
                         onClick={() => handleCopy(channel.handle, channel.name)}
                         aria-label={`Copy ${channel.name} handle to clipboard`}
-                        className="text-muted-foreground hover:text-foreground transition-colors duration-150 p-1 rounded hover:bg-muted shrink-0 cursor-pointer"
+                        className="text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors duration-150 p-1 rounded hover:bg-zinc-200 dark:hover:bg-zinc-800 shrink-0 cursor-pointer"
                       >
                         {copiedChannel === channel.name ? (
                           <span className="text-xs text-foreground font-sans font-semibold" aria-live="polite">
@@ -188,14 +188,14 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="pt-4 mt-auto border-t border-border select-none">
+                <div className="pt-4 mt-auto border-t border-zinc-200 dark:border-zinc-800 select-none">
                   <a
                     href={channel.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "w-full border-border text-foreground bg-card/40 hover:bg-muted font-medium justify-between cursor-pointer"
+                      "w-full border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 font-medium justify-between cursor-pointer"
                     )}
                   >
                     <span>Connect</span>

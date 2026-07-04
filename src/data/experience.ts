@@ -2,108 +2,105 @@ import { Experience } from "@/types/experience"
 
 export const experiences: Experience[] = [
   {
-    id: "m-iot-coordinator",
-    company: "M-IOT Laboratory ITS",
-    role: "Systems & IoT Coordinator",
-    location: "Surabaya, Indonesia",
-    startDate: "Sep 2024",
-    current: true,
-    category: "Leadership",
-    description:
-      "Orchestrated smart-node telemetry deployments, bare-metal server configurations, and team development initiatives.",
+    id: "dsp-lab-course-ta",
+    company: "Digital Signal Processing Laboratory Course — M-IOT ITS",
+    role: "Staff - Teaching Assistant",
+    location: "On-site",
+    startDate: "Oct 2025",
+    endDate: "Dec 2025",
+    current: false,
+    category: "Teaching Assistant",
+    description: "Assisted and supervised students during Digital Signal Processing laboratory sessions.",
     achievements: [
-      "Orchestrated robust telemetry pipelines using MQTT messaging brokers, tracking 50+ sensor node variables concurrently with under 50ms latency",
-      "Standardized multi-node microservices deployments utilizing Docker Compose across multiple Linux edge nodes, reducing deployment overhead by 40%",
-      "Mentored 10+ junior engineers on network topologies, security baselines, and Linux server maintenance practices",
+      "Assisted and supervised students during Digital Signal Processing laboratory sessions",
+      "Evaluated students’ understanding of course materials, assignment completion, and discipline throughout laboratory activities",
+      "Reviewed and assessed Digital Signal Processing laboratory reports"
     ],
-    technologies: ["MQTT", "Docker", "Linux", "Debian", "Networking", "Raspberry Pi"],
+    technologies: ["Digital Signal Processing", "Python", "Teaching", "Mentoring"]
+  },
+  {
+    id: "intro-programming-ta-sec-treasurer",
+    company: "Introduction to Programming Laboratory Course — M-IOT ITS",
+    role: "Secretary and Treasurer - Teaching Assistant",
+    location: "On-site",
+    startDate: "Jul 2025",
+    endDate: "Dec 2025",
+    current: false,
+    category: "Teaching Assistant",
+    description: "Managed administrative workflows and financial bookkeeping for the programming laboratory course.",
+    achievements: [
+      "Supervised, guided, and evaluated students during laboratory sessions, mentoring activities, laboratory reports, and final projects",
+      "Prepared laboratory modules and managed administrative activities",
+      "Managed attendance records and assessment recapitulation for teaching assistants and students"
+    ],
+    technologies: ["C++", "Python", "Administrative Operations", "Mentoring"]
+  },
+  {
+    id: "winnicode-garuda-intern",
+    company: "PT Winnicode Garuda Indonesia",
+    role: "Intern - Full-Stack Developer",
+    location: "Remote",
+    startDate: "Mar 2025",
+    endDate: "Sep 2025",
+    current: false,
+    category: "Internship",
+    description: "Developed and managed full-stack application lifecycle for client platform discovery portals.",
+    achievements: [
+      "Developed UNTERN (U Need Intern), a web application connecting internship seekers with companies seeking talent",
+      "Managed the entire application development lifecycle, including design, implementation, testing, and deployment",
+      "Analyzed user requirements and translated them into application features and functionalities"
+    ],
+    technologies: ["JavaScript", "PostgreSQL", "Vite", "Laravel", "PHP", "Full-Stack"]
   },
   {
     id: "lintasarta-intern",
     company: "PT Lintasarta",
-    role: "Network Engineer Intern",
-    location: "Jakarta, Indonesia",
-    startDate: "Jun 2024",
-    endDate: "Sep 2024",
+    role: "Intern - IT Services Management (Infrastructure)",
+    location: "On-site",
+    startDate: "Jul 2025",
+    endDate: "Aug 2025",
     current: false,
     category: "Internship",
-    description:
-      "Maintained corporate network topologies, edge gateway tunnels, and hosted server diagnostics.",
+    description: "Supported IT Infrastructure systems and hardware deployment for enterprise networks.",
     achievements: [
-      "Secured system ingress access nodes using Cloudflare Tunnels deployed on Debian hosts, eliminating legacy external VPN overhead",
-      "Managed DNS configurations, VLAN routing, and firewall rules to maintain connectivity and prevent endpoint unauthorized access",
-      "Conducted network diagnostics and server performance audits for high-availability client clusters, maintaining 99.9% uptime",
+      "Supported activities within the IT Infrastructure subdivision under the IT Services Management Department, Corporate IT Division",
+      "Participated in hardware deployment processes to support company operations",
+      "Learned enterprise network architecture and IT service management practices within a corporate environment"
     ],
-    technologies: ["Networking", "Cloudflare", "Debian", "Linux", "Docker", "Bash"],
+    technologies: ["Infrastructure", "Networking", "Debian", "ITSM", "Hardware Deployment"]
   },
   {
-    id: "winnicode-intern",
-    company: "PT Winnicode",
-    role: "Fullstack Developer Intern",
-    location: "Yogyakarta, Indonesia",
-    startDate: "Jan 2024",
-    endDate: "Apr 2024",
-    current: false,
-    category: "Internship",
-    description:
-      "Engineered responsive enterprise features and backend service optimizations for client SaaS platforms.",
-    achievements: [
-      "Led the backend migration of a core application module to Laravel, reducing average response latency by 45%",
-      "Designed and indexed relational database schema tables using PostgreSQL, improving SQL query execution times by 30%",
-      "Created robust RESTful API endpoints, securing client transactions and application credentials",
-    ],
-    technologies: ["Laravel", "PostgreSQL", "PHP", "TailwindCSS", "JavaScript"],
-  },
-  {
-    id: "dsp-lab-assistant",
-    company: "Digital Signal Processing Laboratory",
-    role: "Research Assistant",
-    location: "Surabaya, Indonesia",
-    startDate: "Aug 2024",
-    endDate: "Jan 2025",
-    current: false,
-    category: "Research",
-    description:
-      "Researched real-time edge processing acceleration, sensor fusion, and computer vision models.",
-    achievements: [
-      "Optimized real-time CNN models running on NVIDIA Jetson Nano edge platforms, increasing inference rates from 3Hz to 10Hz",
-      "Developed automated signal analysis scripts in Python, saving researchers 15+ hours weekly in raw dataset processing",
-      "Authored documentation and technical guides regarding computer vision and optical flow configuration paths",
-    ],
-    technologies: ["Linux", "Python", "OpenCV", "PyTorch", "ROS2"],
-  },
-  {
-    id: "programming-lab-ta",
-    company: "Programming Laboratory",
-    role: "Teaching Assistant",
-    location: "Surabaya, Indonesia",
-    startDate: "Aug 2024",
-    endDate: "Dec 2025",
+    id: "intro-programming-ta-staff",
+    company: "Introduction to Programming Laboratory Course — M-IOT ITS",
+    role: "Staff - Teaching Assistant",
+    location: "On-site",
+    startDate: "Sep 2024",
+    endDate: "Mar 2025",
     current: false,
     category: "Teaching Assistant",
-    description:
-      "Instructed and evaluated undergraduate students in core computing, software engineering, and database concepts.",
+    description: "Assisted undergraduate students with programming assignments, lab modules, and code assessments.",
     achievements: [
-      "Delivered technical workshops on data structures, algorithms, and PostgreSQL queries to 80+ engineering students",
-      "Assessed student software repositories, performing code reviews and providing actionable architecture improvements",
-      "Refactored automated grading script runners, reducing grading evaluation time by 60%",
+      "Assisted Electrical Engineering, Telecommunications Engineering, and Biomedical Engineering students during Introduction to Programming laboratory sessions",
+      "Guided students through Introduction to Programming mentoring activities",
+      "Evaluated final project presentations and laboratory reports"
     ],
-    technologies: ["PostgreSQL", "Linux", "C++", "Python", "Git"],
+    technologies: ["C++", "Python", "Git", "Mentoring"]
   },
   {
-    id: "robotics-instructor",
-    company: "Robotics Instructor",
-    role: "Technical Mentor",
-    location: "Surabaya, Indonesia",
-    startDate: "Jan 2024",
-    endDate: "Present",
-    current: true,
+    id: "robotics-extracurricular-instructor",
+    company: "Robotics Extracurricular — SDN Klampis Ngasem I/246 - Surabaya",
+    role: "Instructor",
+    location: "On-site",
+    startDate: "Aug 2023",
+    endDate: "Jun 2024",
+    current: false,
     category: "Teaching Assistant",
-    description: "Mentored student teams in electronic hardware layouts, flight stabilization, and embedded firmware designs.",
+    description: "Guided elementary students in basic robotics concepts and obstacle-avoidance assemblies.",
     achievements: [
-      "Mentored competition engineering teams on autonomous systems, sensor calibration, and PX4 hardware configurations",
-      "Formulated robotics training curriculum, teaching embedded C++ development and circuit schematics to 50+ students",
+      "Guided and mentored 4th, 5th, and 6th grade students participating in robotics extracurricular activities",
+      "Taught fundamental robotics concepts through theory and hands-on practice using the 4-Wheel Obstacle Avoidance Robot Kit",
+      "Delivered robotics learning materials through interactive web-based simulations"
     ],
-    technologies: ["C++", "PX4", "Embedded C", "Sensor Calibration", "Git"],
-  },
+    technologies: ["Robotics", "C++", "Embedded C", "Simulations"]
+  }
 ]

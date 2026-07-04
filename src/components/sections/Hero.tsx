@@ -59,7 +59,7 @@ export default function Hero() {
       const headerOffset = 80
       const elementPosition = targetElement.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.scrollY - headerOffset
-      
+
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
@@ -68,136 +68,155 @@ export default function Hero() {
   }
 
   return (
-    <section 
+    <section
       aria-label="Introduction Summary"
       className="relative flex items-center justify-start py-24 md:py-32 w-full select-none"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col gap-6 max-w-3xl text-left"
+          className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center"
         >
-          {/* Label Badge */}
-          <motion.div variants={itemVariants}>
-            <Badge 
-              variant="outline" 
-              className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-xs uppercase tracking-widest select-none"
-            >
-              Engineering Showcase & Career Archive
-            </Badge>
-          </motion.div>
-
-          {/* Name Title */}
-          <motion.h1 
-            variants={itemVariants}
-            className="text-6xl md:text-7xl font-sans font-semibold tracking-tight text-foreground leading-[1.05]"
-          >
-            Mahija Ibad Pradipta
-          </motion.h1>
-
-          {/* Description */}
-          <motion.p 
-            variants={itemVariants}
-            className="text-lg text-muted-foreground font-sans font-normal leading-8"
-          >
-            Building self-hosted systems, IoT platforms, autonomous robotics, and infrastructure.
-          </motion.p>
-
-          {/* Tech Badges */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-wrap gap-2 select-none"
-          >
-            {["Debian", "Docker", "Cloudflare", "MQTT", "YOLO", "PX4"].map((tech) => (
+          {/* Left Column: Text & Metrics */}
+          <div className="md:col-span-7 lg:col-span-8 flex flex-col gap-6 text-left">
+            {/* Label Badge */}
+            <motion.div variants={itemVariants}>
               <Badge
-                key={tech}
-                variant="secondary"
-                className="px-3 py-1.5 border border-border/40 font-mono text-sm text-muted-foreground bg-card/40"
+                variant="outline"
+                className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-widest select-none"
               >
-                {tech}
+                Engineering Showcase & Career Archive
               </Badge>
-            ))}
-          </motion.div>
+            </motion.div>
 
-          {/* Actions */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-wrap items-center gap-3 mt-2"
-          >
-            <Button
-              onClick={handleScrollToWork}
-              className="font-medium bg-foreground text-background hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-transform duration-150 cursor-pointer"
+            {/* Name Title */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-6xl font-sans font-semibold tracking-tight text-foreground leading-[1.05]"
             >
-              View Work
-            </Button>
+              Mahija Ibad Pradipta
+            </motion.h1>
 
-            <a
-              href="https://github.com/Eeja07"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "default" }),
-                "font-medium border-border text-foreground bg-card/40 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-transform duration-150"
-              )}
+            {/* Description */}
+            <motion.p
+              variants={itemVariants}
+              className="text-base text-zinc-500 dark:text-zinc-400 font-sans font-normal leading-8"
             >
-              <GithubIcon className="size-4 mr-2" />
-              GitHub
-            </a>
+              Building self-hosted systems, IoT platforms, autonomous robotics, and infrastructure.
+            </motion.p>
 
-            {mounted && (
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  className={cn(
-                    buttonVariants({ variant: "outline", size: "default" }),
-                    "font-medium border-border text-foreground bg-card/40 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-transform duration-150 cursor-pointer flex items-center gap-1.5"
-                  )}
+            {/* Tech Badges */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap gap-2 select-none"
+            >
+              {["Debian", "Docker", "Cloudflare", "MQTT", "YOLO", "PX4"].map((tech) => (
+                <Badge
+                  key={tech}
+                  variant="secondary"
+                  className="px-3 py-1.5 border border-zinc-200 dark:border-zinc-800 font-mono text-sm text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900"
                 >
-                  <span>Resume</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3 text-muted-foreground animate-none">
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="border border-border bg-background shadow-md">
-                  {resumeVariants.map((variant) => (
-                    <DropdownMenuItem
-                      key={variant.id}
-                      nativeButton={false}
-                      render={
-                        <a
-                          href={variant.href}
-                          download={`Mahija_Resume_${variant.language}.pdf`}
-                        />
-                      }
-                      className="flex items-center gap-2 cursor-pointer hover:bg-muted text-sm font-sans text-foreground"
-                    >
-                      <span>{variant.label}</span>
-                      <Badge variant="outline" className="ml-auto font-mono text-[9px] px-1 py-0 border-border text-muted-foreground bg-card/40">
-                        {variant.language}
-                      </Badge>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            )}
-          </motion.div>
+                  {tech}
+                </Badge>
+              ))}
+            </motion.div>
 
-          {/* Simplified Metrics Block */}
-          <motion.div 
+            {/* Actions */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center gap-3 mt-2"
+            >
+              <Button
+                onClick={handleScrollToWork}
+                className="font-medium bg-foreground text-background hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-transform duration-150 cursor-pointer"
+              >
+                View Work
+              </Button>
+
+              <a
+                href="https://github.com/Eeja07"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "default" }),
+                  "font-medium border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-transform duration-150"
+                )}
+              >
+                <GithubIcon className="size-4 mr-2" />
+                GitHub
+              </a>
+
+              {mounted && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "default" }),
+                      "font-medium border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-transform duration-150 cursor-pointer flex items-center gap-1.5"
+                    )}
+                  >
+                    <span>Resume</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3 text-zinc-500 dark:text-zinc-400 animate-none">
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 shadow-md">
+                    {resumeVariants.map((variant) => (
+                      <DropdownMenuItem
+                        key={variant.id}
+                        nativeButton={false}
+                        render={
+                          <a
+                            href={variant.href}
+                            download={`Mahija_Resume_${variant.language}.pdf`}
+                          />
+                        }
+                        className="flex items-center gap-2 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm font-sans text-foreground"
+                      >
+                        <span>{variant.label}</span>
+                        <Badge variant="outline" className="ml-auto font-mono text-[9px] px-1 py-0 border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900">
+                          {variant.language}
+                        </Badge>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
+            </motion.div>
+
+            {/* Simplified Metrics Block */}
+            <motion.div
+              variants={itemVariants}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-6 border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-5 mt-4 max-w-xl text-left"
+            >
+              {[
+                { label: "2 Internships", sub: "Work history" },
+                { label: <>3<br />Awards</>, sub: "Competitions" },
+                { label: "46 Repositories", sub: "Open source" },
+                { label: "4 Years Building", sub: "Active experience" },
+              ].map((metric) => (
+                <div key={metric.sub} className="flex flex-col gap-1">
+                  <span className="font-mono text-base font-semibold text-foreground leading-none">{metric.label}</span>
+                  <span className="font-sans text-xs text-zinc-500 dark:text-zinc-400">{metric.sub}</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right Column: Profile Image */}
+          <motion.div
             variants={itemVariants}
-            className="grid grid-cols-3 gap-6 border border-border bg-card/40 rounded-2xl p-5 mt-4 max-w-xl text-left"
+            className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end select-none"
           >
-            {[
-              { label: "40+ Repositories", sub: "Source control" },
-              { label: "6 Active Services", sub: "Production hosting" },
-              { label: "2.5M Stored Images", sub: "CCTV database files" },
-            ].map((metric) => (
-              <div key={metric.label} className="flex flex-col gap-1">
-                <span className="font-mono text-base font-semibold text-foreground leading-none">{metric.label}</span>
-                <span className="font-sans text-xs text-muted-foreground">{metric.sub}</span>
-              </div>
-            ))}
+            <div className="relative w-72 h-72 md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px]">
+              <img
+                src="/profile.png"
+                alt="Mahija Ibad Pradipta"
+                className="w-full h-full object-contain filter drop-shadow-sm dark:brightness-95 transition-all"
+                loading="eager"
+              />
+            </div>
           </motion.div>
         </motion.div>
       </div>

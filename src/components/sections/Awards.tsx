@@ -33,7 +33,7 @@ export default function Awards() {
     <section
       id="awards"
       aria-labelledby="awards-heading"
-      className="w-full py-20 bg-background border-t border-border"
+      className="w-full py-20 bg-background border-t border-zinc-200 dark:border-zinc-800"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -41,7 +41,7 @@ export default function Awards() {
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Achievements
           </Badge>
@@ -63,9 +63,9 @@ export default function Awards() {
         >
           {awards.map((award, i) => (
             <motion.div key={i} variants={itemVariants}>
-              <Card className="border border-border bg-card/40 rounded-2xl shadow-sm hover:border-border/80 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
+              <Card className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl shadow-sm hover:border-zinc-200/80 dark:hover:border-zinc-800/80 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between font-mono text-sm text-muted-foreground">
+                  <div className="flex items-center justify-between font-mono text-sm text-zinc-500 dark:text-zinc-400">
                     <span className="font-semibold uppercase">{award.competition}</span>
                     <span>{award.period}</span>
                   </div>
@@ -76,12 +76,12 @@ export default function Awards() {
                     </h3>
                   </div>
 
-                  <p className="font-sans text-base text-muted-foreground font-normal leading-relaxed">
+                  <p className="font-sans text-base text-zinc-500 dark:text-zinc-400 font-normal leading-relaxed">
                     {award.summary}
                   </p>
 
                   {award.bullets && award.bullets.length > 0 && (
-                    <ul className="list-disc pl-4 text-sm text-muted-foreground/80 flex flex-col gap-1.5 leading-relaxed mt-1">
+                    <ul className="list-disc pl-4 text-sm text-zinc-500/80 dark:text-zinc-400/80 flex flex-col gap-1.5 leading-relaxed mt-1">
                       {award.bullets.map((bullet, idx) => (
                         <li key={idx}>{bullet}</li>
                       ))}

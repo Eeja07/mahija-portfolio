@@ -37,8 +37,8 @@ export default function FeaturedEngineering() {
     setActiveArchId(activeArchId === id ? null : id)
   }
 
-  // Filter precisely to the 4 requested projects
-  const allowedProjectIds = ["smart-cctv", "human-search-drone", "homelab-infra", "untern-platform"]
+  // Filter precisely to the 3 requested projects
+  const allowedProjectIds = ["smart-cctv", "human-search-drone", "untern-platform"]
   const featuredProjects = allowedProjectIds
     .map((id) => projects.find((p) => p.id === id))
     .filter((p): p is NonNullable<typeof p> => !!p)
@@ -77,7 +77,7 @@ export default function FeaturedEngineering() {
     <section
       id="featured-engineering"
       aria-labelledby="projects-heading"
-      className="w-full py-20 bg-background border-t border-border"
+      className="w-full py-20 bg-background border-t border-zinc-200 dark:border-zinc-800"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -85,7 +85,7 @@ export default function FeaturedEngineering() {
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <Badge 
             variant="outline" 
-            className="w-fit border-border py-1.5 px-3 bg-card/40 text-muted-foreground font-mono font-medium text-sm uppercase tracking-wider select-none"
+            className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
           >
             Engineering Showcase
           </Badge>
@@ -97,7 +97,7 @@ export default function FeaturedEngineering() {
             Featured Engineering
           </h2>
           
-          <p className="text-base text-muted-foreground font-sans font-normal leading-8">
+          <p className="text-base text-zinc-500 dark:text-zinc-400 font-sans font-normal leading-8">
             Highly optimized hardware platforms and systems built to operate under strict constraints and trade-offs.
           </p>
         </div>
@@ -111,16 +111,16 @@ export default function FeaturedEngineering() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={itemVariants}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 border border-border bg-card/40 rounded-2xl overflow-hidden p-6 lg:p-8"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl overflow-hidden p-6 lg:p-8"
             >
               {/* Left Side: Photo/Video Showcase or Fallback */}
               <div className="lg:col-span-5 flex flex-col gap-4">
-                <div className="relative aspect-video rounded-xl bg-background border border-border overflow-hidden select-none flex items-center justify-center">
+                <div className="relative aspect-video rounded-2xl bg-background border border-zinc-200 dark:border-zinc-800 overflow-hidden select-none flex items-center justify-center">
                   {failedImages[project.id] ? (
                     <div className="flex flex-col items-center gap-2 p-4 text-center">
-                      <ImageIcon className="size-5 text-muted-foreground/60" />
-                      <span className="font-mono text-xs text-muted-foreground">[{getProjectFallbackLabel(project.id)}]</span>
-                      <span className="font-sans text-[10px] text-muted-foreground/80">Preview snapshot</span>
+                      <ImageIcon className="size-5 text-zinc-500 dark:text-zinc-400" />
+                      <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">[{getProjectFallbackLabel(project.id)}]</span>
+                      <span className="font-sans text-[10px] text-zinc-500 dark:text-zinc-400">Preview snapshot</span>
                     </div>
                   ) : (
                     <>
@@ -151,9 +151,9 @@ export default function FeaturedEngineering() {
                     const val = parts[0];
                     const desc = parts.slice(1).join(" ");
                     return (
-                      <div key={i} className="border border-border bg-card/40 rounded-xl p-3 flex flex-col justify-center">
+                      <div key={i} className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-3 flex flex-col justify-center">
                         <span className="font-mono text-sm font-semibold text-foreground leading-none">{val}</span>
-                        <span className="font-sans text-xs text-muted-foreground mt-1 leading-normal">{desc}</span>
+                        <span className="font-sans text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-normal">{desc}</span>
                       </div>
                     )
                   })}
@@ -168,10 +168,10 @@ export default function FeaturedEngineering() {
                       rel="noopener noreferrer"
                       className={cn(
                         buttonVariants({ variant: "outline", size: "sm" }),
-                        "flex-1 border-border text-sm text-foreground bg-card/40 hover:bg-muted font-medium cursor-pointer"
+                        "flex-1 border-zinc-200 dark:border-zinc-800 text-sm text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 font-medium cursor-pointer"
                       )}
                     >
-                      <GithubIcon className="size-3.5 mr-1.5 text-muted-foreground" />
+                      <GithubIcon className="size-3.5 mr-1.5 text-zinc-500 dark:text-zinc-400" />
                       Source
                     </a>
                   )}
@@ -182,10 +182,10 @@ export default function FeaturedEngineering() {
                       rel="noopener noreferrer"
                       className={cn(
                         buttonVariants({ variant: "outline", size: "sm" }),
-                        "flex-1 border-border text-sm text-foreground bg-card/40 hover:bg-muted font-medium cursor-pointer"
+                        "flex-1 border-zinc-200 dark:border-zinc-800 text-sm text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 font-medium cursor-pointer"
                       )}
                     >
-                      <ExternalLinkIcon className="size-3.5 mr-1.5 text-muted-foreground" />
+                      <ExternalLinkIcon className="size-3.5 mr-1.5 text-zinc-500 dark:text-zinc-400" />
                       Live Demo
                     </a>
                   )}
@@ -196,10 +196,10 @@ export default function FeaturedEngineering() {
               <div className="lg:col-span-7 flex flex-col justify-between gap-6 text-left">
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                    <span className="font-mono text-sm font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                       {project.category}
                     </span>
-                    <span className="font-mono text-sm text-muted-foreground">
+                    <span className="font-mono text-sm text-zinc-500 dark:text-zinc-400">
                       {project.year}
                     </span>
                   </div>
@@ -208,27 +208,27 @@ export default function FeaturedEngineering() {
                     {project.title}
                   </h3>
 
-                  <p className="text-base text-muted-foreground font-sans font-normal leading-7">
+                  <p className="text-base text-zinc-500 dark:text-zinc-400 font-sans font-normal leading-7">
                     {project.description}
                   </p>
 
                   <div className="flex flex-col gap-4 mt-2">
                     {project.problem && (
                       <div className="flex flex-col text-left">
-                        <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground font-semibold">The Problem</span>
-                        <p className="font-sans text-base text-muted-foreground mt-0.5 leading-7">{project.problem}</p>
+                        <span className="font-mono text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold">The Problem</span>
+                        <p className="font-sans text-base text-zinc-500 dark:text-zinc-400 mt-0.5 leading-7">{project.problem}</p>
                       </div>
                     )}
                     {project.tradeoffs && (
                       <div className="flex flex-col text-left">
-                        <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground font-semibold">Trade-offs & Constraints</span>
-                        <p className="font-sans text-base text-muted-foreground mt-0.5 leading-7">{project.tradeoffs}</p>
+                        <span className="font-mono text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold">Trade-offs & Constraints</span>
+                        <p className="font-sans text-base text-zinc-500 dark:text-zinc-400 mt-0.5 leading-7">{project.tradeoffs}</p>
                       </div>
                     )}
                     {project.outcome && (
                       <div className="flex flex-col text-left">
-                        <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground font-semibold">Outcome</span>
-                        <p className="font-sans text-base text-muted-foreground mt-0.5 leading-7">{project.outcome}</p>
+                        <span className="font-mono text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold">Outcome</span>
+                        <p className="font-sans text-base text-zinc-500 dark:text-zinc-400 mt-0.5 leading-7">{project.outcome}</p>
                       </div>
                     )}
                   </div>
@@ -241,7 +241,7 @@ export default function FeaturedEngineering() {
                       <Badge 
                         key={tech} 
                         variant="secondary" 
-                        className="border border-border px-3 py-1.5 font-mono text-sm text-muted-foreground bg-card/40"
+                        className="border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 font-mono text-sm text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900"
                       >
                         {tech}
                       </Badge>
@@ -250,15 +250,15 @@ export default function FeaturedEngineering() {
 
                   {/* Architecture Snapshot Toggle */}
                   {project.architecture && (
-                    <div className="border-t border-border pt-3 select-none">
+                    <div className="border-t border-zinc-200 dark:border-zinc-800 pt-3 select-none">
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => toggleArchitecture(project.id)}
                         aria-expanded={activeArchId === project.id}
-                        className="text-sm text-muted-foreground hover:text-foreground hover:bg-transparent font-medium p-0 h-auto flex items-center gap-1.5 cursor-pointer"
+                        className="text-sm text-zinc-500 dark:text-zinc-400 hover:text-foreground hover:bg-transparent font-medium p-0 h-auto flex items-center gap-1.5 cursor-pointer"
                       >
-                        <CpuIcon className="size-3.5 text-muted-foreground" />
+                        <CpuIcon className="size-3.5 text-zinc-500 dark:text-zinc-400" />
                         <span>Architecture Snapshot</span>
                         <svg
                           viewBox="0 0 24 24"
@@ -267,7 +267,7 @@ export default function FeaturedEngineering() {
                           strokeWidth="2.5"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className={cn("size-3 transition-transform duration-150 text-muted-foreground/80", activeArchId === project.id && "rotate-180")}
+                          className={cn("size-3 transition-transform duration-150 text-zinc-500 dark:text-zinc-400", activeArchId === project.id && "rotate-180")}
                         >
                           <path d="m6 9 6 6 6-6" />
                         </svg>
@@ -282,11 +282,11 @@ export default function FeaturedEngineering() {
                             transition={{ duration: 0.15, ease: "easeOut" }}
                             className="overflow-hidden"
                           >
-                            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1.5 font-mono text-sm text-foreground bg-card/20 rounded-xl p-3 border border-border">
+                            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1.5 font-mono text-sm text-foreground bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl p-3 border border-zinc-200 dark:border-zinc-800">
                               {project.architecture.map((node, index) => (
                                 <React.Fragment key={node}>
-                                  {index > 0 && <span className="text-muted-foreground/60 font-sans">&rarr;</span>}
-                                  <span className="border border-border bg-background rounded px-3 py-1.5 shadow-sm text-muted-foreground">
+                                  {index > 0 && <span className="text-zinc-500 dark:text-zinc-400 font-sans">&rarr;</span>}
+                                  <span className="border border-zinc-200 dark:border-zinc-800 bg-background rounded-2xl px-3 py-1.5 shadow-sm text-zinc-500 dark:text-zinc-400">
                                     {node}
                                   </span>
                                 </React.Fragment>

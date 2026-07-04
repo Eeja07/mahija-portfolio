@@ -2,428 +2,331 @@ export interface Repository {
   name: string
   description: string
   language: string
-  stars: number
-  forks: number
-  url: string
+  slug: string
   featured: boolean
 }
 
 export const repositories: Repository[] = [
-  // 10 Featured Repositories
   {
-    name: "iot-surveillance-platform-web",
-    description: "React-based real-time dashboard visualization for surveillance stream configuration and camera node management.",
-    language: "TypeScript",
-    stars: 18,
-    forks: 4,
-    url: "https://github.com/Eeja07/iot-surveillance-platform-web",
-    featured: true
+    "name": "addition-and-subtraction-combination-generator-of-prime-number-program-basic-programming-assignment",
+    "description": "Simple program that generated combination of addition and subtraction of prime number \"N...N\" with N as an input, so the combination get an integer result bigger than X and smaller than Y (X and Y is an input)",
+    "language": "C",
+    "slug": "addition-and-subtraction-combination-generator-of-prime-number-program-basic-programming-assignment",
+    "featured": false
   },
   {
-    name: "iot-surveillance-platform-mobile",
-    description: "Mobile companion application for real-time push alerts and remote camera control.",
-    language: "TypeScript",
-    stars: 12,
-    forks: 2,
-    url: "https://github.com/Eeja07/iot-surveillance-platform-mobile",
-    featured: true
+    "name": "addition-and-subtraction-combination-generator-program-basic-programming-assignment",
+    "description": "Simple program that generated combination of addition and subtraction an integer \"1...N\" with N as an input, so the result is \"10\" using C",
+    "language": "C",
+    "slug": "addition-and-subtraction-combination-generator-program-basic-programming-assignment",
+    "featured": false
   },
   {
-    name: "iot-surveillance-platform-firmware",
-    description: "ESP32 camera node firmware for video capturing and low-latency RTSP streaming over Wi-Fi.",
-    language: "C++",
-    stars: 15,
-    forks: 3,
-    url: "https://github.com/Eeja07/iot-surveillance-platform-firmware",
-    featured: true
+    "name": "assignment-0-advanced-programming",
+    "description": "Simple program \"Hello World\" based on input using C++",
+    "language": "Makefile",
+    "slug": "assignment-0-advanced-programming",
+    "featured": false
   },
   {
-    name: "mahija-portfolio",
-    description: "Source code of this engineering-first portfolio website, optimized for high density and performance metrics.",
-    language: "TypeScript",
-    stars: 8,
-    forks: 1,
-    url: "https://github.com/Eeja07/mahija-portfolio",
-    featured: true
+    "name": "assignment-1-advanced-programming",
+    "description": "Simple program to converts birth date to age in day, month, and years using C++",
+    "language": "C++",
+    "slug": "assignment-1-advanced-programming",
+    "featured": false
   },
   {
-    name: "untern",
-    description: "A high-performance internship aggregator and application tracking system facilitating recruiter discovery.",
-    language: "TypeScript",
-    stars: 24,
-    forks: 6,
-    url: "https://github.com/Eeja07/untern-core",
-    featured: true
+    "name": "assignment-2-advanced-programming",
+    "description": "Simple SIM Akademik program using C++ with OOP Paradigm",
+    "language": "C++",
+    "slug": "assignment-2-advanced-programming",
+    "featured": false
   },
   {
-    name: "sarvio-x",
-    description: "Telemetry reporting and command-line flight controller diagnostic application utilizing gRPC.",
-    language: "Go",
-    stars: 14,
-    forks: 2,
-    url: "https://github.com/Eeja07/sarvio-x",
-    featured: true
+    "name": "assignment-3-advanced-programming",
+    "description": "Simple program to detect triangle type from 3d coordinates using C++",
+    "language": "C++",
+    "slug": "assignment-3-advanced-programming",
+    "featured": false
   },
   {
-    name: "autonomous-drone",
-    description: "Path planning algorithms, ROS2 navigation, and obstacle avoidance simulation tests for autonomous UAVs.",
-    language: "Python",
-    stars: 20,
-    forks: 5,
-    url: "https://github.com/Eeja07/autonomous-drone-nav",
-    featured: true
+    "name": "autonomous-drone-final-project-book",
+    "description": "Final project book documenting the design and implementation of autonomous drone systems.",
+    "language": "TeX",
+    "slug": "autonomous-drone-final-project-book",
+    "featured": false
   },
   {
-    name: "swimate",
-    description: "Embedded system firmware and sensor calibration scripts for tracking real-time swimming metrics.",
-    language: "C++",
-    stars: 10,
-    forks: 2,
-    url: "https://github.com/Eeja07/swimate-embedded",
-    featured: true
+    "name": "autonomous-drone-final-project-paper",
+    "description": "Scientific paper detailing the autonomous drone search system for human detection.",
+    "language": "TeX",
+    "slug": "autonomous-drone-final-project-paper",
+    "featured": false
   },
   {
-    name: "course-webapp",
-    description: "A full-stack web application designed for academic course scheduling and grading automation.",
-    language: "PHP",
-    stars: 7,
-    forks: 1,
-    url: "https://github.com/Eeja07/course-webapp",
-    featured: true
+    "name": "autonomus-human-search-system-using-drone-final-project-program",
+    "description": "Autonomous search system software using YOLO for human detection on a Raspberry Pi 5.",
+    "language": "Python",
+    "slug": "autonomus-human-search-system-using-drone-final-project-program",
+    "featured": true
   },
   {
-    name: "homelab",
-    description: "Docker configurations, Cloudflare tunnel configurations, and ansible playbooks for headless home infrastructure.",
-    language: "YAML",
-    stars: 32,
-    forks: 8,
-    url: "https://github.com/Eeja07/homelab-infrastructure",
-    featured: true
-  },
-
-  // 36 Secondary/Academic Repositories
-  {
-    name: "tower-of-hanoi",
-    description: "Recursive solver and step-by-step graphical representation of the Tower of Hanoi problem.",
-    language: "C++",
-    stars: 4,
-    forks: 0,
-    url: "https://github.com/Eeja07/tower-of-hanoi",
-    featured: false
+    "name": "carvole-simple-2d-car-game-graphics.h-final-project-basic-programming",
+    "description": "Simple 2D car game built with C++ using the graphics.h library.",
+    "language": "C++",
+    "slug": "carvole-simple-2d-car-game-graphics.h-final-project-basic-programming",
+    "featured": false
   },
   {
-    name: "morse-code-decoder",
-    description: "Binary tree based decoder parsing sound frequency inputs into alphanumeric text.",
-    language: "C",
-    stars: 3,
-    forks: 1,
-    url: "https://github.com/Eeja07/morse-code-decoder",
-    featured: false
+    "name": "computer-system-security-college-task",
+    "description": "Assembly and system security coursework assignments focusing on memory and architecture.",
+    "language": "Assembly",
+    "slug": "computer-system-security-college-task",
+    "featured": false
   },
   {
-    name: "graphics-assignments",
-    description: "Bresenham line drawing and polygon rasterization engine built without high-level graphics APIs.",
-    language: "C++",
-    stars: 5,
-    forks: 0,
-    url: "https://github.com/Eeja07/graphics-assignments",
-    featured: false
+    "name": "conversion-program-integer-to-roman-basic-programming-assignment",
+    "description": "This is simple program that conversion integer to roman with range 1-4999 using C",
+    "language": "C",
+    "slug": "conversion-program-integer-to-roman-basic-programming-assignment",
+    "featured": false
   },
   {
-    name: "palindrome-checker",
-    description: "Assembly language implementation of memory-efficient palindrome checks.",
-    language: "Assembly",
-    stars: 2,
-    forks: 0,
-    url: "https://github.com/Eeja07/palindrome-checker",
-    featured: false
+    "name": "conversion-program-text-to-morse-code-basic-programming-assignment",
+    "description": "Simple program that converts words into morse code using C",
+    "language": "C",
+    "slug": "conversion-program-text-to-morse-code-basic-programming-assignment",
+    "featured": false
   },
   {
-    name: "cli-calendar",
-    description: "Command-line scheduling manager featuring offline task storage and custom reminders.",
-    language: "C++",
-    stars: 3,
-    forks: 0,
-    url: "https://github.com/Eeja07/cli-calendar",
-    featured: false
+    "name": "course-webapp-project",
+    "description": "A web application for course management and grading, built using Laravel and React.",
+    "language": "JavaScript",
+    "slug": "course-webapp-project",
+    "featured": true
   },
   {
-    name: "basic-programming",
-    description: "Collection of basic algorithms, pointer operations, and memory structure assignments.",
-    language: "C++",
-    stars: 1,
-    forks: 0,
-    url: "https://github.com/Eeja07/basic-programming",
-    featured: false
+    "name": "databaseSimpleWebApp-testing",
+    "description": "A test bed for simple database interactions and REST API operations.",
+    "language": "JavaScript",
+    "slug": "databaseSimpleWebApp-testing",
+    "featured": false
   },
   {
-    name: "smart-cctv-edge",
-    description: "Inference runner and object detection pipeline running on low-power CPU architectures.",
-    language: "Python",
-    stars: 9,
-    forks: 2,
-    url: "https://github.com/Eeja07/smart-cctv-edge",
-    featured: false
+    "name": "drawing-2d-car-graphics.h-basic-programming-assignment",
+    "description": "2D car drawing program using graphics.h for basic programming homework.",
+    "language": "C++",
+    "slug": "drawing-2d-car-graphics.h-basic-programming-assignment",
+    "featured": false
   },
   {
-    name: "autonomous-uav-search",
-    description: "MAVLink command scripts and YOLO person-tracking wrappers for aerial searches.",
-    language: "Python",
-    stars: 11,
-    forks: 3,
-    url: "https://github.com/Eeja07/autonomous-uav-search",
-    featured: false
+    "name": "guessing-number-memory-game-basic-programming-assignment",
+    "description": "Simple program called memory game, the game is to make computer guess our number using C",
+    "language": "C",
+    "slug": "guessing-number-memory-game-basic-programming-assignment",
+    "featured": false
   },
   {
-    name: "network-monitoring-script",
-    description: "Lightweight bash utilities checking package drops, ping delays, and routing paths.",
-    language: "Shell",
-    stars: 4,
-    forks: 0,
-    url: "https://github.com/Eeja07/network-monitoring-script",
-    featured: false
+    "name": "gui-with-wxwidgets-final-project-advanced-programming",
+    "description": "Simple GUI ( Graphical User Interface ) program for siakad and triangle checker using wxwidgets in C++",
+    "language": "C++",
+    "slug": "gui-with-wxwidgets-final-project-advanced-programming",
+    "featured": true
   },
   {
-    name: "nginx-config-manager",
-    description: "Command-line assistant parsing and validating reverse proxy config directories.",
-    language: "Go",
-    stars: 6,
-    forks: 1,
-    url: "https://github.com/Eeja07/nginx-config-manager",
-    featured: false
+    "name": "inifx-to-postfix-data-structure-assignment",
+    "description": "Infix to postfix mathematical expression converter written for Data Structures course.",
+    "language": "Python",
+    "slug": "inifx-to-postfix-data-structure-assignment",
+    "featured": false
   },
   {
-    name: "docker-backup-utility",
-    description: "Automated cron runner exporting container volumes to offsite backup storage paths.",
-    language: "Shell",
-    stars: 8,
-    forks: 2,
-    url: "https://github.com/Eeja07/docker-backup-utility",
-    featured: false
+    "name": "inventory-management-system-program-multimedia-workshop-mage-9-assignment",
+    "description": "Simple inventory management system program using GUI Python",
+    "language": "Python",
+    "slug": "inventory-management-system-program-multimedia-workshop-mage-9-assignment",
+    "featured": false
   },
   {
-    name: "mqtt-diagnostic-tool",
-    description: "CLI client subscribing to telemetry brokers and logging data anomalies.",
-    language: "Python",
-    stars: 5,
-    forks: 0,
-    url: "https://github.com/Eeja07/mqtt-diagnostic-tool",
-    featured: false
+    "name": "iot-surveillance-platform-docs",
+    "description": "Documentation and reports for the ESP32 and React based real-time video surveillance system.",
+    "language": "TeX",
+    "slug": "iot-surveillance-platform-docs",
+    "featured": false
   },
   {
-    name: "esp32-dht-logger",
-    description: "Microcontroller logic checking temperature sensors and logging data over Wi-Fi.",
-    language: "C++",
-    stars: 3,
-    forks: 1,
-    url: "https://github.com/Eeja07/esp32-dht-logger",
-    featured: false
+    "name": "iot-surveillance-platform-firmware",
+    "description": "ESP32 firmware implementing low-latency camera streaming, RTSP, and MQTT controls.",
+    "language": "C++",
+    "slug": "iot-surveillance-platform-firmware",
+    "featured": true
   },
   {
-    name: "stm32-motor-controller",
-    description: "Embedded C drivers regulating PWM signals and feedback telemetry loop controls.",
-    language: "C",
-    stars: 9,
-    forks: 2,
-    url: "https://github.com/Eeja07/stm32-motor-controller",
-    featured: false
+    "name": "iot-surveillance-platform-mobile",
+    "description": "Cross-platform mobile client application for IoT surveillance monitoring and controls.",
+    "language": "Dart",
+    "slug": "iot-surveillance-platform-mobile",
+    "featured": true
   },
   {
-    name: "optical-flow-simulation",
-    description: "Calculates flow vectors and velocity grids using camera lens simulations.",
-    language: "MATLAB",
-    stars: 2,
-    forks: 0,
-    url: "https://github.com/Eeja07/optical-flow-simulation",
-    featured: false
+    "name": "iot-surveillance-platform-web",
+    "description": "React web dashboard for managing and viewing multiple camera streams and configuring notifications.",
+    "language": "JavaScript",
+    "slug": "iot-surveillance-platform-web",
+    "featured": true
   },
   {
-    name: "yolov8n-tensorrt",
-    description: "Pre-compiled TensorRT serialization scripts optimizing model weights for Jetson Nano.",
-    language: "C++",
-    stars: 12,
-    forks: 3,
-    url: "https://github.com/Eeja07/yolov8n-tensorrt",
-    featured: false
+    "name": "Laser-RPM-Correlation-Analyzer",
+    "description": "Telemetry analysis tool evaluating motor RPM and laser sensor correlation data.",
+    "language": "Python",
+    "slug": "Laser-RPM-Correlation-Analyzer",
+    "featured": false
   },
   {
-    name: "database-indexing-demo",
-    description: "Comparative query benchmarks evaluating B-Tree index speeds in SQL instances.",
-    language: "SQL",
-    stars: 4,
-    forks: 0,
-    url: "https://github.com/Eeja07/database-indexing-demo",
-    featured: false
+    "name": "list-file-data-structure-assignment",
+    "description": "File list operations and data structures implemented for university assignment.",
+    "language": "Python",
+    "slug": "list-file-data-structure-assignment",
+    "featured": false
   },
   {
-    name: "markdown-resume-parser",
-    description: "Go utility converting schema-compliant markdown profiles into formatted PDFs.",
-    language: "Go",
-    stars: 6,
-    forks: 1,
-    url: "https://github.com/Eeja07/markdown-resume-parser",
-    featured: false
+    "name": "mahija-portfolio",
+    "description": "Personal portfolio showcasing infrastructure, IoT, edge AI, and software engineering projects.",
+    "language": "TypeScript",
+    "slug": "mahija-portfolio",
+    "featured": true
   },
   {
-    name: "proxmox-api-client",
-    description: "Node.js wrapper initiating automated backups and LXC node status outputs.",
-    language: "TypeScript",
-    stars: 5,
-    forks: 0,
-    url: "https://github.com/Eeja07/proxmox-api-client",
-    featured: false
+    "name": "moving-car-2d-animation-graphics.h-basic-programming-assignment",
+    "description": "2D moving car animation built with legacy graphics.h in C++.",
+    "language": "C++",
+    "slug": "moving-car-2d-animation-graphics.h-basic-programming-assignment",
+    "featured": false
   },
   {
-    name: "cloudflare-access-auth",
-    description: "Custom authentication scripts validating user requests before routing to tunnel hosts.",
-    language: "TypeScript",
-    stars: 4,
-    forks: 1,
-    url: "https://github.com/Eeja07/cloudflare-access-auth",
-    featured: false
+    "name": "nsuomnam-responsive-restaurant-landing-page",
+    "description": "NsuomNam - Responsive Restaurant Landing Page Using HTML5, CSS3, & JS",
+    "language": "CSS",
+    "slug": "nsuomnam-responsive-restaurant-landing-page",
+    "featured": false
   },
   {
-    name: "resend-email-worker",
-    description: "Event-driven background scripts delivering transactional messages via Rest API routes.",
-    language: "JavaScript",
-    stars: 3,
-    forks: 0,
-    url: "https://github.com/Eeja07/resend-email-worker",
-    featured: false
+    "name": "palindrome-checker-program-basic-programming-assignment",
+    "description": "Simple program that checks whether a word is palindrom or not using C",
+    "language": "C",
+    "slug": "palindrome-checker-program-basic-programming-assignment",
+    "featured": false
   },
   {
-    name: "redis-rate-limiter",
-    description: "Token bucket rate-limiting implementation built for backend API protection.",
-    language: "Go",
-    stars: 11,
-    forks: 2,
-    url: "https://github.com/Eeja07/redis-rate-limiter",
-    featured: false
+    "name": "perpetual-calendar-basic-programming-mini-project-assignment",
+    "description": "Simple program called perpetual calendar to display a complete calendar if you input the month and year. This build using C",
+    "language": "C",
+    "slug": "perpetual-calendar-basic-programming-mini-project-assignment",
+    "featured": false
   },
   {
-    name: "optical-character-recognition",
-    description: "Pruned vision setups reading numerical fields on physical gauges.",
-    language: "Python",
-    stars: 7,
-    forks: 1,
-    url: "https://github.com/Eeja07/optical-character-recognition",
-    featured: false
+    "name": "practicum-1-advanced-programming",
+    "description": "Got 2 assignment for practicum 1, advanced programming using C++ OOP  ( class & object )",
+    "language": "C++",
+    "slug": "practicum-1-advanced-programming",
+    "featured": false
   },
   {
-    name: "audio-fft-visualizer",
-    description: "Plots frequency components in real-time using fast Fourier transform modules.",
-    language: "C++",
-    stars: 6,
-    forks: 0,
-    url: "https://github.com/Eeja07/audio-fft-visualizer",
-    featured: false
+    "name": "practicum-2-advanced-programming",
+    "description": "Got 4 assignment for practicum 2, advanced programming using C++ OOP  ( class methods & constructors )",
+    "language": "C++",
+    "slug": "practicum-2-advanced-programming",
+    "featured": false
   },
   {
-    name: "flight-fail-safe",
-    description: "Embedded system protocols detecting system loss and triggering drone hover states.",
-    language: "C++",
-    stars: 10,
-    forks: 1,
-    url: "https://github.com/Eeja07/flight-fail-safe",
-    featured: false
+    "name": "practicum-3-advanced-programming",
+    "description": "Got 3 assignment for practicum 3, advanced programming using C++ OOP  ( access specifiers & encapsulation )",
+    "language": "C++",
+    "slug": "practicum-3-advanced-programming",
+    "featured": false
   },
   {
-    name: "mavlink-packet-sniffer",
-    description: "Telemetry parsing tool displaying vehicle position data and command registers.",
-    language: "Go",
-    stars: 8,
-    forks: 2,
-    url: "https://github.com/Eeja07/mavlink-packet-sniffer",
-    featured: false
+    "name": "practicum-4-advanced-programming",
+    "description": "Got 2 assignment for practicum 4, advanced programming using C++ OOP  ( inheritance & polymorphism ) )",
+    "language": "C++",
+    "slug": "practicum-4-advanced-programming",
+    "featured": false
   },
   {
-    name: "lightweight-http-server",
-    description: "C implementation of socket bindings serving static files.",
-    language: "C",
-    stars: 5,
-    forks: 0,
-    url: "https://github.com/Eeja07/lightweight-http-server",
-    featured: false
+    "name": "python-compiler-final-project-data-structure",
+    "description": "A parser and compiler demonstration for subset Python expressions.",
+    "language": "Python",
+    "slug": "python-compiler-final-project-data-structure",
+    "featured": false
   },
   {
-    name: "simple-key-value-store",
-    description: "In-memory database storing configuration settings with disk persistence.",
-    language: "C++",
-    stars: 6,
-    forks: 1,
-    url: "https://github.com/Eeja07/simple-key-value-store",
-    featured: false
+    "name": "Resume-or-Curriculum-Vitae",
+    "description": "LaTeX template for my personal resume",
+    "language": "TeX",
+    "slug": "Resume-or-Curriculum-Vitae",
+    "featured": false
   },
   {
-    name: "binary-search-tree-cli",
-    description: "Interactive visualization demonstrating nodes deletions, insertions, and traversals.",
-    language: "C",
-    stars: 2,
-    forks: 0,
-    url: "https://github.com/Eeja07/binary-search-tree-cli",
-    featured: false
+    "name": "sarvio-x",
+    "description": "Autonomous drone flight telemetry dashboard displaying real-time vehicle positioning and speed.",
+    "language": "JavaScript",
+    "slug": "sarvio-x",
+    "featured": true
   },
   {
-    name: "sensor-data-fusion-ekf",
-    description: "Fuses gyroscope and accelerometer readings using Extended Kalman Filters.",
-    language: "Python",
-    stars: 9,
-    forks: 2,
-    url: "https://github.com/Eeja07/sensor-data-fusion-ekf",
-    featured: false
+    "name": "Swimate",
+    "description": "Swimate: Your Swim Partner",
+    "language": "Dart",
+    "slug": "Swimate",
+    "featured": true
   },
   {
-    name: "lidar-distance-measurer",
-    description: "Decodes serial signals from distance modules to map environmental coordinates.",
-    language: "C++",
-    stars: 4,
-    forks: 0,
-    url: "https://github.com/Eeja07/lidar-distance-measurer",
-    featured: false
+    "name": "test-git",
+    "description": "Git test playground for learning repository operations and workflow models.",
+    "language": "HTML",
+    "slug": "test-git",
+    "featured": false
   },
   {
-    name: "smart-home-gateway",
-    description: "Coordinates local sensors, cameras, and switches on local local servers.",
-    language: "Go",
-    stars: 7,
-    forks: 1,
-    url: "https://github.com/Eeja07/smart-home-gateway",
-    featured: false
+    "name": "test-nodeJS",
+    "description": "Node.js environment sandbox testing HTTP servers and filesystem requests.",
+    "language": "JavaScript",
+    "slug": "test-nodeJS",
+    "featured": false
   },
   {
-    name: "secure-tunnel-agent",
-    description: "Secure TCP traffic router built to bridge firewalls without port-forwarding.",
-    language: "Rust",
-    stars: 15,
-    forks: 3,
-    url: "https://github.com/Eeja07/secure-tunnel-agent",
-    featured: false
+    "name": "tictactoe-game-basic-programming-practicum-final-project",
+    "description": "Simple TicTacToe game for final project of basic programming practicum using C",
+    "language": "C",
+    "slug": "tictactoe-game-basic-programming-practicum-final-project",
+    "featured": false
   },
   {
-    name: "discord-webhook-alerts",
-    description: "Script forwarding local host warning messages to specific channel channels.",
-    language: "Python",
-    stars: 3,
-    forks: 0,
-    url: "https://github.com/Eeja07/discord-webhook-alerts",
-    featured: false
+    "name": "tower-of-hanoi-data-structure-assignment",
+    "description": "Data structure assignment implementing stack-based Tower of Hanoi solver.",
+    "language": "Python",
+    "slug": "tower-of-hanoi-data-structure-assignment",
+    "featured": false
   },
   {
-    name: "telegram-alert-bot",
-    description: "Receives warnings and responds with live hardware telemetry files.",
-    language: "Python",
-    stars: 4,
-    forks: 0,
-    url: "https://github.com/Eeja07/telegram-alert-bot",
-    featured: false
+    "name": "Tugas-KPP-Robotika-Programming",
+    "description": "Tugas KPP Robotika Programming - Mahija Ibad Pradipta_5024221026",
+    "language": "C++",
+    "slug": "Tugas-KPP-Robotika-Programming",
+    "featured": false
   },
   {
-    name: "ansible-homelab-playbooks",
-    description: "Playbooks configuring headless servers and updating docker packages.",
-    language: "YAML",
-    stars: 10,
-    forks: 2,
-    url: "https://github.com/Eeja07/ansible-homelab-playbooks",
-    featured: false
+    "name": "untern-internship-project",
+    "description": "Aggregation platform crawling, indexing, and serving internship listings for tech recruiters.",
+    "language": "JavaScript",
+    "slug": "untern-internship-project",
+    "featured": true
+  },
+  {
+    "name": "website-project-technical-test-aksamedia",
+    "description": "Full-stack technical test application implementing CRUD and user dashboard systems.",
+    "language": "JavaScript",
+    "slug": "website-project-technical-test-aksamedia",
+    "featured": false
   }
 ]

@@ -11,66 +11,127 @@ export interface CareerItem {
 export const organizations: CareerItem[] = [
   {
     id: "m-iot-coordinator",
-    title: "M-IOT Laboratory ITS",
-    role: "Systems & IoT Coordinator",
-    period: "Sep 2024 — Present",
-    summary: "Supervised telemetry deployments, server virtualization systems, and internal member development.",
+    title: "M-IOT Laboratory — Computer Engineering ITS",
+    role: "Coordinator - Board of Directors",
+    period: "Jun 2025 – May 2026",
+    summary: "Supervised project development, human resource training, and overall administrative timelines for the laboratory.",
     bullets: [
-      "Administered dockerized Linux host machines, maintaining 99.9% uptime for local database stores",
-      "Standardized network topology guides, API gateways, and MQTT publisher architectures for research labs",
-      "Mentored junior lab engineers on server environments and microservice structures"
+      "Improved laboratory quality in both project development and human resource development aspects",
+      "Supervised overall timelines and task execution across all divisions and subdivisions",
+      "Coordinated laboratory management activities with external stakeholders and university administration"
     ],
     featured: true
   },
   {
-    id: "head-of-cadre-development",
-    title: "HIMATEKKOM",
-    role: "Head of Cadre Development",
-    period: "2024 — 2025",
-    summary: "Directed talent pipelines, leadership training paths, and professional development programs within the department.",
+    id: "himatekkom-cadre-head",
+    title: "HIMATEKKOM ITS",
+    role: "Head of Cadre Development Department - Board of Directors",
+    period: "Mar 2025 – Feb 2026",
+    summary: "Directed the cadre development division, mentoring team committees, and coordinating student progression systems.",
     bullets: [
-      "Designed comprehensive recruitment frameworks and personal performance criteria for 100+ members",
-      "Facilitated engineering student forums focusing on leadership, technical management, and team collaboration",
-      "Supervised inter-division task forces for department training events and structural audits"
+      "Guided IC and OC teams in executing all cadre development activities",
+      "Mentored SC members in designing assessment systems and activity timelines",
+      "Coordinated with students and the Computer Engineering Department regarding cadre development activities"
     ],
     featured: true
   },
   {
-    id: "head-of-official-division",
-    title: "Banyubramanta Robotics Team",
-    role: "Head of Official Division",
-    period: "2023 — 2024",
-    summary: "Managed operational workflows, administrative tasks, and external relations for the underwater robotics club.",
+    id: "banyubramanta-official-head",
+    title: "Banyubramanta Robotics Team ITS",
+    role: "Head of Official Division - Board of Directors",
+    period: "Jul 2024 – May 2025",
+    summary: "Led financial management, public relations, branding, and non-technical logistics for the robotics team.",
     bullets: [
-      "Streamlined inventory management databases, tracking high-value sensor and thruster assets",
-      "Coordinated logistic pathways for regional and national autonomous vehicle competitions",
-      "Facilitated technical workshops for junior software and hardware subsystem members"
+      "Led the Administration & Finance, Public Relations & Sponsorship, and Creative & Branding subdivisions",
+      "Planned and supervised overall timelines and task execution across all subdivisions",
+      "Ensured smooth execution of the team’s administrative and non-technical operations"
     ],
     featured: true
   },
   {
-    id: "staff-of-cadre-development",
-    title: "HIMATEKKOM",
-    role: "Staff of Cadre Development",
-    period: "2023 — 2024",
-    summary: "Assisted in managing recruitment cycles, monitoring student performance indices, and staging workshops.",
+    id: "m-iot-archive-staff",
+    title: "M-IOT Laboratory — Computer Engineering ITS",
+    role: "Archive Staff - Internal Division",
+    period: "Aug 2024 – Jun 2025",
+    summary: "Managed academic archives, exam repositories, and learning resources for the M-IOT Lab specialization.",
     bullets: [
-      "Coordinated evaluation surveys for 200+ students, analyzing feedback metrics via sheets scripts",
-      "Managed event log sheets for departmental leadership training cohorts",
-      "Delivered support material for student training projects and task group discussions"
+      "Managed archives of thesis topics and telematics projects conducted by M-IOT Laboratory assistants",
+      "Maintained archives of midterm and final examination materials for M-IOT specialization courses",
+      "Compiled learning materials for M-IOT specialization courses"
     ],
     featured: false
   },
   {
-    id: "software-subsystem-member",
-    title: "Banyubramanta Robotics Team",
-    role: "Software Subsystem Member",
-    period: "2022 — 2023",
-    summary: "Wrote sensor parsing code and flight stabilization logic for autonomous underwater testbeds.",
+    id: "himatekkom-sec-treasurer-staff",
+    title: "HIMATEKKOM ITS",
+    role: "Secretary and Treasurer Staff - Board of Directors",
+    period: "Mar 2024 – Mar 2025",
+    summary: "Coordinated general department administration, meeting minutes, and financial documentation.",
     bullets: [
-      "Interfaced optical flow sensors and depth gauges with microcontroller control loops",
-      "Analyzed serial telemetry signals using command line packet sniffers",
-      "Implemented hardware backup triggers to return vehicles safely to surfaces"
+      "Coordinated with the Computer Engineering Department regarding organizational administration",
+      "Prepared outgoing letters, meeting minutes, and certificate submissions for organizational activities",
+      "Maintained archives of important documents in both digital and physical formats"
+    ],
+    featured: false
+  },
+  {
+    id: "himatekkom-cadre-sc",
+    title: "HIMATEKKOM ITS",
+    role: "Steering Committee Staff - Cadre Development Department",
+    period: "Apr 2024 – Dec 2024",
+    summary: "Designed assessment matrices and timelines for student development pathways.",
+    bullets: [
+      "Coordinated with IC (Instructor Committee) and OC (Organizing Committee) regarding cadre development activities",
+      "Designed student assessment systems and overall cadre development timelines",
+      "Coordinated with students and the Computer Engineering Department regarding cadre development activities"
+    ],
+    featured: false
+  },
+  {
+    id: "banyubramanta-senior-finance",
+    title: "Banyubramanta Robotics Team ITS",
+    role: "Senior Finance Staff - Official Division",
+    period: "Feb 2023 – Jul 2024",
+    summary: "Managed budget allocations, expenditures, and financial accountability reports.",
+    bullets: [
+      "Recorded team income and expenditures",
+      "Managed team budget allocation",
+      "Prepared accountability reports, financial reports, and budget plans"
+    ],
+    featured: false
+  },
+  {
+    id: "banyubramanta-finance-intern",
+    title: "Banyubramanta Robotics Team ITS",
+    role: "Finance and Administration Intern - Official Division",
+    period: "Nov 2022 – Jan 2023",
+    summary: "Drafted proposals, sponsorship plans, and social media content updates.",
+    bullets: [
+      "Prepared sponsorship and administrative proposals",
+      "Prepared contracts, accountability reports, and budget plans",
+      "Created content for the team’s social media platforms"
+    ],
+    featured: false
+  },
+  {
+    id: "its-robotics-club-member",
+    title: "ITS Robotics Club",
+    role: "Member",
+    period: "Sep 2022 – Feb 2023",
+    summary: "Participated actively in robotics workshops and team training schedules.",
+    bullets: [
+      "Actively participated in organizational programs and activities"
+    ],
+    featured: false
+  },
+  {
+    id: "its-ibc-club-member",
+    title: "ITS IBC Club",
+    role: "Member",
+    period: "Sep 2022 – Sep 2023",
+    summary: "Participated in business development and networking events.",
+    bullets: [
+      "Actively participated in organizational programs and activities"
     ],
     featured: false
   }
@@ -78,67 +139,93 @@ export const organizations: CareerItem[] = [
 
 export const committees: CareerItem[] = [
   {
-    id: "mage-x",
-    title: "MAGE X Organizer",
-    role: "Committee Member",
-    period: "2024",
-    summary: "Coordinated the Multimedia and Game Event (MAGE) national technical exhibition and competition.",
+    id: "mage-10-head-event",
+    title: "Multimedia And Game Event 10 — Computer Engineering ITS",
+    role: "Head of Event Division - Board of Directors",
+    period: "Feb 2024 – Feb 2025",
+    summary: "Oversaw national multimedia workshops, robotics challenges, guest panels, and the concluding event showcase.",
     bullets: [
-      "Managed regional participant tracking databases, streamlining event registry files",
-      "Assisted in configuring networking setups and device hardware for gaming tournaments",
-      "Provided on-site support for technical panels and showcase exhibitions"
+      "Guided staff in designing and executing IoT, Multimedia, and Robotics workshops",
+      "Guided staff in planning and executing opening ceremonies, talk shows, exhibitions, and closing events",
+      "Supervised and evaluated the implementation of workshops, talk shows, exhibitions, opening ceremonies, and closing events"
     ],
     featured: true
   },
   {
-    id: "hgts",
-    title: "HGTS Committee",
-    role: "Technical Coordinator",
-    period: "2023",
-    summary: "Organized public hardware showcases and technical panels highlighting student IoT configurations.",
+    id: "hgts-teaching-staff",
+    title: "HGTS X SE 8.0 — HIMATEKKOM ITS",
+    role: "Staff - Teaching Division",
+    period: "Oct 2023",
+    summary: "Planned curriculum and taught image detection and pose detection concepts to local junior high school students.",
     bullets: [
-      "Managed local local networking setups for project demonstration displays",
-      "Configured registration check-in platforms, cutting down registration queues",
-      "Coordinated logistic pathways for university event presenters"
+      "Designed learning concepts for students of MTs 19 Surabaya",
+      "Prepared presentation materials for teaching activities",
+      "Taught image detection and pose detection topics to students of MTs 19 Surabaya"
     ],
     featured: true
   },
   {
-    id: "inclenation",
-    title: "Inclenation Committee",
-    role: "Systems Specialist",
-    period: "2023",
-    summary: "Maintained event website assets, registration dashboards, and public telemetry views.",
+    id: "inclenation-mentor-staff",
+    title: "Inclenation 2023 — BEM FTEIC ITS",
+    role: "Staff - Mentor Division",
+    period: "Jun 2023 – Aug 2023",
+    summary: "Mentored 20 incoming freshman students through orientation, team integration, and academic guidance.",
     bullets: [
-      "Monitored server traffic metrics, maintaining zero page downtime during registry peaks",
-      "Integrated database triggers updating applicant logs automatically",
-      "Wrote responsive CSS stylesheet guidelines for regional applicant portals"
+      "Mentored 20 freshmen from 6 departments and 10 study programs within FTEIC",
+      "Provided guidance and support to freshmen throughout Inclenation 2023",
+      "Served as an internalization facilitator during Inclenation 2023"
     ],
     featured: true
   },
   {
-    id: "sps",
-    title: "SPS Committee",
-    role: "Logistics Staff",
-    period: "2022",
-    summary: "Supported technical seminar hardware preparations and classroom setup configurations.",
+    id: "mage-9-secretariat",
+    title: "Multimedia And Game Event 9 — Computer Engineering ITS",
+    role: "Staff - Secretariat Division",
+    period: "Feb 2023 – Mar 2024",
+    summary: "Managed registrations, database entries, documentation, and coordinated specific workshop tracks.",
     bullets: [
-      "Assembled projector systems and audio feeds for seminar halls",
-      "Maintained equipment inventory files, verifying high-value component tracking",
-      "Assisted in coordinating participant traffic grids during peak hours"
+      "Managed activity data collection and documentation",
+      "Prepared communication materials, attendance records, feedback forms, and meeting minutes",
+      "Served as the person in charge of one workshop"
     ],
     featured: false
   },
   {
-    id: "isc",
-    title: "ISC Committee",
-    role: "Event Coordinator",
-    period: "2022",
-    summary: "Facilitated local science and engineering challenge logistics for middle-school contestants.",
+    id: "isc-badminton-staff",
+    title: "ISC - 63rd ITS Anniversary",
+    role: "Badminton Staff - Event Division",
+    period: "Sep 2023 – Nov 2023",
+    summary: "Coordinated schedules, logistics, and match documentation for the inter-faculty badminton tournament.",
     bullets: [
-      "Organized student lab test parameters and safety checklists",
-      "Managed scoring worksheets compiling judges assessments",
-      "Coordinated contestant schedule timings across multiple test labs"
+      "Ensured the smooth execution of the inter-faculty badminton tournament",
+      "Coordinated match schedules and tournament facilities",
+      "Managed documentation and match result records"
+    ],
+    featured: false
+  },
+  {
+    id: "tdc-summit-fest",
+    title: "TDC Summit Fest 2023 — TDC ITS",
+    role: "TDC For Startup Staff - Event Division",
+    period: "Aug 2023 – Nov 2023",
+    summary: "Prepared program guidelines for startup coaching and served as host for bootcamp sessions.",
+    bullets: [
+      "Prepared implementation and technical guidelines for startup bootcamp mentoring activities",
+      "Prepared implementation and technical guidelines for startup bootcamp coaching activities",
+      "Served as Master of Ceremony (MC) during startup bootcamp mentoring sessions"
+    ],
+    featured: false
+  },
+  {
+    id: "sps-graduation-staff",
+    title: "SPS 128 — HIMATEKKOM ITS",
+    role: "Staff - Event Division",
+    period: "Jun 2023 – Sep 2023",
+    summary: "Organized FTE ITS Graduation Appreciation plans and served as liaison officer to department heads.",
+    bullets: [
+      "Prepared implementation and technical guidelines for the 128th FTE ITS Graduation Appreciation Event",
+      "Prepared event rundown for the 128th FTE ITS Graduation Appreciation Event",
+      "Served as Liaison Officer for the Head of the Computer Engineering Department"
     ],
     featured: false
   }
@@ -146,67 +233,80 @@ export const committees: CareerItem[] = [
 
 export const training: CareerItem[] = [
   {
-    id: "lkmm-tm",
-    title: "LKMM TM",
-    role: "Middle-Level Management Training",
-    period: "2024",
-    summary: "Completed strategic policy-making, organization auditing, and team resource training.",
+    id: "lkmm-tm-training",
+    title: "Intermediate Student Management Skills Training (LKMM-TM)",
+    role: "Management Training",
+    period: "Aug 2024",
+    summary: "Trained in organizational strategic planning, policy formulation, and administrative audits.",
     bullets: [
-      "Drafted mock organizational bylaws evaluating structural policy changes",
-      "Analyzed resource optimization models for medium-scale student bodies",
-      "Studied resolution strategies for conflict management scenarios"
+      "Completed certified sessions on middle-level organizational policy drafting",
+      "Developed strategic management plans for student organizations",
+      "Conducted structural diagnostic audits for simulated organizations"
     ],
     featured: true
   },
   {
-    id: "lkmm-td",
-    title: "LKMM TD",
-    role: "Basic Leadership Training",
-    period: "2023",
-    summary: "Acquired fundamental skills in project administration, team cohesion, and event operations.",
+    id: "lkmm-td-training",
+    title: "Basic Student Management Skills Training (LKMM-TD)",
+    role: "Leadership Training",
+    period: "Nov 2023",
+    summary: "Trained in fundamental project coordination, risk management, and team operations.",
     bullets: [
-      "Drafted project proposal outlines covering budget allocations and timelines",
-      "Led group workshop projects discussing team alignment methodologies",
-      "Completed certified assignments in event risk mitigation"
+      "Acquired basic leadership and project planning competencies",
+      "Prepared operational budget allocations and risk mitigation matrices",
+      "Participated in collaborative team alignment simulations"
     ],
     featured: true
   },
   {
-    id: "pkti",
-    title: "PKTI",
-    role: "Scientific Writing Workshop",
-    period: "2023",
-    summary: "Trained in analytical research writing, citation structures, and literature reviews.",
+    id: "pkti-td-training",
+    title: "Basic Scientific Writing Training (PKTI-TD)",
+    role: "Scientific Writing",
+    period: "Oct 2022",
+    summary: "Acquired analytical research skills, formal paper structuring, and scientific citation methods.",
     bullets: [
-      "Formulated research proposal reports evaluating IoT solutions",
-      "Conformed citations to IEEE requirements using management utilities",
-      "Learned hypothesis testing and statistical evaluation methodologies"
+      "Learned academic research methodology and literary reviews",
+      "Structured scientific proposals according to formal standards",
+      "Trained in academic writing layout and bibliography tools"
     ],
     featured: true
   },
   {
-    id: "lkmw",
-    title: "LKMW",
-    role: "Leadership Workshop",
-    period: "2022",
-    summary: "Studied public speaking, team alignment dynamics, and basic administrative systems.",
+    id: "lkmm-pre-basic",
+    title: "Pre-Basic Student Management Skills Training",
+    role: "Leadership Foundation",
+    period: "Sep 2023",
+    summary: "Studied basic student administrative processes and public speaking frameworks.",
     bullets: [
-      "Practiced speech communication patterns for diverse audiences",
-      "Participated in structural simulations checking organizational hierarchies",
-      "Wrote session minutes tracking group decision variables"
+      "Acquired foundation management concepts for student organizations",
+      "Trained in effective speech communication styles",
+      "Practiced standard group scheduling and administrative checks"
     ],
     featured: false
   },
   {
     id: "mage-workshop",
-    title: "MAGE Technical Workshop",
-    role: "Attendee",
-    period: "2022",
-    summary: "Learned basic database architectures and API structure fundamentals from industry developers.",
+    title: "MAGE 9 Multimedia Workshop",
+    role: "Workshop Attendee",
+    period: "Aug 2023",
+    summary: "Learned game design architectures, multimedia production, and interactive logic.",
     bullets: [
-      "Developed basic database tables using standard SQL commands",
-      "Connected local backend applications to simple database instances",
-      "Completed introductory exercises using Postman testing environments"
+      "Studied intermediate database architectures and SQL commands",
+      "Connected local backend applications to database endpoints",
+      "Learned API validation using testing tool environments"
+    ],
+    featured: false
+  },
+  {
+    id: "lkmw-td-training",
+    title: "Basic Student Entrepreneurship Skills Training (LKMW-TD)",
+    role: "Entrepreneurship Training",
+    period: "Nov 2022",
+    summary: "Learned fundamental business model canvas, target market validation, and pitch planning.",
+    bullets: [
+      "Studied basic business model generation and market research",
+      "Trained in early-stage product validation strategies",
+      "Drafted mock startup pitches and financial assumptions"
     ],
     featured: false
   }
@@ -222,9 +322,9 @@ export interface AwardItem {
 
 export const awards: AwardItem[] = [
   {
-    title: "Singapore AUV Challenge (SAUVC 2025)",
-    competition: "5th Place globally",
-    period: "2025",
+    title: "5th Place - Singapore Autonomous Underwater Vehicle Challenge (SAUVC) 2025",
+    competition: "With Banyubramanta ITS",
+    period: "Mar 2025",
     summary: "Co-developed the autonomous navigation logic for target localization and pipeline tracking.",
     bullets: [
       "Validated deep-water computer vision inference scripts under varying light conditions",
@@ -232,9 +332,9 @@ export const awards: AwardItem[] = [
     ]
   },
   {
-    title: "Indonesian Robotics Contest (KRI National)",
-    competition: "1st Place Nationally",
-    period: "2024",
+    title: "1st Place - Indonesian Underwater Robot Competition National Level 2024",
+    competition: "With Banyubramanta ITS",
+    period: "Jul 2024",
     summary: "Integrated Real-Time YOLO detection networks onto edge compute modules.",
     bullets: [
       "Wrote real-time hardware fail-safe routines, protecting the airframe under signal drops",
@@ -242,9 +342,9 @@ export const awards: AwardItem[] = [
     ]
   },
   {
-    title: "Indonesian Robotics Contest (KRI Regional)",
-    competition: "3rd Place Regionally",
-    period: "2024",
+    title: "3rd Place - Indonesian Underwater Robot Competition Regional Level II 2024",
+    competition: "With Banyubramanta ITS",
+    period: "Jun 2024",
     summary: "Programmed search-grid waypoint loops for autonomous flight trajectories.",
     bullets: [
       "Implemented sensor fusion filters combining optical flow with laser altimeters",
