@@ -77,10 +77,10 @@ export default function Hero() {
             
             {/* Name Title with Laser Subtitle */}
             <motion.div variants={itemVariants} className="flex flex-col gap-2.5">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-sans font-bold tracking-tight text-foreground leading-[1.05]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-sans font-bold tracking-tight text-foreground leading-[1.08]">
                 {t.title}
               </h1>
-              <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed max-w-2xl">
+              <p className="text-sm sm:text-base lg:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed max-w-2xl">
                 {t.subtitle}
               </p>
             </motion.div>
@@ -199,7 +199,7 @@ export default function Hero() {
               {/* Rotating Fiber Ring Effect */}
               <div className="absolute -inset-1 rounded-3xl opacity-35 group-hover:opacity-80 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 blur-sm animate-spin-slow" />
 
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[350px] lg:h-[350px] rounded-2xl overflow-hidden bg-background/80 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/50 z-10">
+              <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[350px] lg:h-[350px] rounded-2xl overflow-hidden bg-background/80 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/50 z-10">
                 <img
                   src="/profile.png"
                   alt="Mahija Ibad Pradipta"

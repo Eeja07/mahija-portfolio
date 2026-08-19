@@ -133,7 +133,7 @@ export default function Skills() {
                 <NetworkSubsystemNode
                   nodeId={`MODULE // 0${originalIndex + 1}`}
                   subsystem="CAPABILITY"
-                  className="h-full flex flex-col justify-between text-left gap-6 p-6"
+                  className="h-full flex flex-col justify-between text-left gap-6 p-4 sm:p-6"
                 >
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">

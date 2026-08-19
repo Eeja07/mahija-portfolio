@@ -28,7 +28,7 @@ export default function Home() {
       setTimeout(() => {
         const targetElement = document.querySelector(targetId)
         if (targetElement) {
-          const headerOffset = 80
+          const headerOffset = 70
           const elementPosition = targetElement.getBoundingClientRect().top
           const offsetPosition = elementPosition + window.scrollY - headerOffset
           window.scrollTo({
@@ -36,7 +36,7 @@ export default function Home() {
             behavior: "smooth",
           })
         }
-      }, 100)
+      }, 180)
     }
   }
 

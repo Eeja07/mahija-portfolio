@@ -66,7 +66,7 @@ export function SpatialCableBranch({
         )}
       />
       {label && (
-        <span className="absolute right-4 -top-2.5 font-mono text-[9px] text-zinc-400 dark:text-zinc-500 uppercase tracking-widest bg-background px-1.5">
+        <span className="absolute right-2 sm:right-4 -top-2.5 font-mono text-[8px] sm:text-[9px] text-zinc-400 dark:text-zinc-500 uppercase tracking-widest bg-background px-1.5 max-w-[70vw] truncate">
           {label}
         </span>
       )}

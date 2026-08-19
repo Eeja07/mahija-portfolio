@@ -35,7 +35,7 @@ export default function NetworkGatewayGate({ onEnter }: NetworkGatewayGateProps)
     >
       {/* Top-Right Controls: Theme Toggle & Language Toggle */}
       {mounted && (
-        <div className="absolute top-6 right-6 z-30 flex items-center gap-2.5">
+        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 flex items-center gap-2 sm:gap-2.5">
           {/* Language Mode Toggle (EN / ID) */}
           <button
             onClick={toggleLanguage}

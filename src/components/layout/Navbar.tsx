@@ -248,7 +248,7 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
                 </Button>
               }
             />
-            <SheetContent side="right" className="w-[280px] p-6 border-l border-zinc-200 dark:border-zinc-800 bg-background flex flex-col justify-between">
+            <SheetContent side="right" className="w-[300px] sm:w-[320px] p-6 border-l border-zinc-200 dark:border-zinc-800 bg-background flex flex-col justify-between overflow-y-auto max-h-screen">
               <div className="flex flex-col gap-6">
                 <SheetHeader className="text-left p-0">
                   <SheetTitle className="font-mono font-semibold tracking-tight text-base text-foreground flex items-center gap-2">

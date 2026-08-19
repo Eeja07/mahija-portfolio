@@ -54,13 +54,23 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
 
     // Setup Scene, Camera, Renderer
     const scene = new THREE.Scene()
+    const initialAspect = container.clientWidth / container.clientHeight
     const camera = new THREE.PerspectiveCamera(
       42,
-      container.clientWidth / container.clientHeight,
+      initialAspect,
       0.1,
       1000
     )
-    camera.position.set(0, 0.3, 23)
+
+    // Dynamic camera distance: pull back smoothly on portrait mobile screens so center rack + all satellites fit
+    const calculateCameraZ = (aspect: number) => {
+      if (aspect < 0.5) return 46
+      if (aspect < 0.7) return 38
+      if (aspect < 1.0) return 30
+      if (aspect < 1.3) return 26
+      return 23
+    }
+    camera.position.set(0, 0.3, calculateCameraZ(initialAspect))
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -213,7 +223,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       }
     })
 
-    // Server Rack Corner Frame Pillars (Distinct bright metallic rails)
+    // Server Rack Corner Frame Pillars
     const frameMaterial = new THREE.MeshStandardMaterial({
       color: isDark ? 0x94a3b8 : 0x64748b,
       metalness: 0.95,
@@ -330,7 +340,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       const nodeGroup = new THREE.Group()
       nodeGroup.position.copy(node.position)
 
-      // Satellite Module Chassis Box (High-contrast metallic in Dark Mode)
+      // Satellite Module Chassis Box
       const satBoxGeom = new THREE.BoxGeometry(2.2, 1.0, 1.3)
       const satBoxMat = new THREE.MeshStandardMaterial({
         color: isDark ? 0x334155 : 0xf8fafc,
@@ -342,7 +352,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       nodeGroup.add(satBoxMesh)
       raycastableMeshes.push(satBoxMesh)
 
-      // Luminous Accent Top/Bottom Bezels for Crystal Clear Satellite Visibility in Dark Mode
+      // Luminous Accent Top/Bottom Bezels
       const bezelGeom = new THREE.BoxGeometry(2.24, 0.08, 1.34)
       const bezelMat = new THREE.MeshStandardMaterial({
         color: node.color,
@@ -371,7 +381,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       nodeGroup.add(satPanelMesh)
       raycastableMeshes.push(satPanelMesh)
 
-      // Satellite Side Connector Boot Cap where the cable plugs in
+      // Satellite Side Connector Boot Cap
       const capGeom = new THREE.CylinderGeometry(0.2, 0.2, 0.35, 16)
       const capMat = new THREE.MeshStandardMaterial({
         color: isDark ? 0x94a3b8 : 0x475569,
@@ -386,41 +396,32 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       node.mesh = nodeGroup
     })
 
-    // --- 3. HIGH-PRECISION VOLUMETRIC CABLES (NO CLIPPING, NO COLLISION) ---
+    // --- 3. HIGH-PRECISION VOLUMETRIC CABLES (NO CLIPPING) ---
     const cableMeshes: { mesh: THREE.Mesh; pulseSpeed: number; pulseOffset: number }[] = []
 
     subsystemNodes.forEach((node, index) => {
       const isLeft = node.position.x < 0
-      
-      // Front faceplate port selection
-      // Map node Y to blade server: Top blade (Y=1.4), Middle blade (Y=0), Bottom blade (Y=-1.4)
       const portY = node.position.y > 2.5 ? 1.4 : node.position.y > -2.0 ? 0 : -1.4
-      // Offset port X so left cables originate from left side ports, right cables from right side ports
       const portX = isLeft ? -1.0 - (index % 3) * 0.35 : 1.0 + (index % 3) * 0.35
       const portZ = 1.82
 
       const p0 = new THREE.Vector3(portX, portY - 0.12, portZ)
-      // Extend straight OUT forward in front of faceplate (Z = 2.6) - avoids faceplate clipping
       const p1 = new THREE.Vector3(portX, portY - 0.12, 2.6)
-      // Curve forward and out past the side pillar (Z = 2.8, X = ±3.4) - avoids pillar clipping
       const p2 = new THREE.Vector3(
         portX + (isLeft ? -2.2 : 2.2),
         portY + (node.position.y - portY) * 0.25,
         2.8
       )
-      // Sweep smoothly toward satellite module
       const p3 = new THREE.Vector3(
         isLeft ? -5.2 : 5.2,
         portY + (node.position.y - portY) * 0.65,
         2.0
       )
-      // Approaching satellite pod entry
       const p4 = new THREE.Vector3(
         node.position.x + (isLeft ? 2.6 : -2.6),
         node.position.y,
         node.position.z + 0.5
       )
-      // Plug cleanly into satellite pod connector cap
       const p5 = new THREE.Vector3(
         node.position.x + (isLeft ? 1.2 : -1.2),
         node.position.y,
@@ -444,7 +445,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         pulseOffset: index * 0.7,
       })
 
-      // Molded SFP/RJ45 Connector Boot at faceplate port (extending straight out in Z)
+      // Molded SFP/RJ45 Connector Boot at faceplate port
       const bootGeom = new THREE.BoxGeometry(0.2, 0.15, 0.35)
       const bootMat = new THREE.MeshStandardMaterial({
         color: isDark ? 0x64748b : 0x94a3b8,
@@ -455,7 +456,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       networkCoreGroup.add(bootMesh)
     })
 
-    // Heavy Master Uplink Conduit heading cleanly UNDERNEATH the rack (no collision)
+    // Heavy Master Uplink Conduit heading cleanly UNDERNEATH the rack
     const masterConduitCurve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(0, -1.9, 0),
       new THREE.Vector3(0, -4.5, 0.5),
@@ -511,8 +512,9 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         const deltaY = clientY - prevPointer.y
         prevPointer = { x: clientX, y: clientY }
 
-        velocity.x = deltaX * 0.0035
-        velocity.y = deltaY * 0.0035
+        const sensitivity = "touches" in e ? 0.005 : 0.0035
+        velocity.x = deltaX * sensitivity
+        velocity.y = deltaY * sensitivity
 
         targetRotation.y += velocity.x
         targetRotation.x += velocity.y
@@ -539,7 +541,13 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       setTimeout(() => setIsInteracting(false), 800)
     }
 
-    const onClick = () => {
+    const onClick = (e: MouseEvent | TouchEvent) => {
+      const clientX = "changedTouches" in e ? e.changedTouches[0].clientX : (e as MouseEvent).clientX
+      const clientY = "changedTouches" in e ? e.changedTouches[0].clientY : (e as MouseEvent).clientY
+      const rect = container.getBoundingClientRect()
+      mouseCoord.x = ((clientX - rect.left) / rect.width) * 2 - 1
+      mouseCoord.y = -((clientY - rect.top) / rect.height) * 2 + 1
+
       raycaster.setFromCamera(mouseCoord, camera)
       const intersects = raycaster.intersectObjects(raycastableMeshes)
       if (intersects.length > 0) {
@@ -561,7 +569,9 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
 
     const handleResize = () => {
       if (!container) return
-      camera.aspect = container.clientWidth / container.clientHeight
+      const aspect = container.clientWidth / container.clientHeight
+      camera.aspect = aspect
+      camera.position.set(0, 0.3, calculateCameraZ(aspect))
       camera.updateProjectionMatrix()
       renderer.setSize(container.clientWidth, container.clientHeight)
     }
@@ -631,34 +641,36 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
   const isEn = language === "en"
 
   return (
-    <div className="relative size-full select-none">
+    <div className="relative size-full select-none touch-none">
       {/* 3D WebGL Canvas */}
       <div
         ref={containerRef}
-        className="size-full cursor-grab active:cursor-grabbing"
+        className="size-full cursor-grab active:cursor-grabbing touch-none"
       />
 
-      {/* Minimalist Technical Guidance HUD */}
-      <div className="absolute top-6 left-6 z-20 font-mono text-[10px] sm:text-xs text-zinc-600 dark:text-zinc-300 bg-background/90 backdrop-blur-md px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-700 shadow-sm flex items-center gap-2">
-        <span className="size-2 rounded-full bg-cyan-400 animate-ping" />
-        <span>
+      {/* Minimalist Technical Guidance HUD (Mobile Friendly) */}
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 font-mono text-[9px] sm:text-xs text-zinc-600 dark:text-zinc-300 bg-background/90 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-zinc-300 dark:border-zinc-700 shadow-sm flex items-center gap-2 max-w-[calc(100vw-120px)] sm:max-w-none truncate">
+        <span className="size-2 rounded-full bg-cyan-400 animate-ping shrink-0" />
+        <span className="truncate">
           {isEn
             ? "3D NETWORK INFRASTRUCTURE • DRAG TO EXPLORE • CLICK TO ENTER"
             : "INFRASTRUKTUR JARINGAN 3D • GESER UNTUK ROTASI • KLIK UNTUK MASUK"}
         </span>
       </div>
 
-      {/* Live Node Hover Tooltip */}
+      {/* Live Node Hover / Tap Tooltip (Mobile Friendly) */}
       {hoveredNode && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 font-mono text-xs text-foreground bg-background/95 backdrop-blur-md px-4 py-2.5 rounded-xl border border-blue-500/60 dark:border-cyan-400/60 shadow-xl flex items-center gap-3 pointer-events-none animate-in fade-in zoom-in-95 duration-150">
-          <span className="size-2 rounded-full bg-emerald-500 animate-led shrink-0" />
-          <div className="text-left">
-            <span className="font-bold block text-foreground">{hoveredNode.name}</span>
-            <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-sans block">
-              {hoveredNode.role}
-            </span>
+        <div className="absolute bottom-6 sm:bottom-8 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-20 font-mono text-xs text-foreground bg-background/95 backdrop-blur-md px-4 py-2.5 rounded-xl border border-blue-500/60 dark:border-cyan-400/60 shadow-xl flex items-center justify-between sm:justify-start gap-3 pointer-events-none animate-in fade-in zoom-in-95 duration-150 max-w-md mx-auto">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="size-2 rounded-full bg-emerald-500 animate-led shrink-0" />
+            <div className="text-left min-w-0">
+              <span className="font-bold block text-foreground truncate">{hoveredNode.name}</span>
+              <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-sans block truncate">
+                {hoveredNode.role}
+              </span>
+            </div>
           </div>
-          <span className="text-blue-600 dark:text-cyan-400 font-bold text-xs pl-2 border-l border-zinc-200 dark:border-zinc-800">
+          <span className="text-blue-600 dark:text-cyan-400 font-bold text-xs pl-2 border-l border-zinc-200 dark:border-zinc-800 shrink-0">
             {isEn ? "CLICK TO ENTER →" : "KLIK UNTUK MASUK →"}
           </span>
         </div>
