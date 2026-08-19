@@ -1,4 +1,5 @@
 import React from "react"
+import { Network } from "lucide-react"
 
 const footerLinks = [
   { name: "GitHub", href: "https://github.com/Eeja07" },
@@ -11,18 +12,21 @@ export default function Footer() {
   return (
     <footer 
       aria-label="Site Footer"
-      className="w-full border-t border-zinc-200 dark:border-zinc-800 bg-background py-12 md:py-16"
+      className="w-full border-t border-zinc-200/80 dark:border-zinc-800/80 bg-background py-14 md:py-16 relative"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 pb-8 border-b border-zinc-200 dark:border-zinc-800">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 pb-8 border-b border-zinc-200/70 dark:border-zinc-800/70">
           
           {/* Brand & Specializations */}
-          <div className="flex flex-col gap-2">
-            <span className="font-sans font-semibold text-foreground tracking-tight text-sm">
-              Mahija Ibad Pradipta
-            </span>
-            <span className="font-sans text-xs text-zinc-500 dark:text-zinc-400">
-              Infrastructure &bull; IoT &bull; Fullstack &bull; Edge AI
+          <div className="flex flex-col gap-2 text-left">
+            <div className="flex items-center gap-2">
+              <Network className="size-4 text-blue-500 dark:text-cyan-400" />
+              <span className="font-mono font-bold text-foreground tracking-tight text-base">
+                Mahija Ibad Pradipta
+              </span>
+            </div>
+            <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+              Debian 12 &bull; Docker Mesh &bull; IoT Telemetry &bull; Edge AI &bull; Cloudflared
             </span>
           </div>
 
@@ -32,7 +36,7 @@ export default function Footer() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-medium text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring rounded-sm py-0.5"
+                className="text-xs sm:text-sm font-mono text-zinc-500 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-cyan-400 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring rounded-sm py-0.5"
                 {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
                 {link.name}
@@ -43,30 +47,31 @@ export default function Footer() {
 
         {/* Infrastructure & Hosting Information */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-8 text-zinc-500 dark:text-zinc-400 select-none">
-          <div className="flex flex-col gap-1.5">
-            <span className="text-xs font-sans">
-              Hosted on self-managed infrastructure.
-            </span>
-            <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-              <span>Debian 12</span>
-              <span className="text-zinc-200 dark:text-zinc-800" aria-hidden="true">|</span>
-              <span>Docker</span>
-              <span className="text-zinc-200 dark:text-zinc-800" aria-hidden="true">|</span>
-              <span>Cloudflared</span>
-              <span className="text-zinc-200 dark:text-zinc-800" aria-hidden="true">|</span>
+          <div className="flex flex-col gap-2 text-left">
+            <div className="flex items-center gap-2 font-mono text-xs text-emerald-600 dark:text-emerald-400">
+              <span className="size-2 rounded-full bg-emerald-500 animate-ping" />
+              <span>SELF-HOSTED DEBIAN 12 LIVE NODE // CLUSTER-01</span>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 font-mono text-xs uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
+              <span>Debian 12 Host</span>
+              <span className="text-zinc-300 dark:text-zinc-700" aria-hidden="true">&bull;</span>
+              <span>Docker Swarm/Compose</span>
+              <span className="text-zinc-300 dark:text-zinc-700" aria-hidden="true">&bull;</span>
+              <span>Cloudflare Tunnel</span>
+              <span className="text-zinc-300 dark:text-zinc-700" aria-hidden="true">&bull;</span>
               <a 
                 href="https://portfolio.eeja.fun" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:text-foreground transition-colors duration-150"
+                className="text-blue-500 dark:text-cyan-400 hover:underline font-bold"
               >
                 eeja.fun
               </a>
             </div>
           </div>
           
-          <span className="text-[11px] font-sans text-zinc-500/60 dark:text-zinc-400/60">
-            &copy; {new Date().getFullYear()} Mahija. All rights reserved.
+          <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+            &copy; {new Date().getFullYear()} Mahija. Telemetry status: 100% Operational.
           </span>
         </div>
       </div>

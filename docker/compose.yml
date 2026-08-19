@@ -1,0 +1,13 @@
+services:
+  portfolio:
+    build:
+      context: /opt/apps/portfolio
+      dockerfile: Dockerfile
+    container_name: portfolio
+    restart: unless-stopped
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

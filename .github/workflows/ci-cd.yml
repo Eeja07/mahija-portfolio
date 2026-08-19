@@ -1,0 +1,76 @@
+name: Mahija Portfolio CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  lint-and-build:
+    name: Test, Lint & Build Verification
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Code Quality & Lint Check
+        run: npm run lint
+
+      - name: Production Build Verification
+        run: npm run build
+
+  deploy-homelab:
+    name: Deploy to Homelab Container
+    needs: [lint-and-build]
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy Docker Service & Reload Nginx
+        run: |
+          echo "🚀 [CI/CD] Starting Mahija Portfolio Deployment on Homelab..."
+
+          # 1. Ensure homelab directory hierarchy exists
+          mkdir -p /opt/apps/portfolio
+          mkdir -p /opt/homelab/compose/portfolio
+          mkdir -p /opt/homelab/compose/nginx/conf.d
+
+          # 2. Sync latest source code to /opt/apps/portfolio
+          echo "📦 Syncing source code to /opt/apps/portfolio..."
+          rsync -a --delete --exclude '.git' ./ /opt/apps/portfolio/
+
+          # 3. Sync Compose & Nginx configuration
+          echo "⚙️ Syncing Compose and Nginx configs..."
+          cp docker/compose.yml /opt/homelab/compose/portfolio/compose.yml
+          cp docker/nginx-portfolio.conf /opt/homelab/compose/nginx/conf.d/portfolio.conf
+          rm -f /opt/homelab/compose/nginx/conf.d/portflio.conf || true
+
+          # 4. Build and restart Docker container
+          echo "🐳 Building and updating container..."
+          cd /opt/homelab/compose/portfolio
+          docker compose up -d --build --remove-orphans
+
+          # 5. Reload master Nginx reverse proxy
+          echo "🌐 Reloading Master Nginx Proxy..."
+          docker exec nginx nginx -s reload || true
+
+          # 6. Verify container status
+          echo "🔍 Checking container status..."
+          docker ps --filter "name=portfolio" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+
+          echo "✅ [CI/CD] Mahija Portfolio Deployed Successfully on Homelab!"

@@ -3,12 +3,19 @@
 import React from "react"
 import { motion } from "motion/react"
 import { committees } from "@/data/career"
-import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
+import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
+import { useLanguage } from "@/context/LanguageContext"
+import { translations } from "@/data/translations"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { ArrowRight, Calendar } from "lucide-react"
 
 export default function FeaturedCommittees() {
+  const { language } = useLanguage()
+  const t = translations[language].committees
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -20,42 +27,47 @@ export default function FeaturedCommittees() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 8 },
+    hidden: { opacity: 0, y: 12 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.15,
+        duration: 0.16,
         ease: "easeOut" as const,
       },
     },
   }
 
-  // Show the 3 specified committees on the homepage
   const featuredComms = committees.filter((comm) => comm.featured)
 
   return (
     <section
       id="committees"
       aria-labelledby="committees-heading"
-      className="w-full py-20 bg-background border-t border-zinc-200 dark:border-zinc-800"
+      className="w-full py-20 bg-background"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
-          <Badge 
-            variant="outline" 
-            className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
-          >
-            Involvement
-          </Badge>
+        <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
+          <div className="flex items-center gap-2">
+            <span className="size-2 rounded-full bg-cyan-500 animate-led" />
+            <Badge 
+              variant="outline" 
+              className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
+            >
+              {t.badge}
+            </Badge>
+          </div>
           <h2 
             id="committees-heading"
-            className="text-3xl font-sans font-semibold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground"
           >
-            Featured Committees
+            {t.heading}
           </h2>
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
+            {t.subheading}
+          </p>
         </div>
 
         {/* Committees Grid */}
@@ -63,60 +75,64 @@ export default function FeaturedCommittees() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {featuredComms.map((comm) => (
-            <motion.div key={comm.id} variants={itemVariants}>
-              <Card className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl shadow-sm hover:border-zinc-200/80 dark:hover:border-zinc-800/80 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between font-mono text-sm text-zinc-500 dark:text-zinc-400">
-                    <span className="font-semibold uppercase">Committee</span>
-                    <span>{comm.period}</span>
+          {featuredComms.map((comm, idx) => (
+            <motion.div key={comm.id} variants={itemVariants} className="h-full">
+              <NetworkSubsystemNode
+                nodeId={`TASK // FORCE-0${idx + 1}`}
+                subsystem="COMMITTEE"
+                className="h-full flex flex-col justify-between text-left gap-6 p-6"
+              >
+                <div className="flex flex-col gap-3.5">
+                  <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                    <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
+                      {comm.period}
+                    </span>
                   </div>
 
                   <div>
-                    <h3 className="font-sans text-xl font-medium text-foreground leading-tight">
+                    <h3 className="font-sans text-lg font-bold text-foreground tracking-tight leading-snug">
                       {comm.role}
                     </h3>
-                    <p className="font-sans text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-                      {comm.title}
-                    </p>
+                    <div className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 font-medium mt-1">
+                      <Calendar className="size-3.5 text-blue-500 dark:text-cyan-400" />
+                      <span>{comm.title}</span>
+                    </div>
                   </div>
 
-                  <p className="font-sans text-base text-zinc-500 dark:text-zinc-400 font-normal leading-relaxed">
-                    {comm.summary}
-                  </p>
-
-                  {comm.bullets && comm.bullets.length > 0 && (
-                    <ul className="list-disc pl-4 text-sm text-zinc-500/80 dark:text-zinc-400/80 flex flex-col gap-1.5 leading-relaxed mt-1">
+                  {comm.bullets && (
+                    <ul className="list-disc pl-4 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 flex flex-col gap-1.5 leading-relaxed mt-1">
                       {comm.bullets.slice(0, 3).map((bullet, i) => (
                         <li key={i}>{bullet}</li>
                       ))}
                     </ul>
                   )}
                 </div>
-              </Card>
+              </NetworkSubsystemNode>
             </motion.div>
           ))}
         </motion.div>
 
         {/* View All Committees Link */}
-        <div className="mt-10 flex justify-center">
+        <div className="mt-12 flex justify-center">
           <a
             href="/committees"
             className={cn(
               buttonVariants({ variant: "outline", size: "default" }),
-              "font-sans font-medium px-6 py-2 border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors duration-150 flex items-center gap-2 cursor-pointer text-sm"
+              "font-mono text-xs font-semibold px-6 py-2.5 border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100/80 dark:bg-zinc-900/80 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all duration-150 flex items-center gap-2 cursor-pointer shadow-xs rounded-xl"
             )}
           >
-            <span>View All Committees</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 text-zinc-500 dark:text-zinc-400">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
+            <span>{t.viewAll}</span>
+            <ArrowRight className="size-4 text-zinc-500 dark:text-zinc-400" />
           </a>
         </div>
 
+      </div>
+
+      <div className="w-full max-w-7xl px-4 mt-16">
+        <SpatialCableBranch direction="left-to-right" label={t.cableLabel} status="transmitting" />
       </div>
     </section>
   )

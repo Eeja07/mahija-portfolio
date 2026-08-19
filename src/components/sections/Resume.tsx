@@ -3,13 +3,19 @@
 import React from "react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
+import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
+import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
+import { useLanguage } from "@/context/LanguageContext"
+import { translations } from "@/data/translations"
 import { buttonVariants } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import { Download, FileText } from "lucide-react"
+import { Download, FileCode, ShieldCheck } from "lucide-react"
 import { resumeMetadata } from "@/data/resume"
 
 export default function Resume() {
+  const { language } = useLanguage()
+  const t = translations[language].resume
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -21,12 +27,12 @@ export default function Resume() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 8 },
+    hidden: { opacity: 0, y: 12 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.15,
+        duration: 0.16,
         ease: "easeOut" as const,
       },
     },
@@ -36,26 +42,29 @@ export default function Resume() {
     <section
       id="resume"
       aria-labelledby="resume-heading"
-      className="w-full py-20 bg-background border-t border-zinc-200 dark:border-zinc-800"
+      className="w-full py-20 bg-background"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-2xl">
-          <Badge 
-            variant="outline" 
-            className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
-          >
-            Documents
-          </Badge>
+          <div className="flex items-center gap-2">
+            <span className="size-2 rounded-full bg-cyan-400 animate-led" />
+            <Badge 
+              variant="outline" 
+              className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
+            >
+              {t.badge}
+            </Badge>
+          </div>
           <h2 
             id="resume-heading"
-            className="text-3xl font-sans font-semibold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground"
           >
-            Resume
+            {t.heading}
           </h2>
-          <p className="text-base text-zinc-500 dark:text-zinc-400 font-sans font-normal leading-8">
-            Download standard copies of my professional background in English or Indonesian.
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
+            {t.subheading}
           </p>
         </div>
 
@@ -64,24 +73,29 @@ export default function Resume() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-60px" }}
           className="w-full max-w-3xl mx-auto"
         >
           <motion.div variants={itemVariants}>
-            <Card className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl shadow-sm overflow-hidden p-6 text-left">
+            <NetworkSubsystemNode
+              nodeId="DOC // CV-HUB"
+              subsystem="DOWNLOAD CV"
+              className="p-6 sm:p-8 text-left"
+            >
               <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                 
-                {/* Left Side: Title */}
-                <div className="flex items-center gap-3 text-left">
-                  <div className="p-2 bg-background border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400 animate-none" aria-hidden="true">
-                    <FileText className="size-5" />
+                {/* Left Side: Title & Status */}
+                <div className="flex items-center gap-4 text-left">
+                  <div className="p-3.5 bg-background border border-zinc-200 dark:border-zinc-800 rounded-xl text-blue-600 dark:text-cyan-400 shadow-xs" aria-hidden="true">
+                    <FileCode className="size-6" />
                   </div>
                   <div>
-                    <h3 className="font-sans text-xl font-medium text-foreground leading-tight">
-                      Curriculum Vitae
+                    <h3 className="font-sans text-xl font-bold text-foreground tracking-tight leading-tight flex items-center gap-2">
+                      <span>{t.title}</span>
+                      <ShieldCheck className="size-4 text-emerald-500" />
                     </h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 font-sans mt-1 leading-normal">
-                      Single-page formatted PDF tailored for engineering roles.
+                    <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-mono mt-1">
+                      {t.description}
                     </p>
                   </div>
                 </div>
@@ -94,11 +108,11 @@ export default function Resume() {
                     download={`Mahija_Resume_${resumeMetadata.english.language}.pdf`}
                     className={cn(
                       buttonVariants({ variant: "default", size: "sm" }),
-                      "w-full sm:w-auto bg-foreground text-background hover:opacity-90 font-medium justify-center px-4 py-2 flex items-center gap-1.5 cursor-pointer text-sm border-none shadow-none"
+                      "w-full sm:w-auto bg-foreground text-background hover:opacity-90 font-mono text-xs font-semibold justify-center px-4 py-2.5 flex items-center gap-2 cursor-pointer shadow-xs rounded-xl"
                     )}
                   >
                     <Download className="size-3.5" />
-                    <span>English PDF</span>
+                    <span>{t.englishResume}</span>
                   </a>
 
                   {/* Resume Indonesia */}
@@ -107,19 +121,23 @@ export default function Resume() {
                     download={`Mahija_Resume_${resumeMetadata.indonesian.language}.pdf`}
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "w-full sm:w-auto border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 font-medium justify-center px-4 py-2 flex items-center gap-1.5 cursor-pointer text-sm"
+                      "w-full sm:w-auto border-zinc-200 dark:border-zinc-800 text-foreground bg-background hover:bg-zinc-100 dark:hover:bg-zinc-800 font-mono text-xs font-semibold justify-center px-4 py-2.5 flex items-center gap-2 cursor-pointer rounded-xl"
                     )}
                   >
                     <Download className="size-3.5" />
-                    <span>Indonesia PDF</span>
+                    <span>{t.indonesianResume}</span>
                   </a>
                 </div>
 
               </div>
-            </Card>
+            </NetworkSubsystemNode>
           </motion.div>
         </motion.div>
 
+      </div>
+
+      <div className="w-full max-w-7xl px-4 mt-16">
+        <SpatialCableBranch direction="left-to-right" label={t.cableLabel} status="transmitting" />
       </div>
     </section>
   )

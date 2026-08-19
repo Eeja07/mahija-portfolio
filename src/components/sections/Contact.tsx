@@ -3,17 +3,12 @@
 import React, { useState } from "react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
+import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
+import { useLanguage } from "@/context/LanguageContext"
+import { translations } from "@/data/translations"
 import { buttonVariants } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-
-// Inline SVGs for self-contained robustness
-const MailIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <rect width="20" height="16" x="2" y="4" rx="2" />
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-  </svg>
-)
+import { ArrowUpRight, Copy, Check, Mail, MessageSquare } from "lucide-react"
 
 const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -30,30 +25,12 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
-const MessageSquareIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-  </svg>
-)
-
-const ArrowUpRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M7 7h10v10M7 17 17 7" />
-  </svg>
-)
-
-const CopyIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-  </svg>
-)
-
 interface ContactChannel {
   name: string
   handle: string
   href: string
   icon: React.ReactNode
+  protocol: string
 }
 
 const contactChannels: ContactChannel[] = [
@@ -61,30 +38,36 @@ const contactChannels: ContactChannel[] = [
     name: "Email",
     handle: "mahijapradipta86@gmail.com",
     href: "mailto:mahijapradipta86@gmail.com",
-    icon: <MailIcon className="size-4 animate-none" />,
+    icon: <Mail className="size-4" />,
+    protocol: "SMTP // TLS",
   },
   {
     name: "LinkedIn",
     handle: "linkedin.com/in/mahijaibad",
     href: "https://linkedin.com/in/mahijaibad",
     icon: <LinkedinIcon className="size-4" />,
+    protocol: "HTTPS // OAUTH",
   },
   {
     name: "GitHub",
     handle: "github.com/eeja07",
     href: "https://github.com/eeja07",
     icon: <GithubIcon className="size-4" />,
+    protocol: "SSH // GIT",
   },
   {
     name: "WhatsApp",
     handle: "+62 812-8809-2766",
     href: "https://wa.me/6281288092766",
-    icon: <MessageSquareIcon className="size-4" />,
+    icon: <MessageSquare className="size-4" />,
+    protocol: "E2EE // SIGNAL",
   },
 ]
 
 export default function Contact() {
   const [copiedChannel, setCopiedChannel] = useState<string | null>(null)
+  const { language } = useLanguage()
+  const t = translations[language].contact
 
   const handleCopy = async (value: string, name: string) => {
     try {
@@ -114,7 +97,7 @@ export default function Contact() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.15,
+        duration: 0.16,
         ease: "easeOut" as const,
       },
     },
@@ -124,26 +107,29 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="w-full py-20 bg-background border-t border-zinc-200 dark:border-zinc-800"
+      className="w-full py-20 bg-background"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-16 text-left max-w-2xl">
-          <Badge 
-            variant="outline" 
-            className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
-          >
-            Connection Channels
-          </Badge>
+          <div className="flex items-center gap-2">
+            <span className="size-2 rounded-full bg-emerald-500 animate-led" />
+            <Badge 
+              variant="outline" 
+              className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
+            >
+              {t.badge}
+            </Badge>
+          </div>
           <h2 
             id="contact-heading"
-            className="text-3xl font-sans font-semibold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground"
           >
-            Get in Touch
+            {t.heading}
           </h2>
-          <p className="text-base text-zinc-500 dark:text-zinc-400 font-sans font-normal leading-8">
-            Reach out through any of these communication channels.
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
+            {t.subheading}
           </p>
         </div>
 
@@ -152,57 +138,68 @@ export default function Contact() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {contactChannels.map((channel) => (
-            <motion.div key={channel.name} variants={itemVariants}>
-              <Card className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl shadow-sm transition-all duration-150 ease-in-out hover:border-zinc-200/80 dark:hover:border-zinc-800/80 h-full flex flex-col justify-between p-6 text-left gap-4">
-                <div className="flex flex-col gap-3">
-                  <div className="p-2 w-fit bg-background border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400" aria-hidden="true">
-                    {channel.icon}
+          {contactChannels.map((channel, idx) => (
+            <motion.div key={channel.name} variants={itemVariants} className="h-full">
+              <NetworkSubsystemNode
+                nodeId={`PORT // 0${idx + 1}`}
+                subsystem="SOCKET ENDPOINT"
+                status="transmitting"
+                className="h-full flex flex-col justify-between p-6 text-left gap-6"
+              >
+                <div className="flex flex-col gap-3.5">
+                  <div className="flex items-center justify-between">
+                    <div className="p-2.5 w-fit bg-background border border-zinc-200 dark:border-zinc-800 rounded-xl text-blue-600 dark:text-cyan-400 shadow-xs" aria-hidden="true">
+                      {channel.icon}
+                    </div>
+                    <span className="font-mono text-[10px] text-zinc-400">
+                      {channel.protocol}
+                    </span>
                   </div>
                   
-                  <div className="flex flex-col gap-1.5">
-                    <h3 className="font-sans text-xl font-medium text-foreground leading-tight">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="font-sans text-xl font-bold text-foreground tracking-tight leading-tight">
                       {channel.name}
                     </h3>
                     <div className="flex items-center justify-between gap-2 mt-1">
-                      <span className="text-sm font-mono text-zinc-500 dark:text-zinc-400 truncate flex-1" title={channel.handle}>
+                      <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400 truncate flex-1" title={channel.handle}>
                         {channel.handle}
                       </span>
                       <button
                         onClick={() => handleCopy(channel.handle, channel.name)}
                         aria-label={`Copy ${channel.name} handle to clipboard`}
-                        className="text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors duration-150 p-1 rounded hover:bg-zinc-200 dark:hover:bg-zinc-800 shrink-0 cursor-pointer"
+                        className="text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors duration-150 p-1.5 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 shrink-0 cursor-pointer"
                       >
                         {copiedChannel === channel.name ? (
-                          <span className="text-xs text-foreground font-sans font-semibold" aria-live="polite">
-                            Copied!
+                          <span className="font-mono text-[10px] text-emerald-500 font-bold flex items-center gap-1">
+                            <Check className="size-3" />
+                            {t.copied}
                           </span>
                         ) : (
-                          <CopyIcon className="size-3.5" />
+                          <Copy className="size-3.5" />
                         )}
                       </button>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-4 mt-auto border-t border-zinc-200 dark:border-zinc-800 select-none">
+                <div className="pt-4 mt-auto border-t border-zinc-200/70 dark:border-zinc-800/70 select-none">
                   <a
                     href={channel.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
                       buttonVariants({ variant: "outline", size: "sm" }),
-                      "w-full border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 font-medium justify-between cursor-pointer"
+                      "w-full border-zinc-200 dark:border-zinc-800 font-mono text-xs text-foreground bg-background hover:bg-zinc-100 dark:hover:bg-zinc-800 font-medium justify-between cursor-pointer rounded-xl"
                     )}
                   >
-                    <span>Connect</span>
-                    <ArrowUpRightIcon className="size-3.5 ml-1.5 opacity-60" />
+                    <span>{t.connect} &gt;&gt;</span>
+                    <ArrowUpRight className="size-3.5 opacity-60" />
                   </a>
                 </div>
-              </Card>
+              </NetworkSubsystemNode>
             </motion.div>
           ))}
         </motion.div>

@@ -3,29 +3,36 @@
 import React from "react"
 import { motion } from "motion/react"
 import { experiences } from "@/data/experience"
-import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
+import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
+import { useLanguage } from "@/context/LanguageContext"
+import { translations } from "@/data/translations"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { ArrowRight, Briefcase } from "lucide-react"
 
 export default function Experience() {
+  const { language } = useLanguage()
+  const t = translations[language].experience
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.04,
+        staggerChildren: 0.05,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 4 },
+    hidden: { opacity: 0, y: 12 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.12,
+        duration: 0.16,
         ease: "easeOut" as const,
       },
     },
@@ -41,89 +48,109 @@ export default function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="w-full py-20 bg-background border-t border-zinc-200 dark:border-zinc-800"
+      className="w-full py-20 bg-background"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
-          <Badge 
-            variant="outline" 
-            className="w-fit border-zinc-200 dark:border-zinc-800 py-1.5 px-3 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-mono font-medium text-sm uppercase tracking-wider select-none"
-          >
-            History
-          </Badge>
+        <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
+          <div className="flex items-center gap-2">
+            <span className="size-2 rounded-full bg-emerald-500 animate-led" />
+            <Badge 
+              variant="outline" 
+              className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
+            >
+              {t.badge}
+            </Badge>
+          </div>
           <h2 
             id="experience-heading"
-            className="text-3xl font-sans font-semibold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground"
           >
-            Featured Experience
+            {t.heading}
           </h2>
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
+            {t.subheading}
+          </p>
         </div>
 
-        {/* 3-Column Grid layout */}
+        {/* 3-Column Grid layout with NetworkSubsystemNodes */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {snapshotExperiences.map((exp) => (
-            <motion.div key={exp.id} variants={itemVariants}>
-              <Card className="border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-2xl shadow-sm hover:border-zinc-200/80 dark:hover:border-zinc-800/80 transition-colors duration-150 h-full p-6 flex flex-col justify-between text-left gap-4">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between font-mono text-sm text-zinc-500 dark:text-zinc-400">
-                    <span className="font-semibold uppercase">{exp.category}</span>
-                    <span>{exp.startDate.split(" ")[1] || exp.startDate} &mdash; {exp.endDate ? exp.endDate.split(" ")[1] || exp.endDate : "Present"}</span>
+          {snapshotExperiences.map((exp, idx) => (
+            <motion.div key={exp.id} variants={itemVariants} className="h-full">
+              <NetworkSubsystemNode
+                nodeId={`HOP // 0${idx + 1}`}
+                subsystem={exp.category.toUpperCase()}
+                status={idx === 0 ? "transmitting" : "healthy"}
+                className="h-full flex flex-col justify-between text-left gap-6 p-6"
+              >
+                <div className="flex flex-col gap-3.5">
+                  <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                    <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
+                      {exp.startDate} &ndash; {exp.current ? "Present" : exp.endDate}
+                    </span>
+                    <span className="px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-800 text-[10px] bg-background">
+                      {exp.category}
+                    </span>
                   </div>
 
                   <div>
-                    <h3 className="font-sans text-xl font-medium text-foreground leading-tight">
+                    <h3 className="font-sans text-lg font-bold text-foreground tracking-tight leading-snug">
                       {exp.role}
                     </h3>
-                    <p className="font-sans text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-                      {exp.company}
-                    </p>
+                    <div className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 font-medium mt-1">
+                      <Briefcase className="size-3.5 text-blue-500 dark:text-cyan-400" />
+                      <span>{exp.company}</span>
+                      <span className="text-zinc-400">&bull;</span>
+                      <span className="font-normal text-zinc-500">{exp.location}</span>
+                    </div>
                   </div>
 
-                  <p className="font-sans text-base text-zinc-500 dark:text-zinc-400 font-normal leading-relaxed mt-1">
-                    {exp.achievements[0]?.split(",")[0] || exp.achievements[0]}
+                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3">
+                    {exp.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-200 dark:border-zinc-800 select-none">
+                {/* Tech Pills */}
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-zinc-200/70 dark:border-zinc-800/70 select-none">
                   {exp.technologies.slice(0, 3).map((tech) => (
-                    <Badge 
+                    <span 
                       key={tech} 
-                      variant="secondary" 
-                      className="border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 font-mono text-sm text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900"
+                      className="border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background"
                     >
                       {tech}
-                    </Badge>
+                    </span>
                   ))}
                 </div>
-              </Card>
+              </NetworkSubsystemNode>
             </motion.div>
           ))}
         </motion.div>
 
         {/* View All Experience Link */}
-        <div className="mt-10 flex justify-center">
+        <div className="mt-12 flex justify-center">
           <a
             href="/experience"
             className={cn(
               buttonVariants({ variant: "outline", size: "default" }),
-              "font-sans font-medium px-6 py-2 border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors duration-150 flex items-center gap-2 cursor-pointer text-sm"
+              "font-mono text-xs font-semibold px-6 py-2.5 border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100/80 dark:bg-zinc-900/80 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all duration-150 flex items-center gap-2 cursor-pointer shadow-xs rounded-xl"
             )}
           >
-            <span>View All Experience</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 text-zinc-500 dark:text-zinc-400">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
+            <span>{t.viewAll}</span>
+            <ArrowRight className="size-4 text-zinc-500 dark:text-zinc-400" />
           </a>
         </div>
 
+      </div>
+
+      <div className="w-full max-w-7xl px-4 mt-16">
+        <SpatialCableBranch direction="right-to-left" label={t.cableLabel} status="transmitting" />
       </div>
     </section>
   )

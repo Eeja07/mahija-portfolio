@@ -1,0 +1,213 @@
+"use client"
+
+import React, { useEffect, useState } from "react"
+import { motion, useScroll, useSpring, useTransform } from "motion/react"
+import { useTheme } from "next-themes"
+
+export default function ContinuousNetworkSpine() {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const isDark = resolvedTheme !== "light"
+
+  const { scrollYProgress } = useScroll()
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 70,
+    damping: 20,
+    restDelta: 0.001,
+  })
+
+  // Transform scroll progress to path lengths
+  const pathLength = useTransform(smoothProgress, [0, 1], [0.05, 1])
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
+  const strokeBase = isDark ? "rgba(56, 189, 248, 0.14)" : "rgba(37, 99, 235, 0.12)"
+  const strokeGlow = isDark ? "rgba(56, 189, 248, 0.85)" : "rgba(37, 99, 235, 0.75)"
+  const packetColor = isDark ? "#00f0ff" : "#2563eb"
+  const emeraldColor = isDark ? "#10b981" : "#059669"
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-0 w-full h-full overflow-hidden select-none opacity-80"
+    >
+      <svg
+        className="w-full h-full"
+        viewBox="0 0 1440 6000"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          {/* Glowing laser gradient */}
+          <linearGradient id="fiberLaserMain" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.9" />
+            <stop offset="25%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.8" />
+            <stop offset="50%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.9" />
+            <stop offset="75%" stopColor={isDark ? "#818cf8" : "#4f46e5"} stopOpacity="0.85" />
+            <stop offset="100%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.9" />
+          </linearGradient>
+
+          {/* Filter for subtle laser bloom */}
+          <filter id="laserBloom" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+
+        {/* --- LEFT SPINAL OPTICAL CONDUIT (Flowing through all sections) --- */}
+        {/* Passive Track */}
+        <path
+          d="M 120 0 
+             C 120 400, 80 800, 140 1200 
+             C 200 1600, 90 2000, 110 2400 
+             C 130 2800, 70 3200, 130 3600 
+             C 190 4000, 90 4400, 120 4800 
+             C 150 5200, 80 5600, 120 6000"
+          stroke={strokeBase}
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+
+        {/* Active Laser Scroll Beam */}
+        <motion.path
+          d="M 120 0 
+             C 120 400, 80 800, 140 1200 
+             C 200 1600, 90 2000, 110 2400 
+             C 130 2800, 70 3200, 130 3600 
+             C 190 4000, 90 4400, 120 4800 
+             C 150 5200, 80 5600, 120 6000"
+          stroke="url(#fiberLaserMain)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          filter="url(#laserBloom)"
+          style={{ pathLength }}
+        />
+
+        {/* Pulsing Dash Line */}
+        <path
+          d="M 126 0 
+             C 126 400, 86 800, 146 1200 
+             C 206 1600, 96 2000, 116 2400 
+             C 136 2800, 76 3200, 136 3600 
+             C 196 4000, 96 4400, 126 4800 
+             C 156 5200, 86 5600, 126 6000"
+          stroke={isDark ? "rgba(16, 185, 129, 0.18)" : "rgba(16, 185, 129, 0.12)"}
+          strokeWidth="1.5"
+          strokeDasharray="10 16"
+          className="animate-fiber-pulse"
+        />
+
+        {/* --- RIGHT SPINAL OPTICAL CONDUIT (Flowing through all sections) --- */}
+        {/* Passive Track */}
+        <path
+          d="M 1320 0 
+             C 1320 400, 1360 800, 1300 1200 
+             C 1240 1600, 1350 2000, 1330 2400 
+             C 1310 2800, 1370 3200, 1310 3600 
+             C 1250 4000, 1350 4400, 1320 4800 
+             C 1290 5200, 1360 5600, 1320 6000"
+          stroke={strokeBase}
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+
+        {/* Active Laser Scroll Beam */}
+        <motion.path
+          d="M 1320 0 
+             C 1320 400, 1360 800, 1300 1200 
+             C 1240 1600, 1350 2000, 1330 2400 
+             C 1310 2800, 1370 3200, 1310 3600 
+             C 1250 4000, 1350 4400, 1320 4800 
+             C 1290 5200, 1360 5600, 1320 6000"
+          stroke="url(#fiberLaserMain)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          filter="url(#laserBloom)"
+          style={{ pathLength }}
+        />
+
+        {/* Pulsing Dash Line */}
+        <path
+          d="M 1314 0 
+             C 1314 400, 1354 800, 1294 1200 
+             C 1234 1600, 1344 2000, 1324 2400 
+             C 1304 2800, 1364 3200, 1304 3600 
+             C 1244 4000, 1344 4400, 1314 4800 
+             C 1284 5200, 1354 5600, 1314 6000"
+          stroke={isDark ? "rgba(0, 240, 255, 0.20)" : "rgba(37, 99, 235, 0.12)"}
+          strokeWidth="1.5"
+          strokeDasharray="10 16"
+          className="animate-fiber-pulse"
+        />
+
+        {/* --- CROSS-SECTION WEAVING CABLES ACROSS ALL SECTIONS --- */}
+        {/* Weave 1: Hero to Projects */}
+        <path
+          d="M 140 1200 C 400 1280, 1000 1120, 1300 1200"
+          stroke={strokeBase}
+          strokeWidth="2"
+          strokeDasharray="6 8"
+        />
+        {/* Weave 2: Projects to Experience */}
+        <path
+          d="M 1330 2400 C 1000 2480, 400 2320, 110 2400"
+          stroke={strokeBase}
+          strokeWidth="2"
+          strokeDasharray="6 8"
+        />
+        {/* Weave 3: Experience to Skills */}
+        <path
+          d="M 130 3600 C 400 3680, 1000 3520, 1310 3600"
+          stroke={strokeBase}
+          strokeWidth="2"
+          strokeDasharray="6 8"
+        />
+        {/* Weave 4: Skills to Repositories & Resume */}
+        <path
+          d="M 1320 4800 C 1000 4880, 400 4720, 120 4800"
+          stroke={strokeBase}
+          strokeWidth="2"
+          strokeDasharray="6 8"
+        />
+
+        {/* --- JUNCTION NODES ALONG THE SPINES --- */}
+        {[
+          { cx: 120, cy: 300 },
+          { cx: 140, cy: 1200 },
+          { cx: 110, cy: 2400 },
+          { cx: 130, cy: 3600 },
+          { cx: 120, cy: 4800 },
+          { cx: 120, cy: 5700 },
+          { cx: 1320, cy: 300 },
+          { cx: 1300, cy: 1200 },
+          { cx: 1330, cy: 2400 },
+          { cx: 1310, cy: 3600 },
+          { cx: 1320, cy: 4800 },
+          { cx: 1320, cy: 5700 },
+        ].map((node, i) => (
+          <g key={i}>
+            <circle
+              cx={node.cx}
+              cy={node.cy}
+              r="7"
+              fill={isDark ? "#090d16" : "#ffffff"}
+              stroke={strokeGlow}
+              strokeWidth="2"
+            />
+            <circle
+              cx={node.cx}
+              cy={node.cy}
+              r="3"
+              fill={i % 2 === 0 ? packetColor : emeraldColor}
+            />
+          </g>
+        ))}
+      </svg>
+    </div>
+  )
+}
