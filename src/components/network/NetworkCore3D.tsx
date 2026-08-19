@@ -685,7 +685,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
             </p>
           </div>
           <div className="mt-1 px-4 py-2 rounded-xl bg-blue-600 dark:bg-cyan-400 text-white dark:text-zinc-950 font-mono text-xs font-bold flex items-center gap-2 hover:opacity-90 transition-opacity shadow-sm">
-            <span>{isEn ? "ENTER SECTION →" : "MASUK KE SEKSI →"}</span>
+            <span>{isEn ? "CLICK TO ENTER →" : "KLIK UNTUK MASUK →"}</span>
           </div>
         </div>
       )}
