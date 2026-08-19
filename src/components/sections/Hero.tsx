@@ -172,7 +172,7 @@ export default function Hero() {
                     key={metric.label}
                     nodeId={`METRIC // 0${idx + 1}`}
                     subsystem="TELEMETRY"
-                    className="p-4 sm:p-4"
+                    className="p-3 sm:p-3.5"
                   >
                     <span className="font-mono text-base font-bold text-foreground tracking-tight">
                       {metric.label}

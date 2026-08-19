@@ -117,7 +117,7 @@ export default function FeaturedEngineering() {
               <NetworkSubsystemNode
                 nodeId={getNodeTag(project.id)}
                 subsystem={project.category.toUpperCase()}
-                className="p-4 sm:p-6 lg:p-8 border-zinc-200/90 dark:border-zinc-800/90"
+                className="p-3.5 sm:p-5 lg:p-7 border-zinc-200/90 dark:border-zinc-800/90"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                   

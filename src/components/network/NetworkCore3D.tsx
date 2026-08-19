@@ -24,7 +24,11 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const { resolvedTheme } = useTheme()
   const { language } = useLanguage()
-  const [hoveredNode, setHoveredNode] = useState<{ name: string; role: string } | null>(null)
+  const [hoveredNode, setHoveredNode] = useState<{
+    name: string
+    role: string
+    targetId: string
+  } | null>(null)
   const [isInteracting, setIsInteracting] = useState(false)
   const isDark = resolvedTheme !== "light"
 
@@ -36,7 +40,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       }
       const targetElement = document.querySelector(targetId)
       if (targetElement) {
-        const headerOffset = 80
+        const headerOffset = 70
         const elementPosition = targetElement.getBoundingClientRect().top
         const offsetPosition = elementPosition + window.scrollY - headerOffset
         window.scrollTo({
@@ -64,8 +68,8 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
 
     // Dynamic camera distance: pull back smoothly on portrait mobile screens so center rack + all satellites fit
     const calculateCameraZ = (aspect: number) => {
-      if (aspect < 0.5) return 46
-      if (aspect < 0.7) return 38
+      if (aspect < 0.5) return 44
+      if (aspect < 0.7) return 37
       if (aspect < 1.0) return 30
       if (aspect < 1.3) return 26
       return 23
@@ -527,6 +531,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
           setHoveredNode({
             name: hit.userData.name,
             role: hit.userData.role,
+            targetId: hit.userData.targetId,
           })
           container.style.cursor = "pointer"
         } else {
@@ -648,8 +653,8 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         className="size-full cursor-grab active:cursor-grabbing touch-none"
       />
 
-      {/* Minimalist Technical Guidance HUD (Mobile Friendly) */}
-      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 font-mono text-[9px] sm:text-xs text-zinc-600 dark:text-zinc-300 bg-background/90 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-zinc-300 dark:border-zinc-700 shadow-sm flex items-center gap-2 max-w-[calc(100vw-120px)] sm:max-w-none truncate">
+      {/* Minimalist Technical Guidance HUD (Positioned Cleanly at Top-Center) */}
+      <div className="absolute top-16 sm:top-20 left-1/2 -translate-x-1/2 z-20 font-mono text-[9px] sm:text-xs text-zinc-600 dark:text-zinc-300 bg-background/90 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center gap-2 max-w-[92vw] truncate">
         <span className="size-2 rounded-full bg-cyan-400 animate-ping shrink-0" />
         <span className="truncate">
           {isEn
@@ -658,21 +663,30 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         </span>
       </div>
 
-      {/* Live Node Hover / Tap Tooltip (Mobile Friendly) */}
+      {/* CENTERED POPUP: Pops up directly in the center on cursor hover or mobile gesture */}
       {hoveredNode && (
-        <div className="absolute bottom-6 sm:bottom-8 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-20 font-mono text-xs text-foreground bg-background/95 backdrop-blur-md px-4 py-2.5 rounded-xl border border-blue-500/60 dark:border-cyan-400/60 shadow-xl flex items-center justify-between sm:justify-start gap-3 pointer-events-none animate-in fade-in zoom-in-95 duration-150 max-w-md mx-auto">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <span className="size-2 rounded-full bg-emerald-500 animate-led shrink-0" />
-            <div className="text-left min-w-0">
-              <span className="font-bold block text-foreground truncate">{hoveredNode.name}</span>
-              <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-sans block truncate">
-                {hoveredNode.role}
-              </span>
-            </div>
+        <div
+          onClick={(e) => {
+            e.stopPropagation()
+            handleNodeClick(hoveredNode.targetId)
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 font-mono text-foreground bg-background/95 backdrop-blur-xl p-5 sm:p-6 rounded-2xl border-2 border-blue-500/80 dark:border-cyan-400/80 shadow-[0_0_50px_rgba(0,240,255,0.28)] flex flex-col items-center text-center gap-3 cursor-pointer animate-in fade-in zoom-in-95 duration-150 max-w-[88vw] sm:max-w-sm w-full select-none"
+        >
+          <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">
+            <span className="size-2 rounded-full bg-emerald-500 animate-led" />
+            <span>{isEn ? "SUBSYSTEM LINK DETECTED" : "JARINGAN TERDETEKSI"}</span>
           </div>
-          <span className="text-blue-600 dark:text-cyan-400 font-bold text-xs pl-2 border-l border-zinc-200 dark:border-zinc-800 shrink-0">
-            {isEn ? "CLICK TO ENTER →" : "KLIK UNTUK MASUK →"}
-          </span>
+          <div className="flex flex-col gap-1">
+            <h3 className="text-xl sm:text-2xl font-bold font-sans text-foreground tracking-tight">
+              {hoveredNode.name}
+            </h3>
+            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 font-sans max-w-xs mx-auto">
+              {hoveredNode.role}
+            </p>
+          </div>
+          <div className="mt-1 px-4 py-2 rounded-xl bg-blue-600 dark:bg-cyan-400 text-white dark:text-zinc-950 font-mono text-xs font-bold flex items-center gap-2 hover:opacity-90 transition-opacity shadow-sm">
+            <span>{isEn ? "ENTER SECTION →" : "MASUK KE SEKSI →"}</span>
+          </div>
         </div>
       )}
 

@@ -36,8 +36,11 @@ export default function ContinuousNetworkSpine() {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-0 w-full h-full overflow-hidden select-none opacity-80"
     >
+      {/* ========================================== */}
+      {/* 1. DESKTOP CONTINUOUS MULTI-STRAND SPINAL CONDUIT (>= 640px) */}
+      {/* ========================================== */}
       <svg
-        className="w-full h-full"
+        className="hidden sm:block w-full h-full"
         viewBox="0 0 1440 6000"
         fill="none"
         preserveAspectRatio="none"
@@ -59,8 +62,7 @@ export default function ContinuousNetworkSpine() {
           </filter>
         </defs>
 
-        {/* --- LEFT SPINAL OPTICAL CONDUIT (Flowing through all sections) --- */}
-        {/* Passive Track */}
+        {/* LEFT SPINAL OPTICAL CONDUIT */}
         <path
           d="M 120 0 
              C 120 400, 80 800, 140 1200 
@@ -73,7 +75,6 @@ export default function ContinuousNetworkSpine() {
           strokeLinecap="round"
         />
 
-        {/* Active Laser Scroll Beam */}
         <motion.path
           d="M 120 0 
              C 120 400, 80 800, 140 1200 
@@ -88,7 +89,6 @@ export default function ContinuousNetworkSpine() {
           style={{ pathLength }}
         />
 
-        {/* Pulsing Dash Line */}
         <path
           d="M 126 0 
              C 126 400, 86 800, 146 1200 
@@ -102,8 +102,7 @@ export default function ContinuousNetworkSpine() {
           className="animate-fiber-pulse"
         />
 
-        {/* --- RIGHT SPINAL OPTICAL CONDUIT (Flowing through all sections) --- */}
-        {/* Passive Track */}
+        {/* RIGHT SPINAL OPTICAL CONDUIT */}
         <path
           d="M 1320 0 
              C 1320 400, 1360 800, 1300 1200 
@@ -116,7 +115,6 @@ export default function ContinuousNetworkSpine() {
           strokeLinecap="round"
         />
 
-        {/* Active Laser Scroll Beam */}
         <motion.path
           d="M 1320 0 
              C 1320 400, 1360 800, 1300 1200 
@@ -131,7 +129,6 @@ export default function ContinuousNetworkSpine() {
           style={{ pathLength }}
         />
 
-        {/* Pulsing Dash Line */}
         <path
           d="M 1314 0 
              C 1314 400, 1354 800, 1294 1200 
@@ -145,37 +142,13 @@ export default function ContinuousNetworkSpine() {
           className="animate-fiber-pulse"
         />
 
-        {/* --- CROSS-SECTION WEAVING CABLES ACROSS ALL SECTIONS --- */}
-        {/* Weave 1: Hero to Projects */}
-        <path
-          d="M 140 1200 C 400 1280, 1000 1120, 1300 1200"
-          stroke={strokeBase}
-          strokeWidth="2"
-          strokeDasharray="6 8"
-        />
-        {/* Weave 2: Projects to Experience */}
-        <path
-          d="M 1330 2400 C 1000 2480, 400 2320, 110 2400"
-          stroke={strokeBase}
-          strokeWidth="2"
-          strokeDasharray="6 8"
-        />
-        {/* Weave 3: Experience to Skills */}
-        <path
-          d="M 130 3600 C 400 3680, 1000 3520, 1310 3600"
-          stroke={strokeBase}
-          strokeWidth="2"
-          strokeDasharray="6 8"
-        />
-        {/* Weave 4: Skills to Repositories & Resume */}
-        <path
-          d="M 1320 4800 C 1000 4880, 400 4720, 120 4800"
-          stroke={strokeBase}
-          strokeWidth="2"
-          strokeDasharray="6 8"
-        />
+        {/* CROSS-SECTION WEAVES */}
+        <path d="M 140 1200 C 400 1280, 1000 1120, 1300 1200" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
+        <path d="M 1330 2400 C 1000 2480, 400 2320, 110 2400" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
+        <path d="M 130 3600 C 400 3680, 1000 3520, 1310 3600" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
+        <path d="M 1320 4800 C 1000 4880, 400 4720, 120 4800" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
 
-        {/* --- JUNCTION NODES ALONG THE SPINES --- */}
+        {/* JUNCTION NODES */}
         {[
           { cx: 120, cy: 300 },
           { cx: 140, cy: 1200 },
@@ -191,20 +164,60 @@ export default function ContinuousNetworkSpine() {
           { cx: 1320, cy: 5700 },
         ].map((node, i) => (
           <g key={i}>
-            <circle
-              cx={node.cx}
-              cy={node.cy}
-              r="7"
-              fill={isDark ? "#090d16" : "#ffffff"}
-              stroke={strokeGlow}
-              strokeWidth="2"
-            />
-            <circle
-              cx={node.cx}
-              cy={node.cy}
-              r="3"
-              fill={i % 2 === 0 ? packetColor : emeraldColor}
-            />
+            <circle cx={node.cx} cy={node.cy} r="7" fill={isDark ? "#090d16" : "#ffffff"} stroke={strokeGlow} strokeWidth="2" />
+            <circle cx={node.cx} cy={node.cy} r="3" fill={i % 2 === 0 ? packetColor : emeraldColor} />
+          </g>
+        ))}
+      </svg>
+
+      {/* ========================================== */}
+      {/* 2. DEDICATED MOBILE CLEAN DUAL-RAIL CONDUIT (< 640px) */}
+      {/* ========================================== */}
+      <svg
+        className="block sm:hidden w-full h-full"
+        viewBox="0 0 390 6000"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="fiberLaserMobile" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.8" />
+            <stop offset="50%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.8" />
+            <stop offset="100%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.8" />
+          </linearGradient>
+        </defs>
+
+        {/* Clean Left Side Rail (Gutter at x=10) */}
+        <path
+          d="M 10 0 L 10 6000"
+          stroke={strokeBase}
+          strokeWidth="2"
+        />
+        <motion.path
+          d="M 10 0 L 10 6000"
+          stroke="url(#fiberLaserMobile)"
+          strokeWidth="2"
+          style={{ pathLength }}
+        />
+
+        {/* Clean Right Side Rail (Gutter at x=380) */}
+        <path
+          d="M 380 0 L 380 6000"
+          stroke={strokeBase}
+          strokeWidth="2"
+        />
+        <motion.path
+          d="M 380 0 L 380 6000"
+          stroke="url(#fiberLaserMobile)"
+          strokeWidth="2"
+          style={{ pathLength }}
+        />
+
+        {/* Subtle Junction Micro-Dots on Mobile Rails */}
+        {[600, 1400, 2200, 3000, 3800, 4600, 5400].map((y, i) => (
+          <g key={i}>
+            <circle cx="10" cy={y} r="3" fill={isDark ? "#00f0ff" : "#2563eb"} />
+            <circle cx="380" cy={y} r="3" fill={isDark ? "#10b981" : "#059669"} />
           </g>
         ))}
       </svg>
