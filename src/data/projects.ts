@@ -244,3 +244,252 @@ export const projects: Project[] = [
     featured: false
   }
 ]
+
+export const projectsId: Project[] = [
+  {
+    id: "smart-cctv",
+    slug: "diy-smart-cctv-platform",
+    title: "Sistem Pemantauan CCTV Pintar Mandiri (DIY)",
+    description:
+      "Merancang dan mengimplementasikan platform CCTV self-hosted pada server Intel NUC yang terintegrasi dengan perangkat edge ESP32-CAM untuk pengumpulan citra dan pemantauan.",
+    year: 2026,
+    category: "IoT",
+    stack: ["Docker", "EMQX", "MinIO", "MySQL", "Laravel", "Webmin", "Cloudflared"],
+    metrics: [
+      "Sinkronisasi pengambilan citra multi-node",
+      "Relay pesan broker MQTT di bawah 50ms",
+      "Nol port terbuka pada firewall masuk"
+    ],
+    highlights: [
+      "Merancang dan menerapkan platform CCTV self-hosted pada server Intel NUC yang terintegrasi dengan perangkat edge ESP32-CAM untuk pengumpulan gambar dan pemantauan",
+      "Mengelola lingkungan Docker multi-layanan termasuk Laravel, MySQL, MinIO, phpMyAdmin, broker EMQX MQTT, dan layanan pendukung aplikasi",
+      "Mengimplementasikan komunikasi data berbasis MQTT, administrasi dan monitoring server melalui Webmin, serta akses publik yang aman menggunakan Cloudflare Tunnel"
+    ],
+    github: "https://github.com/Eeja07/iot-surveillance-platform-web",
+    demo: "https://cctv.miot-its.org",
+    architecture: [
+      "Node Edge ESP32-CAM",
+      "Node Broker EMQX MQTT",
+      "Server Host Lokal Intel NUC",
+      "Aplikasi Laravel & Penyimpanan MinIO",
+      "Akses Masuk Aman Cloudflare Tunnel",
+    ],
+    featured: true,
+    problem: "Solusi pengawasan komersial memerlukan koneksi internet berkecepatan tinggi secara terus-menerus dan menimbulkan kekhawatiran privasi dengan mengalirkan rekaman video mentah ke server cloud pihak ketiga.",
+    approach: "Membangun alur pemrosesan edge lokal yang melakukan deteksi objek langsung pada perangkat berdaya rendah, hanya mengirimkan peringatan metadata saat keberadaan manusia terverifikasi.",
+    tradeoffs: "Memilih model inferensi teroptimasi untuk menjaga throughput tinggi pada CPU lokal, mengorbankan sedikit akurasi demi responsivitas waktu nyata.",
+    challenges: "Penurunan performa akibat panas pada pengoperasian inferensi kontinu. Diselesaikan dengan menerapkan frame-skipping adaptif dan sistem pendingin khusus yang menurunkan suhu sebesar 15°C.",
+    outcome: "Platform keamanan rumah pribadi yang memproses feed kamera secara simultan dengan pemicu notifikasi lokal dalam waktu kurang dari 120ms.",
+    mediaType: "video",
+    mediaUrl: "/videos/cctv-demo.webm",
+  },
+  {
+    id: "human-search-drone",
+    slug: "autonomous-human-search",
+    title: "Sistem Pencarian Korban Otonom Menggunakan Drone & Pi 5",
+    description:
+      "Mengembangkan sistem pencarian korban manusia otonom menggabungkan Raspberry Pi 5, MAVSDK, ONNX, dan YOLOv8n untuk deteksi target edge dan navigasi real-time.",
+    year: 2026,
+    category: "Edge AI",
+    stack: ["YOLO", "ONNX", "MAVSDK", "Raspberry Pi 5", "Edge Device"],
+    metrics: [
+      "Inferensi Linux tanpa antarmuka GUI (Headless)",
+      "Pencegahan pelacakan target ganda",
+      "Distribusi daya onboard drone yang stabil"
+    ],
+    highlights: [
+      "Merancang dan mengintegrasikan sistem distribusi daya drone yang mampu menyediakan daya stabil untuk kebutuhan komputasi Raspberry Pi 5",
+      "Mengevaluasi dan mengoptimalkan performa model YOLOv8n ONNX di lingkungan Linux headless pada Raspberry Pi 5 untuk deteksi manusia real-time",
+      "Mengembangkan sistem berbasis MAVSDK dengan kemampuan navigasi otonom, dokumentasi korban, dan pencegahan pelacakan target ganda"
+    ],
+    github: "https://github.com/Eeja07/autonomus-human-search-system-using-drone-final-project-program",
+    demo: "https://drone.eeja.fun",
+    architecture: [
+      "Companion Computer Raspberry Pi 5",
+      "Runtime Model YOLOv8n ONNX",
+      "Antarmuka Kontrol MAVSDK",
+      "Protokol Telemetri MAVLink",
+      "Flight Controller Hardware PX4",
+    ],
+    featured: true,
+    problem: "Menemukan korban hilang di area hutan lebat atau lingkungan tanpa sinyal GPS di mana tim SAR menghadapi medan yang berbahaya.",
+    approach: "Merancang payload komputer pendamping (Raspberry Pi 5) yang berkomunikasi via MAVLink dengan flight controller PX4, menjalankan deteksi manusia YOLOv8 lokal waktu nyata.",
+    tradeoffs: "Memilih varian YOLOv8 nano yang dikompilasi dengan presisi ONNX, mengutamakan konsumsi daya rendah dan stabilitas latensi tinggi dibanding model berukuran besar.",
+    challenges: "Drift sensor pada lingkungan tanpa GPS. Diselesaikan dengan memadukan data kecepatan downward optical flow dengan altimeter LiDAR di dalam filter EKF2 PX4.",
+    outcome: "Unit drone otonom yang mampu terbang menyusuri jalur pencarian terprogram dan menemukan target di area 100x100m secara offline dalam waktu 6 menit.",
+    mediaType: "video",
+    mediaUrl: "/videos/drone-demo.webm",
+  },
+  {
+    id: "homelab-infra",
+    slug: "homelab-infrastructure",
+    title: "Infrastruktur Homelab Server Mandiri (Self-Hosted)",
+    description:
+      "Lingkungan homelab mandiri yang dibangun pada perangkat keras daur ulang menggunakan Docker dan Cloudflare Tunnel untuk menjalankan aplikasi web dan layanan pribadi.",
+    year: 2025,
+    category: "Infrastruktur",
+    stack: ["Debian", "Docker", "Cloudflare Tunnel", "Webmin", "Administrasi Linux"],
+    metrics: [
+      "Host server headless berbasis Debian",
+      "Koneksi egress remote yang aman",
+      "Diagnostik server Webmin terpusat"
+    ],
+    highlights: [
+      "Membangun dan memelihara lingkungan homelab mandiri menggunakan perangkat keras laptop daur ulang untuk menjalankan aplikasi dan layanan pribadi",
+      "Menerapkan dan mengelola beberapa aplikasi web serta layanan pendukung menggunakan kontainer Docker pada server berbasis Debian",
+      "Mengimplementasikan akses jarak jauh yang aman melalui Cloudflare Tunnel serta melakukan administrasi dan monitoring server menggunakan Webmin"
+    ],
+    github: "https://github.com/Eeja07/mahija-portfolio",
+    demo: "https://webmin.eeja.fun",
+    architecture: [
+      "Host Perangkat Keras Laptop Daur Ulang",
+      "Sistem Operasi Server Debian",
+      "Mesin Orkestrasi Docker Compose",
+      "Terowongan Ingress Egress Cloudflared",
+      "Panel Konsol Administrasi Webmin",
+    ],
+    featured: false,
+    problem: "Menyebarkan dan mengelola beberapa sistem web secara publik tanpa membuka port firewall rumah atau menyewa server cloud publik yang mahal.",
+    approach: "Membangun node hypervisor fisik, memanfaatkan Docker Compose di dalam VM Debian, dan menghubungkan rute akses menggunakan Cloudflare Tunnel yang aman.",
+    tradeoffs: "Memilih Cloudflare Tunnel daripada port-forwarding biasa dengan DynDNS untuk keamanan mutlak dari pemindaian IP langsung.",
+    challenges: "Mencapai pembaruan kontainer tanpa downtime. Diselesaikan dengan konfigurasi health-check otomatis dan aturan proksi Nginx.",
+    outcome: "Hosting aman untuk 10+ layanan internal (broker MQTT, basis data, dashboard, aplikasi web) beroperasi dengan ketersediaan tinggi dan pencadangan otomatis.",
+    mediaType: "video",
+    mediaUrl: "/videos/homelab-demo.webm",
+  },
+  {
+    id: "untern-platform",
+    slug: "untern",
+    title: "UNTERN",
+    description:
+      "Platform web yang menghubungkan pencari magang dengan perusahaan yang membutuhkan talenta, mengelola seluruh siklus dari analisis kebutuhan hingga deployment.",
+    year: 2025,
+    category: "Fullstack",
+    stack: ["JavaScript", "PostgreSQL", "Vite"],
+    metrics: [
+      "Agregasi poin data lowongan",
+      "Waktu indeks query di bawah 50ms",
+      "Siklus perekrutan end-to-end"
+    ],
+    highlights: [
+      "Mengembangkan platform web yang menghubungkan pencari magang dengan perusahaan yang mencari talenta",
+      "Mengelola seluruh siklus hidup pengembangan perangkat lunak dari analisis kebutuhan hingga penerapan sistem",
+      "Mengimplementasikan fitur aplikasi dan fungsionalitas sistem untuk mendukung proses perekrutan magang"
+    ],
+    github: "https://github.com/Eeja07/untern-internship-project",
+    demo: "https://untern.eeja.fun",
+    architecture: [
+      "Frontend SPA React (Vite)",
+      "Node Backend REST API Node.js",
+      "Penyimpanan Relasional PostgreSQL",
+      "Driver Koneksi Basis Data Sequelize",
+    ],
+    featured: true,
+    problem: "Mahasiswa menghadapi portal magang yang terfragmentasi sementara perekrut kesulitan menyaring profil kandidat berdasarkan kata kunci keahlian.",
+    approach: "Merancang aplikasi full-stack terpusat dengan indeks pencarian reaktif, alat dashboard perekrut, dan notifikasi otomatis.",
+    tradeoffs: "Memanfaatkan indeks terkelola PostgreSQL dan prosedur tersimpan dibanding Elasticsearch besar, menjaga konsumsi sumber daya tetap hemat.",
+    challenges: "Sinkronisasi data lowongan kerja. Diselesaikan dengan membangun antrean berbatas laju menggunakan Redis untuk mencegah penguncian basis data.",
+    outcome: "Portal kerja produksi yang memfasilitasi pencocokan magang terverifikasi dengan latensi pencarian di bawah 50ms.",
+    mediaType: "video",
+    mediaUrl: "/videos/untern-demo.webm",
+  },
+  {
+    id: "swimate",
+    slug: "swimate",
+    title: "SwiMate",
+    description:
+      "Aplikasi seluler untuk mendukung pelatihan renang dan pemantauan performa menggunakan sensor ponsel dan machine learning.",
+    year: 2025,
+    category: "AI",
+    stack: ["Flutter", "Dart", "Supabase", "PostgreSQL", "TensorFlow Lite"],
+    metrics: ["Inferensi model langsung pada perangkat", "Dukungan basis data Supabase"],
+    highlights: [
+      "Mengembangkan aplikasi seluler untuk mendukung pelatihan renang dan pemantauan kinerja atlet",
+      "Mengintegrasikan sensor seluler dan model machine learning untuk mendukung analisis aktivitas",
+      "Mengimplementasikan layanan backend dan manajemen data menggunakan Supabase dan PostgreSQL"
+    ],
+    github: "https://github.com/Eeja07/Swimate",
+    demo: "",
+    featured: false
+  },
+  {
+    id: "sarvio-x",
+    slug: "sarvio-x",
+    title: "SARVIO-X",
+    description:
+      "Aplikasi berbasis web untuk memantau dan berinteraksi dengan drone DJI Tello yang dilengkapi model PyTorch real-time.",
+    year: 2025,
+    category: "Edge AI",
+    stack: ["JavaScript", "DJI Tello", "PyTorch"],
+    metrics: ["Parsing telemetri sub-5ms", "Antarmuka kendali peramban web"],
+    highlights: [
+      "Mengembangkan aplikasi berbasis web untuk memantau dan berinteraksi dengan drone DJI Tello",
+      "Mengimplementasikan komponen antarmuka pengguna dan fungsionalitas kontrol drone",
+      "Mendukung operasi dan pemantauan drone melalui platform berbasis browser"
+    ],
+    github: "https://github.com/Eeja07/sarvio-x",
+    demo: "",
+    featured: false
+  },
+  {
+    id: "course-web-app",
+    slug: "course-web-application",
+    title: "Aplikasi Web Kursus & Akademik",
+    description:
+      "Aplikasi web untuk manajemen mata kuliah, alur pembelajaran, dan pencatatan interaksi pengguna.",
+    year: 2025,
+    category: "Fullstack",
+    stack: ["JavaScript", "PostgreSQL"],
+    metrics: ["Indeks skema relasional", "Tugas mata kuliah otomatis"],
+    highlights: [
+      "Mengembangkan aplikasi web untuk manajemen kursus dan kegiatan pembelajaran",
+      "Mengimplementasikan fungsionalitas frontend dan backend untuk mendukung alur kerja akademik",
+      "Merancang fitur untuk mengelola informasi terkait kursus dan interaksi pengguna"
+    ],
+    github: "https://github.com/Eeja07/course-webapp-project",
+    demo: "",
+    featured: false
+  },
+  {
+    id: "carvole-2d",
+    slug: "carvole-2d",
+    title: "Game Mobil 2D CarVole",
+    description:
+      "Game mobil 2D berbasis C++ dengan logika pergerakan objek dan penanganan tabrakan khusus.",
+    year: 2024,
+    category: "Akademik",
+    stack: ["C++", "graphics.h"],
+    metrics: ["Fisika tabrakan 60 FPS", "Jejak komputasi sangat ringan"],
+    highlights: [
+      "Mengembangkan game mobil 2D menggunakan C++ dan pustaka graphics.h",
+      "Mengimplementasikan mekanik game, pergerakan objek, dan penanganan tabrakan",
+      "Merancang elemen gameplay interaktif dan kontrol pengguna"
+    ],
+    github: "https://github.com/Eeja07/carvole-simple-2d-car-game-graphics.h-final-project-basic-programming",
+    demo: "",
+    featured: false
+  },
+  {
+    id: "gui-wxwidgets",
+    slug: "gui-wxwidgets",
+    title: "Aplikasi GUI Desktop wxWidgets",
+    description:
+      "Aplikasi antarmuka pengguna grafis desktop yang dibangun dengan C++ dan pustaka wxWidgets.",
+    year: 2023,
+    category: "Akademik",
+    stack: ["C++", "wxWidgets"],
+    metrics: ["Rendering native sistem operasi", "Arsitektur berorientasi objek (OOP)"],
+    highlights: [
+      "Mengembangkan aplikasi graphical user interface desktop menggunakan wxWidgets",
+      "Menerapkan prinsip pemrograman berorientasi objek dalam pengembangan aplikasi",
+      "Mengimplementasikan komponen antarmuka pengguna interaktif dan fitur aplikasi"
+    ],
+    github: "https://github.com/Eeja07/gui-with-wxwidgets-final-project-advanced-programming",
+    demo: "",
+    featured: false
+  }
+]
+
+export function getProjects(lang: "en" | "id" = "en"): Project[] {
+  return lang === "id" ? projectsId : projects
+}

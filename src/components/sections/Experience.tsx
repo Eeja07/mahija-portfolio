@@ -2,7 +2,7 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import { experiences } from "@/data/experience"
+import { getExperiences } from "@/data/experience"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
@@ -39,9 +39,10 @@ export default function Experience() {
   }
 
   // Showcase only the 3 specified roles on the homepage
+  const allExperiences = getExperiences(language)
   const allowedRoles = ["winnicode-garuda-intern", "lintasarta-intern", "robotics-extracurricular-instructor"]
   const snapshotExperiences = allowedRoles
-    .map((roleId) => experiences.find((exp) => exp.id === roleId))
+    .map((roleId) => allExperiences.find((exp) => exp.id === roleId))
     .filter((exp): exp is NonNullable<typeof exp> => !!exp)
 
   return (

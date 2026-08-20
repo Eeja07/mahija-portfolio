@@ -1,5 +1,5 @@
 import React from "react"
-import { Network } from "lucide-react"
+import { NetworkMonogramM } from "@/components/network/NetworkMonogramM"
 
 const footerLinks = [
   { name: "GitHub", href: "https://github.com/Eeja07" },
@@ -20,7 +20,9 @@ export default function Footer() {
           {/* Brand & Specializations */}
           <div className="flex flex-col gap-2 text-left">
             <div className="flex items-center gap-2">
-              <Network className="size-4 text-blue-500 dark:text-cyan-400" />
+              <div className="size-6 rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center p-0.5 text-blue-500 dark:text-cyan-400">
+                <NetworkMonogramM className="size-3.5" />
+              </div>
               <span className="font-mono font-bold text-foreground tracking-tight text-base">
                 Mahija Ibad Pradipta
               </span>

@@ -4,13 +4,19 @@ import React from "react"
 import { motion } from "motion/react"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
-import { organizations } from "@/data/career"
+import { getOrganizations } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
 import { NetworkNode } from "@/components/network/NetworkNode"
 import TopologyBackground from "@/components/network/TopologyBackground"
+import { useLanguage } from "@/context/LanguageContext"
+import { translations } from "@/data/translations"
 import { Users } from "lucide-react"
 
 export default function OrganizationsArchive() {
+  const { language } = useLanguage()
+  const t = translations[language].archives
+  const orgList = getOrganizations(language)
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -51,14 +57,14 @@ export default function OrganizationsArchive() {
                 variant="outline" 
                 className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
               >
-                Complete Organization Clusters
+                {t.orgBadge}
               </Badge>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground">
-              Organizational History
+              {t.orgTitle}
             </h1>
             <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
-              A comprehensive archive of all my departmental leadership, cadre development staff, and student-body operations.
+              {t.orgSub}
             </p>
           </div>
 
@@ -69,7 +75,7 @@ export default function OrganizationsArchive() {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {organizations.map((org, idx) => (
+            {orgList.map((org, idx) => (
               <motion.div key={org.id} variants={itemVariants} className="h-full">
                 <NetworkNode 
                   nodeId={`ORG // NODE-0${idx + 1}`}
@@ -78,7 +84,9 @@ export default function OrganizationsArchive() {
                 >
                   <div className="flex flex-col gap-3.5">
                     <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                      <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">Organization</span>
+                      <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
+                        {language === "id" ? "Organisasi" : "Organization"}
+                      </span>
                       <span>{org.period}</span>
                     </div>
 

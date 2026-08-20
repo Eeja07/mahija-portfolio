@@ -5,7 +5,8 @@ import Link from "next/link"
 import { useTheme } from "next-themes"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
-import { Sun, Moon, Menu, Download, Network, Languages } from "lucide-react"
+import { Sun, Moon, Menu, Download, Languages } from "lucide-react"
+import { NetworkMonogramM } from "@/components/network/NetworkMonogramM"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Sheet,
@@ -116,8 +117,8 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
           }}
           className="flex items-center gap-2 font-mono font-semibold tracking-tight text-base text-foreground hover:text-blue-500 dark:hover:text-cyan-400 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring group cursor-pointer"
         >
-          <div className="size-7 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-blue-600 dark:text-cyan-400 shadow-xs group-hover:border-blue-500/50">
-            <Network className="size-4" />
+          <div className="size-7 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-blue-600 dark:text-cyan-400 shadow-xs group-hover:border-blue-500/50 p-1">
+            <NetworkMonogramM className="size-4.5" />
           </div>
           <span className="font-sans font-bold text-lg">Mahija</span>
         </Link>
@@ -252,7 +253,9 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
               <div className="flex flex-col gap-6">
                 <SheetHeader className="text-left p-0">
                   <SheetTitle className="font-mono font-semibold tracking-tight text-base text-foreground flex items-center gap-2">
-                    <Network className="size-4 text-blue-500 dark:text-cyan-400" />
+                    <div className="size-6 rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center p-0.5">
+                      <NetworkMonogramM className="size-3.5" />
+                    </div>
                     <span>Mahija</span>
                   </SheetTitle>
                 </SheetHeader>

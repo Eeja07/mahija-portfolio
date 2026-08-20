@@ -137,6 +137,135 @@ export const organizations: CareerItem[] = [
   }
 ]
 
+export const organizationsId: CareerItem[] = [
+  {
+    id: "m-iot-coordinator",
+    title: "Laboratorium M-IOT — Teknik Komputer ITS",
+    role: "Koordinator - Dewan Pengurus Harian",
+    period: "Jun 2025 – Mei 2026",
+    summary: "Mengawasi pengembangan proyek, pelatihan sumber daya manusia, dan jadwal administratif laboratorium secara keseluruhan.",
+    bullets: [
+      "Meningkatkan kualitas laboratorium baik dalam aspek pengembangan proyek maupun pengembangan sumber daya manusia",
+      "Mengawasi linimasa keseluruhan dan eksekusi tugas di seluruh divisi dan subdivisi",
+      "Mengoordinasikan kegiatan manajemen laboratorium dengan pihak eksternal dan administrasi institut"
+    ],
+    featured: true
+  },
+  {
+    id: "himatekkom-cadre-head",
+    title: "HIMATEKKOM ITS",
+    role: "Kepala Departemen Kaderisasi - Dewan Pengurus Harian",
+    period: "Mar 2025 – Feb 2026",
+    summary: "Memimpin divisi kaderisasi, membina panitia pelaksana, dan menyusun sistem perkembangan mahasiswa.",
+    bullets: [
+      "Membimbing tim IC dan OC dalam melaksanakan seluruh rangkaian kegiatan kaderisasi",
+      "Membina anggota SC dalam merancang sistem penilaian dan linimasa kegiatan",
+      "Mengoordinasikan kegiatan kaderisasi dengan mahasiswa dan Departemen Teknik Komputer"
+    ],
+    featured: true
+  },
+  {
+    id: "banyubramanta-official-head",
+    title: "Tim Robotika Banyubramanta ITS",
+    role: "Kepala Divisi Official - Dewan Pengurus",
+    period: "Jul 2024 – Mei 2025",
+    summary: "Memimpin manajemen keuangan, hubungan masyarakat, branding, dan logistik non-teknis tim robotika.",
+    bullets: [
+      "Memimpin subdivisi Administrasi & Keuangan, Hubungan Masyarakat & Sponsorship, serta Kreatif & Branding",
+      "Merencanakan dan mengawasi linimasa kerja serta eksekusi tugas di seluruh subdivisi",
+      "Memastikan kelancaran operasional administratif dan non-teknis tim"
+    ],
+    featured: true
+  },
+  {
+    id: "m-iot-archive-staff",
+    title: "Laboratorium M-IOT — Teknik Komputer ITS",
+    role: "Staf Arsip - Divisi Internal",
+    period: "Agu 2024 – Jun 2025",
+    summary: "Mengelola arsip akademik, repositori ujian, dan sumber belajar untuk peminatan Lab M-IOT.",
+    bullets: [
+      "Mengelola arsip topik tugas akhir dan proyek telematika yang dikerjakan oleh asisten Laboratorium M-IOT",
+      "Memelihara arsip materi ujian tengah semester dan akhir semester untuk mata kuliah peminatan M-IOT",
+      "Menyusun materi pembelajaran untuk mata kuliah peminatan M-IOT"
+    ],
+    featured: false
+  },
+  {
+    id: "himatekkom-sec-treasurer-staff",
+    title: "HIMATEKKOM ITS",
+    role: "Staf Sekretaris & Bendahara - BPH",
+    period: "Mar 2024 – Mar 2025",
+    summary: "Mengoordinasikan administrasi umum himpunan, notulensi rapat, dan dokumentasi keuangan.",
+    bullets: [
+      "Berkoordinasi dengan Departemen Teknik Komputer mengenai administrasi organisasi",
+      "Menyusun surat keluar, notulensi rapat, dan pengajuan sertifikat untuk kegiatan organisasi",
+      "Memelihara arsip dokumen penting dalam format digital maupun fisik"
+    ],
+    featured: false
+  },
+  {
+    id: "himatekkom-cadre-sc",
+    title: "HIMATEKKOM ITS",
+    role: "Staf Steering Committee - Departemen Kaderisasi",
+    period: "Apr 2024 – Des 2024",
+    summary: "Merancang matriks penilaian dan jadwal alur perkembangan mahasiswa baru.",
+    bullets: [
+      "Berkoordinasi dengan IC (Instructor Committee) dan OC (Organizing Committee) terkait kegiatan kaderisasi",
+      "Merancang sistem penilaian mahasiswa dan linimasa kaderisasi secara keseluruhan",
+      "Berkoordinasi dengan mahasiswa dan Departemen Teknik Komputer mengenai kegiatan kaderisasi"
+    ],
+    featured: false
+  },
+  {
+    id: "banyubramanta-senior-finance",
+    title: "Tim Robotika Banyubramanta ITS",
+    role: "Staf Senior Keuangan - Divisi Official",
+    period: "Feb 2023 – Jul 2024",
+    summary: "Mengelola alokasi anggaran, pencatatan pengeluaran, dan laporan pertanggungjawaban keuangan.",
+    bullets: [
+      "Mencatat pemasukan dan pengeluaran tim",
+      "Mengelola alokasi anggaran tim",
+      "Menyusun laporan pertanggungjawaban (LPJ), laporan keuangan, dan rencana anggaran belanja (RAB)"
+    ],
+    featured: false
+  },
+  {
+    id: "banyubramanta-finance-intern",
+    title: "Tim Robotika Banyubramanta ITS",
+    role: "Magang Keuangan & Administrasi - Divisi Official",
+    period: "Nov 2022 – Jan 2023",
+    summary: "Menyusun proposal sponsorship, rencana administrasi, dan pembaruan konten media sosial.",
+    bullets: [
+      "Menyusun proposal sponsorship dan administrasi",
+      "Menyusun kontrak kerja sama, laporan pertanggungjawaban, dan rencana anggaran",
+      "Membuat konten untuk platform media sosial tim"
+    ],
+    featured: false
+  },
+  {
+    id: "its-robotics-club-member",
+    title: "ITS Robotics Club",
+    role: "Anggota",
+    period: "Sep 2022 – Feb 2023",
+    summary: "Berpartisipasi aktif dalam pelatihan dan workshop robotika.",
+    bullets: [
+      "Berpartisipasi aktif dalam program dan kegiatan organisasi"
+    ],
+    featured: false
+  },
+  {
+    id: "its-ibc-club-member",
+    title: "ITS IBC Club",
+    role: "Anggota",
+    period: "Sep 2022 – Sep 2023",
+    summary: "Mengikuti kegiatan pengembangan bisnis dan jejaring kemitraan.",
+    bullets: [
+      "Berpartisipasi aktif dalam program dan kegiatan organisasi"
+    ],
+    featured: false
+  }
+]
+
 export const committees: CareerItem[] = [
   {
     id: "mage-10-head-event",
@@ -231,6 +360,100 @@ export const committees: CareerItem[] = [
   }
 ]
 
+export const committeesId: CareerItem[] = [
+  {
+    id: "mage-10-head-event",
+    title: "Multimedia And Game Event 10 — Teknik Komputer ITS",
+    role: "Ketua Divisi Acara - Dewan Pengurus",
+    period: "Feb 2024 – Feb 2025",
+    summary: "Mengawasi workshop multimedia nasional, kompetisi robotika & IoT, gelar wicara pakar, dan pameran penutupan.",
+    bullets: [
+      "Membimbing staf dalam merancang dan mengeksekusi workshop IoT, Multimedia, dan Robotika",
+      "Membimbing staf dalam merencanakan dan melaksanakan opening ceremony, talkshow, pameran, dan closing event",
+      "Mengawasi dan mengevaluasi pelaksanaan workshop, talkshow, pameran, serta acara pembukaan dan penutupan"
+    ],
+    featured: true
+  },
+  {
+    id: "hgts-teaching-staff",
+    title: "HGTS X SE 8.0 — HIMATEKKOM ITS",
+    role: "Staf Divisi Pengajar",
+    period: "Okt 2023",
+    summary: "Merencanakan kurikulum dan mengajarkan konsep deteksi citra dan pose kepada siswa madrasah tsanawiyah.",
+    bullets: [
+      "Merancang konsep pembelajaran untuk siswa MTsN 19 Surabaya",
+      "Menyusun materi presentasi untuk kegiatan pengajaran",
+      "Mengajarkan materi deteksi citra dan deteksi pose kepada siswa MTsN 19 Surabaya"
+    ],
+    featured: true
+  },
+  {
+    id: "inclenation-mentor-staff",
+    title: "Inclenation 2023 — BEM FTEIC ITS",
+    role: "Staf Divisi Mentor",
+    period: "Jun 2023 – Agu 2023",
+    summary: "Mementori 20 mahasiswa baru dalam orientasi fakultas, integrasi tim, dan panduan akademik.",
+    bullets: [
+      "Mendampingi 20 mahasiswa baru dari 6 departemen dan 10 program studi di lingkungan FTEIC",
+      "Memberikan bimbingan dan dukungan kepada mahasiswa baru sepanjang rangkaian Inclenation 2023",
+      "Bertindak sebagai fasilitator internalisasi selama Inclenation 2023"
+    ],
+    featured: true
+  },
+  {
+    id: "mage-9-secretariat",
+    title: "Multimedia And Game Event 9 — Teknik Komputer ITS",
+    role: "Staf Divisi Kesekretariatan",
+    period: "Feb 2023 – Mar 2024",
+    summary: "Mengelola pendaftaran peserta, basis data kegiatan, dokumentasi, dan penanggung jawab salah satu workshop.",
+    bullets: [
+      "Mengelola pendataan dan dokumentasi kegiatan",
+      "Menyusun materi komunikasi, presensi kehadiran, formulir evaluasi, dan notulensi rapat",
+      "Bertindak sebagai penanggung jawab satu sesi workshop"
+    ],
+    featured: false
+  },
+  {
+    id: "isc-badminton-staff",
+    title: "ISC - Dies Natalis ke-63 ITS",
+    role: "Staf Badminton - Divisi Acara",
+    period: "Sep 2023 – Nov 2023",
+    summary: "Mengoordinasikan jadwal pertandingan, logistik lapangan, dan dokumentasi turnamen bulu tangkis antar-fakultas.",
+    bullets: [
+      "Memastikan kelancaran jalannya turnamen bulu tangkis antar-fakultas",
+      "Mengoordinasikan jadwal pertandingan dan fasilitas turnamen",
+      "Mengelola dokumentasi dan pencatatan hasil pertandingan"
+    ],
+    featured: false
+  },
+  {
+    id: "tdc-summit-fest",
+    title: "TDC Summit Fest 2023 — TDC ITS",
+    role: "Staf TDC For Startup - Divisi Acara",
+    period: "Agu 2023 – Nov 2023",
+    summary: "Menyusun petunjuk teknis pembinaan startup dan bertindak sebagai pembawa acara pada sesi bootcamp.",
+    bullets: [
+      "Menyusun petunjuk pelaksanaan dan teknis kegiatan mentoring bootcamp startup",
+      "Menyusun petunjuk pelaksanaan dan teknis kegiatan coaching bootcamp startup",
+      "Bertindak sebagai Master of Ceremony (MC) selama sesi mentoring bootcamp startup"
+    ],
+    featured: false
+  },
+  {
+    id: "sps-graduation-staff",
+    title: "SPS 128 — HIMATEKKOM ITS",
+    role: "Staf Divisi Acara",
+    period: "Jun 2023 – Sep 2023",
+    summary: "Menyelenggarakan acara syukuran wisuda FTE ITS dan bertindak sebagai narahubung ketua departemen.",
+    bullets: [
+      "Menyusun petunjuk teknis dan pelaksanaan Acara Syukuran Wisuda ke-128 FTE ITS",
+      "Menyusun susunan acara (rundown) Syukuran Wisuda ke-128 FTE ITS",
+      "Bertindak sebagai Liaison Officer (LO) untuk Kepala Departemen Teknik Komputer"
+    ],
+    featured: false
+  }
+]
+
 export const training: CareerItem[] = [
   {
     id: "lkmm-tm-training",
@@ -312,6 +535,87 @@ export const training: CareerItem[] = [
   }
 ]
 
+export const trainingId: CareerItem[] = [
+  {
+    id: "lkmm-tm-training",
+    title: "Latihan Keterampilan Manajemen Mahasiswa Tingkat Menengah (LKMM-TM)",
+    role: "Pelatihan Manajemen Strategis",
+    period: "Agu 2024",
+    summary: "Pelatihan penyusunan rencana strategis organisasi, formulasi kebijakan, dan audit diagnostik struktural.",
+    bullets: [
+      "Menyelesaikan sesi bersertifikat perumusan kebijakan organisasi tingkat menengah",
+      "Mengembangkan rencana manajemen strategis untuk organisasi kemahasiswaan",
+      "Melakukan audit diagnostik struktural untuk simulasi organisasi"
+    ],
+    featured: true
+  },
+  {
+    id: "lkmm-td-training",
+    title: "Latihan Keterampilan Manajemen Mahasiswa Tingkat Dasar (LKMM-TD)",
+    role: "Pelatihan Kepemimpinan & Operasional",
+    period: "Nov 2023",
+    summary: "Pelatihan koordinasi proyek dasar, manajemen risiko operasional, dan kepemimpinan tim.",
+    bullets: [
+      "Memperoleh kompetensi kepemimpinan dasar dan perencanaan proyek",
+      "Menyusun alokasi anggaran operasional dan matriks mitigasi risiko",
+      "Berpartisipasi dalam simulasi penyelarasan kerja tim kolaboratif"
+    ],
+    featured: true
+  },
+  {
+    id: "pkti-td-training",
+    title: "Pelatihan Karya Tulis Ilmiah Tingkat Dasar (PKTI-TD)",
+    role: "Karya Tulis Ilmiah & Riset",
+    period: "Okt 2022",
+    summary: "Mempelajari metodologi riset analitis, penyusunan proposal ilmiah terstruktur, dan tata sitasi formal.",
+    bullets: [
+      "Mempelajari metodologi penelitian akademik dan tinjauan pustaka",
+      "Menyusun proposal karya ilmiah sesuai standar formal",
+      "Mendalami tata letak penulisan akademik dan perkakas bibliografi"
+    ],
+    featured: true
+  },
+  {
+    id: "lkmm-pre-basic",
+    title: "Pelatihan Keterampilan Manajemen Mahasiswa Pra-Dasar",
+    role: "Fondasi Kepemimpinan",
+    period: "Sep 2023",
+    summary: "Mempelajari proses administrasi organisasi mahasiswa dan dasar komunikasi publik yang efektif.",
+    bullets: [
+      "Memahami konsep dasar manajemen untuk organisasi kemahasiswaan",
+      "Dilatih dalam gaya komunikasi dan penyampaian gagasan yang efektif",
+      "Mempraktikkan penjadwalan kelompok dan pemeriksaan administrasi standar"
+    ],
+    featured: false
+  },
+  {
+    id: "mage-workshop",
+    title: "Workshop Multimedia MAGE 9",
+    role: "Peserta Workshop",
+    period: "Agu 2023",
+    summary: "Mempelajari arsitektur basis data, integrasi logika multimedia interaktif, dan pengujian API.",
+    bullets: [
+      "Mempelajari arsitektur basis data tingkat menengah dan perintah SQL",
+      "Menghubungkan aplikasi backend lokal ke endpoint basis data",
+      "Mempelajari validasi API menggunakan lingkungan alat pengujian"
+    ],
+    featured: false
+  },
+  {
+    id: "lkmw-td-training",
+    title: "Latihan Keterampilan Manajemen Wirausaha Tingkat Dasar (LKMW-TD)",
+    role: "Pelatihan Kewirausahaan",
+    period: "Nov 2022",
+    summary: "Mempelajari kanvas model bisnis fundamental, validasi target pasar, dan perencanaan presentasi pitch.",
+    bullets: [
+      "Mempelajari pembuatan model bisnis dasar dan riset pasar",
+      "Mendalami strategi validasi produk tahap awal",
+      "Menyusun draft pitch startup dan asumsi proyeksi keuangan"
+    ],
+    featured: false
+  }
+]
+
 export interface AwardItem {
   title: string
   competition: string
@@ -352,3 +656,52 @@ export const awards: AwardItem[] = [
     ]
   }
 ]
+
+export const awardsId: AwardItem[] = [
+  {
+    title: "Juara 5 - Singapore Autonomous Underwater Vehicle Challenge (SAUVC) 2025",
+    competition: "Bersama Tim Banyubramanta ITS",
+    period: "Mar 2025",
+    summary: "Turut mengembangkan logika navigasi otonom untuk lokalisasi target dan pelacakan pipa bawah air.",
+    bullets: [
+      "Memvalidasi skrip inferensi computer vision bawah air pada berbagai kondisi pencahayaan",
+      "Merancang konfigurasi komunikasi telemetri yang andal melalui tautan serial dan akustik"
+    ]
+  },
+  {
+    title: "Juara 1 - Kontes Robot Bawah Air Indonesia (KKI) Tingkat Nasional 2024",
+    competition: "Bersama Tim Banyubramanta ITS",
+    period: "Jul 2024",
+    summary: "Mengintegrasikan jaringan deteksi YOLO Real-Time pada modul komputasi edge wahana.",
+    bullets: [
+      "Menulis rutinitas fail-safe perangkat keras waktu nyata untuk keamanan wahana saat kehilangan sinyal",
+      "Meraih peringkat pertama dari 40+ tim universitas dalam kecepatan dan presisi manuver"
+    ]
+  },
+  {
+    title: "Juara 3 - Kontes Robot Bawah Air Indonesia (KKI) Wilayah II 2024",
+    competition: "Bersama Tim Banyubramanta ITS",
+    period: "Jun 2024",
+    summary: "Memprogram lintasan waypoint grid pencarian untuk trajektori otonom wahana bawah air.",
+    bullets: [
+      "Menerapkan filter fusi sensor menggabungkan optical flow dengan laser altimeter",
+      "Mengonfigurasi saluran komunikasi telemetri terenkripsi ke stasiun kendali darat"
+    ]
+  }
+]
+
+export function getOrganizations(lang: "en" | "id" = "en"): CareerItem[] {
+  return lang === "id" ? organizationsId : organizations
+}
+
+export function getCommittees(lang: "en" | "id" = "en"): CareerItem[] {
+  return lang === "id" ? committeesId : committees
+}
+
+export function getTraining(lang: "en" | "id" = "en"): CareerItem[] {
+  return lang === "id" ? trainingId : training
+}
+
+export function getAwards(lang: "en" | "id" = "en"): AwardItem[] {
+  return lang === "id" ? awardsId : awards
+}

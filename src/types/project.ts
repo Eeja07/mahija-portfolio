@@ -8,7 +8,11 @@ export type ProjectCategory =
   | "AI"
   | "Systems"
   | "Security"
-  | "Academic";
+  | "Academic"
+  | "Infrastruktur"
+  | "Aplikasi Web"
+  | "Embedded System"
+  | string;
 
 export interface Project {
   id: string;

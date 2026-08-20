@@ -41,7 +41,7 @@ export default function ContinuousNetworkSpine() {
       {/* ========================================== */}
       <svg
         className="hidden sm:block w-full h-full"
-        viewBox="0 0 1440 6000"
+        viewBox="0 0 1440 7000"
         fill="none"
         preserveAspectRatio="none"
       >
@@ -49,10 +49,11 @@ export default function ContinuousNetworkSpine() {
           {/* Glowing laser gradient */}
           <linearGradient id="fiberLaserMain" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.9" />
-            <stop offset="25%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.8" />
-            <stop offset="50%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.9" />
-            <stop offset="75%" stopColor={isDark ? "#818cf8" : "#4f46e5"} stopOpacity="0.85" />
-            <stop offset="100%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.9" />
+            <stop offset="20%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.8" />
+            <stop offset="40%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.9" />
+            <stop offset="60%" stopColor={isDark ? "#818cf8" : "#4f46e5"} stopOpacity="0.85" />
+            <stop offset="80%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.9" />
+            <stop offset="100%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.95" />
           </linearGradient>
 
           {/* Filter for subtle laser bloom */}
@@ -62,14 +63,15 @@ export default function ContinuousNetworkSpine() {
           </filter>
         </defs>
 
-        {/* LEFT SPINAL OPTICAL CONDUIT */}
+        {/* LEFT SPINAL OPTICAL CONDUIT (Full Height down through Footer) */}
         <path
           d="M 120 0 
              C 120 400, 80 800, 140 1200 
              C 200 1600, 90 2000, 110 2400 
              C 130 2800, 70 3200, 130 3600 
              C 190 4000, 90 4400, 120 4800 
-             C 150 5200, 80 5600, 120 6000"
+             C 150 5200, 80 5600, 120 6000
+             C 120 6300, 120 6600, 120 7000"
           stroke={strokeBase}
           strokeWidth="3"
           strokeLinecap="round"
@@ -81,7 +83,8 @@ export default function ContinuousNetworkSpine() {
              C 200 1600, 90 2000, 110 2400 
              C 130 2800, 70 3200, 130 3600 
              C 190 4000, 90 4400, 120 4800 
-             C 150 5200, 80 5600, 120 6000"
+             C 150 5200, 80 5600, 120 6000
+             C 120 6300, 120 6600, 120 7000"
           stroke="url(#fiberLaserMain)"
           strokeWidth="2.5"
           strokeLinecap="round"
@@ -95,21 +98,23 @@ export default function ContinuousNetworkSpine() {
              C 206 1600, 96 2000, 116 2400 
              C 136 2800, 76 3200, 136 3600 
              C 196 4000, 96 4400, 126 4800 
-             C 156 5200, 86 5600, 126 6000"
+             C 156 5200, 86 5600, 126 6000
+             C 126 6300, 126 6600, 126 7000"
           stroke={isDark ? "rgba(16, 185, 129, 0.18)" : "rgba(16, 185, 129, 0.12)"}
           strokeWidth="1.5"
           strokeDasharray="10 16"
           className="animate-fiber-pulse"
         />
 
-        {/* RIGHT SPINAL OPTICAL CONDUIT */}
+        {/* RIGHT SPINAL OPTICAL CONDUIT (Full Height down through Footer) */}
         <path
           d="M 1320 0 
              C 1320 400, 1360 800, 1300 1200 
              C 1240 1600, 1350 2000, 1330 2400 
              C 1310 2800, 1370 3200, 1310 3600 
              C 1250 4000, 1350 4400, 1320 4800 
-             C 1290 5200, 1360 5600, 1320 6000"
+             C 1290 5200, 1360 5600, 1320 6000
+             C 1320 6300, 1320 6600, 1320 7000"
           stroke={strokeBase}
           strokeWidth="3"
           strokeLinecap="round"
@@ -121,7 +126,8 @@ export default function ContinuousNetworkSpine() {
              C 1240 1600, 1350 2000, 1330 2400 
              C 1310 2800, 1370 3200, 1310 3600 
              C 1250 4000, 1350 4400, 1320 4800 
-             C 1290 5200, 1360 5600, 1320 6000"
+             C 1290 5200, 1360 5600, 1320 6000
+             C 1320 6300, 1320 6600, 1320 7000"
           stroke="url(#fiberLaserMain)"
           strokeWidth="2.5"
           strokeLinecap="round"
@@ -135,7 +141,8 @@ export default function ContinuousNetworkSpine() {
              C 1234 1600, 1344 2000, 1324 2400 
              C 1304 2800, 1364 3200, 1304 3600 
              C 1244 4000, 1344 4400, 1314 4800 
-             C 1284 5200, 1354 5600, 1314 6000"
+             C 1284 5200, 1354 5600, 1314 6000
+             C 1314 6300, 1314 6600, 1314 7000"
           stroke={isDark ? "rgba(0, 240, 255, 0.20)" : "rgba(37, 99, 235, 0.12)"}
           strokeWidth="1.5"
           strokeDasharray="10 16"
@@ -147,21 +154,36 @@ export default function ContinuousNetworkSpine() {
         <path d="M 1330 2400 C 1000 2480, 400 2320, 110 2400" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
         <path d="M 130 3600 C 400 3680, 1000 3520, 1310 3600" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
         <path d="M 1320 4800 C 1000 4880, 400 4720, 120 4800" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
+        <path d="M 120 6000 C 400 6080, 1000 5920, 1320 6000" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
+        <path d="M 120 6850 C 400 6900, 1000 6800, 1320 6850" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
 
-        {/* JUNCTION NODES */}
+        {/* EXACT MATHEMATICALLY ALIGNED JUNCTION NODES */}
         {[
-          { cx: 120, cy: 300 },
+          // Top to mid sections
+          { cx: 115, cy: 300 },
           { cx: 140, cy: 1200 },
           { cx: 110, cy: 2400 },
           { cx: 130, cy: 3600 },
           { cx: 120, cy: 4800 },
-          { cx: 120, cy: 5700 },
-          { cx: 1320, cy: 300 },
+          // Get in Touch section: precisely computed curve point
+          { cx: 107, cy: 5700 },
+          { cx: 120, cy: 6000 },
+          // Footer cluster termination points:
+          { cx: 120, cy: 6500 },
+          { cx: 120, cy: 6850 },
+
+          // Right side
+          { cx: 1325, cy: 300 },
           { cx: 1300, cy: 1200 },
           { cx: 1330, cy: 2400 },
           { cx: 1310, cy: 3600 },
           { cx: 1320, cy: 4800 },
-          { cx: 1320, cy: 5700 },
+          // Get in Touch section: precisely computed curve point
+          { cx: 1333, cy: 5700 },
+          { cx: 1320, cy: 6000 },
+          // Footer cluster termination points:
+          { cx: 1320, cy: 6500 },
+          { cx: 1320, cy: 6850 },
         ].map((node, i) => (
           <g key={i}>
             <circle cx={node.cx} cy={node.cy} r="7" fill={isDark ? "#090d16" : "#ffffff"} stroke={strokeGlow} strokeWidth="2" />
@@ -175,7 +197,7 @@ export default function ContinuousNetworkSpine() {
       {/* ========================================== */}
       <svg
         className="block sm:hidden w-full h-full"
-        viewBox="0 0 390 6000"
+        viewBox="0 0 390 7000"
         fill="none"
         preserveAspectRatio="none"
       >
@@ -189,12 +211,12 @@ export default function ContinuousNetworkSpine() {
 
         {/* Clean Left Side Rail (Gutter at x=10) */}
         <path
-          d="M 10 0 L 10 6000"
+          d="M 10 0 L 10 7000"
           stroke={strokeBase}
           strokeWidth="2"
         />
         <motion.path
-          d="M 10 0 L 10 6000"
+          d="M 10 0 L 10 7000"
           stroke="url(#fiberLaserMobile)"
           strokeWidth="2"
           style={{ pathLength }}
@@ -202,19 +224,19 @@ export default function ContinuousNetworkSpine() {
 
         {/* Clean Right Side Rail (Gutter at x=380) */}
         <path
-          d="M 380 0 L 380 6000"
+          d="M 380 0 L 380 7000"
           stroke={strokeBase}
           strokeWidth="2"
         />
         <motion.path
-          d="M 380 0 L 380 6000"
+          d="M 380 0 L 380 7000"
           stroke="url(#fiberLaserMobile)"
           strokeWidth="2"
           style={{ pathLength }}
         />
 
-        {/* Subtle Junction Micro-Dots on Mobile Rails */}
-        {[600, 1400, 2200, 3000, 3800, 4600, 5400].map((y, i) => (
+        {/* Subtle Junction Micro-Dots on Mobile Rails (Down to Footer) */}
+        {[600, 1400, 2200, 3000, 3800, 4600, 5400, 6200, 6850].map((y, i) => (
           <g key={i}>
             <circle cx="10" cy={y} r="3" fill={isDark ? "#00f0ff" : "#2563eb"} />
             <circle cx="380" cy={y} r="3" fill={isDark ? "#10b981" : "#059669"} />

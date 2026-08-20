@@ -54,7 +54,10 @@ export default function Home() {
 
       {/* MAIN PORTFOLIO SECTIONS (Unveiled after entering) */}
       {isEntered && (
-        <>
+        <div className="relative w-full flex flex-col min-h-screen">
+          {/* Continuous Spatial Network Fiber Spine spanning all sections and footer */}
+          <ContinuousNetworkSpine />
+
           {/* Global Navigation Bar */}
           <header className="w-full">
             <Navbar onLogoClick={() => setIsEntered(false)} />
@@ -62,9 +65,6 @@ export default function Home() {
 
           {/* Main content sections in complete preserved semantic order */}
           <main className="relative z-10 flex-1 flex flex-col w-full animate-in fade-in slide-in-from-bottom-4 duration-300">
-            {/* Continuous Spatial Network Fiber Spine */}
-            <ContinuousNetworkSpine />
-            
             <Hero />
             <FeaturedEngineering />
             <Experience />
@@ -80,7 +80,7 @@ export default function Home() {
 
           {/* Semantic Footer */}
           <Footer />
-        </>
+        </div>
       )}
     </div>
   )

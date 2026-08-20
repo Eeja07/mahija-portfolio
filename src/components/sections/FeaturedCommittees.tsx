@@ -2,7 +2,7 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import { committees } from "@/data/career"
+import { getCommittees } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
@@ -38,7 +38,8 @@ export default function FeaturedCommittees() {
     },
   }
 
-  const featuredComms = committees.filter((comm) => comm.featured)
+  const allComms = getCommittees(language)
+  const featuredComms = allComms.filter((comm) => comm.featured)
 
   return (
     <section

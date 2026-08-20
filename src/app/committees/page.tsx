@@ -4,13 +4,19 @@ import React from "react"
 import { motion } from "motion/react"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
-import { committees } from "@/data/career"
+import { getCommittees } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
 import { NetworkNode } from "@/components/network/NetworkNode"
 import TopologyBackground from "@/components/network/TopologyBackground"
+import { useLanguage } from "@/context/LanguageContext"
+import { translations } from "@/data/translations"
 import { Award } from "lucide-react"
 
 export default function CommitteesArchive() {
+  const { language } = useLanguage()
+  const t = translations[language].archives
+  const commList = getCommittees(language)
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -51,14 +57,14 @@ export default function CommitteesArchive() {
                 variant="outline" 
                 className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
               >
-                Complete Task Force Archive
+                {t.committeeBadge}
               </Badge>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground">
-              Committee Involvement
+              {t.committeeTitle}
             </h1>
             <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
-              A comprehensive archive of all my committee appointments, event coordination, and systems logistics support.
+              {t.committeeSub}
             </p>
           </div>
 
@@ -69,7 +75,7 @@ export default function CommitteesArchive() {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {committees.map((comm, idx) => (
+            {commList.map((comm, idx) => (
               <motion.div key={comm.id} variants={itemVariants} className="h-full">
                 <NetworkNode 
                   nodeId={`TASK // COMM-0${idx + 1}`}
@@ -78,7 +84,9 @@ export default function CommitteesArchive() {
                 >
                   <div className="flex flex-col gap-3.5">
                     <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                      <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">Committee</span>
+                      <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
+                        {language === "id" ? "Kepanitiaan" : "Committee"}
+                      </span>
                       <span>{comm.period}</span>
                     </div>
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { projects } from "@/data/projects"
+import { getProjects } from "@/data/projects"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
@@ -22,15 +22,18 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function FeaturedEngineering() {
   const [activeArchId, setActiveArchId] = useState<string | null>(null)
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({})
+  const { language } = useLanguage()
+  const t = translations[language].projects
 
   const toggleArchitecture = (id: string) => {
     setActiveArchId(activeArchId === id ? null : id)
   }
 
   // Filter precisely to the 3 requested projects
+  const allProjects = getProjects(language)
   const allowedProjectIds = ["smart-cctv", "human-search-drone", "untern-platform"]
   const featuredProjects = allowedProjectIds
-    .map((id) => projects.find((p) => p.id === id))
+    .map((id) => allProjects.find((p) => p.id === id))
     .filter((p): p is NonNullable<typeof p> => !!p)
 
   const itemVariants = {
@@ -68,9 +71,6 @@ export default function FeaturedEngineering() {
     if (id === "human-search-drone") return "NODE // AUTONOMOUS-DRONE-02"
     return "NODE // CLOUD-PLATFORM-03"
   }
-
-  const { language } = useLanguage()
-  const t = translations[language].projects
 
   return (
     <section
@@ -243,7 +243,7 @@ export default function FeaturedEngineering() {
                         {project.problem && (
                           <div className="flex flex-col text-left">
                             <span className="font-mono text-xs uppercase tracking-wider text-blue-600 dark:text-cyan-400 font-semibold flex items-center gap-1.5">
-                              <span>&gt;</span> The Problem
+                              <span>&gt;</span> {t.theProblem}
                             </span>
                             <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
                               {project.problem}
@@ -253,7 +253,7 @@ export default function FeaturedEngineering() {
                         {project.tradeoffs && (
                           <div className="flex flex-col text-left">
                             <span className="font-mono text-xs uppercase tracking-wider text-blue-600 dark:text-cyan-400 font-semibold flex items-center gap-1.5">
-                              <span>&gt;</span> Trade-offs & Constraints
+                              <span>&gt;</span> {t.tradeoffs}
                             </span>
                             <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
                               {project.tradeoffs}
@@ -263,7 +263,7 @@ export default function FeaturedEngineering() {
                         {project.outcome && (
                           <div className="flex flex-col text-left">
                             <span className="font-mono text-xs uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
-                              <span>&gt;</span> Outcome & Result
+                              <span>&gt;</span> {t.outcome}
                             </span>
                             <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
                               {project.outcome}

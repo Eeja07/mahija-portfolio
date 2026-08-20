@@ -57,3 +57,49 @@ export const infrastructureData: Infrastructure = {
     },
   ],
 }
+
+export const infrastructureDataId: Infrastructure = {
+  domain: "eeja.fun",
+  host: "Intel NUC Box (x86_64)",
+  cpu: "Intel Core i5-8259U (4C/8T @ 3.80GHz)",
+  os: "Debian 12 (Bookworm)",
+  container_runtime: "Docker Compose",
+  reverse_proxy: "Nginx Proxy Manager",
+  tunnel: "Cloudflared",
+  services: [
+    {
+      name: "Portfolio",
+      role: "Aplikasi Web",
+      status: "active",
+      description: "Portofolio Next.js teroptimasi yang menyajikan komponen interaktif.",
+    },
+    {
+      name: "Laravel",
+      role: "Router API Backend",
+      status: "active",
+      description: "Framework RESTful inti yang menangani serialisasi data dan permintaan klien.",
+    },
+    {
+      name: "EMQX",
+      role: "Broker MQTT",
+      status: "active",
+      description: "Broker MQTT throughput tinggi yang menerima stream telemetri dari node edge IoT.",
+    },
+    {
+      name: "MySQL",
+      role: "Basis Data Relasional",
+      status: "active",
+      description: "Mesin penyimpanan relasional yang memelihara data pengguna dan pengaturan sistem.",
+    },
+    {
+      name: "MinIO",
+      role: "Penyimpanan Objek S3",
+      status: "active",
+      description: "Repositori penyimpanan objek kompatibel S3 untuk unggahan berkas dan pencadangan sistem.",
+    },
+  ],
+}
+
+export function getInfrastructure(lang: "en" | "id" = "en"): Infrastructure {
+  return lang === "id" ? infrastructureDataId : infrastructureData
+}

@@ -2,7 +2,14 @@ export type ExperienceCategory =
   | "Internship"
   | "Teaching Assistant"
   | "Leadership"
-  | "Research";
+  | "Research"
+  | "Magang"
+  | "Magang Industri"
+  | "Asisten Pengajar"
+  | "Instruktur"
+  | "Kepemimpinan"
+  | "Riset"
+  | string;
 
 export interface Experience {
   id: string;

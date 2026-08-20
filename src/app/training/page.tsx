@@ -4,13 +4,19 @@ import React from "react"
 import { motion } from "motion/react"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
-import { training } from "@/data/career"
+import { getTraining } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
 import { NetworkNode } from "@/components/network/NetworkNode"
 import TopologyBackground from "@/components/network/TopologyBackground"
+import { useLanguage } from "@/context/LanguageContext"
+import { translations } from "@/data/translations"
 import { GraduationCap } from "lucide-react"
 
 export default function TrainingArchive() {
+  const { language } = useLanguage()
+  const t = translations[language].archives
+  const trainingList = getTraining(language)
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -51,14 +57,14 @@ export default function TrainingArchive() {
                 variant="outline" 
                 className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
               >
-                Complete Protocol Certifications
+                {t.trainingBadge}
               </Badge>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground">
-              Training & Workshops
+              {t.trainingTitle}
             </h1>
             <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
-              A comprehensive archive of all my middle-level management training courses, leadership workshops, and science writing certifications.
+              {t.trainingSub}
             </p>
           </div>
 
@@ -69,8 +75,8 @@ export default function TrainingArchive() {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {training.map((t, idx) => (
-              <motion.div key={t.id} variants={itemVariants} className="h-full">
+            {trainingList.map((item, idx) => (
+              <motion.div key={item.id} variants={itemVariants} className="h-full">
                 <NetworkNode 
                   nodeId={`CERT // MOD-0${idx + 1}`}
                   nodeType="TRAINING"
@@ -78,24 +84,24 @@ export default function TrainingArchive() {
                 >
                   <div className="flex flex-col gap-3.5">
                     <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                      <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">{t.role}</span>
-                      <span>{t.period}</span>
+                      <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">{item.role}</span>
+                      <span>{item.period}</span>
                     </div>
 
                     <div>
                       <h2 className="font-sans text-xl font-bold text-foreground tracking-tight leading-tight flex items-center gap-2">
                         <GraduationCap className="size-4 text-zinc-400 shrink-0" />
-                        <span>{t.title}</span>
+                        <span>{item.title}</span>
                       </h2>
                     </div>
 
                     <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed">
-                      {t.summary}
+                      {item.summary}
                     </p>
 
-                    {t.bullets && t.bullets.length > 0 && (
+                    {item.bullets && item.bullets.length > 0 && (
                       <ul className="list-disc pl-4 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 flex flex-col gap-1.5 leading-relaxed mt-2">
-                        {t.bullets.map((bullet, i) => (
+                        {item.bullets.map((bullet, i) => (
                           <li key={i}>{bullet}</li>
                         ))}
                       </ul>

@@ -2,7 +2,7 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import { organizations } from "@/data/career"
+import { getOrganizations } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
@@ -38,7 +38,8 @@ export default function FeaturedOrganizations() {
     },
   }
 
-  const featuredOrgs = organizations.filter((org) => org.featured)
+  const allOrgs = getOrganizations(language)
+  const featuredOrgs = allOrgs.filter((org) => org.featured)
 
   return (
     <section

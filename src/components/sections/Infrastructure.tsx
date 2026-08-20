@@ -2,13 +2,17 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import { infrastructureData } from "@/data/infrastructure"
+import { getInfrastructure } from "@/data/infrastructure"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
+import { useLanguage } from "@/context/LanguageContext"
 import { Server, Cpu, ShieldCheck, Database, Layers, Radio, HardDrive, Terminal } from "lucide-react"
 
 export default function Infrastructure() {
+  const { language } = useLanguage()
+  const data = getInfrastructure(language)
+  const isEn = language === "en"
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -64,17 +68,19 @@ export default function Infrastructure() {
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
             >
-              Self-Hosted Bare-Metal Topology
+              {isEn ? "Self-Hosted Bare-Metal Topology" : "Topologi Bare-Metal Mandiri"}
             </Badge>
           </div>
           <h2 
             id="infrastructure-heading"
             className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground"
           >
-            Live Cluster Infrastructure
+            {isEn ? "Live Cluster Infrastructure" : "Infrastruktur Klaster Aktif"}
           </h2>
           <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
-            Real production node architecture running continuously on self-hosted Debian 12 hardware via zero-trust ingress tunnels.
+            {isEn
+              ? "Real production node architecture running continuously on self-hosted Debian 12 hardware via zero-trust ingress tunnels."
+              : "Arsitektur node produksi nyata yang berjalan terus menerus pada perangkat keras Debian 12 mandiri via zero-trust ingress tunnel."}
           </p>
         </div>
 
@@ -88,7 +94,7 @@ export default function Infrastructure() {
         >
           <NetworkSubsystemNode
             nodeId="CLUSTER-01 // BARE-METAL HOST"
-            subsystem="HOST RACK"
+            subsystem={isEn ? "HOST RACK" : "RAK HOST"}
             status="healthy"
             className="p-6 sm:p-8"
           >
@@ -97,13 +103,13 @@ export default function Infrastructure() {
               <div className="flex flex-col gap-1.5">
                 <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
                   <Server className="size-3.5 text-blue-500 dark:text-cyan-400" />
-                  Host Platform
+                  {isEn ? "Host Platform" : "Platform Host"}
                 </span>
                 <span className="font-sans text-base font-bold text-foreground">
-                  {infrastructureData.host}
+                  {data.host}
                 </span>
                 <span className="font-mono text-xs text-zinc-500">
-                  {infrastructureData.os}
+                  {data.os}
                 </span>
               </div>
 
@@ -111,13 +117,13 @@ export default function Infrastructure() {
               <div className="flex flex-col gap-1.5">
                 <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
                   <Cpu className="size-3.5 text-emerald-500" />
-                  Processor Architecture
+                  {isEn ? "Processor Architecture" : "Arsitektur Prosesor"}
                 </span>
                 <span className="font-sans text-base font-bold text-foreground">
-                  {infrastructureData.cpu}
+                  {data.cpu}
                 </span>
                 <span className="font-mono text-xs text-zinc-500">
-                  Runtime: {infrastructureData.container_runtime}
+                  Runtime: {data.container_runtime}
                 </span>
               </div>
 
@@ -125,13 +131,13 @@ export default function Infrastructure() {
               <div className="flex flex-col gap-1.5">
                 <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
                   <ShieldCheck className="size-3.5 text-emerald-500" />
-                  Ingress & Routing
+                  {isEn ? "Ingress & Routing" : "Ingress & Routing"}
                 </span>
                 <span className="font-sans text-base font-bold text-foreground">
-                  {infrastructureData.tunnel} Tunnel
+                  {data.tunnel} Tunnel
                 </span>
                 <span className="font-mono text-xs text-zinc-500">
-                  Proxy: {infrastructureData.reverse_proxy}
+                  Proxy: {data.reverse_proxy}
                 </span>
               </div>
 
@@ -139,15 +145,15 @@ export default function Infrastructure() {
               <div className="flex flex-col gap-1.5">
                 <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
                   <Layers className="size-3.5 text-cyan-500" />
-                  Production Domain
+                  {isEn ? "Production Domain" : "Domain Produksi"}
                 </span>
                 <a
-                  href={`https://${infrastructureData.domain}`}
+                  href={`https://${data.domain}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-mono text-base font-bold text-blue-600 dark:text-cyan-400 hover:underline flex items-center gap-1"
                 >
-                  <span>{infrastructureData.domain}</span>
+                  <span>{data.domain}</span>
                   <span>&nearr;</span>
                 </a>
                 <span className="font-mono text-xs text-emerald-500 flex items-center gap-1">
@@ -167,7 +173,7 @@ export default function Infrastructure() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {infrastructureData.services.map((service) => (
+          {data.services.map((service) => (
             <motion.div key={service.name} variants={itemVariants} className="h-full">
               <NetworkSubsystemNode
                 nodeId={`SVC // ${service.name.toUpperCase()}`}

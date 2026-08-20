@@ -4,13 +4,15 @@ import React, { useEffect, useRef, useState, useCallback } from "react"
 import * as THREE from "three"
 import { useTheme } from "next-themes"
 import { useLanguage } from "@/context/LanguageContext"
+import { translations } from "@/data/translations"
 
 interface SubsystemNodeData {
   id: string
   name: string
+  deviceType: string
   targetId: string
   position: THREE.Vector3
-  color: number
+  cableColor: number
   role: string
   portIndex: number
   mesh?: THREE.Group
@@ -26,11 +28,14 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
   const { language } = useLanguage()
   const [hoveredNode, setHoveredNode] = useState<{
     name: string
+    deviceType: string
     role: string
     targetId: string
   } | null>(null)
   const [isInteracting, setIsInteracting] = useState(false)
   const isDark = resolvedTheme !== "light"
+  const isEn = language === "en"
+  const t = translations[language].gateway
 
   const handleNodeClick = useCallback(
     (targetId: string) => {
@@ -66,12 +71,12 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       1000
     )
 
-    // Dynamic camera distance: pull back smoothly on portrait mobile screens so center rack + all satellites fit
+    // Dynamic camera distance for mobile & desktop fitting
     const calculateCameraZ = (aspect: number) => {
       if (aspect < 0.5) return 44
-      if (aspect < 0.7) return 37
-      if (aspect < 1.0) return 30
-      if (aspect < 1.3) return 26
+      if (aspect < 0.7) return 38
+      if (aspect < 1.0) return 31
+      if (aspect < 1.3) return 27
       return 23
     }
     camera.position.set(0, 0.3, calculateCameraZ(initialAspect))
@@ -84,53 +89,47 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     renderer.setSize(container.clientWidth, container.clientHeight)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.toneMapping = THREE.ACESFilmicToneMapping
-    renderer.toneMappingExposure = isDark ? 1.7 : 1.15
+    renderer.toneMappingExposure = isDark ? 1.7 : 1.2
     container.appendChild(renderer.domElement)
 
     // --- LIGHTING RIG ---
-    // Ambient Light
     const ambientLight = new THREE.AmbientLight(
       isDark ? 0x475569 : 0xffffff,
-      isDark ? 4.2 : 2.6
+      isDark ? 4.0 : 2.5
     )
     scene.add(ambientLight)
 
-    // Key Light for Center Server Rack
     const keyLight = new THREE.DirectionalLight(
       isDark ? 0xbae6fd : 0x2563eb,
       isDark ? 6.5 : 3.8
     )
-    keyLight.position.set(2, 7, 15)
+    keyLight.position.set(2, 8, 15)
     scene.add(keyLight)
 
-    // Point Light directly in front of Center Rack
     const centerPointLight = new THREE.PointLight(
       isDark ? 0x00f0ff : 0x38bdf8,
-      isDark ? 8.0 : 4.5,
+      isDark ? 7.5 : 4.2,
       35
     )
     centerPointLight.position.set(0, 0, 9)
     scene.add(centerPointLight)
 
-    // Dedicated Point Light illuminating the Left Satellite Cluster
     const leftClusterLight = new THREE.PointLight(
       isDark ? 0x38bdf8 : 0x0284c7,
-      isDark ? 7.0 : 4.0,
+      isDark ? 6.5 : 3.8,
       25
     )
     leftClusterLight.position.set(-8.5, 0, 6)
     scene.add(leftClusterLight)
 
-    // Dedicated Point Light illuminating the Right Satellite Cluster
     const rightClusterLight = new THREE.PointLight(
       isDark ? 0x10b981 : 0x059669,
-      isDark ? 7.0 : 4.0,
+      isDark ? 6.5 : 3.8,
       25
     )
     rightClusterLight.position.set(8.5, 0, 6)
     scene.add(rightClusterLight)
 
-    // Directional Rim Lights to Outline 3D Silhouettes in Dark Mode
     const rimLightLeft = new THREE.DirectionalLight(
       isDark ? 0x67e8f9 : 0x0284c7,
       isDark ? 4.5 : 2.2
@@ -155,11 +154,10 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     const chassisGroup = new THREE.Group()
     networkCoreGroup.add(chassisGroup)
 
-    // High-visibility metallic brushed titanium/steel in Dark Mode
     const chassisMaterial = new THREE.MeshStandardMaterial({
       color: isDark ? 0x475569 : 0xe2e8f0,
       metalness: 0.85,
-      roughness: 0.2,
+      roughness: 0.25,
     })
 
     const frontPanelMaterial = new THREE.MeshStandardMaterial({
@@ -171,42 +169,40 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     const portMaterial = new THREE.MeshStandardMaterial({
       color: isDark ? 0x00f0ff : 0x2563eb,
       emissive: isDark ? 0x00f0ff : 0x2563eb,
-      emissiveIntensity: isDark ? 1.5 : 0.8,
+      emissiveIntensity: isDark ? 1.4 : 0.8,
       metalness: 0.7,
     })
-
-    const isEn = language === "en"
 
     // 3 Stacked Server Blades
     const bladeYPositions = [-1.4, 0, 1.4]
     const ledMeshes: THREE.Mesh[] = []
 
     bladeYPositions.forEach((yPos) => {
-      // Main Blade Body (Raycastable for Home Section)
       const bladeGeom = new THREE.BoxGeometry(4.6, 1.05, 3.4)
       const bladeMesh = new THREE.Mesh(bladeGeom, chassisMaterial)
       bladeMesh.position.set(0, yPos, 0)
       bladeMesh.userData = {
         targetId: "#hero",
-        name: isEn ? "Core Server" : "Server Utama",
-        role: isEn ? "Home // Developer Identity & Systems" : "Beranda // Identitas Pengembang & Sistem",
+        name: isEn ? "Core Server Rack" : "Rak Server Utama",
+        deviceType: isEn ? "Central Host Cluster" : "Klaster Server Host",
+        role: isEn ? "Developer Identity & System Overview" : "Identitas Pengembang & Ringkasan Sistem",
       }
       chassisGroup.add(bladeMesh)
       raycastableMeshes.push(bladeMesh)
 
-      // Front Faceplate
       const faceGeom = new THREE.BoxGeometry(4.5, 0.92, 0.12)
       const faceMesh = new THREE.Mesh(faceGeom, frontPanelMaterial)
       faceMesh.position.set(0, yPos, 1.72)
       faceMesh.userData = {
         targetId: "#hero",
-        name: isEn ? "Core Server" : "Server Utama",
-        role: isEn ? "Home // Developer Identity & Systems" : "Beranda // Identitas Pengembang & Sistem",
+        name: isEn ? "Core Server Rack" : "Rak Server Utama",
+        deviceType: isEn ? "Central Host Cluster" : "Klaster Server Host",
+        role: isEn ? "Developer Identity & System Overview" : "Identitas Pengembang & Ringkasan Sistem",
       }
       chassisGroup.add(faceMesh)
       raycastableMeshes.push(faceMesh)
 
-      // Rows of SFP Optical Ports
+      // Rows of SFP+ Optical Ports
       for (let p = -1.8; p <= 1.8; p += 0.4) {
         const portGeom = new THREE.BoxGeometry(0.24, 0.16, 0.14)
         const portMesh = new THREE.Mesh(portGeom, portMaterial)
@@ -247,145 +243,342 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       chassisGroup.add(pillar)
     })
 
-    // --- 2. SATELLITE SUBSYSTEM HARDWARE MODULES (9 Active Sections) ---
-    const cyanColor = isDark ? 0x00f0ff : 0x0284c7
-    const blueColor = isDark ? 0x38bdf8 : 0x2563eb
-    const emeraldColor = isDark ? 0x10b981 : 0x059669
-    const indigoColor = isDark ? 0x818cf8 : 0x4f46e5
+    // --- 2. SATELLITE SUBSYSTEM HARDWARE MODULES (9 Distinct Network Models) ---
+    // Realistic Real-World Patch Cable Colors
+    const colorCat6Blue = 0x2563eb       // Royal Cat6 Ethernet Blue
+    const colorAquaOM3 = 0x06b6d4        // OM3 Multimode Aqua Cyan
+    const colorSinglemodeYellow = 0xeab308 // OS2 Singlemode Fiber Yellow
+    const colorSignalGreen = 0x10b981    // Management Green
+    const colorOrangeOM2 = 0xea580c      // OM2 Fiber Optic Orange
+    const colorPurple = 0x8b5cf6         // High-Flex Violet Patch
+    const colorSlateGray = 0x64748b      // Industrial Shielded Gray
+    const colorFireRed = 0xdc2626        // Firewall Red Uplink
+    const colorTealONT = 0x0d9488        // Telecom Drop Teal
 
     const subsystemNodes: SubsystemNodeData[] = [
       // Left Side Nodes (4 Nodes)
       {
         id: "skills",
-        name: isEn ? "Skills" : "Keahlian",
-        role: isEn ? "Technical Capabilities Matrix" : "Matriks Kemampuan Teknis",
+        name: isEn ? "Skills Matrix" : "Keahlian Teknis",
+        deviceType: isEn ? "24-Port Patch Panel & Bus" : "Patch Panel 24-Port & Bus",
+        role: isEn ? "Technical Capabilities & Stack Architecture" : "Kemampuan Teknis & Arsitektur Stack",
         targetId: "#skills",
         position: new THREE.Vector3(-8.2, 4.5, -1.2),
-        color: blueColor,
+        cableColor: colorCat6Blue,
         portIndex: 0,
       },
       {
         id: "projects",
         name: isEn ? "Projects" : "Proyek Rekayasa",
-        role: isEn ? "IoT, AI & Distributed Systems" : "Sistem IoT, AI & Robotika",
+        deviceType: isEn ? "1U Core Managed Switch" : "Switch Terkelola 1U",
+        role: isEn ? "IoT Systems, Edge AI & Distributed Systems" : "Sistem IoT, Edge AI & Sistem Terdistribusi",
         targetId: "#featured-engineering",
         position: new THREE.Vector3(-8.8, 1.8, 0.8),
-        color: cyanColor,
+        cableColor: colorAquaOM3,
         portIndex: 1,
       },
       {
         id: "organizations",
         name: isEn ? "Organizations" : "Organisasi",
-        role: isEn ? "Leadership & Cluster Operations" : "Kepemimpinan & Operasional",
+        deviceType: isEn ? "Dual-Band Wireless AP (WAP)" : "Access Point Nirkabel (WAP)",
+        role: isEn ? "Leadership, Laboratory & Student Clusters" : "Kepemimpinan, Laboratorium & Himpunan",
         targetId: "#organizations",
         position: new THREE.Vector3(-9.0, -1.0, -0.5),
-        color: blueColor,
+        cableColor: colorPurple,
         portIndex: 2,
       },
       {
         id: "training",
-        name: isEn ? "Training" : "Pelatihan & Sertifikasi",
-        role: isEn ? "Certified Engineering Protocols" : "Protokol & Sertifikasi Rekayasa",
+        name: isEn ? "Training & Certs" : "Pelatihan & Sertifikasi",
+        deviceType: isEn ? "Industrial PoE+ Power Injector" : "Injektor Daya PoE+ Industri",
+        role: isEn ? "Certified Management & Technical Workshops" : "Workshop Manajemen & Sertifikasi Teknis",
         targetId: "#training",
         position: new THREE.Vector3(-8.2, -4.2, 0.6),
-        color: emeraldColor,
+        cableColor: colorSinglemodeYellow,
         portIndex: 3,
       },
 
       // Right Side Nodes (5 Nodes)
       {
         id: "experience",
-        name: isEn ? "Experience" : "Pengalaman",
-        role: isEn ? "Career Routing & Packet Hops" : "Riwayat Karier & Industri",
+        name: isEn ? "Experience" : "Pengalaman Kerja",
+        deviceType: isEn ? "Multi-WAN Edge Gateway Router" : "Router Gateway Multi-WAN",
+        role: isEn ? "Career Routing & Technical Internships" : "Riwayat Karier & Magang Industri",
         targetId: "#experience",
         position: new THREE.Vector3(8.2, 4.5, -1.2),
-        color: emeraldColor,
+        cableColor: colorSignalGreen,
         portIndex: 4,
       },
       {
         id: "awards",
-        name: isEn ? "Awards" : "Penghargaan",
-        role: isEn ? "Engineering Championships" : "Prestasi & Kejuaraan Nasional",
+        name: isEn ? "Awards & Honors" : "Penghargaan & Prestasi",
+        deviceType: isEn ? "Hardware Security Firewall" : "Firewall Keamanan Perangkat Keras",
+        role: isEn ? "National Robotics & Engineering Championships" : "Kejuaraan Robotika & Prestasi Nasional",
         targetId: "#awards",
         position: new THREE.Vector3(8.8, 1.8, 0.8),
-        color: cyanColor,
+        cableColor: colorOrangeOM2,
         portIndex: 5,
       },
       {
         id: "repositories",
         name: isEn ? "Repositories" : "Repositori Kode",
-        role: isEn ? "46 Open Source Codebases" : "46 Repositori Kode Terbuka",
+        deviceType: isEn ? "NAS / SAN High-Density Storage" : "Storage Array NAS / SAN",
+        role: isEn ? "46 Public Open-Source Codebases" : "46 Repositori Kode Terbuka",
         targetId: "#repositories",
         position: new THREE.Vector3(9.0, -1.0, -0.5),
-        color: blueColor,
+        cableColor: colorSlateGray,
         portIndex: 6,
       },
       {
         id: "resume",
-        name: isEn ? "Resume" : "Curriculum Vitae",
-        role: isEn ? "Download Curriculum Vitae (EN/ID)" : "Unduh Curriculum Vitae (EN/ID)",
+        name: isEn ? "Curriculum Vitae" : "Curriculum Vitae",
+        deviceType: isEn ? "Console Access Terminal Server" : "Terminal Server Konsol Manajemen",
+        role: isEn ? "Download Professional PDF (EN / ID)" : "Unduh PDF Profesional (EN / ID)",
         targetId: "#resume",
         position: new THREE.Vector3(8.2, -3.6, 0.6),
-        color: indigoColor,
+        cableColor: colorFireRed,
         portIndex: 7,
       },
       {
         id: "contact",
-        name: isEn ? "Contact" : "Kontak",
-        role: isEn ? "Direct Communication Sockets" : "Kanal Komunikasi Langsung",
+        name: isEn ? "Get in Touch" : "Hubungi Saya",
+        deviceType: isEn ? "Fiber Optical Terminal (ONT)" : "Terminal Jaringan Optik (ONT)",
+        role: isEn ? "Direct Communication Sockets & Socials" : "Kanal Komunikasi & Kontak Langsung",
         targetId: "#contact",
         position: new THREE.Vector3(7.4, -5.6, -1.0),
-        color: emeraldColor,
+        cableColor: colorTealONT,
         portIndex: 8,
       },
     ]
 
-    subsystemNodes.forEach((node) => {
-      const nodeGroup = new THREE.Group()
-      nodeGroup.position.copy(node.position)
+    // Factory to build distinct procedural 3D network hardware models for each node
+    const buildHardwareModel = (node: SubsystemNodeData): THREE.Group => {
+      const g = new THREE.Group()
 
-      // Satellite Module Chassis Box
-      const satBoxGeom = new THREE.BoxGeometry(2.2, 1.0, 1.3)
-      const satBoxMat = new THREE.MeshStandardMaterial({
-        color: isDark ? 0x334155 : 0xf8fafc,
+      const baseMetalMat = new THREE.MeshStandardMaterial({
+        color: isDark ? 0x2a374a : 0xf1f5f9,
         metalness: 0.85,
+        roughness: 0.25,
+      })
+
+      const darkPanelMat = new THREE.MeshStandardMaterial({
+        color: isDark ? 0x0f172a : 0x1e293b,
+        metalness: 0.9,
         roughness: 0.2,
       })
-      const satBoxMesh = new THREE.Mesh(satBoxGeom, satBoxMat)
-      satBoxMesh.userData = { targetId: node.targetId, name: node.name, role: node.role }
-      nodeGroup.add(satBoxMesh)
-      raycastableMeshes.push(satBoxMesh)
 
-      // Luminous Accent Top/Bottom Bezels
-      const bezelGeom = new THREE.BoxGeometry(2.24, 0.08, 1.34)
-      const bezelMat = new THREE.MeshStandardMaterial({
-        color: node.color,
-        emissive: node.color,
-        emissiveIntensity: isDark ? 1.6 : 0.9,
+      const accentMat = new THREE.MeshStandardMaterial({
+        color: node.cableColor,
+        emissive: node.cableColor,
+        emissiveIntensity: isDark ? 1.1 : 0.6,
       })
-      const topBezel = new THREE.Mesh(bezelGeom, bezelMat)
-      topBezel.position.set(0, 0.52, 0)
-      nodeGroup.add(topBezel)
 
-      const bottomBezel = new THREE.Mesh(bezelGeom, bezelMat)
-      bottomBezel.position.set(0, -0.52, 0)
-      nodeGroup.add(bottomBezel)
-
-      // Front Glowing Screen / Status Plate
-      const satPanelGeom = new THREE.BoxGeometry(1.9, 0.72, 0.08)
-      const satPanelMat = new THREE.MeshStandardMaterial({
-        color: node.color,
-        emissive: node.color,
-        emissiveIntensity: isDark ? 1.4 : 0.85,
-        roughness: 0.1,
+      const rj45Mat = new THREE.MeshStandardMaterial({
+        color: isDark ? 0x1e293b : 0x334155,
+        metalness: 0.7,
+        roughness: 0.3,
       })
-      const satPanelMesh = new THREE.Mesh(satPanelGeom, satPanelMat)
-      satPanelMesh.position.set(0, 0, 0.68)
-      satPanelMesh.userData = { targetId: node.targetId, name: node.name, role: node.role }
-      nodeGroup.add(satPanelMesh)
-      raycastableMeshes.push(satPanelMesh)
 
-      // Satellite Side Connector Boot Cap
+      const ledGreenMat = new THREE.MeshBasicMaterial({ color: 0x10b981 })
+      const ledAmberMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b })
+      const ledCyanMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 })
+
+      // Common Chassis
+      const chassisGeom = new THREE.BoxGeometry(2.3, 0.95, 1.3)
+      const chassisMesh = new THREE.Mesh(chassisGeom, baseMetalMat)
+      chassisMesh.userData = { targetId: node.targetId, name: node.name, deviceType: node.deviceType, role: node.role }
+      g.add(chassisMesh)
+      raycastableMeshes.push(chassisMesh)
+
+      // Faceplate Mesh
+      const faceGeom = new THREE.BoxGeometry(2.2, 0.82, 0.08)
+      const faceMesh = new THREE.Mesh(faceGeom, darkPanelMat)
+      faceMesh.position.set(0, 0, 0.69)
+      faceMesh.userData = { targetId: node.targetId, name: node.name, deviceType: node.deviceType, role: node.role }
+      g.add(faceMesh)
+      raycastableMeshes.push(faceMesh)
+
+      // Top Bezel Accent Line
+      const topBezel = new THREE.Mesh(new THREE.BoxGeometry(2.32, 0.06, 1.32), accentMat)
+      topBezel.position.set(0, 0.49, 0)
+      g.add(topBezel)
+
+      // Bottom Bezel Accent Line
+      const btmBezel = new THREE.Mesh(new THREE.BoxGeometry(2.32, 0.06, 1.32), accentMat)
+      btmBezel.position.set(0, -0.49, 0)
+      g.add(btmBezel)
+
+      // Procedural Details depending on hardware device type:
+      switch (node.id) {
+        case "projects": {
+          // 1U Managed Switch: Dense RJ45 port rows + SFP+ slots
+          for (let row = -0.15; row <= 0.15; row += 0.3) {
+            for (let col = -0.85; col <= 0.35; col += 0.22) {
+              const port = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.14, 0.08), rj45Mat)
+              port.position.set(col, row, 0.74)
+              g.add(port)
+              const led = new THREE.Mesh(new THREE.SphereGeometry(0.025, 6, 6), ledGreenMat)
+              led.position.set(col, row + 0.11, 0.74)
+              g.add(led)
+            }
+          }
+          // 2 SFP+ 10G cages
+          for (let sfp = 0.65; sfp <= 0.9; sfp += 0.25) {
+            const sfpCage = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.32, 0.1), accentMat)
+            sfpCage.position.set(sfp, 0, 0.74)
+            g.add(sfpCage)
+          }
+          break
+        }
+
+        case "experience": {
+          // Multi-WAN Router: WAN ports, LAN cluster, Dual Antennas
+          const antGeom = new THREE.CylinderGeometry(0.04, 0.05, 0.9, 8)
+          const antMat = new THREE.MeshStandardMaterial({ color: isDark ? 0x1e293b : 0x475569, metalness: 0.9 })
+          const antLeft = new THREE.Mesh(antGeom, antMat)
+          antLeft.position.set(-0.95, 0.75, -0.45)
+          antLeft.rotation.z = -0.15
+          g.add(antLeft)
+          const antRight = new THREE.Mesh(antGeom, antMat)
+          antRight.position.set(0.95, 0.75, -0.45)
+          antRight.rotation.z = 0.15
+          g.add(antRight)
+
+          // WAN ports (Yellow/Blue)
+          const wanPort = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.2, 0.08), accentMat)
+          wanPort.position.set(-0.7, 0, 0.74)
+          g.add(wanPort)
+          // LAN ports
+          for (let col = -0.3; col <= 0.6; col += 0.25) {
+            const port = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.16, 0.08), rj45Mat)
+            port.position.set(col, 0, 0.74)
+            g.add(port)
+          }
+          break
+        }
+
+        case "skills": {
+          // Patch Panel: 4 Blocks of 6 ports + label strips
+          for (let blk = -0.75; blk <= 0.75; blk += 0.5) {
+            const labelStrip = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.08, 0.02), new THREE.MeshBasicMaterial({ color: 0xffffff }))
+            labelStrip.position.set(blk, 0.22, 0.74)
+            g.add(labelStrip)
+            for (let p = -0.14; p <= 0.14; p += 0.14) {
+              const keystone = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.14, 0.06), rj45Mat)
+              keystone.position.set(blk + p, -0.05, 0.74)
+              g.add(keystone)
+            }
+          }
+          break
+        }
+
+        case "organizations": {
+          // Wireless AP: Circular central glowing RF beacon dome
+          const domeGeom = new THREE.CylinderGeometry(0.35, 0.35, 0.08, 24)
+          const dome = new THREE.Mesh(domeGeom, accentMat)
+          dome.rotation.x = Math.PI / 2
+          dome.position.set(0, 0, 0.74)
+          g.add(dome)
+
+          const innerRing = new THREE.Mesh(new THREE.RingGeometry(0.15, 0.25, 24), new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide }))
+          innerRing.position.set(0, 0, 0.79)
+          g.add(innerRing)
+          break
+        }
+
+        case "awards": {
+          // Hardware Firewall: Security LCD telemetry display + red status matrix
+          const lcdScreen = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.45, 0.04), new THREE.MeshStandardMaterial({
+            color: 0x991b1b,
+            emissive: 0xdc2626,
+            emissiveIntensity: isDark ? 1.5 : 0.8,
+          }))
+          lcdScreen.position.set(-0.45, 0, 0.74)
+          g.add(lcdScreen)
+
+          for (let p = 0.2; p <= 0.8; p += 0.2) {
+            const eth = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.18, 0.08), rj45Mat)
+            eth.position.set(p, 0, 0.74)
+            g.add(eth)
+          }
+          break
+        }
+
+        case "training": {
+          // PoE+ Industrial Switch: Wattage LED meter + orange PoE ports
+          const meterGeom = new THREE.BoxGeometry(0.5, 0.15, 0.04)
+          const meter = new THREE.Mesh(meterGeom, new THREE.MeshBasicMaterial({ color: 0xf59e0b }))
+          meter.position.set(-0.65, 0.15, 0.74)
+          g.add(meter)
+
+          for (let col = -0.15; col <= 0.75; col += 0.22) {
+            const poePort = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.16, 0.08), rj45Mat)
+            poePort.position.set(col, -0.05, 0.74)
+            g.add(poePort)
+            const poeLed = new THREE.Mesh(new THREE.SphereGeometry(0.025, 6, 6), ledAmberMat)
+            poeLed.position.set(col, 0.12, 0.74)
+            g.add(poeLed)
+          }
+          break
+        }
+
+        case "repositories": {
+          // NAS Storage Array: 4 Hot-swappable HDD caddies with lever handles
+          for (let bay = -0.75; bay <= 0.75; bay += 0.5) {
+            const caddy = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.65, 0.08), new THREE.MeshStandardMaterial({
+              color: isDark ? 0x1e293b : 0x94a3b8,
+              metalness: 0.95,
+              roughness: 0.1,
+            }))
+            caddy.position.set(bay, 0, 0.74)
+            g.add(caddy)
+
+            const handle = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.06, 0.06), new THREE.MeshStandardMaterial({ color: 0x0f172a }))
+            handle.position.set(bay, -0.2, 0.79)
+            g.add(handle)
+
+            const activityLed = new THREE.Mesh(new THREE.SphereGeometry(0.025, 6, 6), ledGreenMat)
+            activityLed.position.set(bay, 0.22, 0.79)
+            g.add(activityLed)
+          }
+          break
+        }
+
+        case "resume": {
+          // Console Server: Serial ports + CLI display
+          const termLcd = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.35, 0.04), new THREE.MeshBasicMaterial({ color: 0x2563eb }))
+          termLcd.position.set(-0.5, 0, 0.74)
+          g.add(termLcd)
+
+          for (let col = 0.15; col <= 0.75; col += 0.22) {
+            const serial = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.14, 0.08), rj45Mat)
+            serial.position.set(col, 0, 0.74)
+            g.add(serial)
+          }
+          break
+        }
+
+        case "contact": {
+          // Fiber ONT: SC/APC fiber port + PON/LOS/LAN status LEDs
+          const scPort = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.25, 0.1), new THREE.MeshStandardMaterial({
+            color: 0x10b981,
+            emissive: 0x10b981,
+            emissiveIntensity: 0.9,
+          }))
+          scPort.position.set(-0.65, 0, 0.74)
+          g.add(scPort)
+
+          // 4 Status LEDs (PON, LOS, LAN, TEL)
+          for (let i = -0.1; i <= 0.65; i += 0.25) {
+            const ontLed = new THREE.Mesh(new THREE.SphereGeometry(0.03, 6, 6), i === 0.15 ? ledAmberMat : ledCyanMat)
+            ontLed.position.set(i, 0, 0.74)
+            g.add(ontLed)
+          }
+          break
+        }
+      }
+
+      // Side Connector Boot Cap
       const capGeom = new THREE.CylinderGeometry(0.2, 0.2, 0.35, 16)
       const capMat = new THREE.MeshStandardMaterial({
         color: isDark ? 0x94a3b8 : 0x475569,
@@ -393,14 +586,20 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       })
       const cap = new THREE.Mesh(capGeom, capMat)
       cap.rotation.z = Math.PI / 2
-      cap.position.set(node.position.x > 0 ? -1.2 : 1.2, 0, 0)
-      nodeGroup.add(cap)
+      cap.position.set(node.position.x > 0 ? -1.25 : 1.25, 0, 0)
+      g.add(cap)
 
-      networkCoreGroup.add(nodeGroup)
-      node.mesh = nodeGroup
+      return g
+    }
+
+    subsystemNodes.forEach((node) => {
+      const nodeModel = buildHardwareModel(node)
+      nodeModel.position.copy(node.position)
+      networkCoreGroup.add(nodeModel)
+      node.mesh = nodeModel
     })
 
-    // --- 3. HIGH-PRECISION VOLUMETRIC CABLES (NO CLIPPING) ---
+    // --- 3. HIGH-PRECISION REALISTIC PHYSICAL NETWORK CABLES ---
     const cableMeshes: { mesh: THREE.Mesh; pulseSpeed: number; pulseOffset: number }[] = []
 
     subsystemNodes.forEach((node, index) => {
@@ -427,19 +626,20 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         node.position.z + 0.5
       )
       const p5 = new THREE.Vector3(
-        node.position.x + (isLeft ? 1.2 : -1.2),
+        node.position.x + (isLeft ? 1.25 : -1.25),
         node.position.y,
         node.position.z
       )
 
       const curve = new THREE.CatmullRomCurve3([p0, p1, p2, p3, p4, p5])
       const tubeGeom = new THREE.TubeGeometry(curve, 44, 0.12, 10, false)
+      // Realistic Physical Satin PVC Cable Material
       const tubeMat = new THREE.MeshStandardMaterial({
-        color: node.color,
-        roughness: 0.15,
-        metalness: 0.9,
-        emissive: node.color,
-        emissiveIntensity: isDark ? 0.85 : 0.5,
+        color: node.cableColor,
+        roughness: 0.35,
+        metalness: 0.2,
+        emissive: node.cableColor,
+        emissiveIntensity: isDark ? 0.35 : 0.15,
       })
       const cableMesh = new THREE.Mesh(tubeGeom, tubeMat)
       networkCoreGroup.add(cableMesh)
@@ -449,10 +649,10 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         pulseOffset: index * 0.7,
       })
 
-      // Molded SFP/RJ45 Connector Boot at faceplate port
+      // Molded Strain-Relief Connector Boot at faceplate port
       const bootGeom = new THREE.BoxGeometry(0.2, 0.15, 0.35)
       const bootMat = new THREE.MeshStandardMaterial({
-        color: isDark ? 0x64748b : 0x94a3b8,
+        color: isDark ? 0x475569 : 0x94a3b8,
         metalness: 0.95,
       })
       const bootMesh = new THREE.Mesh(bootGeom, bootMat)
@@ -460,7 +660,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       networkCoreGroup.add(bootMesh)
     })
 
-    // Heavy Master Uplink Conduit heading cleanly UNDERNEATH the rack
+    // Heavy Master Uplink Conduit heading underneath the rack
     const masterConduitCurve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(0, -1.9, 0),
       new THREE.Vector3(0, -4.5, 0.5),
@@ -469,11 +669,11 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     ])
     const masterConduitGeom = new THREE.TubeGeometry(masterConduitCurve, 32, 0.26, 12, false)
     const masterConduitMat = new THREE.MeshStandardMaterial({
-      color: cyanColor,
-      roughness: 0.2,
-      metalness: 0.9,
-      emissive: cyanColor,
-      emissiveIntensity: isDark ? 0.75 : 0.4,
+      color: 0x0284c7,
+      roughness: 0.35,
+      metalness: 0.3,
+      emissive: 0x0284c7,
+      emissiveIntensity: isDark ? 0.4 : 0.2,
     })
     const masterConduitMesh = new THREE.Mesh(masterConduitGeom, masterConduitMat)
     networkCoreGroup.add(masterConduitMesh)
@@ -483,7 +683,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       pulseOffset: 0,
     })
 
-    // --- 4. DRAG TO EXPLORE WITH INERTIA & CLAMPED ROTATION ---
+    // --- 4. DRAG TO EXPLORE WITH INERTIA & INTERACTION CONTROLS ---
     const targetRotation = { x: 0.12, y: -0.15 }
     const currentRotation = { x: 0.12, y: -0.15 }
     const velocity = { x: 0, y: 0 }
@@ -494,6 +694,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     const mouseCoord = new THREE.Vector2()
 
     const onPointerDown = (e: MouseEvent | TouchEvent) => {
+      // Allow right-click or left-click drag
       isDragging = true
       setIsInteracting(true)
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
@@ -530,6 +731,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
           const hit = intersects[0].object as THREE.Mesh
           setHoveredNode({
             name: hit.userData.name,
+            deviceType: hit.userData.deviceType,
             role: hit.userData.role,
             targetId: hit.userData.targetId,
           })
@@ -546,9 +748,8 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       setTimeout(() => setIsInteracting(false), 800)
     }
 
-    const onClick = (e: MouseEvent | TouchEvent) => {
-      const clientX = "changedTouches" in e ? e.changedTouches[0].clientX : (e as MouseEvent).clientX
-      const clientY = "changedTouches" in e ? e.changedTouches[0].clientY : (e as MouseEvent).clientY
+    // Trigger Node Selection on either Click or Right Click
+    const handleNodeSelectionFromPointer = (clientX: number, clientY: number) => {
       const rect = container.getBoundingClientRect()
       mouseCoord.x = ((clientX - rect.left) / rect.width) * 2 - 1
       mouseCoord.y = -((clientY - rect.top) / rect.height) * 2 + 1
@@ -563,10 +764,23 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       }
     }
 
+    const onClick = (e: MouseEvent | TouchEvent) => {
+      const clientX = "changedTouches" in e ? e.changedTouches[0].clientX : (e as MouseEvent).clientX
+      const clientY = "changedTouches" in e ? e.changedTouches[0].clientY : (e as MouseEvent).clientY
+      handleNodeSelectionFromPointer(clientX, clientY)
+    }
+
+    // Right Click to Enter Handler
+    const onContextMenu = (e: MouseEvent) => {
+      e.preventDefault()
+      handleNodeSelectionFromPointer(e.clientX, e.clientY)
+    }
+
     container.addEventListener("mousedown", onPointerDown)
     window.addEventListener("mousemove", onPointerMove, { passive: true })
     window.addEventListener("mouseup", onPointerUp)
     container.addEventListener("click", onClick)
+    container.addEventListener("contextmenu", onContextMenu)
 
     container.addEventListener("touchstart", onPointerDown, { passive: true })
     window.addEventListener("touchmove", onPointerMove, { passive: true })
@@ -590,7 +804,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       const time = (performance.now() - startTime) * 0.001
 
       if (!isDragging) {
-        targetRotation.y += 0.001
+        targetRotation.y += 0.0009
         velocity.x *= 0.95
         velocity.y *= 0.95
         targetRotation.y += velocity.x
@@ -603,19 +817,19 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       networkCoreGroup.rotation.x = currentRotation.x
       networkCoreGroup.rotation.y = currentRotation.y
 
-      // Realistic Blink of status LEDs
+      // Realistic Status LED blink
       ledMeshes.forEach((led, i) => {
-        const isBlinking = Math.sin(time * 8 + i * 2.1) > 0.35
+        const isBlinking = Math.sin(time * 7 + i * 1.8) > 0.4
         ;(led.material as THREE.MeshBasicMaterial).color.setHex(
           isBlinking ? (isDark ? 0x00f0ff : 0x2563eb) : isDark ? 0x10b981 : 0x059669
         )
       })
 
-      // Pulse Laser along Volumetric Cables
+      // Subtle pulse on physical patch cables
       cableMeshes.forEach((cable) => {
         const mat = cable.mesh.material as THREE.MeshStandardMaterial
         mat.emissiveIntensity =
-          (isDark ? 0.65 : 0.38) + Math.sin(time * cable.pulseSpeed + cable.pulseOffset) * 0.35
+          (isDark ? 0.3 : 0.12) + Math.sin(time * cable.pulseSpeed + cable.pulseOffset) * 0.2
       })
 
       renderer.render(scene, camera)
@@ -630,6 +844,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       window.removeEventListener("mousemove", onPointerMove)
       window.removeEventListener("mouseup", onPointerUp)
       container.removeEventListener("click", onClick)
+      container.removeEventListener("contextmenu", onContextMenu)
 
       container.removeEventListener("touchstart", onPointerDown)
       window.removeEventListener("touchmove", onPointerMove)
@@ -641,9 +856,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       }
       renderer.dispose()
     }
-  }, [isDark, language, handleNodeClick])
-
-  const isEn = language === "en"
+  }, [isDark, language, isEn, handleNodeClick])
 
   return (
     <div className="relative size-full select-none touch-none">
@@ -653,20 +866,23 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         className="size-full cursor-grab active:cursor-grabbing touch-none"
       />
 
-      {/* Minimalist Technical Guidance HUD (Positioned Cleanly at Top-Center) */}
-      <div className="absolute top-16 sm:top-20 left-1/2 -translate-x-1/2 z-20 font-mono text-[9px] sm:text-xs text-zinc-600 dark:text-zinc-300 bg-background/90 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center gap-2 max-w-[92vw] truncate">
+      {/* Minimalist Technical Guidance HUD */}
+      <div className="absolute bottom-16 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 font-mono text-[9px] sm:text-xs text-zinc-600 dark:text-zinc-300 bg-background/90 backdrop-blur-md px-4 sm:px-5 py-2 rounded-full border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center gap-2 max-w-[92vw] truncate">
         <span className="size-2 rounded-full bg-cyan-400 animate-ping shrink-0" />
         <span className="truncate">
-          {isEn
-            ? "3D NETWORK INFRASTRUCTURE • DRAG TO EXPLORE • CLICK TO ENTER"
-            : "INFRASTRUKTUR JARINGAN 3D • GESER UNTUK ROTASI • KLIK UNTUK MASUK"}
+          {t.hudGuide}
         </span>
       </div>
 
-      {/* CENTERED POPUP: Pops up directly in the center on cursor hover or mobile gesture */}
+      {/* CENTERED POPUP on Hover or Selection */}
       {hoveredNode && (
         <div
           onClick={(e) => {
+            e.stopPropagation()
+            handleNodeClick(hoveredNode.targetId)
+          }}
+          onContextMenu={(e) => {
+            e.preventDefault()
             e.stopPropagation()
             handleNodeClick(hoveredNode.targetId)
           }}
@@ -674,7 +890,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         >
           <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">
             <span className="size-2 rounded-full bg-emerald-500 animate-led" />
-            <span>{isEn ? "SUBSYSTEM LINK DETECTED" : "JARINGAN TERDETEKSI"}</span>
+            <span>{t.nodeDetected} &bull; {hoveredNode.deviceType}</span>
           </div>
           <div className="flex flex-col gap-1">
             <h3 className="text-xl sm:text-2xl font-bold font-sans text-foreground tracking-tight">
@@ -685,7 +901,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
             </p>
           </div>
           <div className="mt-1 px-4 py-2 rounded-xl bg-blue-600 dark:bg-cyan-400 text-white dark:text-zinc-950 font-mono text-xs font-bold flex items-center gap-2 hover:opacity-90 transition-opacity shadow-sm">
-            <span>{isEn ? "CLICK TO ENTER →" : "KLIK UNTUK MASUK →"}</span>
+            <span>{t.rightClickToEnter}</span>
           </div>
         </div>
       )}
@@ -693,7 +909,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       {/* Minimal interaction state badge */}
       <div className="absolute bottom-6 right-6 z-20 hidden sm:flex font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background/80 backdrop-blur-xs px-2.5 py-1 rounded-md border border-zinc-300 dark:border-zinc-800 items-center gap-1.5">
         <span className={isInteracting ? "text-cyan-500 dark:text-cyan-400 font-semibold" : "text-zinc-400"}>
-          {isInteracting ? (isEn ? "ORBIT ACTIVE" : "EKSPLORASI AKTIF") : isEn ? "READY" : "SIAP"}
+          {isInteracting ? t.orbitActive : t.ready}
         </span>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import { awards } from "@/data/career"
+import { getAwards } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
@@ -13,6 +13,7 @@ import { Trophy } from "lucide-react"
 export default function Awards() {
   const { language } = useLanguage()
   const t = translations[language].awards
+  const awardList = getAwards(language)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -74,11 +75,11 @@ export default function Awards() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {awards.map((award, i) => (
+          {awardList.map((award, i) => (
             <motion.div key={i} variants={itemVariants} className="h-full">
               <NetworkSubsystemNode
                 nodeId={`AWARD // ACC-0${i + 1}`}
-                subsystem="HONOR"
+                subsystem={language === "id" ? "PRESTASI" : "HONOR"}
                 status="healthy"
                 className="h-full flex flex-col justify-between text-left gap-6 border-amber-500/20 dark:border-amber-500/30 p-6"
               >
@@ -103,7 +104,7 @@ export default function Awards() {
                 </div>
 
                 <div className="pt-3 border-t border-zinc-200/70 dark:border-zinc-800/70 font-mono text-[10px] text-zinc-400">
-                  <span>Distinction Verified</span>
+                  <span>{language === "id" ? "Distingsi Terverifikasi" : "Distinction Verified"}</span>
                 </div>
               </NetworkSubsystemNode>
             </motion.div>

@@ -2,7 +2,7 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import { training } from "@/data/career"
+import { getTraining } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
@@ -38,7 +38,8 @@ export default function FeaturedTraining() {
     },
   }
 
-  const featuredTraining = training.filter((tr) => tr.featured)
+  const allTraining = getTraining(language)
+  const featuredTraining = allTraining.filter((tr) => tr.featured)
 
   return (
     <section

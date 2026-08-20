@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { motion } from "motion/react"
-import { skillGroups } from "@/data/skills"
+import { getSkillGroups } from "@/data/skills"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
@@ -14,6 +14,7 @@ export default function Skills() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const { language } = useLanguage()
   const t = translations[language].skills
+  const groups = getSkillGroups(language)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -38,26 +39,30 @@ export default function Skills() {
   }
 
   const filteredGroups = selectedCategory
-    ? skillGroups.filter((g) => g.title === selectedCategory)
-    : skillGroups
+    ? groups.filter((g) => g.title === selectedCategory)
+    : groups
 
   const getCategoryIcon = (title: string) => {
-    switch (title.toLowerCase()) {
-      case "infrastructure & devops":
-        return <Server className="size-4 text-blue-500 dark:text-cyan-400" />
-      case "backend & apis":
-        return <Database className="size-4 text-cyan-400" />
-      case "frontend & mobile":
-        return <Code className="size-4 text-emerald-500" />
-      case "ai & computer vision":
-        return <Eye className="size-4 text-purple-400" />
-      case "iot & robotics":
-        return <NetIcon className="size-4 text-amber-400" />
-      case "tools & workflows":
-        return <Wrench className="size-4 text-pink-400" />
-      default:
-        return <Layers className="size-4 text-blue-400" />
+    const lower = title.toLowerCase()
+    if (lower.includes("infrastruktur") || lower.includes("infrastructure")) {
+      return <Server className="size-4 text-blue-500 dark:text-cyan-400" />
     }
+    if (lower.includes("backend")) {
+      return <Database className="size-4 text-cyan-400" />
+    }
+    if (lower.includes("frontend")) {
+      return <Code className="size-4 text-emerald-500" />
+    }
+    if (lower.includes("ai") || lower.includes("vision")) {
+      return <Eye className="size-4 text-purple-400" />
+    }
+    if (lower.includes("jaringan") || lower.includes("networking") || lower.includes("iot")) {
+      return <NetIcon className="size-4 text-amber-400" />
+    }
+    if (lower.includes("perkakas") || lower.includes("tools")) {
+      return <Wrench className="size-4 text-pink-400" />
+    }
+    return <Layers className="size-4 text-blue-400" />
   }
 
   return (
@@ -100,9 +105,9 @@ export default function Skills() {
                 : "bg-zinc-100/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-foreground"
             }`}
           >
-            {t.all} ({skillGroups.length})
+            {t.all} ({groups.length})
           </button>
-          {skillGroups.map((group) => (
+          {groups.map((group) => (
             <button
               key={group.title}
               onClick={() => setSelectedCategory(group.title === selectedCategory ? null : group.title)}
@@ -127,12 +132,12 @@ export default function Skills() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {filteredGroups.map((group) => {
-            const originalIndex = skillGroups.findIndex((g) => g.title === group.title)
+            const originalIndex = groups.findIndex((g) => g.title === group.title)
             return (
               <motion.div key={group.title} variants={itemVariants} className="h-full">
                 <NetworkSubsystemNode
                   nodeId={`MODULE // 0${originalIndex + 1}`}
-                  subsystem="CAPABILITY"
+                  subsystem={language === "id" ? "KEMAMPUAN" : "CAPABILITY"}
                   className="h-full flex flex-col justify-between text-left gap-6 p-4 sm:p-6"
                 >
                   <div className="flex flex-col gap-3">
@@ -142,7 +147,7 @@ export default function Skills() {
                         <span>{group.title}</span>
                       </h3>
                       <span className="font-mono text-xs text-blue-600 dark:text-cyan-400 font-semibold">
-                        {group.items.length} units
+                        {group.items.length} {language === "id" ? "item" : "units"}
                       </span>
                     </div>
 

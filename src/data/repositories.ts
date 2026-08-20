@@ -330,3 +330,33 @@ export const repositories: Repository[] = [
     "featured": false
   }
 ]
+
+const idRepoDescriptions: Record<string, string> = {
+  "mahija-portfolio": "Portofolio pribadi yang menampilkan proyek infrastruktur, IoT, edge AI, dan rekayasa perangkat lunak.",
+  "autonomus-human-search-system-using-drone-final-project-program": "Program sistem pencarian korban otonom menggunakan YOLO dan Raspberry Pi 5.",
+  "iot-surveillance-platform-web": "Dashboard web React untuk memantau streaming banyak kamera dan konfigurasi notifikasi.",
+  "iot-surveillance-platform-firmware": "Firmware ESP32 untuk streaming kamera latensi rendah, RTSP, dan kontrol MQTT.",
+  "iot-surveillance-platform-mobile": "Aplikasi seluler pemantauan dan kontrol pengawasan IoT multi-platform.",
+  "untern-internship-project": "Platform agregasi pencarian dan pencocokan lowongan magang untuk talenta dan perekrut.",
+  "course-webapp-project": "Aplikasi web untuk manajemen mata kuliah, penilaian, dan alur akademik.",
+  "sarvio-x": "Dashboard telemetri penerbangan drone otonom menampilkan posisi dan kecepatan real-time.",
+  "Swimate": "Aplikasi pelacak performa renang dan analisis sensor seluler.",
+  "gui-with-wxwidgets-final-project-advanced-programming": "Aplikasi GUI desktop untuk siakad dan pemeriksa segitiga menggunakan wxWidgets C++.",
+  "autonomous-drone-final-project-book": "Buku tugas akhir mendokumentasikan perancangan dan implementasi sistem drone otonom.",
+  "autonomous-drone-final-project-paper": "Makalah ilmiah tentang sistem pencarian manusia otonom berbasis drone.",
+  "carvole-simple-2d-car-game-graphics.h-final-project-basic-programming": "Game mobil 2D sederhana yang dibangun dengan C++ menggunakan pustaka graphics.h.",
+  "computer-system-security-college-task": "Tugas keamanan sistem dan assembly berfokus pada memori dan arsitektur.",
+  "iot-surveillance-platform-docs": "Dokumentasi dan laporan sistem pengawasan video waktu nyata berbasis ESP32.",
+  "Laser-RPM-Correlation-Analyzer": "Alat analisis telemetri korelasi RPM motor dan sensor laser.",
+  "Resume-or-Curriculum-Vitae": "Template LaTeX untuk resume profesional pribadi.",
+  "website-project-technical-test-aksamedia": "Aplikasi uji teknis full-stack mengimplementasikan CRUD dan dashboard pengguna."
+}
+
+export function getRepositories(lang: "en" | "id" = "en"): Repository[] {
+  if (lang === "en") return repositories
+  return repositories.map((repo) => ({
+    ...repo,
+    description: idRepoDescriptions[repo.name] || repo.description,
+  }))
+}
+

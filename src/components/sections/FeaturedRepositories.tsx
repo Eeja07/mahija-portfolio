@@ -2,7 +2,7 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import { repositories } from "@/data/repositories"
+import { getRepositories } from "@/data/repositories"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
@@ -38,7 +38,8 @@ export default function FeaturedRepositories() {
     },
   }
 
-  const featuredRepos = repositories.filter((r) => r.featured).slice(0, 4)
+  const allRepos = getRepositories(language)
+  const featuredRepos = allRepos.filter((r) => r.featured).slice(0, 4)
 
   return (
     <section
