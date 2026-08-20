@@ -7,7 +7,7 @@ import { useTheme } from "next-themes"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { NetworkMonogramM } from "@/components/network/NetworkMonogramM"
-import { Sun, Moon, Languages, ArrowRight, ShieldCheck } from "lucide-react"
+import { Sun, Moon, Languages } from "lucide-react"
 
 interface NetworkGatewayGateProps {
   onEnter: (targetId?: string) => void
@@ -17,7 +17,6 @@ export default function NetworkGatewayGate({ onEnter }: NetworkGatewayGateProps)
   const { theme, setTheme } = useTheme()
   const { language, toggleLanguage } = useLanguage()
   const [mounted, setMounted] = useState(false)
-  const isEn = language === "en"
   const t = translations[language].gateway
 
   useEffect(() => {
@@ -37,10 +36,10 @@ export default function NetworkGatewayGate({ onEnter }: NetworkGatewayGateProps)
       transition={{ duration: 0.25 }}
       className="fixed inset-0 z-50 flex flex-col justify-center items-center bg-background text-foreground overflow-hidden select-none"
     >
-      {/* Top Header Bar: Clean Separation for Mobile & Desktop */}
+      {/* Top Header Bar: Clean Minimalist Controls */}
       {mounted && (
         <header className="absolute top-0 inset-x-0 z-30 flex items-center justify-between p-4 sm:p-6 pointer-events-none">
-          {/* Upgraded Brand Identifier */}
+          {/* Brand Tag without network infrastructure terminology */}
           <div className="pointer-events-auto flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-background/90 backdrop-blur-md shadow-xs font-mono text-xs font-semibold text-foreground">
             <div className="size-5 rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center p-0.5 text-blue-600 dark:text-cyan-400">
               <NetworkMonogramM className="size-3.5" />
@@ -79,33 +78,7 @@ export default function NetworkGatewayGate({ onEnter }: NetworkGatewayGateProps)
         </header>
       )}
 
-      {/* Portfolio Identity Highlight Card (Top Center) */}
-      {mounted && (
-        <div className="absolute top-16 sm:top-20 inset-x-4 max-w-xl mx-auto z-20 pointer-events-none flex flex-col items-center text-center">
-          <div className="pointer-events-auto bg-background/90 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800/90 rounded-2xl p-3 sm:p-4 shadow-lg flex flex-col items-center gap-2 max-w-full">
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-emerald-500 animate-led" />
-              <span className="font-mono text-[10px] sm:text-xs font-bold tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
-                {t.badge} &bull; {t.title}
-              </span>
-            </div>
-            <p className="font-sans text-xs sm:text-sm font-medium text-foreground max-w-md leading-snug">
-              {t.subtitle}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-              <button
-                onClick={() => onEnter("#hero")}
-                className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 dark:bg-cyan-500 dark:hover:bg-cyan-400 text-white dark:text-zinc-950 font-mono text-[11px] font-bold tracking-tight flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
-              >
-                <span>{t.enterButton}</span>
-                <ArrowRight className="size-3.5" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Fullscreen 3D Server Chassis & Cable Hub Stage */}
+      {/* Fullscreen 3D Portfolio Stage */}
       <div className="w-full h-full relative">
         <NetworkCore3D onNodeSelect={(id) => onEnter(id)} />
       </div>
