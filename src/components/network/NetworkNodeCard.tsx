@@ -37,9 +37,9 @@ export function NetworkNodeCard({
 
   const statusDotColor =
     portStatus === "transmitting"
-      ? "bg-cyan-400 dark:bg-cyan-300 animate-led-fast"
+      ? "bg-cyan-400 dark:bg-cyan-300"
       : portStatus === "active"
-      ? "bg-emerald-500 animate-led"
+      ? "bg-emerald-500"
       : "bg-amber-400"
 
   return (

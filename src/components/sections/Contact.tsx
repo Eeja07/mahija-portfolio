@@ -39,28 +39,28 @@ const contactChannels: ContactChannel[] = [
     handle: "mahijapradipta86@gmail.com",
     href: "mailto:mahijapradipta86@gmail.com",
     icon: <Mail className="size-4" />,
-    protocol: "SMTP // TLS",
+    protocol: "Direct Email",
   },
   {
     name: "LinkedIn",
     handle: "linkedin.com/in/mahijaibad",
     href: "https://linkedin.com/in/mahijaibad",
     icon: <LinkedinIcon className="size-4" />,
-    protocol: "HTTPS // OAUTH",
+    protocol: "LinkedIn Profile",
   },
   {
     name: "GitHub",
     handle: "github.com/eeja07",
     href: "https://github.com/eeja07",
     icon: <GithubIcon className="size-4" />,
-    protocol: "SSH // GIT",
+    protocol: "GitHub Profile",
   },
   {
     name: "WhatsApp",
     handle: "+62 812-8809-2766",
     href: "https://wa.me/6281288092766",
     icon: <MessageSquare className="size-4" />,
-    protocol: "E2EE // SIGNAL",
+    protocol: "WhatsApp Direct",
   },
 ]
 
@@ -107,14 +107,14 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="w-full py-20 bg-background"
+      className="w-full py-20 bg-transparent"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-16 text-left max-w-2xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-emerald-500 animate-led" />
+            <span className="size-2 rounded-full bg-emerald-500" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -141,11 +141,9 @@ export default function Contact() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {contactChannels.map((channel, idx) => (
+          {contactChannels.map((channel) => (
             <motion.div key={channel.name} variants={itemVariants} className="h-full">
               <NetworkSubsystemNode
-                nodeId={`PORT // 0${idx + 1}`}
-                subsystem="SOCKET ENDPOINT"
                 status="transmitting"
                 className="h-full flex flex-col justify-between p-6 text-left gap-6"
               >

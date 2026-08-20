@@ -18,10 +18,7 @@ export default function TelemetryHUD() {
       <div className="mx-auto max-w-7xl flex items-center justify-between gap-6 whitespace-nowrap">
         {/* Metric 1: Live Status */}
         <div className="flex items-center gap-2">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-          </span>
+          <span className="size-2 rounded-full bg-emerald-500" />
           <span className="font-semibold text-foreground">SYSTEM: ALL NODES LIVE</span>
         </div>
 
@@ -45,7 +42,7 @@ export default function TelemetryHUD() {
 
         {/* Metric 5: Live Simulated RTT */}
         <div className="flex items-center gap-1.5 ml-auto">
-          <Activity className="size-3.5 text-emerald-500 animate-pulse" />
+          <Activity className="size-3.5 text-emerald-500" />
           <span>RTT:</span>
           <span className="font-bold text-foreground">{latency}ms</span>
         </div>

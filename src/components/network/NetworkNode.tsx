@@ -39,9 +39,9 @@ export function NetworkNode({
 
   const statusDotColor =
     status === "transmitting"
-      ? "bg-cyan-400 dark:bg-cyan-300 animate-led-fast shadow-[0_0_8px_rgba(56,189,248,0.6)]"
+      ? "bg-cyan-400 dark:bg-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.6)]"
       : status === "healthy"
-      ? "bg-emerald-500 animate-led shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+      ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"
       : "bg-amber-400"
 
   return (

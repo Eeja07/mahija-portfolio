@@ -166,10 +166,7 @@ export default function InteractiveJourneyGuide() {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-blue-500/40 dark:border-cyan-500/40 bg-background/90 backdrop-blur-md shadow-lg text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-150 cursor-pointer group"
       >
-        <span className="relative flex size-2">
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-cyan-400 opacity-75" />
-          <span className="relative inline-flex size-2 rounded-full bg-cyan-500" />
-        </span>
+        <span className="size-2 rounded-full bg-cyan-500" />
         <Compass className="size-4 text-blue-500 dark:text-cyan-400 group-hover:rotate-45 transition-transform duration-200" />
         <span className="font-mono text-xs font-bold">
           {isOpen ? "Tutup Alur" : "Alur Portofolio"}

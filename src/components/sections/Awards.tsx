@@ -5,7 +5,6 @@ import { motion } from "motion/react"
 import { getAwards } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
-import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { Trophy } from "lucide-react"
@@ -38,17 +37,17 @@ export default function Awards() {
   }
 
   return (
-    <section
-      id="awards"
-      aria-labelledby="awards-heading"
-      className="w-full py-20 bg-background"
+    <section 
+      id="awards" 
+      aria-label="Honors & Awards"
+      className="w-full py-20 bg-transparent"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-amber-400 animate-led" />
+            <span className="size-2 rounded-full bg-amber-400" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -78,8 +77,6 @@ export default function Awards() {
           {awardList.map((award, i) => (
             <motion.div key={i} variants={itemVariants} className="h-full">
               <NetworkSubsystemNode
-                nodeId={`AWARD // ACC-0${i + 1}`}
-                subsystem={language === "id" ? "PRESTASI" : "HONOR"}
                 status="healthy"
                 className="h-full flex flex-col justify-between text-left gap-6 border-amber-500/20 dark:border-amber-500/30 p-6"
               >
@@ -110,10 +107,6 @@ export default function Awards() {
             </motion.div>
           ))}
         </motion.div>
-      </div>
-
-      <div className="w-full max-w-7xl px-4 mt-16">
-        <SpatialCableBranch direction="right-to-left" label={t.cableLabel} status="transmitting" />
       </div>
     </section>
   )

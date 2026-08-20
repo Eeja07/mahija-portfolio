@@ -6,7 +6,6 @@ import { getProjects } from "@/data/projects"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
-import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { cn } from "@/lib/utils"
@@ -66,24 +65,18 @@ export default function FeaturedEngineering() {
     return "featured/untern/home.webp"
   }
 
-  const getNodeTag = (id: string) => {
-    if (id === "smart-cctv") return "NODE // EDGE-CCTV-01"
-    if (id === "human-search-drone") return "NODE // AUTONOMOUS-DRONE-02"
-    return "NODE // CLOUD-PLATFORM-03"
-  }
-
   return (
-    <section
-      id="featured-engineering"
-      aria-labelledby="projects-heading"
-      className="w-full py-20 bg-background"
+    <section 
+      id="featured-engineering" 
+      aria-label="Featured Works"
+      className="w-full py-20 bg-transparent"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-blue-500 dark:bg-cyan-400 animate-led" />
+            <span className="size-2 rounded-full bg-blue-500 dark:bg-cyan-400" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -115,8 +108,6 @@ export default function FeaturedEngineering() {
               variants={itemVariants}
             >
               <NetworkSubsystemNode
-                nodeId={getNodeTag(project.id)}
-                subsystem={project.category.toUpperCase()}
                 className="p-3.5 sm:p-5 lg:p-7 border-zinc-200/90 dark:border-zinc-800/90"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -154,8 +145,8 @@ export default function FeaturedEngineering() {
                       
                       {/* Port LED pill overlay */}
                       <div className="absolute top-3 left-3 z-10 font-mono text-[9px] bg-background/90 border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5">
-                        <span className="size-1.5 rounded-full bg-emerald-500 animate-led" />
-                        <span>TELEMETRY FEED</span>
+                        <span className="size-1.5 rounded-full bg-emerald-500" />
+                        <span>LIVE PREVIEW</span>
                       </div>
                     </div>
 
@@ -348,10 +339,6 @@ export default function FeaturedEngineering() {
             </motion.div>
           ))}
         </div>
-      </div>
-
-      <div className="w-full max-w-7xl px-4 mt-16">
-        <SpatialCableBranch direction="left-to-right" label={t.cableLabel} status="transmitting" />
       </div>
     </section>
   )

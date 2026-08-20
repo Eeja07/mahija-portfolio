@@ -5,7 +5,6 @@ import { motion } from "motion/react"
 import { getInfrastructure } from "@/data/infrastructure"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
-import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { Server, Cpu, ShieldCheck, Database, Layers, Radio, HardDrive, Terminal } from "lucide-react"
 
@@ -63,7 +62,7 @@ export default function Infrastructure() {
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-emerald-500 animate-led" />
+            <span className="size-2 rounded-full bg-emerald-500" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -93,8 +92,6 @@ export default function Infrastructure() {
           className="mb-8"
         >
           <NetworkSubsystemNode
-            nodeId="CLUSTER-01 // BARE-METAL HOST"
-            subsystem={isEn ? "HOST RACK" : "RAK HOST"}
             status="healthy"
             className="p-6 sm:p-8"
           >
@@ -157,7 +154,7 @@ export default function Infrastructure() {
                   <span>&nearr;</span>
                 </a>
                 <span className="font-mono text-xs text-emerald-500 flex items-center gap-1">
-                  <span className="size-1.5 rounded-full bg-emerald-500 animate-ping" />
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
                   <span>TLS 1.3 / E2EE Encrypted</span>
                 </span>
               </div>
@@ -176,8 +173,6 @@ export default function Infrastructure() {
           {data.services.map((service) => (
             <motion.div key={service.name} variants={itemVariants} className="h-full">
               <NetworkSubsystemNode
-                nodeId={`SVC // ${service.name.toUpperCase()}`}
-                subsystem={service.role}
                 status={service.status === "active" ? "healthy" : "standby"}
                 className="h-full flex flex-col justify-between text-left gap-4 p-6"
               >
@@ -217,11 +212,6 @@ export default function Infrastructure() {
             </motion.div>
           ))}
         </motion.div>
-
-      </div>
-
-      <div className="w-full max-w-7xl px-4 mt-16">
-        <SpatialCableBranch direction="right-to-left" label="PROJECT SYSTEMS BUS" status="transmitting" />
       </div>
     </section>
   )

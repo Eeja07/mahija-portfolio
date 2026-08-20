@@ -66,7 +66,7 @@ export default function RepositoriesArchive() {
           {/* Header */}
           <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
             <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-cyan-400 animate-led" />
+              <span className="size-2 rounded-full bg-cyan-400" />
               <Badge 
                 variant="outline" 
                 className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -104,8 +104,6 @@ export default function RepositoriesArchive() {
             {filteredRepos.map((repo, idx) => (
               <motion.div key={repo.slug || repo.name} variants={itemVariants} className="h-full">
                 <NetworkNode 
-                  nodeId={`REPO // 0x${(idx + 1).toString(16).padStart(2, '0').toUpperCase()}`}
-                  nodeType={repo.language.toUpperCase()}
                   className="p-6 sm:p-7 flex flex-col justify-between text-left gap-6 h-full"
                 >
                   <div className="flex flex-col gap-3.5">

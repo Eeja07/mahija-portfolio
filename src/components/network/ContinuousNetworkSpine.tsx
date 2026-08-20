@@ -7,239 +7,301 @@ import { useTheme } from "next-themes"
 export default function ContinuousNetworkSpine() {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [docHeight, setDocHeight] = useState(8000)
   const isDark = resolvedTheme !== "light"
 
   const { scrollYProgress } = useScroll()
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 70,
-    damping: 20,
+    stiffness: 85,
+    damping: 24,
     restDelta: 0.001,
   })
 
-  // Transform scroll progress to path lengths
-  const pathLength = useTransform(smoothProgress, [0, 1], [0.05, 1])
+  // Scroll-activated laser light illumination filling the fiber optic tube
+  const activePathLength = useTransform(smoothProgress, [0, 1], [0.03, 1])
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
+
+    const updateHeight = () => {
+      const h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      )
+      if (h > 600) {
+        setDocHeight(h)
+      }
+    }
+
+    updateHeight()
+    window.addEventListener("resize", updateHeight)
+    
+    // ResizeObserver tracks dynamic content expansions
+    const ro = new ResizeObserver(updateHeight)
+    if (document.body) {
+      ro.observe(document.body)
+    }
+
+    return () => {
+      window.removeEventListener("resize", updateHeight)
+      ro.disconnect()
+    }
   }, [])
 
   if (!mounted) return null
 
-  const strokeBase = isDark ? "rgba(56, 189, 248, 0.14)" : "rgba(37, 99, 235, 0.12)"
-  const strokeGlow = isDark ? "rgba(56, 189, 248, 0.85)" : "rgba(37, 99, 235, 0.75)"
-  const packetColor = isDark ? "#00f0ff" : "#2563eb"
-  const emeraldColor = isDark ? "#10b981" : "#059669"
+  // Default Frosted Translucent Fiber Optic Glass Conduit styling
+  const glassShroud = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(148, 163, 184, 0.22)"
+  const glassCore = isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(100, 116, 139, 0.38)"
+  const nodeGlassStroke = isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(148, 163, 184, 0.55)"
+
+  // Dynamically compute section-aligned junction heights across full document height
+  const h = docHeight
+  const y0 = 0
+  const y1 = Math.round(h * 0.10)
+  const y2 = Math.round(h * 0.22)
+  const y3 = Math.round(h * 0.35)
+  const y4 = Math.round(h * 0.48)
+  const y5 = Math.round(h * 0.60)
+  const y6 = Math.round(h * 0.72)
+  const y7 = Math.round(h * 0.84)
+  const y8 = Math.round(h * 0.93)
+  const yEnd = h
+
+  // Left conduit routed strictly in the safe outer margin gutter (x = 28 .. 48), avoiding any text
+  const desktopLeftPath = `M 38 ${y0} C 38 ${y1 * 0.5}, 26 ${y1 * 0.8}, 42 ${y1} C 50 ${y2 * 0.7}, 28 ${y2 * 0.9}, 36 ${y2} C 46 ${y3 * 0.8}, 26 ${y3 * 0.9}, 40 ${y3} C 48 ${y4 * 0.8}, 28 ${y4 * 0.9}, 36 ${y4} C 46 ${y5 * 0.8}, 26 ${y5 * 0.9}, 42 ${y5} C 48 ${y6 * 0.8}, 28 ${y6 * 0.9}, 36 ${y6} C 46 ${y7 * 0.8}, 28 ${y7 * 0.9}, 40 ${y7} C 48 ${y8 * 0.9}, 30 ${y8 * 0.95}, 38 ${y8} C 38 ${h - 100}, 38 ${h - 30}, 38 ${yEnd}`
+
+  // Right conduit routed strictly in the safe outer margin gutter (x = 1392 .. 1412), avoiding any text
+  const desktopRightPath = `M 1402 ${y0} C 1402 ${y1 * 0.5}, 1414 ${y1 * 0.8}, 1398 ${y1} C 1390 ${y2 * 0.7}, 1412 ${y2 * 0.9}, 1404 ${y2} C 1394 ${y3 * 0.8}, 1414 ${y3 * 0.9}, 1400 ${y3} C 1392 ${y4 * 0.8}, 1412 ${y4 * 0.9}, 1404 ${y4} C 1394 ${y5 * 0.8}, 1414 ${y5 * 0.9}, 1398 ${y5} C 1392 ${y6 * 0.8}, 1412 ${y6 * 0.9}, 1404 ${y6} C 1394 ${y7 * 0.8}, 1412 ${y7 * 0.9}, 1400 ${y7} C 1392 ${y8 * 0.9}, 1410 ${y8 * 0.95}, 1402 ${y8} C 1402 ${h - 100}, 1402 ${h - 30}, 1402 ${yEnd}`
+
+  const desktopPulseLeft = `M 42 ${y0} C 42 ${y1 * 0.5}, 30 ${y1 * 0.8}, 46 ${y1} C 54 ${y2 * 0.7}, 32 ${y2 * 0.9}, 40 ${y2} C 50 ${y3 * 0.8}, 30 ${y3 * 0.9}, 44 ${y3} C 52 ${y4 * 0.8}, 32 ${y4 * 0.9}, 40 ${y4} C 50 ${y5 * 0.8}, 30 ${y5 * 0.9}, 46 ${y5} C 52 ${y6 * 0.8}, 32 ${y6 * 0.9}, 40 ${y6} C 50 ${y7 * 0.8}, 32 ${y7 * 0.9}, 44 ${y7} C 52 ${y8 * 0.9}, 34 ${y8 * 0.95}, 42 ${y8} C 42 ${h - 100}, 42 ${h - 30}, 42 ${yEnd}`
+
+  const desktopPulseRight = `M 1398 ${y0} C 1398 ${y1 * 0.5}, 1410 ${y1 * 0.8}, 1394 ${y1} C 1386 ${y2 * 0.7}, 1408 ${y2 * 0.9}, 1400 ${y2} C 1390 ${y3 * 0.8}, 1410 ${y3 * 0.9}, 1396 ${y3} C 1388 ${y4 * 0.8}, 1408 ${y4 * 0.9}, 1400 ${y4} C 1390 ${y5 * 0.8}, 1410 ${y5 * 0.9}, 1394 ${y5} C 1388 ${y6 * 0.8}, 1408 ${y6 * 0.9}, 1400 ${y6} C 1390 ${y7 * 0.8}, 1408 ${y7 * 0.9}, 1396 ${y7} C 1388 ${y8 * 0.9}, 1406 ${y8 * 0.95}, 1398 ${y8} C 1398 ${h - 100}, 1398 ${h - 30}, 1398 ${yEnd}`
+
+  // Perfectly round junction node coordinates strictly in the outer side gutters
+  const junctionNodes = [
+    { cx: 38, cy: Math.round(h * 0.04), threshold: 0.04 },
+    { cx: 1402, cy: Math.round(h * 0.04), threshold: 0.04 },
+
+    { cx: 42, cy: y1, threshold: 0.10 },
+    { cx: 1398, cy: y1, threshold: 0.10 },
+
+    { cx: 36, cy: y2, threshold: 0.22 },
+    { cx: 1404, cy: y2, threshold: 0.22 },
+
+    { cx: 40, cy: y3, threshold: 0.35 },
+    { cx: 1400, cy: y3, threshold: 0.35 },
+
+    { cx: 36, cy: y4, threshold: 0.48 },
+    { cx: 1404, cy: y4, threshold: 0.48 },
+
+    { cx: 42, cy: y5, threshold: 0.60 },
+    { cx: 1398, cy: y5, threshold: 0.60 },
+
+    { cx: 36, cy: y6, threshold: 0.72 },
+    { cx: 1404, cy: y6, threshold: 0.72 },
+
+    { cx: 40, cy: y7, threshold: 0.84 },
+    { cx: 1400, cy: y7, threshold: 0.84 },
+
+    // Bottom Contact Section Nodes
+    { cx: 38, cy: y8, threshold: 0.93 },
+    { cx: 1402, cy: y8, threshold: 0.93 },
+
+    // Final Bottom Edge Nodes (Footer)
+    { cx: 38, cy: Math.round(h - 40), threshold: 0.98 },
+    { cx: 1402, cy: Math.round(h - 40), threshold: 0.98 },
+  ]
+
+  // Mobile micro-dots strictly in the outer 6px gutter
+  const mobileDots = [
+    Math.round(h * 0.04),
+    y1,
+    y2,
+    y3,
+    y4,
+    y5,
+    y6,
+    y7,
+    y8,
+    Math.round(h - 40),
+  ]
 
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 w-full h-full overflow-hidden select-none opacity-80"
+      style={{ height: docHeight }}
+      className="pointer-events-none absolute top-0 left-0 w-full z-0 overflow-hidden select-none opacity-90"
     >
-      {/* ========================================== */}
-      {/* 1. DESKTOP CONTINUOUS MULTI-STRAND SPINAL CONDUIT (>= 640px) */}
-      {/* ========================================== */}
+      {/* ========================================================= */}
+      {/* 1. DESKTOP CONTINUOUS FIBER OPTIC CONDUIT (>= 640px) */}
+      {/* Default: Translucent White Glass Fiber */}
+      {/* Scroll: Active Multi-Hue Laser Illumination */}
+      {/* ========================================================= */}
       <svg
         className="hidden sm:block w-full h-full"
-        viewBox="0 0 1440 7000"
+        viewBox={`0 0 1440 ${docHeight}`}
         fill="none"
-        preserveAspectRatio="none"
       >
         <defs>
-          {/* Glowing laser gradient */}
-          <linearGradient id="fiberLaserMain" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.9" />
-            <stop offset="20%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.8" />
-            <stop offset="40%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.9" />
-            <stop offset="60%" stopColor={isDark ? "#818cf8" : "#4f46e5"} stopOpacity="0.85" />
-            <stop offset="80%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.9" />
-            <stop offset="100%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.95" />
+          {/* Scroll-activated dynamic laser gradient filling the fiber tube */}
+          <linearGradient id="fiberLaserActive" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.95" />
+            <stop offset="20%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.9" />
+            <stop offset="40%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.92" />
+            <stop offset="60%" stopColor={isDark ? "#818cf8" : "#4f46e5"} stopOpacity="0.88" />
+            <stop offset="80%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.92" />
+            <stop offset="95%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.95" />
+            <stop offset="100%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="1.0" />
           </linearGradient>
 
-          {/* Filter for subtle laser bloom */}
-          <filter id="laserBloom" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+          {/* Filter for crisp laser bloom */}
+          <filter id="laserBloomActive" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3.5" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
 
-        {/* LEFT SPINAL OPTICAL CONDUIT (Full Height down through Footer) */}
+        {/* ------------------------------------------------------------- */}
+        {/* A. DEFAULT STATE: Translucent White Fiber Optic Glass Conduit */}
+        {/* ------------------------------------------------------------- */}
+        {/* Left default glass tube */}
         <path
-          d="M 120 0 
-             C 120 400, 80 800, 140 1200 
-             C 200 1600, 90 2000, 110 2400 
-             C 130 2800, 70 3200, 130 3600 
-             C 190 4000, 90 4400, 120 4800 
-             C 150 5200, 80 5600, 120 6000
-             C 120 6300, 120 6600, 120 7000"
-          stroke={strokeBase}
-          strokeWidth="3"
+          d={desktopLeftPath}
+          stroke={glassShroud}
+          strokeWidth="4"
           strokeLinecap="round"
         />
-
-        <motion.path
-          d="M 120 0 
-             C 120 400, 80 800, 140 1200 
-             C 200 1600, 90 2000, 110 2400 
-             C 130 2800, 70 3200, 130 3600 
-             C 190 4000, 90 4400, 120 4800 
-             C 150 5200, 80 5600, 120 6000
-             C 120 6300, 120 6600, 120 7000"
-          stroke="url(#fiberLaserMain)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          filter="url(#laserBloom)"
-          style={{ pathLength }}
-        />
-
         <path
-          d="M 126 0 
-             C 126 400, 86 800, 146 1200 
-             C 206 1600, 96 2000, 116 2400 
-             C 136 2800, 76 3200, 136 3600 
-             C 196 4000, 96 4400, 126 4800 
-             C 156 5200, 86 5600, 126 6000
-             C 126 6300, 126 6600, 126 7000"
-          stroke={isDark ? "rgba(16, 185, 129, 0.18)" : "rgba(16, 185, 129, 0.12)"}
+          d={desktopLeftPath}
+          stroke={glassCore}
           strokeWidth="1.5"
-          strokeDasharray="10 16"
-          className="animate-fiber-pulse"
-        />
-
-        {/* RIGHT SPINAL OPTICAL CONDUIT (Full Height down through Footer) */}
-        <path
-          d="M 1320 0 
-             C 1320 400, 1360 800, 1300 1200 
-             C 1240 1600, 1350 2000, 1330 2400 
-             C 1310 2800, 1370 3200, 1310 3600 
-             C 1250 4000, 1350 4400, 1320 4800 
-             C 1290 5200, 1360 5600, 1320 6000
-             C 1320 6300, 1320 6600, 1320 7000"
-          stroke={strokeBase}
-          strokeWidth="3"
           strokeLinecap="round"
         />
 
-        <motion.path
-          d="M 1320 0 
-             C 1320 400, 1360 800, 1300 1200 
-             C 1240 1600, 1350 2000, 1330 2400 
-             C 1310 2800, 1370 3200, 1310 3600 
-             C 1250 4000, 1350 4400, 1320 4800 
-             C 1290 5200, 1360 5600, 1320 6000
-             C 1320 6300, 1320 6600, 1320 7000"
-          stroke="url(#fiberLaserMain)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          filter="url(#laserBloom)"
-          style={{ pathLength }}
-        />
-
+        {/* Right default glass tube */}
         <path
-          d="M 1314 0 
-             C 1314 400, 1354 800, 1294 1200 
-             C 1234 1600, 1344 2000, 1324 2400 
-             C 1304 2800, 1364 3200, 1304 3600 
-             C 1244 4000, 1344 4400, 1314 4800 
-             C 1284 5200, 1354 5600, 1314 6000
-             C 1314 6300, 1314 6600, 1314 7000"
-          stroke={isDark ? "rgba(0, 240, 255, 0.20)" : "rgba(37, 99, 235, 0.12)"}
+          d={desktopRightPath}
+          stroke={glassShroud}
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+        <path
+          d={desktopRightPath}
+          stroke={glassCore}
           strokeWidth="1.5"
-          strokeDasharray="10 16"
-          className="animate-fiber-pulse"
+          strokeLinecap="round"
         />
 
-        {/* CROSS-SECTION WEAVES */}
-        <path d="M 140 1200 C 400 1280, 1000 1120, 1300 1200" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
-        <path d="M 1330 2400 C 1000 2480, 400 2320, 110 2400" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
-        <path d="M 130 3600 C 400 3680, 1000 3520, 1310 3600" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
-        <path d="M 1320 4800 C 1000 4880, 400 4720, 120 4800" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
-        <path d="M 120 6000 C 400 6080, 1000 5920, 1320 6000" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
-        <path d="M 120 6850 C 400 6900, 1000 6800, 1320 6850" stroke={strokeBase} strokeWidth="2" strokeDasharray="6 8" />
+        {/* ------------------------------------------------------------- */}
+        {/* B. SCROLL-ACTIVATED STATE: Colored Laser Light Illumination  */}
+        {/* ------------------------------------------------------------- */}
+        {/* Left active colored laser beam */}
+        <motion.path
+          d={desktopLeftPath}
+          stroke="url(#fiberLaserActive)"
+          strokeWidth="2.8"
+          strokeLinecap="round"
+          filter="url(#laserBloomActive)"
+          style={{ pathLength: activePathLength }}
+        />
+        <motion.path
+          d={desktopPulseLeft}
+          stroke={isDark ? "rgba(16, 185, 129, 0.6)" : "rgba(16, 185, 129, 0.5)"}
+          strokeWidth="1.6"
+          strokeDasharray="16 24"
+          className="animate-fiber-pulse"
+          style={{ pathLength: activePathLength }}
+        />
 
-        {/* EXACT MATHEMATICALLY ALIGNED JUNCTION NODES */}
-        {[
-          // Top to mid sections
-          { cx: 115, cy: 300 },
-          { cx: 140, cy: 1200 },
-          { cx: 110, cy: 2400 },
-          { cx: 130, cy: 3600 },
-          { cx: 120, cy: 4800 },
-          // Get in Touch section: precisely computed curve point
-          { cx: 107, cy: 5700 },
-          { cx: 120, cy: 6000 },
-          // Footer cluster termination points:
-          { cx: 120, cy: 6500 },
-          { cx: 120, cy: 6850 },
+        {/* Right active colored laser beam */}
+        <motion.path
+          d={desktopRightPath}
+          stroke="url(#fiberLaserActive)"
+          strokeWidth="2.8"
+          strokeLinecap="round"
+          filter="url(#laserBloomActive)"
+          style={{ pathLength: activePathLength }}
+        />
+        <motion.path
+          d={desktopPulseRight}
+          stroke={isDark ? "rgba(0, 240, 255, 0.6)" : "rgba(37, 99, 235, 0.5)"}
+          strokeWidth="1.6"
+          strokeDasharray="16 24"
+          className="animate-fiber-pulse"
+          style={{ pathLength: activePathLength }}
+        />
 
-          // Right side
-          { cx: 1325, cy: 300 },
-          { cx: 1300, cy: 1200 },
-          { cx: 1330, cy: 2400 },
-          { cx: 1310, cy: 3600 },
-          { cx: 1320, cy: 4800 },
-          // Get in Touch section: precisely computed curve point
-          { cx: 1333, cy: 5700 },
-          { cx: 1320, cy: 6000 },
-          // Footer cluster termination points:
-          { cx: 1320, cy: 6500 },
-          { cx: 1320, cy: 6850 },
-        ].map((node, i) => (
+        {/* ------------------------------------------------------------- */}
+        {/* C. 100% PERFECT ROUND JUNCTION NODES                          */}
+        {/* ------------------------------------------------------------- */}
+        {junctionNodes.map((node, i) => (
           <g key={i}>
-            <circle cx={node.cx} cy={node.cy} r="7" fill={isDark ? "#090d16" : "#ffffff"} stroke={strokeGlow} strokeWidth="2" />
-            <circle cx={node.cx} cy={node.cy} r="3" fill={i % 2 === 0 ? packetColor : emeraldColor} />
+            {/* Default frosted glass outer ring */}
+            <circle
+              cx={node.cx}
+              cy={node.cy}
+              r={7}
+              fill={isDark ? "#090d16" : "#ffffff"}
+              stroke={nodeGlassStroke}
+              strokeWidth={2}
+            />
+            {/* Illuminated active core */}
+            <circle
+              cx={node.cx}
+              cy={node.cy}
+              r={3}
+              fill={i % 2 === 0 ? (isDark ? "#00f0ff" : "#2563eb") : (isDark ? "#10b981" : "#059669")}
+            />
           </g>
         ))}
       </svg>
 
-      {/* ========================================== */}
-      {/* 2. DEDICATED MOBILE CLEAN DUAL-RAIL CONDUIT (< 640px) */}
-      {/* ========================================== */}
+      {/* ========================================================= */}
+      {/* 2. DEDICATED MOBILE DUAL-RAIL FIBER CONDUIT (< 640px)    */}
+      {/* ========================================================= */}
       <svg
         className="block sm:hidden w-full h-full"
-        viewBox="0 0 390 7000"
+        viewBox={`0 0 390 ${docHeight}`}
         fill="none"
-        preserveAspectRatio="none"
       >
         <defs>
-          <linearGradient id="fiberLaserMobile" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.8" />
-            <stop offset="50%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.8" />
-            <stop offset="100%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.8" />
+          <linearGradient id="fiberLaserMobileActive" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.9" />
+            <stop offset="50%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.9" />
+            <stop offset="100%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.95" />
           </linearGradient>
         </defs>
 
-        {/* Clean Left Side Rail (Gutter at x=10) */}
-        <path
-          d="M 10 0 L 10 7000"
-          stroke={strokeBase}
-          strokeWidth="2"
+        {/* Default Translucent Rails */}
+        <path d={`M 6 0 L 6 ${h}`} stroke={glassShroud} strokeWidth="4" />
+        <path d={`M 6 0 L 6 ${h}`} stroke={glassCore} strokeWidth="1.5" />
+
+        <path d={`M 384 0 L 384 ${h}`} stroke={glassShroud} strokeWidth="4" />
+        <path d={`M 384 0 L 384 ${h}`} stroke={glassCore} strokeWidth="1.5" />
+
+        {/* Scroll-Activated Colored Laser on Mobile */}
+        <motion.path
+          d={`M 6 0 L 6 ${h}`}
+          stroke="url(#fiberLaserMobileActive)"
+          strokeWidth="2.5"
+          style={{ pathLength: activePathLength }}
         />
         <motion.path
-          d="M 10 0 L 10 7000"
-          stroke="url(#fiberLaserMobile)"
-          strokeWidth="2"
-          style={{ pathLength }}
+          d={`M 384 0 L 384 ${h}`}
+          stroke="url(#fiberLaserMobileActive)"
+          strokeWidth="2.5"
+          style={{ pathLength: activePathLength }}
         />
 
-        {/* Clean Right Side Rail (Gutter at x=380) */}
-        <path
-          d="M 380 0 L 380 7000"
-          stroke={strokeBase}
-          strokeWidth="2"
-        />
-        <motion.path
-          d="M 380 0 L 380 7000"
-          stroke="url(#fiberLaserMobile)"
-          strokeWidth="2"
-          style={{ pathLength }}
-        />
-
-        {/* Subtle Junction Micro-Dots on Mobile Rails (Down to Footer) */}
-        {[600, 1400, 2200, 3000, 3800, 4600, 5400, 6200, 6850].map((y, i) => (
+        {/* Round Junction Micro-Dots on Mobile Rails */}
+        {mobileDots.map((yPos, i) => (
           <g key={i}>
-            <circle cx="10" cy={y} r="3" fill={isDark ? "#00f0ff" : "#2563eb"} />
-            <circle cx="380" cy={y} r="3" fill={isDark ? "#10b981" : "#059669"} />
+            <circle cx={6} cy={yPos} r={3.5} fill={isDark ? "#00f0ff" : "#2563eb"} stroke={nodeGlassStroke} strokeWidth={1} />
+            <circle cx={384} cy={yPos} r={3.5} fill={isDark ? "#10b981" : "#059669"} stroke={nodeGlassStroke} strokeWidth={1} />
           </g>
         ))}
       </svg>

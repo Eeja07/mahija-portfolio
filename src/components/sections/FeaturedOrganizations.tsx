@@ -5,7 +5,6 @@ import { motion } from "motion/react"
 import { getOrganizations } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
-import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { buttonVariants } from "@/components/ui/button"
@@ -42,17 +41,17 @@ export default function FeaturedOrganizations() {
   const featuredOrgs = allOrgs.filter((org) => org.featured)
 
   return (
-    <section
-      id="organizations"
-      aria-labelledby="organizations-heading"
-      className="w-full py-20 bg-background"
+    <section 
+      id="organizations" 
+      aria-label="Organizational Experience"
+      className="w-full py-20 bg-transparent"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-blue-500 dark:bg-cyan-400 animate-led" />
+            <span className="size-2 rounded-full bg-blue-500 dark:bg-cyan-400" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -79,11 +78,9 @@ export default function FeaturedOrganizations() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {featuredOrgs.map((org, idx) => (
+          {featuredOrgs.map((org) => (
             <motion.div key={org.id} variants={itemVariants} className="h-full">
               <NetworkSubsystemNode
-                nodeId={`ORG // CLUSTER-0${idx + 1}`}
-                subsystem="ORGANIZATION"
                 className="h-full flex flex-col justify-between text-left gap-6 p-6"
               >
                 <div className="flex flex-col gap-3.5">
@@ -129,11 +126,6 @@ export default function FeaturedOrganizations() {
             <ArrowRight className="size-4 text-zinc-500 dark:text-zinc-400" />
           </a>
         </div>
-
-      </div>
-
-      <div className="w-full max-w-7xl px-4 mt-16">
-        <SpatialCableBranch direction="right-to-left" label={t.cableLabel} status="transmitting" />
       </div>
     </section>
   )

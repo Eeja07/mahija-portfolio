@@ -5,7 +5,6 @@ import { motion } from "motion/react"
 import { getSkillGroups } from "@/data/skills"
 import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
-import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { Server, Database, Code, Eye, Network as NetIcon, Wrench, Layers } from "lucide-react"
@@ -69,14 +68,14 @@ export default function Skills() {
     <section
       id="skills"
       aria-labelledby="skills-heading"
-      className="w-full py-20 bg-background"
+      className="w-full py-20 bg-transparent"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-cyan-400 animate-led" />
+            <span className="size-2 rounded-full bg-cyan-400" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -131,15 +130,11 @@ export default function Skills() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {filteredGroups.map((group) => {
-            const originalIndex = groups.findIndex((g) => g.title === group.title)
-            return (
-              <motion.div key={group.title} variants={itemVariants} className="h-full">
-                <NetworkSubsystemNode
-                  nodeId={`MODULE // 0${originalIndex + 1}`}
-                  subsystem={language === "id" ? "KEMAMPUAN" : "CAPABILITY"}
-                  className="h-full flex flex-col justify-between text-left gap-6 p-4 sm:p-6"
-                >
+          {filteredGroups.map((group) => (
+            <motion.div key={group.title} variants={itemVariants} className="h-full">
+              <NetworkSubsystemNode
+                className="h-full flex flex-col justify-between text-left gap-6 p-4 sm:p-6"
+              >
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
                       <h3 className="font-sans text-lg font-bold text-foreground tracking-tight flex items-center gap-2">
@@ -170,14 +165,9 @@ export default function Skills() {
                     </div>
                   </div>
                 </NetworkSubsystemNode>
-              </motion.div>
-            )
-          })}
+            </motion.div>
+          ))}
         </motion.div>
-      </div>
-
-      <div className="w-full max-w-7xl px-4 mt-16">
-        <SpatialCableBranch direction="left-to-right" label={t.cableLabel} status="transmitting" />
       </div>
     </section>
   )

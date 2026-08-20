@@ -167,20 +167,18 @@ export default function Hero() {
             {/* Bento Metrics Rack */}
             <motion.div variants={itemVariants} className="pt-2">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
-                {t.metrics.map((metric, idx) => (
-                  <NetworkSubsystemNode
+                {t.metrics.map((metric) => (
+                  <div
                     key={metric.label}
-                    nodeId={`METRIC // 0${idx + 1}`}
-                    subsystem="TELEMETRY"
-                    className="p-3 sm:p-3.5"
+                    className="p-3 sm:p-3.5 rounded-xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/90 dark:bg-zinc-950/80 backdrop-blur-md transition-all duration-200 hover:border-blue-500/50 dark:hover:border-cyan-500/50 shadow-xs flex flex-col justify-center text-left"
                   >
-                    <span className="font-mono text-base font-bold text-foreground tracking-tight">
+                    <span className="font-mono text-base sm:text-lg font-bold text-foreground tracking-tight">
                       {metric.label}
                     </span>
                     <span className="font-sans text-xs text-zinc-500 dark:text-zinc-400 block mt-0.5">
                       {metric.sub}
                     </span>
-                  </NetworkSubsystemNode>
+                  </div>
                 ))}
               </div>
             </motion.div>
