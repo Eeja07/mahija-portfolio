@@ -184,15 +184,15 @@ export default function FeaturedEngineering() {
                       </div>
                     </div>
 
-                    {/* Project Additional Media Gallery Strip */}
-                    {project.mediaGallery && project.mediaGallery.length > 0 && (
-                      <MediaAttachmentButton
-                        media={project.mediaGallery}
-                        certificateUrl={project.certificateUrl}
-                        onSelectMedia={(selected) => setPreviewItem(selected)}
-                        className="pt-1 border-none"
-                      />
-                    )}
+                    {/* Project Photo / Screenshot Placeholder */}
+                    <MediaAttachmentButton
+                      photoTitle={`${project.title} — Foto / Screenshot`}
+                      photoCaption={project.description}
+                      showCertificate={false}
+                      contextTitle={project.category}
+                      onSelectMedia={(selected) => setPreviewItem(selected)}
+                      className="pt-1 border-none"
+                    />
 
                     {/* Key Metrics Dashboard */}
                     <div className="grid grid-cols-2 gap-2.5">

@@ -120,11 +120,13 @@ export default function Experience() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  {/* Media & Certificate Attachment Area */}
+                  {/* Exactly 2 Placeholders: Foto & Sertifikat/Surat Keterangan */}
                   <MediaAttachmentButton
-                    media={exp.media}
-                    certificateUrl={exp.certificateUrl}
-                    certificateLabel={language === "id" ? "Sertifikat / Dokumen" : "Certificate / Document"}
+                    photoTitle={exp.photoPlaceholder?.title || `${exp.role} — Foto Dokumentasi`}
+                    photoCaption={exp.photoPlaceholder?.caption}
+                    certificateTitle={exp.certificatePlaceholder?.title || `${exp.role} — Sertifikat / Surat Keterangan`}
+                    certificateCaption={exp.certificatePlaceholder?.caption}
+                    contextTitle={`${exp.company} • ${exp.startDate} - ${exp.endDate || (language === "id" ? "Sekarang" : "Present")}`}
                     onSelectMedia={(selected) => setPreviewItem(selected)}
                     className="border-none pt-0"
                   />

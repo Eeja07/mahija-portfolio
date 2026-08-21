@@ -113,9 +113,13 @@ export default function Awards() {
                 </div>
 
                 <MediaAttachmentButton
-                  media={award.media}
-                  certificateUrl={award.certificateUrl}
-                  certificateLabel={language === "id" ? "Bukti Prestasi" : "Award Distinction"}
+                  photoTitle={award.photoPlaceholder?.title || `${award.title} — Foto Perlombaan`}
+                  photoCaption={award.photoPlaceholder?.caption}
+                  certificateTitle={award.certificatePlaceholder?.title || `${award.title} — Sertifikat Juara`}
+                  certificateCaption={award.certificatePlaceholder?.caption}
+                  instagramUrl={award.instagramUrl || "https://www.instagram.com/banyubramanta.its/"}
+                  instagramLabel={language === "id" ? "Instagram" : "Instagram"}
+                  contextTitle={`${award.competition} • ${award.period}`}
                   onSelectMedia={(selected) => setPreviewItem(selected)}
                 />
               </NetworkSubsystemNode>

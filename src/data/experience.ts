@@ -22,20 +22,14 @@ export const experiences: Experience[] = [
       "Teaching",
       "Mentoring"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/evidence/esp32-node.webp",
-        "title": "DSP Laboratory Hardware",
-        "caption": "Microcontroller Interfacing & Signal Acquisition"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/dsp-ta-doc.svg",
-        "title": "DSP Practicum Blueprint",
-        "caption": "Digital Signal Processing Laboratory Courseware & Lab Guide"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Practicum Photo & Lab Session",
+      "caption": "Photo documentation of DSP hardware interfacing and lab practicum guidance."
+    },
+    "certificatePlaceholder": {
+      "title": "Teaching Assistant Assignment Letter",
+      "caption": "Official department assignment letter / certificate for DSP Laboratory Course TA."
+    }
   },
   {
     "id": "intro-programming-ta-sec-treasurer",
@@ -58,20 +52,14 @@ export const experiences: Experience[] = [
       "Administrative Operations",
       "Mentoring"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/evidence/storage.webp",
-        "title": "Course Administrative Records",
-        "caption": "Laboratory Archive & Student Assessment Matrices"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/daspro-ta-doc.svg",
-        "title": "Programming Course Operations",
-        "caption": "C++ Practicum Administration & Grading Framework"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Course Operations & Mentoring Photo",
+      "caption": "Photo documentation of Introduction to Programming responsi and mentoring sessions."
+    },
+    "certificatePlaceholder": {
+      "title": "Secretary & Treasurer Assignment Letter",
+      "caption": "Official department assignment letter / certificate for Programming Course TA."
+    }
   },
   {
     "id": "winnicode-garuda-intern",
@@ -96,26 +84,14 @@ export const experiences: Experience[] = [
       "PHP",
       "Full-Stack"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/featured/untern/home.webp",
-        "title": "UNTERN Web Application",
-        "caption": "Production Full-Stack Internship Discovery Platform"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/untern-doc.svg",
-        "title": "UNTERN Architecture Spec",
-        "caption": "System Architecture, Laravel Backend & PostgreSQL DB"
-      },
-      {
-        "type": "video",
-        "url": "/videos/untern-demo.webm",
-        "title": "UNTERN Walkthrough Demo",
-        "caption": "Platform Workflow & Recruiter Dashboard"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Internship Showcase Photo",
+      "caption": "Photo documentation of UNTERN application development and sprint reviews."
+    },
+    "certificatePlaceholder": {
+      "title": "Industrial Internship Completion Certificate",
+      "caption": "Official internship completion certificate from PT Winnicode Garuda Indonesia."
+    }
   },
   {
     "id": "lintasarta-intern",
@@ -139,20 +115,14 @@ export const experiences: Experience[] = [
       "ITSM",
       "Hardware Deployment"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/evidence/tunnel.webp",
-        "title": "ITSM Infrastructure Deployment",
-        "caption": "Enterprise Infrastructure & Egress Routing Systems"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/lintasarta-doc.svg",
-        "title": "Corporate ITSM Architecture",
-        "caption": "Enterprise Linux Server Provisioning & Hardware Deployment"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Data Center & Infrastructure Photo",
+      "caption": "Photo documentation of enterprise hardware deployment and server rack cabling."
+    },
+    "certificatePlaceholder": {
+      "title": "Corporate Internship Certificate",
+      "caption": "Official industrial internship certificate from PT Lintasarta Corporate IT Division."
+    }
   },
   {
     "id": "intro-programming-ta-staff",
@@ -175,20 +145,14 @@ export const experiences: Experience[] = [
       "Git",
       "Mentoring"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/daspro-ta-doc.svg",
-        "title": "Mentoring & Assessment Blueprint",
-        "caption": "C++ Algorithm Problem-Solving & Evaluation Rubrics"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/storage.webp",
-        "title": "Code Assessment Archive",
-        "caption": "Repository of Undergraduate Laboratory Reports"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Laboratory Mentoring Photo",
+      "caption": "Photo documentation of student code reviews and lab mentoring activities."
+    },
+    "certificatePlaceholder": {
+      "title": "Teaching Assistant Staff Letter",
+      "caption": "Official teaching assistant assignment letter / certificate."
+    }
   },
   {
     "id": "robotics-extracurricular-instructor",
@@ -211,26 +175,14 @@ export const experiences: Experience[] = [
       "Embedded C",
       "Simulations"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/activities/robot-assembly-1.png",
-        "title": "Obstacle Avoidance Robot Assembly",
-        "caption": "Hands-on Elementary Robotics Module & Chassis Wiring"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/robotics-sd-doc.svg",
-        "title": "Robotics Curriculum Architecture",
-        "caption": "4-Wheel Smart Chassis Wiring & Ultrasonic Avoidance Logic"
-      },
-      {
-        "type": "image",
-        "url": "/images/activities/robot-assembly-2.png",
-        "title": "Robotics Sensor Layout",
-        "caption": "Ultrasonic Distance Sensor & Motor Driver Testing"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Robotics Classroom Photo",
+      "caption": "Photo documentation of elementary student robotics assembly and track testing."
+    },
+    "certificatePlaceholder": {
+      "title": "Robotics Instructor Certificate",
+      "caption": "Official extracurricular robotics instructor certificate / letter of appreciation."
+    }
   }
 ]
 
@@ -256,20 +208,14 @@ export const experiencesId: Experience[] = [
       "Pengajaran",
       "Mentoring"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/evidence/esp32-node.webp",
-        "title": "Hardware Lab DSP",
-        "caption": "Praktikum Pemrosesan Sinyal & Antarmuka Mikrokontroler"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/dsp-ta-doc.svg",
-        "title": "Cetak Biru Praktikum DSP",
-        "caption": "Modul Praktikum Pemrosesan Sinyal Digital & Panduan Lab"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Sesi Praktikum Lab",
+      "caption": "Dokumentasi foto pendampingan modul pemrosesan sinyal dan antarmuka hardware."
+    },
+    "certificatePlaceholder": {
+      "title": "Surat Tugas Asisten Praktikum DSP",
+      "caption": "Surat tugas resmi / sertifikat asisten laboratorium dari Departemen Teknik Komputer ITS."
+    }
   },
   {
     "id": "intro-programming-ta-sec-treasurer",
@@ -292,20 +238,14 @@ export const experiencesId: Experience[] = [
       "Operasional Administratif",
       "Mentoring"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/evidence/storage.webp",
-        "title": "Arsip Administrasi Lab",
-        "caption": "Repositori Laporan & Matriks Rekapitulasi Nilai Praktikan"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/daspro-ta-doc.svg",
-        "title": "Operasional Kelas Pemrograman",
-        "caption": "Administrasi Praktikum C++ & Kerangka Penilaian"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Bimbingan & Responsi",
+      "caption": "Dokumentasi foto bimbingan tugas pemrograman dan koordinasi asisten lab."
+    },
+    "certificatePlaceholder": {
+      "title": "Surat Keputusan Sekretaris & Bendahara",
+      "caption": "Surat tugas resmi / sertifikat asisten laboratorium Dasar Pemrograman."
+    }
   },
   {
     "id": "winnicode-garuda-intern",
@@ -330,26 +270,14 @@ export const experiencesId: Experience[] = [
       "PHP",
       "Full-Stack"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/featured/untern/home.webp",
-        "title": "Aplikasi Web UNTERN",
-        "caption": "Platform Full-Stack Portal Pencarian Magang Mahasiswa"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/untern-doc.svg",
-        "title": "Spesifikasi Arsitektur UNTERN",
-        "caption": "Arsitektur Sistem, Backend Laravel & Database PostgreSQL"
-      },
-      {
-        "type": "video",
-        "url": "/videos/untern-demo.webm",
-        "title": "Video Demo UNTERN",
-        "caption": "Alur Navigasi & Dashboard Perekrut Perusahaan"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Dokumentasi Magang",
+      "caption": "Dokumentasi foto pengembangan platform UNTERN dan sprint review."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Magang Industri",
+      "caption": "Sertifikat resmi penyelesaian program magang dari PT Winnicode Garuda Indonesia."
+    }
   },
   {
     "id": "lintasarta-intern",
@@ -373,20 +301,14 @@ export const experiencesId: Experience[] = [
       "ITSM",
       "Deployment Hardware"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/evidence/tunnel.webp",
-        "title": "Infrastruktur Jaringan ITSM",
-        "caption": "Infrastruktur Enterprise & Sistem Routing Jaringan Egress"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/lintasarta-doc.svg",
-        "title": "Arsitektur ITSM Korporat",
-        "caption": "Provisioning Server Linux Enterprise & Deployment Hardware"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Data Center & Infrastruktur",
+      "caption": "Dokumentasi foto instalasi server rack dan deployment perangkat keras jaringan."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Magang PT Lintasarta",
+      "caption": "Sertifikat resmi magang industri dari Divisi Corporate IT PT Lintasarta."
+    }
   },
   {
     "id": "intro-programming-ta-staff",
@@ -409,20 +331,14 @@ export const experiencesId: Experience[] = [
       "Git",
       "Mentoring"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/daspro-ta-doc.svg",
-        "title": "Cetak Biru Responsi & Penilaian",
-        "caption": "Pemecahan Masalah Algoritma C++ & Rubrik Evaluasi"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/storage.webp",
-        "title": "Arsip Penilaian Kode",
-        "caption": "Repositori Laporan Praktikum Mahasiswa"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Praktikum Mahasiswa",
+      "caption": "Dokumentasi foto pendampingan praktikan dan evaluasi tugas akhir."
+    },
+    "certificatePlaceholder": {
+      "title": "Surat Tugas Staf Asisten",
+      "caption": "Surat tugas resmi asisten laboratorium dari Departemen Teknik Komputer ITS."
+    }
   },
   {
     "id": "robotics-extracurricular-instructor",
@@ -445,26 +361,14 @@ export const experiencesId: Experience[] = [
       "Embedded C",
       "Simulasi"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/activities/robot-assembly-1.png",
-        "title": "Perakitan Robot Obstacle Avoidance",
-        "caption": "Modul Praktik Robotika SD & Perakitan Sasis 4 Roda"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/robotics-sd-doc.svg",
-        "title": "Arsitektur Kurikulum Robotika",
-        "caption": "Pengkabelan Sasis 4 Roda & Logika Penghindar Rintangan Ultrasonik"
-      },
-      {
-        "type": "image",
-        "url": "/images/activities/robot-assembly-2.png",
-        "title": "Tata Letak Sensor Robotika",
-        "caption": "Pengujian Sensor Jarak Ultrasonik & Driver Motor"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Kelas Robotika",
+      "caption": "Dokumentasi foto kelas praktik perakitan robot siswa sekolah dasar."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Instruktur Robotika",
+      "caption": "Sertifikat / surat keterangan mengajar ekstrakurikuler robotika."
+    }
   }
 ]
 

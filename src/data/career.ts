@@ -1,4 +1,7 @@
-import { MediaItem } from "@/types/experience"
+export interface PlaceholderSlot {
+  title: string
+  caption: string
+}
 
 export interface CareerItem {
   id: string
@@ -8,9 +11,8 @@ export interface CareerItem {
   summary: string
   bullets: string[]
   featured: boolean
-  media?: MediaItem[]
-  certificateUrl?: string
-  certificateLabel?: string
+  photoPlaceholder?: PlaceholderSlot
+  certificatePlaceholder?: PlaceholderSlot
 }
 
 export interface AwardItem {
@@ -19,9 +21,9 @@ export interface AwardItem {
   period: string
   summary: string
   bullets: string[]
-  media?: MediaItem[]
-  certificateUrl?: string
-  certificateLabel?: string
+  photoPlaceholder?: PlaceholderSlot
+  certificatePlaceholder?: PlaceholderSlot
+  instagramUrl?: string
 }
 
 export const organizations: CareerItem[] = [
@@ -37,20 +39,14 @@ export const organizations: CareerItem[] = [
       "Coordinated laboratory management activities with external stakeholders and university administration"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/activities/iot-dashboard-screenshot.png",
-        "title": "M-IOT Laboratory Project Systems",
-        "caption": "Laboratory Research & Telematics System Supervision"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/m-iot-org-doc.svg",
-        "title": "M-IOT Coordinator Blueprint",
-        "caption": "Research Roadmap, Division Timelines & Lab Asset Management"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "M-IOT Laboratory Activities",
+      "caption": "Photo documentation of laboratory operations, research projects, and member coordination."
+    },
+    "certificatePlaceholder": {
+      "title": "Laboratory Coordinator Appointment Decree",
+      "caption": "Official appointment letter / SK for Coordinator of M-IOT Laboratory ITS."
+    }
   },
   {
     "id": "banyubramanta-official-head",
@@ -64,20 +60,14 @@ export const organizations: CareerItem[] = [
       "Ensured smooth execution of the team’s administrative and non-technical operations"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/activities/robot-assembly-1.png",
-        "title": "Robotics Team Operations & Assembly",
-        "caption": "Team Management, Operations & Robotics Assemblies"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/banyubramanta-org-doc.svg",
-        "title": "Robotics Official Blueprint",
-        "caption": "Team Logistics, Sponsorship Portfolios & Media Branding"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Robotics Team Operations Photo",
+      "caption": "Photo documentation of team briefings, sponsor meetings, and event organization."
+    },
+    "certificatePlaceholder": {
+      "title": "Head of Official Division Certificate",
+      "caption": "Official certificate of organizational leadership from Banyubramanta Robotics Team ITS."
+    }
   },
   {
     "id": "himatekkom-cadre-head",
@@ -91,20 +81,14 @@ export const organizations: CareerItem[] = [
       "Facilitated internal department coordination and leadership workshops"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/himatekkom-org-doc.svg",
-        "title": "HIMATEKKOM Cadre Leadership Blueprint",
-        "caption": "Student Leadership Cadre Curriculum & Competency Matrix"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/storage.webp",
-        "title": "Cadre Scorecard Repository",
-        "caption": "Leadership Rubrics & Cohort Progress Archive"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Cadre Training & Mentoring Photo",
+      "caption": "Photo documentation of student leadership sessions and cadre evaluations."
+    },
+    "certificatePlaceholder": {
+      "title": "Head of Cadre Appointment Letter",
+      "caption": "Official organizational decree / certificate from HIMATEKKOM ITS."
+    }
   },
   {
     "id": "banyubramanta-senior-finance",
@@ -118,20 +102,14 @@ export const organizations: CareerItem[] = [
       "Streamlined reimbursement workflows for technical hardware procurement"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/banyu-finance-doc.svg",
-        "title": "Banyubramanta Senior Finance Ledger",
-        "caption": "Robotics R&D Budget Allocation, Procurement & Audit Trails"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/tunnel.webp",
-        "title": "Procurement Verification",
-        "caption": "Hardware Component Sourcing & Sensor Claim Records"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Finance & Logistics Photo",
+      "caption": "Photo documentation of team financial auditing and procurement coordination."
+    },
+    "certificatePlaceholder": {
+      "title": "Senior Finance Staff Certificate",
+      "caption": "Certificate of service from Banyubramanta Robotics Team ITS."
+    }
   }
 ]
 
@@ -148,20 +126,14 @@ export const organizationsId: CareerItem[] = [
       "Mengoordinasikan kegiatan pengelolaan laboratorium dengan pihak eksternal dan pimpinan departemen"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/activities/iot-dashboard-screenshot.png",
-        "title": "Sistem Proyek Lab M-IOT",
-        "caption": "Riset Laboratorium & Pengawasan Sistem Telematika"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/m-iot-org-doc.svg",
-        "title": "Cetak Biru Koordinator M-IOT",
-        "caption": "Peta Riset, Lini Masa Divisi & Manajemen Aset Lab"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Kegiatan Lab M-IOT",
+      "caption": "Dokumentasi foto operasional laboratorium, riset proyek, dan koordinasi asisten."
+    },
+    "certificatePlaceholder": {
+      "title": "Surat Keputusan Koordinator Lab",
+      "caption": "Surat keputusan resmi pengangkatan Koordinator Laboratorium M-IOT FTEIC ITS."
+    }
   },
   {
     "id": "banyubramanta-official-head",
@@ -175,20 +147,14 @@ export const organizationsId: CareerItem[] = [
       "Memastikan kelancaran operasional administratif dan non-teknis tim dalam berbagai kompetisi"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/activities/robot-assembly-1.png",
-        "title": "Operasional & Perakitan Tim Robotika",
-        "caption": "Manajemen Tim, Operasional & Perakitan Wahana Robotika"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/banyubramanta-org-doc.svg",
-        "title": "Cetak Biru Divisi Official",
-        "caption": "Logistik Tim, Portofolio Sponsorship & Penjenamaan Media"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Operasional Tim Robotika",
+      "caption": "Dokumentasi foto rapat divisi, koordinasi sponsorship, dan manajemen tim."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Kepala Divisi Official",
+      "caption": "Sertifikat kepengurusan resmi dari Tim Robotika Banyubramanta ITS."
+    }
   },
   {
     "id": "himatekkom-cadre-head",
@@ -202,20 +168,14 @@ export const organizationsId: CareerItem[] = [
       "Memfasilitasi koordinasi internal departemen serta lokakarya kepemimpinan"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/himatekkom-org-doc.svg",
-        "title": "Cetak Biru Kaderisasi HIMATEKKOM",
-        "caption": "Kurikulum Kaderisasi & Matriks Kompetensi Mahasiswa"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/storage.webp",
-        "title": "Repositori Penilaian Kader",
-        "caption": "Rubrik Kepemimpinan & Arsip Perkembangan Angkatan"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Pelatihan & Kaderisasi",
+      "caption": "Dokumentasi foto sesi pembinaan kader dan evaluasi angkatan mahasiswa."
+    },
+    "certificatePlaceholder": {
+      "title": "Surat Keputusan Kepala Sub-biro Kaderisasi",
+      "caption": "Surat keputusan kepengurusan resmi dari HIMATEKKOM ITS."
+    }
   },
   {
     "id": "banyubramanta-senior-finance",
@@ -229,20 +189,14 @@ export const organizationsId: CareerItem[] = [
       "Mengoptimalkan alur reimbursement untuk pengadaan perangkat keras teknis"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/banyu-finance-doc.svg",
-        "title": "Buku Besar Keuangan Banyubramanta",
-        "caption": "Alokasi Anggaran R&D Robotika, Pengadaan & Jejak Audit"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/tunnel.webp",
-        "title": "Verifikasi Pengadaan",
-        "caption": "Pencatatan Komponen Hardware & Klaim Sensor Wahana"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Administrasi & Keuangan",
+      "caption": "Dokumentasi foto audit pembukuan dan pengadaan teknis tim robotika."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Staf Senior Keuangan",
+      "caption": "Sertifikat apresiasi kepengurusan dari Tim Robotika Banyubramanta ITS."
+    }
   }
 ]
 
@@ -259,14 +213,14 @@ export const committees: CareerItem[] = [
       "Assisted VIP guests and department dignitaries with seating protocols and logistical support"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/committee-wisuda-doc.svg",
-        "title": "Wisuda 128 Operations Blueprint",
-        "caption": "Ceremonial Flow, VIP Protocol & Section Coordination"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Commencement LO Photo",
+      "caption": "Photo documentation of ceremonial stage escort and graduate guidance."
+    },
+    "certificatePlaceholder": {
+      "title": "Commencement 128 Committee Certificate",
+      "caption": "Official committee certificate from Institut Teknologi Sepuluh Nopember."
+    }
   },
   {
     "id": "its-youth-technopreneur",
@@ -280,14 +234,14 @@ export const committees: CareerItem[] = [
       "Drafted official correspondence, certificates, and event documentation"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/committee-iyt-doc.svg",
-        "title": "ITS Youth Technopreneur Event Blueprint",
-        "caption": "National Business Pitching Stage & Competition Secretariat"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Event Secretariat Photo",
+      "caption": "Photo documentation of business pitching rounds and jury score tabulations."
+    },
+    "certificatePlaceholder": {
+      "title": "IYT 2023 Committee Certificate",
+      "caption": "Official committee certificate from Direktorat Kemahasiswaan ITS."
+    }
   },
   {
     "id": "schematics-2023",
@@ -301,14 +255,14 @@ export const committees: CareerItem[] = [
       "Managed on-site logistical distribution for competition rounds and closing ceremonies"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/committee-schematics-doc.svg",
-        "title": "Schematics 2023 Tech Logistics Blueprint",
-        "caption": "National Logic & Programming Competition Arena Coordination"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Technical Arena & Logistics Photo",
+      "caption": "Photo documentation of competition arena setup and participant flow control."
+    },
+    "certificatePlaceholder": {
+      "title": "Schematics 2023 Committee Certificate",
+      "caption": "Official committee certificate from FTEIC ITS."
+    }
   },
   {
     "id": "banyubramanta-internship-sc",
@@ -322,20 +276,14 @@ export const committees: CareerItem[] = [
       "Monitored onboarding milestones to ensure high retention and skill readiness"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/activities/robot-assembly-2.png",
-        "title": "Robotics Cadre Mentoring",
-        "caption": "Cadre Training & Hardware Assessments"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/committee-banyu-sc-doc.svg",
-        "title": "Cadre Steering Committee Blueprint",
-        "caption": "Cadre Onboarding Rubric & Robotics Hardware Evaluation"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Steering Committee Mentoring Photo",
+      "caption": "Photo documentation of recruit task evaluation and technical interview sessions."
+    },
+    "certificatePlaceholder": {
+      "title": "Steering Committee Assignment Letter",
+      "caption": "Official committee letter / certificate from Banyubramanta Robotics Team ITS."
+    }
   }
 ]
 
@@ -352,14 +300,14 @@ export const committeesId: CareerItem[] = [
       "Membantu tamu VIP dan pimpinan departemen terkait protokol tempat duduk dan dukungan logistik"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/committee-wisuda-doc.svg",
-        "title": "Cetak Biru Operasional Wisuda 128",
-        "caption": "Alur Prosesi, Protokol VIP & Koordinasi Lapangan"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto LO Prosesi Wisuda",
+      "caption": "Dokumentasi foto pendampingan wisudawan dan protokol panggung upacara."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Panitia Wisuda 128 ITS",
+      "caption": "Sertifikat kepanitiaan resmi dari Institut Teknologi Sepuluh Nopember."
+    }
   },
   {
     "id": "its-youth-technopreneur",
@@ -373,14 +321,14 @@ export const committeesId: CareerItem[] = [
       "Menyusun surat menyurat resmi, sertifikat, dan dokumentasi kegiatan"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/committee-iyt-doc.svg",
-        "title": "Cetak Biru Kegiatan ITS Youth Technopreneur",
-        "caption": "Panggung Pitching Bisnis Nasional & Sekretariat Acara"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Penjurian & Kesekretariatan",
+      "caption": "Dokumentasi foto babak pitching bisnis dan tabulasi skor juri."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Panitia IYT 2023",
+      "caption": "Sertifikat kepanitiaan resmi dari Direktorat Kemahasiswaan ITS."
+    }
   },
   {
     "id": "schematics-2023",
@@ -394,14 +342,14 @@ export const committeesId: CareerItem[] = [
       "Mengelola distribusi logistik di lokasi untuk babak perlombaan dan upacara penutupan"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/committee-schematics-doc.svg",
-        "title": "Cetak Biru Logistik Teknis Schematics 2023",
-        "caption": "Koordinasi Arena Kompetisi Logika & Pemrograman Nasional"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Logistik & Arena Teknis",
+      "caption": "Dokumentasi foto penyiapan arena kompetisi dan distribusi perlengkapan peserta."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Panitia Schematics 2023",
+      "caption": "Sertifikat kepanitiaan resmi dari FTEIC ITS."
+    }
   },
   {
     "id": "banyubramanta-internship-sc",
@@ -415,20 +363,14 @@ export const committeesId: CareerItem[] = [
       "Memantau capaian onboarding guna memastikan kesiapan keterampilan dan retensi anggota baru"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/activities/robot-assembly-2.png",
-        "title": "Mentoring Kader Robotika",
-        "caption": "Pelatihan Kader & Penilaian Tugas Perangkat Keras"
-      },
-      {
-        "type": "image",
-        "url": "/images/docs/committee-banyu-sc-doc.svg",
-        "title": "Cetak Biru Steering Committee Kader",
-        "caption": "Rubrik Onboarding Kader & Evaluasi Perangkat Keras Robotika"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Evaluasi & Mentoring SC",
+      "caption": "Dokumentasi foto wawancara teknis dan pengujian tugas calon anggota tim."
+    },
+    "certificatePlaceholder": {
+      "title": "Surat Tugas Steering Committee",
+      "caption": "Surat tugas / sertifikat kepanitiaan dari Tim Robotika Banyubramanta ITS."
+    }
   }
 ]
 
@@ -445,20 +387,14 @@ export const training: CareerItem[] = [
       "Completed intensive crisis management and stakeholder negotiation simulations"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/lkmm-tm-doc.svg",
-        "title": "LKMM-TM Strategic Blueprint",
-        "caption": "Strategic Organization Policy, Conflict Resolution & SWOT Matrix"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/storage.webp",
-        "title": "Policy Simulation Archive",
-        "caption": "Intermediate Student Management Skills Training Module"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "LKMM-TM Training Session Photo",
+      "caption": "Photo documentation of strategic policy simulations and focus group discussions."
+    },
+    "certificatePlaceholder": {
+      "title": "LKMM-TM Management Certificate",
+      "caption": "Official Middle-Level Student Management Skills Certificate from Directorate of Student Affairs ITS."
+    }
   },
   {
     "id": "lkmm-td-training",
@@ -472,14 +408,14 @@ export const training: CareerItem[] = [
       "Participated in group communication dynamics and feedback loops"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/lkmm-td-doc.svg",
-        "title": "LKMM-TD Leadership Blueprint",
-        "caption": "Task Management, Group Communication & Operational Planning"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "LKMM-TD Workshop Photo",
+      "caption": "Photo documentation of team dynamics, meeting facilitation, and operational planning."
+    },
+    "certificatePlaceholder": {
+      "title": "LKMM-TD Leadership Certificate",
+      "caption": "Official Basic Student Management Skills Certificate from Directorate of Student Affairs ITS."
+    }
   },
   {
     "id": "pkti-td-training",
@@ -493,14 +429,14 @@ export const training: CareerItem[] = [
       "Conducted hypothesis formulation and qualitative/quantitative data structuring"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/pkti-td-doc.svg",
-        "title": "PKTI-TD Scientific Research Blueprint",
-        "caption": "Methodology Design, Scientific Citation & Peer-Review Framework"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Scientific Research Session Photo",
+      "caption": "Photo documentation of scientific proposal drafting and peer-review defense."
+    },
+    "certificatePlaceholder": {
+      "title": "PKTI-TD Scientific Writing Certificate",
+      "caption": "Official scientific writing certification from Directorate of Student Affairs ITS."
+    }
   },
   {
     "id": "lkmm-pre-basic",
@@ -514,14 +450,14 @@ export const training: CareerItem[] = [
       "Learned basic time management techniques for demanding engineering curricula"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/lkmm-pra-td-doc.svg",
-        "title": "LKMM Pra-TD Foundation Roadmap",
-        "caption": "Self-Management, Goal Setting & Time Organization Systems"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foundation Workshop Photo",
+      "caption": "Photo documentation of goal-setting and self-management group activities."
+    },
+    "certificatePlaceholder": {
+      "title": "LKMM Pra-TD Certificate",
+      "caption": "Official foundation student leadership certificate from Directorate of Student Affairs ITS."
+    }
   },
   {
     "id": "mage-workshop",
@@ -535,14 +471,14 @@ export const training: CareerItem[] = [
       "Integrated third-party authentication tokens within client-server workflows"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/mage-workshop-doc.svg",
-        "title": "MAGE 9 API Architecture Workshop",
-        "caption": "Backend Validation, Database Schemas & Systems Interfacing"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "MAGE 9 Workshop Photo",
+      "caption": "Photo documentation of backend API architecture and database integration sessions."
+    },
+    "certificatePlaceholder": {
+      "title": "MAGE 9 Workshop Certificate",
+      "caption": "Official technical workshop certificate from Department of Computer Engineering ITS."
+    }
   },
   {
     "id": "lkmw-td-training",
@@ -556,14 +492,14 @@ export const training: CareerItem[] = [
       "Presented competitive market analysis and product value propositions to mentors"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/lkmw-td-doc.svg",
-        "title": "LKMW-TD Entrepreneurship Blueprint",
-        "caption": "Business Model Canvas (BMC), Unit Economics & Market Validation"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Entrepreneurship Pitch Photo",
+      "caption": "Photo documentation of Business Model Canvas presentation and mentor pitch."
+    },
+    "certificatePlaceholder": {
+      "title": "LKMW-TD Technopreneurship Certificate",
+      "caption": "Official entrepreneurship training certificate from Directorate of Student Affairs ITS."
+    }
   }
 ]
 
@@ -580,20 +516,14 @@ export const trainingId: CareerItem[] = [
       "Menyelesaikan simulasi intensif manajemen krisis dan negosiasi pemangku kepentingan"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/lkmm-tm-doc.svg",
-        "title": "Cetak Biru Strategis LKMM-TM",
-        "caption": "Kebijakan Organisasi, Resolusi Konflik & Analisis SWOT"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/storage.webp",
-        "title": "Arsip Simulasi Kebijakan",
-        "caption": "Modul Pelatihan Keterampilan Manajemen Mahasiswa Tingkat Menengah"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Sesi Pelatihan LKMM-TM",
+      "caption": "Dokumentasi foto simulasi kebijakan strategis dan forum diskusi kelompok."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Kelulusan LKMM-TM",
+      "caption": "Sertifikat resmi Pelatihan Keterampilan Manajemen Mahasiswa Tingkat Menengah dari Ditmawa ITS."
+    }
   },
   {
     "id": "lkmm-td-training",
@@ -607,14 +537,14 @@ export const trainingId: CareerItem[] = [
       "Berpartisipasi aktif dalam dinamika komunikasi kelompok dan siklus umpan balik konstruktif"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/lkmm-td-doc.svg",
-        "title": "Cetak Biru Kepemimpinan LKMM-TD",
-        "caption": "Manajemen Tugas, Komunikasi Kelompok & Rencana Kerja Operasional"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Lokakarya LKMM-TD",
+      "caption": "Dokumentasi foto dinamika kelompok, simulasi rapat, dan perancangan rencana kerja."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Kelulusan LKMM-TD",
+      "caption": "Sertifikat resmi Pelatihan Keterampilan Manajemen Mahasiswa Tingkat Dasar dari Ditmawa ITS."
+    }
   },
   {
     "id": "pkti-td-training",
@@ -628,14 +558,14 @@ export const trainingId: CareerItem[] = [
       "Melakukan perumusan hipotesis serta penataan data kualitatif dan kuantitatif"
     ],
     "featured": true,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/pkti-td-doc.svg",
-        "title": "Cetak Biru Riset Ilmiah PKTI-TD",
-        "caption": "Perancangan Metodologi, Sitasi Ilmiah & Kerangka Peer-Review"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Pelatihan Riset Ilmiah",
+      "caption": "Dokumentasi foto penyusunan proposal penelitian ilmiah dan sidang kelompok."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Pelatihan PKTI-TD",
+      "caption": "Sertifikat resmi Pelatihan Karya Tulis Ilmiah dari Direktorat Kemahasiswaan ITS."
+    }
   },
   {
     "id": "lkmm-pre-basic",
@@ -649,14 +579,14 @@ export const trainingId: CareerItem[] = [
       "Mempelajari teknik manajemen waktu mendasar untuk kurikulum teknik yang padat"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/lkmm-pra-td-doc.svg",
-        "title": "Peta Fondasi LKMM Pra-TD",
-        "caption": "Manajemen Diri, Penetapan Sasaran & Organisasi Waktu"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Lokakarya Fondasi Mahasiswa",
+      "caption": "Dokumentasi foto aktivitas manajemen diri dan penetapan sasaran belajar."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat LKMM Pra-TD",
+      "caption": "Sertifikat resmi Pelatihan Pra-Tingkat Dasar dari Direktorat Kemahasiswaan ITS."
+    }
   },
   {
     "id": "mage-workshop",
@@ -670,14 +600,14 @@ export const trainingId: CareerItem[] = [
       "Mengintegrasikan token autentikasi pihak ketiga dalam alur kerja client-server"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/mage-workshop-doc.svg",
-        "title": "Lokakarya Arsitektur API MAGE 9",
-        "caption": "Validasi Backend, Skema Database & Antarmuka Sistem"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Lokakarya Backend API",
+      "caption": "Dokumentasi foto sesi pemrograman API backend dan integrasi database."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Workshop MAGE 9",
+      "caption": "Sertifikat partisipasi lokakarya teknis dari Departemen Teknik Komputer ITS."
+    }
   },
   {
     "id": "lkmw-td-training",
@@ -691,14 +621,14 @@ export const trainingId: CareerItem[] = [
       "Mempresentasikan analisis pasar kompetitif dan proposisi nilai produk kepada mentor"
     ],
     "featured": false,
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/lkmw-td-doc.svg",
-        "title": "Cetak Biru Wirausaha LKMW-TD",
-        "caption": "Business Model Canvas (BMC), Unit Economics & Validasi Pasar"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Pitching Bisnis Wirausaha",
+      "caption": "Dokumentasi foto pemaparan Business Model Canvas di hadapan mentor kewirausahaan."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat LKMW-TD Wirausaha",
+      "caption": "Sertifikat resmi pelatihan kewirausahaan mahasiswa dari Ditmawa ITS."
+    }
   }
 ]
 
@@ -712,20 +642,15 @@ export const awards: AwardItem[] = [
       "Validated deep-water computer vision inference scripts under varying light conditions",
       "Designed robust telemetry communication configurations over serial and acoustic links"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/sauvc-award-doc.svg",
-        "title": "SAUVC 2025 Distinction Blueprint",
-        "caption": "Singapore Autonomous Underwater Vehicle Challenge 5th Place"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/drone-field.webp",
-        "title": "AUV Navigation Telemetry",
-        "caption": "Autonomous Flight / Navigation Path Verification"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "SAUVC Singapore Competition Photo",
+      "caption": "Photo documentation of team on pool deck, underwater drone testing, and arena runs."
+    },
+    "certificatePlaceholder": {
+      "title": "SAUVC 2025 Finalist Certificate",
+      "caption": "Official international distinction certificate from SAUVC Singapore."
+    },
+    "instagramUrl": "https://www.instagram.com/banyubramanta.its/"
   },
   {
     "title": "1st Place - Indonesian Underwater Robot Competition National Level 2024",
@@ -736,20 +661,15 @@ export const awards: AwardItem[] = [
       "Wrote real-time hardware fail-safe routines, protecting the airframe under signal drops",
       "Secured first place out of 40+ competing university teams in speed and accuracy"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/kki-national-award-doc.svg",
-        "title": "KKI 2024 National 1st Place Champion",
-        "caption": "Edge YOLO Detection & Hardware Fail-Safe Routines"
-      },
-      {
-        "type": "image",
-        "url": "/images/activities/yolo-detection-5m.png",
-        "title": "Real-time Detection Frame",
-        "caption": "Edge Computer Vision Target Classification"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "National Championship Podium Photo",
+      "caption": "Photo documentation of championship awarding and underwater arena run."
+    },
+    "certificatePlaceholder": {
+      "title": "1st Place National Championship Certificate",
+      "caption": "Official national distinction certificate from Puspresnas / BPTI Kemendikbudristek."
+    },
+    "instagramUrl": "https://www.instagram.com/banyubramanta.its/"
   },
   {
     "title": "3rd Place - Indonesian Underwater Robot Competition Regional Level II 2024",
@@ -760,14 +680,15 @@ export const awards: AwardItem[] = [
       "Implemented sensor fusion filters combining optical flow with laser altimeters",
       "Configured secure telemetry communication channels to ground control centers"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/kki-regional-award-doc.svg",
-        "title": "KKI 2024 Regional 3rd Place Distinction",
-        "caption": "Waypoint Search-Grid Loops & Sensor Fusion Filtering"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Regional II Competition Photo",
+      "caption": "Photo documentation of vehicle pool testing and regional qualification."
+    },
+    "certificatePlaceholder": {
+      "title": "3rd Place Regional Certificate",
+      "caption": "Official regional distinction certificate from Puspresnas / BPTI Kemendikbudristek."
+    },
+    "instagramUrl": "https://www.instagram.com/banyubramanta.its/"
   }
 ]
 
@@ -781,20 +702,15 @@ export const awardsId: AwardItem[] = [
       "Memvalidasi skrip inferensi computer vision bawah air pada berbagai kondisi pencahayaan",
       "Merancang konfigurasi komunikasi telemetri yang andal melalui tautan serial dan akustik"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/sauvc-award-doc.svg",
-        "title": "Cetak Biru Prestasi SAUVC 2025",
-        "caption": "Singapore Autonomous Underwater Vehicle Challenge Peringkat 5 Internasional"
-      },
-      {
-        "type": "image",
-        "url": "/images/evidence/drone-field.webp",
-        "title": "Telemetri Navigasi AUV",
-        "caption": "Verifikasi Trajektori Navigasi Otonom Wahana"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Arena SAUVC Singapura",
+      "caption": "Dokumentasi foto pengujian wahana di kolam kompetisi dan pengerjaan telemetri tim."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Prestasi Finalis SAUVC 2025",
+      "caption": "Sertifikat penghargaan resmi tingkat internasional dari komite SAUVC Singapura."
+    },
+    "instagramUrl": "https://www.instagram.com/banyubramanta.its/"
   },
   {
     "title": "Juara 1 - Kontes Robot Bawah Air Indonesia (KKI) Tingkat Nasional 2024",
@@ -805,20 +721,15 @@ export const awardsId: AwardItem[] = [
       "Menulis rutinitas fail-safe perangkat keras waktu nyata untuk keamanan wahana saat kehilangan sinyal",
       "Meraih peringkat pertama dari 40+ tim universitas dalam kecepatan dan presisi manuver"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/kki-national-award-doc.svg",
-        "title": "Juara 1 Tingkat Nasional KKI 2024",
-        "caption": "Inferensi Edge YOLO & Rutinitas Fail-Safe Perangkat Keras"
-      },
-      {
-        "type": "image",
-        "url": "/images/activities/yolo-detection-5m.png",
-        "title": "Frame Deteksi Waktu Nyata",
-        "caption": "Klasifikasi Objek Target Computer Vision Edge"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Juara 1 Tingkat Nasional",
+      "caption": "Dokumentasi foto podium juara 1 dan manuver wahana di kolam perlombaan."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Juara 1 Nasional KKI 2024",
+      "caption": "Sertifikat penghargaan resmi dari Puspresnas / BPTI Kemendikbudristek RI."
+    },
+    "instagramUrl": "https://www.instagram.com/banyubramanta.its/"
   },
   {
     "title": "Juara 3 - Kontes Robot Bawah Air Indonesia (KKI) Wilayah II 2024",
@@ -829,14 +740,15 @@ export const awardsId: AwardItem[] = [
       "Menerapkan filter fusi sensor menggabungkan optical flow dengan laser altimeter",
       "Mengonfigurasi saluran komunikasi telemetri terenkripsi ke stasiun kendali darat"
     ],
-    "media": [
-      {
-        "type": "image",
-        "url": "/images/docs/kki-regional-award-doc.svg",
-        "title": "Juara 3 Wilayah II KKI 2024",
-        "caption": "Loop Grid Pencarian Waypoint & Filter Fusi Sensor"
-      }
-    ]
+    "photoPlaceholder": {
+      "title": "Foto Perlombaan KKI Wilayah II",
+      "caption": "Dokumentasi foto pengujian lintasan grid pencarian wahana bawah air."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Juara 3 Wilayah II",
+      "caption": "Sertifikat penghargaan resmi dari Puspresnas / BPTI Kemendikbudristek RI."
+    },
+    "instagramUrl": "https://www.instagram.com/banyubramanta.its/"
   }
 ]
 

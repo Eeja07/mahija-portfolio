@@ -114,9 +114,11 @@ export default function FeaturedOrganizations() {
                 </div>
 
                 <MediaAttachmentButton
-                  media={org.media}
-                  certificateUrl={org.certificateUrl}
-                  certificateLabel={org.certificateLabel || (language === "id" ? "Sertifikat SKEM" : "SKEM Certificate")}
+                  photoTitle={org.photoPlaceholder?.title || `${org.role} — Foto Dokumentasi`}
+                  photoCaption={org.photoPlaceholder?.caption}
+                  certificateTitle={org.certificatePlaceholder?.title || `${org.role} — Sertifikat / Surat Keputusan`}
+                  certificateCaption={org.certificatePlaceholder?.caption}
+                  contextTitle={`${org.title} • ${org.period}`}
                   onSelectMedia={(selected) => setPreviewItem(selected)}
                 />
               </NetworkSubsystemNode>

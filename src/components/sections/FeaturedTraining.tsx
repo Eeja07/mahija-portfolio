@@ -115,9 +115,11 @@ export default function FeaturedTraining() {
                 </div>
 
                 <MediaAttachmentButton
-                  media={tr.media}
-                  certificateUrl={tr.certificateUrl}
-                  certificateLabel={tr.certificateLabel || (language === "id" ? "Sertifikat SKEM" : "SKEM Certificate")}
+                  photoTitle={tr.photoPlaceholder?.title || `${tr.role} — Foto Pelatihan`}
+                  photoCaption={tr.photoPlaceholder?.caption}
+                  certificateTitle={tr.certificatePlaceholder?.title || `${tr.role} — Sertifikat Kelulusan`}
+                  certificateCaption={tr.certificatePlaceholder?.caption}
+                  contextTitle={`${tr.title} • ${tr.period}`}
                   onSelectMedia={(selected) => setPreviewItem(selected)}
                 />
               </NetworkSubsystemNode>

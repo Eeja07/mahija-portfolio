@@ -41,5 +41,6 @@ export interface Project {
   mediaType?: "video" | "image";
   mediaUrl?: string;
   mediaGallery?: MediaItem[];
+  photoPlaceholder?: { title: string; caption: string };
   certificateUrl?: string;
 }

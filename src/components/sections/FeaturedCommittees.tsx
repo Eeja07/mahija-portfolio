@@ -114,9 +114,11 @@ export default function FeaturedCommittees() {
                 </div>
 
                 <MediaAttachmentButton
-                  media={comm.media}
-                  certificateUrl={comm.certificateUrl}
-                  certificateLabel={comm.certificateLabel || (language === "id" ? "Sertifikat Panitia" : "Committee Certificate")}
+                  photoTitle={comm.photoPlaceholder?.title || `${comm.role} — Foto Kegiatan`}
+                  photoCaption={comm.photoPlaceholder?.caption}
+                  certificateTitle={comm.certificatePlaceholder?.title || `${comm.role} — Sertifikat Kepanitiaan`}
+                  certificateCaption={comm.certificatePlaceholder?.caption}
+                  contextTitle={`${comm.title} • ${comm.period}`}
                   onSelectMedia={(selected) => setPreviewItem(selected)}
                 />
               </NetworkSubsystemNode>
