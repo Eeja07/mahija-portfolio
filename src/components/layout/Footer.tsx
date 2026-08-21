@@ -28,7 +28,7 @@ export default function Footer() {
               </span>
             </div>
             <span className="font-sans text-xs text-zinc-500 dark:text-zinc-400">
-              Computer Engineering Student &bull; Embedded Systems &bull; Autonomous Robotics &bull; Full-Stack
+              Computer Engineering Graduate &bull; Embedded Systems &bull; Autonomous Robotics &bull; Full-Stack
             </span>
           </div>
 

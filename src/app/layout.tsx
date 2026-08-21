@@ -73,7 +73,7 @@ const jsonLd = {
   "name": "Mahija Ibad Pradipta",
   "url": "https://portfolio.eeja.fun",
   "image": "https://portfolio.eeja.fun/og.png",
-  "jobTitle": "Computer Engineering Student",
+  "jobTitle": "Computer Engineering Graduate",
   "alumniOf": {
     "@type": "EducationalOrganization",
     "name": "Institut Teknologi Sepuluh Nopember (ITS)"
@@ -81,9 +81,9 @@ const jsonLd = {
   "sameAs": [
     "https://github.com/Eeja07",
     "https://linkedin.com/in/mahijaibad",
-    "https://instagram.com/eeja07",
-    "https://x.com/eeja07",
-    "https://facebook.com/eeja07",
+    "https://www.instagram.com/mahijaibad",
+    "https://x.com/eejasukareply",
+    "https://www.facebook.com/mahijaibad",
     "https://t.me/eeja07"
   ],
   "knowsAbout": [
