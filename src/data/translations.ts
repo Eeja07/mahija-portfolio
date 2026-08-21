@@ -19,7 +19,7 @@ export const translations = {
       github: "GitHub Node",
       downloadCv: "Download CV",
       metrics: [
-        { label: "9 Projects", sub: "Hardware & Systems", href: "#featured-engineering" },
+        { label: "12 Projects", sub: "Hardware & Systems", href: "#featured-engineering" },
         { label: "6 Positions", sub: "Internships & TAs", href: "#experience" },
         { label: "32 Capabilities", sub: "Stack Architecture", href: "#skills" },
         { label: "10 Organizations", sub: "Leadership & Lab", href: "#organizations" },
@@ -164,7 +164,7 @@ export const translations = {
       github: "Node GitHub",
       downloadCv: "Unduh CV",
       metrics: [
-        { label: "9 Proyek Rekayasa", sub: "Hardware & Software", href: "#featured-engineering" },
+        { label: "12 Proyek Rekayasa", sub: "Hardware & Software", href: "#featured-engineering" },
         { label: "6 Pengalaman", sub: "Magang & Asisten Lab", href: "#experience" },
         { label: "32 Keahlian Stack", sub: "Protokol & Sistem", href: "#skills" },
         { label: "10 Organisasi", sub: "Kepemimpinan & Lab", href: "#organizations" },

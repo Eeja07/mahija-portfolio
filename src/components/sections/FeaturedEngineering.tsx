@@ -29,9 +29,9 @@ export default function FeaturedEngineering() {
     setActiveArchId(activeArchId === id ? null : id)
   }
 
-  // Filter precisely to the 3 requested projects
+  // Filter precisely to the 3 featured engineering projects
   const allProjects = getProjects(language)
-  const allowedProjectIds = ["smart-cctv", "human-search-drone", "untern-platform"]
+  const allowedProjectIds = ["smart-cctv", "human-search-drone", "job-tracker"]
   const featuredProjects = allowedProjectIds
     .map((id) => allProjects.find((p) => p.id === id))
     .filter((p): p is NonNullable<typeof p> => !!p)
@@ -55,6 +55,7 @@ export default function FeaturedEngineering() {
   const getProjectImagePath = (id: string) => {
     if (id === "smart-cctv") return "/images/featured/cctv/inference.webp"
     if (id === "human-search-drone") return "/images/featured/drone/flight.webp"
+    if (id === "job-tracker") return "/images/featured/jobtracker/dashboard.webp"
     if (id === "homelab-infra") return "/images/featured/homelab/portainer.webp"
     return "/images/featured/untern/home.webp"
   }
@@ -62,6 +63,7 @@ export default function FeaturedEngineering() {
   const getProjectFallbackLabel = (id: string) => {
     if (id === "smart-cctv") return "featured/cctv/inference.webp"
     if (id === "human-search-drone") return "featured/drone/flight.webp"
+    if (id === "job-tracker") return "featured/jobtracker/dashboard.webp"
     if (id === "homelab-infra") return "featured/homelab/portainer.webp"
     return "featured/untern/home.webp"
   }
