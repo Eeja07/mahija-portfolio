@@ -30,61 +30,61 @@ const nodeSelectors: NodeSelector[] = [
     label: "Infrastructure",
     targetId: "#infrastructure",
     sub: "Debian 12 Host",
-    icon: <Server className="size-3.5 text-blue-500 dark:text-cyan-400" />,
+    icon: <Server className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
   {
     label: "Projects",
     targetId: "#featured-engineering",
     sub: "IoT & Drone Systems",
-    icon: <Terminal className="size-3.5 text-cyan-400" />,
+    icon: <Terminal className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
   {
     label: "Experience",
     targetId: "#experience",
     sub: "Routing Hops",
-    icon: <Activity className="size-3.5 text-emerald-500" />,
+    icon: <Activity className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
   {
     label: "Skills",
     targetId: "#skills",
     sub: "Stack Topology",
-    icon: <Layers className="size-3.5 text-blue-400" />,
+    icon: <Layers className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
   {
     label: "Organizations",
     targetId: "#organizations",
     sub: "Leadership Clusters",
-    icon: <Users className="size-3.5 text-indigo-400" />,
+    icon: <Users className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
   {
     label: "Training",
     targetId: "#training",
     sub: "Certified Protocols",
-    icon: <GraduationCap className="size-3.5 text-emerald-400" />,
+    icon: <GraduationCap className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
   {
     label: "Awards",
     targetId: "#awards",
     sub: "National Accolades",
-    icon: <Trophy className="size-3.5 text-amber-400" />,
+    icon: <Trophy className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
   {
     label: "Repositories",
     targetId: "#repositories",
-    sub: "46 Open Source Repos",
-    icon: <FolderGit2 className="size-3.5 text-blue-400" />,
+    sub: "50 Open Source Repos",
+    icon: <FolderGit2 className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
   {
     label: "Resume",
     targetId: "#resume",
     sub: "PDF Payload (EN/ID)",
-    icon: <FileCode className="size-3.5 text-cyan-400" />,
+    icon: <FileCode className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
   {
     label: "Contact",
     targetId: "#contact",
     sub: "Socket Endpoints",
-    icon: <Mail className="size-3.5 text-emerald-400" />,
+    icon: <Mail className="size-3.5 text-zinc-500 dark:text-zinc-400" />,
   },
 ]
 
@@ -112,18 +112,18 @@ export default function NetworkCoreOverlay({ onNodeSelect }: NetworkCoreOverlayP
         <button
           key={item.label}
           onClick={() => handleSelect(item.targetId)}
-          className="p-2.5 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-md hover:border-blue-500/50 dark:hover:border-cyan-400/50 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-all duration-150 text-left flex flex-col justify-between gap-1 shadow-xs group cursor-pointer"
+          className="p-2.5 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-900/70 backdrop-blur-md hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60 transition-all duration-150 text-left flex flex-col justify-between gap-1 shadow-xs group cursor-pointer"
         >
           <div className="flex items-center justify-between">
-            <div className="p-1 rounded-md bg-background border border-zinc-200 dark:border-zinc-800 group-hover:border-blue-500/40">
+            <div className="p-1 rounded-md bg-background border border-zinc-200 dark:border-zinc-800 group-hover:border-zinc-400 dark:group-hover:border-zinc-600">
               {item.icon}
             </div>
-            <span className="font-mono text-[9px] text-zinc-400 group-hover:text-blue-500 dark:group-hover:text-cyan-400">
+            <span className="font-mono text-[9px] text-zinc-400 group-hover:text-foreground">
               JUMP &rarr;
             </span>
           </div>
           <div>
-            <span className="font-sans text-[11px] font-bold text-foreground block group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+            <span className="font-sans text-[11px] font-bold text-foreground block group-hover:text-foreground transition-colors">
               {item.label}
             </span>
             <span className="font-mono text-[9px] text-zinc-500 dark:text-zinc-400 block truncate">

@@ -55,7 +55,7 @@ export default function Experience() {
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-emerald-500" />
+            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -90,7 +90,7 @@ export default function Experience() {
               >
                 <div className="flex flex-col gap-3.5">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                    <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
+                    <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
                       {exp.startDate} &ndash; {exp.current ? "Present" : exp.endDate}
                     </span>
                     <span className="px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-800 text-[10px] bg-background">
@@ -103,7 +103,7 @@ export default function Experience() {
                       {exp.role}
                     </h3>
                     <div className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 font-medium mt-1">
-                      <Briefcase className="size-3.5 text-blue-500 dark:text-cyan-400" />
+                      <Briefcase className="size-3.5 text-zinc-500 dark:text-zinc-400" />
                       <span>{exp.company}</span>
                       <span className="text-zinc-400">&bull;</span>
                       <span className="font-normal text-zinc-500">{exp.location}</span>

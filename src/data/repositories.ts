@@ -120,6 +120,20 @@ export const repositories: Repository[] = [
     "featured": false
   },
   {
+    "name": "finance-tracker",
+    "description": "Personal finance and portfolio management system with account tracking and WhatsApp bot integration.",
+    "language": "TypeScript",
+    "slug": "finance-tracker",
+    "featured": false
+  },
+  {
+    "name": "gateway-whatsapp-bot",
+    "description": "Centralized WhatsApp API Gateway microservice built with Node.js, TypeScript, and Baileys.",
+    "language": "TypeScript",
+    "slug": "gateway-whatsapp-bot",
+    "featured": false
+  },
+  {
     "name": "guessing-number-memory-game-basic-programming-assignment",
     "description": "Simple program called memory game, the game is to make computer guess our number using C",
     "language": "C",
@@ -174,6 +188,13 @@ export const repositories: Repository[] = [
     "language": "JavaScript",
     "slug": "iot-surveillance-platform-web",
     "featured": true
+  },
+  {
+    "name": "job-tracker",
+    "description": "Enterprise job application tracking platform with WhatsApp notifications, CI/CD pipeline, and analytics.",
+    "language": "TypeScript",
+    "slug": "job-tracker",
+    "featured": false
   },
   {
     "name": "Laser-RPM-Correlation-Analyzer",
@@ -328,6 +349,13 @@ export const repositories: Repository[] = [
     "language": "JavaScript",
     "slug": "website-project-technical-test-aksamedia",
     "featured": false
+  },
+  {
+    "name": "yangmingassesment",
+    "description": "Full-stack client registration portal and admin management system for Yang Ming Maritime Transport.",
+    "language": "TypeScript",
+    "slug": "yangmingassesment",
+    "featured": false
   }
 ]
 
@@ -349,7 +377,11 @@ const idRepoDescriptions: Record<string, string> = {
   "iot-surveillance-platform-docs": "Dokumentasi dan laporan sistem pengawasan video waktu nyata berbasis ESP32.",
   "Laser-RPM-Correlation-Analyzer": "Alat analisis telemetri korelasi RPM motor dan sensor laser.",
   "Resume-or-Curriculum-Vitae": "Template LaTeX untuk resume profesional pribadi.",
-  "website-project-technical-test-aksamedia": "Aplikasi uji teknis full-stack mengimplementasikan CRUD dan dashboard pengguna."
+  "website-project-technical-test-aksamedia": "Aplikasi uji teknis full-stack mengimplementasikan CRUD dan dashboard pengguna.",
+  "job-tracker": "Platform pelacak lamaran pekerjaan terpadu dengan notifikasi WhatsApp, pipeline CI/CD, dan analitik status.",
+  "finance-tracker": "Sistem pelacak keuangan pribadi dan portofolio aset terintegrasi bot perintah WhatsApp.",
+  "gateway-whatsapp-bot": "Microservice gateway API WhatsApp terpusat berbasis Node.js, TypeScript, dan Baileys.",
+  "yangmingassesment": "Portal registrasi rekanan klien dan sistem manajemen admin full-stack untuk Yang Ming Maritime Transport."
 }
 
 export function getRepositories(lang: "en" | "id" = "en"): Repository[] {
@@ -359,4 +391,3 @@ export function getRepositories(lang: "en" | "id" = "en"): Repository[] {
     description: idRepoDescriptions[repo.name] || repo.description,
   }))
 }
-

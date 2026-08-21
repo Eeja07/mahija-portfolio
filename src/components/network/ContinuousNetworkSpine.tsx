@@ -149,18 +149,14 @@ export default function ContinuousNetworkSpine() {
         <defs>
           {/* Scroll-activated dynamic laser gradient filling the fiber tube */}
           <linearGradient id="fiberLaserActive" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.95" />
-            <stop offset="20%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.9" />
-            <stop offset="40%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.92" />
-            <stop offset="60%" stopColor={isDark ? "#818cf8" : "#4f46e5"} stopOpacity="0.88" />
-            <stop offset="80%" stopColor={isDark ? "#38bdf8" : "#3b82f6"} stopOpacity="0.92" />
-            <stop offset="95%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.95" />
-            <stop offset="100%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="1.0" />
+            <stop offset="0%" stopColor={isDark ? "#d4d4d8" : "#475569"} stopOpacity="0.95" />
+            <stop offset="50%" stopColor={isDark ? "#a1a1aa" : "#64748b"} stopOpacity="0.9" />
+            <stop offset="100%" stopColor={isDark ? "#d4d4d8" : "#475569"} stopOpacity="0.95" />
           </linearGradient>
 
           {/* Filter for crisp laser bloom */}
           <filter id="laserBloomActive" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="3.5" result="blur" />
+            <feGaussianBlur stdDeviation="3" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
@@ -197,21 +193,21 @@ export default function ContinuousNetworkSpine() {
         />
 
         {/* ------------------------------------------------------------- */}
-        {/* B. SCROLL-ACTIVATED STATE: Colored Laser Light Illumination  */}
+        {/* B. SCROLL-ACTIVATED STATE: Neutral Laser Light Illumination   */}
         {/* ------------------------------------------------------------- */}
         {/* Left active colored laser beam */}
         <motion.path
           d={desktopLeftPath}
           stroke="url(#fiberLaserActive)"
-          strokeWidth="2.8"
+          strokeWidth="2.5"
           strokeLinecap="round"
           filter="url(#laserBloomActive)"
           style={{ pathLength: activePathLength }}
         />
         <motion.path
           d={desktopPulseLeft}
-          stroke={isDark ? "rgba(16, 185, 129, 0.6)" : "rgba(16, 185, 129, 0.5)"}
-          strokeWidth="1.6"
+          stroke={isDark ? "rgba(212, 212, 216, 0.5)" : "rgba(71, 85, 105, 0.4)"}
+          strokeWidth="1.4"
           strokeDasharray="16 24"
           className="animate-fiber-pulse"
           style={{ pathLength: activePathLength }}
@@ -221,15 +217,15 @@ export default function ContinuousNetworkSpine() {
         <motion.path
           d={desktopRightPath}
           stroke="url(#fiberLaserActive)"
-          strokeWidth="2.8"
+          strokeWidth="2.5"
           strokeLinecap="round"
           filter="url(#laserBloomActive)"
           style={{ pathLength: activePathLength }}
         />
         <motion.path
           d={desktopPulseRight}
-          stroke={isDark ? "rgba(0, 240, 255, 0.6)" : "rgba(37, 99, 235, 0.5)"}
-          strokeWidth="1.6"
+          stroke={isDark ? "rgba(212, 212, 216, 0.5)" : "rgba(71, 85, 105, 0.4)"}
+          strokeWidth="1.4"
           strokeDasharray="16 24"
           className="animate-fiber-pulse"
           style={{ pathLength: activePathLength }}
@@ -254,7 +250,7 @@ export default function ContinuousNetworkSpine() {
               cx={node.cx}
               cy={node.cy}
               r={3}
-              fill={i % 2 === 0 ? (isDark ? "#00f0ff" : "#2563eb") : (isDark ? "#10b981" : "#059669")}
+              fill={isDark ? "#d4d4d8" : "#475569"}
             />
           </g>
         ))}
@@ -270,9 +266,9 @@ export default function ContinuousNetworkSpine() {
       >
         <defs>
           <linearGradient id="fiberLaserMobileActive" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.9" />
-            <stop offset="50%" stopColor={isDark ? "#10b981" : "#059669"} stopOpacity="0.9" />
-            <stop offset="100%" stopColor={isDark ? "#00f0ff" : "#2563eb"} stopOpacity="0.95" />
+            <stop offset="0%" stopColor={isDark ? "#d4d4d8" : "#475569"} stopOpacity="0.9" />
+            <stop offset="50%" stopColor={isDark ? "#a1a1aa" : "#64748b"} stopOpacity="0.9" />
+            <stop offset="100%" stopColor={isDark ? "#d4d4d8" : "#475569"} stopOpacity="0.95" />
           </linearGradient>
         </defs>
 
@@ -300,8 +296,8 @@ export default function ContinuousNetworkSpine() {
         {/* Round Junction Micro-Dots on Mobile Rails */}
         {mobileDots.map((yPos, i) => (
           <g key={i}>
-            <circle cx={6} cy={yPos} r={3.5} fill={isDark ? "#00f0ff" : "#2563eb"} stroke={nodeGlassStroke} strokeWidth={1} />
-            <circle cx={384} cy={yPos} r={3.5} fill={isDark ? "#10b981" : "#059669"} stroke={nodeGlassStroke} strokeWidth={1} />
+            <circle cx={6} cy={yPos} r={3.5} fill={isDark ? "#d4d4d8" : "#475569"} stroke={nodeGlassStroke} strokeWidth={1} />
+            <circle cx={384} cy={yPos} r={3.5} fill={isDark ? "#d4d4d8" : "#475569"} stroke={nodeGlassStroke} strokeWidth={1} />
           </g>
         ))}
       </svg>

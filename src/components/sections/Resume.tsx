@@ -48,7 +48,7 @@ export default function Resume() {
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-2xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-cyan-400" />
+            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -83,13 +83,13 @@ export default function Resume() {
                 
                 {/* Left Side: Title & Status */}
                 <div className="flex items-center gap-4 text-left">
-                  <div className="p-3.5 bg-background border border-zinc-200 dark:border-zinc-800 rounded-xl text-blue-600 dark:text-cyan-400 shadow-xs" aria-hidden="true">
+                  <div className="p-3.5 bg-background border border-zinc-200 dark:border-zinc-800 rounded-xl text-zinc-600 dark:text-zinc-400 shadow-xs" aria-hidden="true">
                     <FileCode className="size-6" />
                   </div>
                   <div>
                     <h3 className="font-sans text-xl font-bold text-foreground tracking-tight leading-tight flex items-center gap-2">
                       <span>{t.title}</span>
-                      <ShieldCheck className="size-4 text-emerald-500" />
+                      <ShieldCheck className="size-4 text-zinc-400 dark:text-zinc-500" />
                     </h3>
                     <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-mono mt-1">
                       {t.description}

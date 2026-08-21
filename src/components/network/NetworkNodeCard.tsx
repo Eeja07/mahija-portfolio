@@ -37,10 +37,10 @@ export function NetworkNodeCard({
 
   const statusDotColor =
     portStatus === "transmitting"
-      ? "bg-cyan-400 dark:bg-cyan-300"
+      ? "bg-zinc-400 dark:bg-zinc-300 shadow-[0_0_6px_rgba(255,255,255,0.2)]"
       : portStatus === "active"
-      ? "bg-emerald-500"
-      : "bg-amber-400"
+      ? "bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.4)]"
+      : "bg-zinc-400"
 
   return (
     <motion.div
@@ -50,7 +50,7 @@ export function NetworkNodeCard({
       whileTap={{ scale: 0.99, transition: { duration: 0.1 } }}
       style={style}
       className={cn(
-        "spotlight-card circuit-card relative rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/80 dark:bg-zinc-950/70 backdrop-blur-[4px] p-6 transition-all duration-200 hover:border-blue-500/50 dark:hover:border-cyan-500/50 shadow-xs group",
+        "spotlight-card circuit-card relative rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/80 dark:bg-zinc-950/70 backdrop-blur-[4px] p-6 transition-all duration-200 hover:border-zinc-400 dark:hover:border-zinc-700 shadow-xs group",
         className
       )}
       {...props}

@@ -85,33 +85,10 @@ export default function Hero() {
               </p>
             </motion.div>
 
-            {/* Network Protocol Badges */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap gap-2 select-none"
-            >
-              {[
-                { name: "Debian 12", type: "HOST" },
-                { name: "Docker", type: "ENGINE" },
-                { name: "Cloudflare", type: "INGRESS" },
-                { name: "MQTT", type: "BROKER" },
-                { name: "YOLO", type: "VISION" },
-                { name: "PX4", type: "AUTOPILOT" },
-              ].map((tech) => (
-                <div
-                  key={tech.name}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800 font-mono text-xs text-zinc-700 dark:text-zinc-300 bg-zinc-100/80 dark:bg-zinc-900/80 hover:border-blue-500/50 dark:hover:border-cyan-500/50 transition-all duration-150"
-                >
-                  <span className="size-1.5 rounded-full bg-blue-500 dark:bg-cyan-400" />
-                  <span className="font-semibold">{tech.name}</span>
-                </div>
-              ))}
-            </motion.div>
-
             {/* Action CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-3 pt-2"
+              className="flex flex-wrap items-center gap-3 pt-1"
             >
               <a
                 href="https://github.com/Eeja07"
@@ -164,38 +141,38 @@ export default function Hero() {
               )}
             </motion.div>
 
-            {/* Bento Metrics Rack */}
+            {/* Bento Metrics Rack: All 8 Categories matching Navbar */}
             <motion.div variants={itemVariants} className="pt-2">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-2xl">
                 {t.metrics.map((metric) => (
-                  <div
+                  <a
                     key={metric.label}
-                    className="p-3 sm:p-3.5 rounded-xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/90 dark:bg-zinc-950/80 backdrop-blur-md transition-all duration-200 hover:border-blue-500/50 dark:hover:border-cyan-500/50 shadow-xs flex flex-col justify-center text-left"
+                    href={metric.href}
+                    className="p-3 rounded-xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/90 dark:bg-zinc-950/80 backdrop-blur-md transition-all duration-150 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/90 dark:hover:bg-zinc-900/90 shadow-xs flex flex-col justify-center text-left group cursor-pointer"
                   >
-                    <span className="font-mono text-base sm:text-lg font-bold text-foreground tracking-tight">
+                    <span className="font-mono text-sm sm:text-base font-bold text-foreground tracking-tight group-hover:text-foreground transition-colors">
                       {metric.label}
                     </span>
-                    <span className="font-sans text-xs text-zinc-500 dark:text-zinc-400 block mt-0.5">
+                    <span className="font-sans text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-400 block mt-0.5 leading-tight">
                       {metric.sub}
                     </span>
-                  </div>
+                  </a>
                 ))}
               </div>
             </motion.div>
           </div>
 
-          {/* Right Column: Profile Image with Fiber Optic Laser Ring */}
+          {/* Right Column: Profile Image */}
           <motion.div
             variants={itemVariants}
             className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end select-none relative"
           >
-            {/* Spinning Laser Halo SVG */}
             <div className="relative p-3 sm:p-4 rounded-3xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-100/40 dark:bg-zinc-950/40 backdrop-blur-md shadow-2xl group">
               <span className="circuit-corner-tl" />
               <span className="circuit-corner-br" />
               
-              {/* Rotating Fiber Ring Effect */}
-              <div className="absolute -inset-1 rounded-3xl opacity-35 group-hover:opacity-80 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 blur-sm animate-spin-slow" />
+              {/* Subtle Neutral Adaptive Ring */}
+              <div className="absolute -inset-1 rounded-3xl opacity-25 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-zinc-300 via-zinc-400 to-zinc-500 dark:from-zinc-700 dark:via-zinc-600 dark:to-zinc-800 blur-xs" />
 
               <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[350px] lg:h-[350px] rounded-2xl overflow-hidden bg-background/80 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/50 z-10">
                 <img

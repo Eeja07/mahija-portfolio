@@ -39,10 +39,10 @@ export function NetworkNode({
 
   const statusDotColor =
     status === "transmitting"
-      ? "bg-cyan-400 dark:bg-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.6)]"
+      ? "bg-zinc-400 dark:bg-zinc-300 shadow-[0_0_6px_rgba(255,255,255,0.2)]"
       : status === "healthy"
-      ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"
-      : "bg-amber-400"
+      ? "bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.4)]"
+      : "bg-zinc-400"
 
   return (
     <motion.div
@@ -52,7 +52,7 @@ export function NetworkNode({
       whileTap={{ scale: 0.99, transition: { duration: 0.1 } }}
       style={style}
       className={cn(
-        "spotlight-card circuit-card relative rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/85 dark:bg-zinc-950/75 backdrop-blur-[6px] p-6 transition-all duration-200 hover:border-blue-500/50 dark:hover:border-cyan-500/50 shadow-xs group",
+        "spotlight-card circuit-card relative rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/85 dark:bg-zinc-950/75 backdrop-blur-[6px] p-6 transition-all duration-200 hover:border-zinc-400 dark:hover:border-zinc-700 shadow-xs group",
         className
       )}
       {...props}

@@ -44,24 +44,24 @@ export default function Skills() {
   const getCategoryIcon = (title: string) => {
     const lower = title.toLowerCase()
     if (lower.includes("infrastruktur") || lower.includes("infrastructure")) {
-      return <Server className="size-4 text-blue-500 dark:text-cyan-400" />
+      return <Server className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
     if (lower.includes("backend")) {
-      return <Database className="size-4 text-cyan-400" />
+      return <Database className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
     if (lower.includes("frontend")) {
-      return <Code className="size-4 text-emerald-500" />
+      return <Code className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
     if (lower.includes("ai") || lower.includes("vision")) {
-      return <Eye className="size-4 text-purple-400" />
+      return <Eye className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
     if (lower.includes("jaringan") || lower.includes("networking") || lower.includes("iot")) {
-      return <NetIcon className="size-4 text-amber-400" />
+      return <NetIcon className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
     if (lower.includes("perkakas") || lower.includes("tools")) {
-      return <Wrench className="size-4 text-pink-400" />
+      return <Wrench className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
-    return <Layers className="size-4 text-blue-400" />
+    return <Layers className="size-4 text-zinc-500 dark:text-zinc-400" />
   }
 
   return (
@@ -75,7 +75,7 @@ export default function Skills() {
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-cyan-400" />
+            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -112,7 +112,7 @@ export default function Skills() {
               onClick={() => setSelectedCategory(group.title === selectedCategory ? null : group.title)}
               className={`px-3 py-1.5 rounded-lg font-mono text-xs font-medium border transition-all duration-150 cursor-pointer flex items-center gap-1.5 ${
                 selectedCategory === group.title
-                  ? "bg-blue-600 dark:bg-cyan-500 text-white dark:text-zinc-950 border-transparent shadow-xs"
+                  ? "bg-foreground text-background border-foreground shadow-xs"
                   : "bg-zinc-100/80 dark:bg-zinc-900/80 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-foreground"
               }`}
             >
@@ -141,7 +141,7 @@ export default function Skills() {
                         {getCategoryIcon(group.title)}
                         <span>{group.title}</span>
                       </h3>
-                      <span className="font-mono text-xs text-blue-600 dark:text-cyan-400 font-semibold">
+                      <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400 font-semibold">
                         {group.items.length} {language === "id" ? "item" : "units"}
                       </span>
                     </div>
@@ -157,7 +157,7 @@ export default function Skills() {
                       {group.items.map((tech) => (
                         <span 
                           key={tech} 
-                          className="border border-zinc-200 dark:border-zinc-800 px-2.5 py-1 rounded font-mono text-xs text-zinc-700 dark:text-zinc-300 bg-background/90 transition-all duration-150 hover:border-blue-500/50 dark:hover:border-cyan-500/50 hover:scale-103"
+                          className="border border-zinc-200 dark:border-zinc-800 px-2.5 py-1 rounded font-mono text-xs text-zinc-700 dark:text-zinc-300 bg-background/90 transition-all duration-150 hover:border-zinc-400 dark:hover:border-zinc-600 hover:scale-103"
                         >
                           {tech}
                         </span>

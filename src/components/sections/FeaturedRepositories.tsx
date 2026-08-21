@@ -51,7 +51,7 @@ export default function FeaturedRepositories() {
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-cyan-400" />
+            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -92,8 +92,8 @@ export default function FeaturedRepositories() {
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
                       <div className="flex items-center gap-2 text-foreground font-sans">
-                        <FolderGit2 className="size-4 text-blue-500 dark:text-cyan-400 group-hover:text-foreground transition-colors duration-150 shrink-0" />
-                        <h3 className="text-lg font-bold text-foreground tracking-tight line-clamp-1 group-hover:text-blue-500 dark:group-hover:text-cyan-400 transition-colors duration-150">
+                        <FolderGit2 className="size-4 text-zinc-500 dark:text-zinc-400 group-hover:text-foreground transition-colors duration-150 shrink-0" />
+                        <h3 className="text-lg font-bold text-foreground tracking-tight line-clamp-1 group-hover:text-foreground transition-colors duration-150">
                           {repo.name}
                         </h3>
                       </div>
@@ -109,7 +109,7 @@ export default function FeaturedRepositories() {
                     <span className="border border-zinc-200 dark:border-zinc-800 px-2.5 py-0.5 rounded font-mono text-xs text-zinc-600 dark:text-zinc-400 bg-background/80">
                       {repo.language}
                     </span>
-                    <span className="font-mono text-xs text-blue-500 dark:text-cyan-400 flex items-center gap-1">
+                    <span className="font-mono text-xs text-zinc-600 dark:text-zinc-400 group-hover:text-foreground flex items-center gap-1">
                       <span>{t.fetchRepo}</span>
                       <span>&rarr;</span>
                     </span>

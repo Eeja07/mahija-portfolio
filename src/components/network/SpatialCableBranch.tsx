@@ -18,10 +18,10 @@ export function SpatialCableBranch({
 }: SpatialCableBranchProps) {
   const pulseColor =
     status === "transmitting"
-      ? "via-cyan-400 dark:via-cyan-300"
+      ? "via-zinc-400 dark:via-zinc-300"
       : status === "active"
-      ? "via-blue-500 dark:via-cyan-400"
-      : "via-zinc-400 dark:via-zinc-600"
+      ? "via-zinc-400 dark:via-zinc-500"
+      : "via-zinc-300 dark:via-zinc-700"
 
   if (direction === "vertical-down") {
     return (
@@ -32,14 +32,14 @@ export function SpatialCableBranch({
         )}
         aria-hidden="true"
       >
-        <div className="absolute top-0 size-2 rounded-full bg-blue-500 dark:bg-cyan-400 shadow-xs" />
+        <div className="absolute top-0 size-2 rounded-full bg-zinc-400 dark:bg-zinc-600 shadow-xs" />
         <div
           className={cn(
             "absolute w-[2px] h-8 bg-gradient-to-b from-transparent to-transparent animate-laser-scan",
             pulseColor
           )}
         />
-        <div className="absolute bottom-0 size-2 rounded-full bg-emerald-500 shadow-xs" />
+        <div className="absolute bottom-0 size-2 rounded-full bg-zinc-400 dark:bg-zinc-600 shadow-xs" />
         {label && (
           <span className="absolute left-3 top-1/2 -translate-y-1/2 font-mono text-[9px] text-zinc-400 dark:text-zinc-500 whitespace-nowrap">
             {label}
@@ -57,8 +57,8 @@ export function SpatialCableBranch({
       )}
       aria-hidden="true"
     >
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 size-1.5 rounded-full bg-blue-500 dark:bg-cyan-400 shadow-xs" />
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 size-1.5 rounded-full bg-emerald-500 shadow-xs" />
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 size-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600 shadow-xs" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 size-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600 shadow-xs" />
       <div
         className={cn(
           "absolute h-[2px] w-24 bg-gradient-to-r from-transparent to-transparent animate-packet-stream",

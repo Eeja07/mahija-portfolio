@@ -37,17 +37,17 @@ export default function Infrastructure() {
   const getServiceIcon = (name: string) => {
     switch (name.toLowerCase()) {
       case "portfolio":
-        return <Layers className="size-4 text-blue-500 dark:text-cyan-400" />
+        return <Layers className="size-4 text-zinc-500 dark:text-zinc-400" />
       case "laravel":
-        return <Terminal className="size-4 text-rose-500" />
+        return <Terminal className="size-4 text-zinc-500 dark:text-zinc-400" />
       case "emqx":
-        return <Radio className="size-4 text-emerald-500" />
+        return <Radio className="size-4 text-zinc-500 dark:text-zinc-400" />
       case "mysql":
-        return <Database className="size-4 text-amber-500" />
+        return <Database className="size-4 text-zinc-500 dark:text-zinc-400" />
       case "minio":
-        return <HardDrive className="size-4 text-purple-500" />
+        return <HardDrive className="size-4 text-zinc-500 dark:text-zinc-400" />
       default:
-        return <Server className="size-4 text-blue-500 dark:text-cyan-400" />
+        return <Server className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
   }
 
@@ -62,7 +62,7 @@ export default function Infrastructure() {
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-emerald-500" />
+            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -99,7 +99,7 @@ export default function Infrastructure() {
               {/* Host Machine */}
               <div className="flex flex-col gap-1.5">
                 <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Server className="size-3.5 text-blue-500 dark:text-cyan-400" />
+                  <Server className="size-3.5 text-zinc-500 dark:text-zinc-400" />
                   {isEn ? "Host Platform" : "Platform Host"}
                 </span>
                 <span className="font-sans text-base font-bold text-foreground">
@@ -113,7 +113,7 @@ export default function Infrastructure() {
               {/* Compute Engine */}
               <div className="flex flex-col gap-1.5">
                 <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Cpu className="size-3.5 text-emerald-500" />
+                  <Cpu className="size-3.5 text-zinc-500 dark:text-zinc-400" />
                   {isEn ? "Processor Architecture" : "Arsitektur Prosesor"}
                 </span>
                 <span className="font-sans text-base font-bold text-foreground">
@@ -127,7 +127,7 @@ export default function Infrastructure() {
               {/* Ingress Security */}
               <div className="flex flex-col gap-1.5">
                 <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <ShieldCheck className="size-3.5 text-emerald-500" />
+                  <ShieldCheck className="size-3.5 text-zinc-500 dark:text-zinc-400" />
                   {isEn ? "Ingress & Routing" : "Ingress & Routing"}
                 </span>
                 <span className="font-sans text-base font-bold text-foreground">
@@ -141,19 +141,19 @@ export default function Infrastructure() {
               {/* Apex Domain */}
               <div className="flex flex-col gap-1.5">
                 <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Layers className="size-3.5 text-cyan-500" />
+                  <Layers className="size-3.5 text-zinc-500 dark:text-zinc-400" />
                   {isEn ? "Production Domain" : "Domain Produksi"}
                 </span>
                 <a
                   href={`https://${data.domain}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-base font-bold text-blue-600 dark:text-cyan-400 hover:underline flex items-center gap-1"
+                  className="font-mono text-base font-bold text-foreground hover:underline flex items-center gap-1"
                 >
                   <span>{data.domain}</span>
                   <span>&nearr;</span>
                 </a>
-                <span className="font-mono text-xs text-emerald-500 flex items-center gap-1">
+                <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1">
                   <span className="size-1.5 rounded-full bg-emerald-500" />
                   <span>TLS 1.3 / E2EE Encrypted</span>
                 </span>
@@ -193,7 +193,7 @@ export default function Infrastructure() {
                     </div>
                     <Badge
                       variant="outline"
-                      className="font-mono text-[10px] uppercase text-emerald-600 dark:text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
+                      className="font-mono text-[10px] uppercase border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900"
                     >
                       {service.status}
                     </Badge>
@@ -206,7 +206,7 @@ export default function Infrastructure() {
 
                 <div className="pt-3 border-t border-zinc-200/70 dark:border-zinc-800/70 flex items-center justify-between font-mono text-[11px] text-zinc-400">
                   <span>DOCKER CONTAINER</span>
-                  <span className="text-emerald-500 font-semibold">ONLINE</span>
+                  <span className="text-zinc-500 dark:text-zinc-400 font-semibold">ONLINE</span>
                 </div>
               </NetworkSubsystemNode>
             </motion.div>

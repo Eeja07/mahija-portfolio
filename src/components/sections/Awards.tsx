@@ -47,7 +47,7 @@ export default function Awards() {
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-amber-400" />
+            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -78,11 +78,11 @@ export default function Awards() {
             <motion.div key={i} variants={itemVariants} className="h-full">
               <NetworkSubsystemNode
                 status="healthy"
-                className="h-full flex flex-col justify-between text-left gap-6 border-amber-500/20 dark:border-amber-500/30 p-6"
+                className="h-full flex flex-col justify-between text-left gap-6 border-zinc-200/90 dark:border-zinc-800/90 p-6"
               >
                 <div className="flex flex-col gap-3.5">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                    <span className="font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                    <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
                       {award.competition}
                     </span>
                     <span>{award.period}</span>
@@ -90,7 +90,7 @@ export default function Awards() {
 
                   <div>
                     <h3 className="font-sans text-lg font-bold text-foreground tracking-tight leading-snug flex items-start gap-2">
-                      <Trophy className="size-4 text-amber-500 shrink-0 mt-1" />
+                      <Trophy className="size-4 text-zinc-500 dark:text-zinc-400 shrink-0 mt-1" />
                       <span>{award.title}</span>
                     </h3>
                   </div>

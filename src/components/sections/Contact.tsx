@@ -25,6 +25,34 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
+const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="m22 2-7 20-4-9-9-4Z" />
+    <path d="M22 2 11 13" />
+  </svg>
+)
+
+const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+)
+
+const TwitterIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M4 4l11.733 16h4.267l-11.733-16z" />
+    <path d="M4 20l6.768-6.768m3.464-3.464L20 4" />
+  </svg>
+)
+
+const FacebookIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+)
+
 interface ContactChannel {
   name: string
   handle: string
@@ -61,6 +89,34 @@ const contactChannels: ContactChannel[] = [
     href: "https://wa.me/6281288092766",
     icon: <MessageSquare className="size-4" />,
     protocol: "WhatsApp Direct",
+  },
+  {
+    name: "Telegram",
+    handle: "t.me/eeja07",
+    href: "https://t.me/eeja07",
+    icon: <TelegramIcon className="size-4" />,
+    protocol: "Telegram Direct",
+  },
+  {
+    name: "Instagram",
+    handle: "instagram.com/eeja07",
+    href: "https://instagram.com/eeja07",
+    icon: <InstagramIcon className="size-4" />,
+    protocol: "Instagram Feed",
+  },
+  {
+    name: "Twitter / X",
+    handle: "x.com/eeja07",
+    href: "https://x.com/eeja07",
+    icon: <TwitterIcon className="size-4" />,
+    protocol: "X / Twitter Stream",
+  },
+  {
+    name: "Facebook",
+    handle: "facebook.com/eeja07",
+    href: "https://facebook.com/eeja07",
+    icon: <FacebookIcon className="size-4" />,
+    protocol: "Facebook Connect",
   },
 ]
 
@@ -114,7 +170,7 @@ export default function Contact() {
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-16 text-left max-w-2xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-emerald-500" />
+            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -149,7 +205,7 @@ export default function Contact() {
               >
                 <div className="flex flex-col gap-3.5">
                   <div className="flex items-center justify-between">
-                    <div className="p-2.5 w-fit bg-background border border-zinc-200 dark:border-zinc-800 rounded-xl text-blue-600 dark:text-cyan-400 shadow-xs" aria-hidden="true">
+                    <div className="p-2.5 w-fit bg-background border border-zinc-200 dark:border-zinc-800 rounded-xl text-zinc-600 dark:text-zinc-400 shadow-xs" aria-hidden="true">
                       {channel.icon}
                     </div>
                     <span className="font-mono text-[10px] text-zinc-400">

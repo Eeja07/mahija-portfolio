@@ -66,7 +66,7 @@ export default function RepositoriesArchive() {
           {/* Header */}
           <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
             <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-cyan-400" />
+              <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
               <Badge 
                 variant="outline" 
                 className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -90,7 +90,7 @@ export default function RepositoriesArchive() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t.searchPlaceholder}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-background/80 backdrop-blur-md font-mono text-xs text-foreground placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 dark:focus:ring-cyan-400/50 shadow-xs"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-background/80 backdrop-blur-md font-mono text-xs text-foreground placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400/50 dark:focus:ring-zinc-600/50 shadow-xs"
             />
           </div>
 
@@ -108,11 +108,11 @@ export default function RepositoriesArchive() {
                 >
                   <div className="flex flex-col gap-3.5">
                     <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                      <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
+                      <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
                         {repo.language}
                       </span>
                       {repo.featured && (
-                        <span className="px-2 py-0.5 rounded border border-blue-500/30 text-[10px] text-blue-500 bg-blue-500/5">
+                        <span className="px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-800 text-[10px] text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900">
                           {language === "id" ? "Unggulan" : "Featured"}
                         </span>
                       )}
@@ -120,7 +120,7 @@ export default function RepositoriesArchive() {
 
                     <div>
                       <h2 className="font-mono text-sm sm:text-base font-bold text-foreground tracking-tight break-all flex items-start gap-2">
-                        <FolderGit2 className="size-4 text-blue-500 dark:text-cyan-400 shrink-0 mt-0.5" />
+                        <FolderGit2 className="size-4 text-zinc-500 dark:text-zinc-400 shrink-0 mt-0.5" />
                         <span>{repo.name}</span>
                       </h2>
                     </div>
@@ -135,7 +135,7 @@ export default function RepositoriesArchive() {
                       href={`https://github.com/Eeja07/${repo.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 font-mono text-xs text-blue-600 dark:text-cyan-400 hover:underline font-medium"
+                      className="inline-flex items-center gap-1.5 font-mono text-xs text-foreground hover:underline font-medium"
                     >
                       <span>{tRepo.fetchRepo}</span>
                       <ExternalLink className="size-3" />

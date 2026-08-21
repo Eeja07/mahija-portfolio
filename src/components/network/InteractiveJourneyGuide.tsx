@@ -57,7 +57,7 @@ const roadmapSteps: RoadmapStep[] = [
   {
     step: "08",
     label: "Repositories",
-    desc: "46 repositori kode sumber terbuka GitHub",
+    desc: "50 repositori kode sumber terbuka GitHub",
     targetId: "#repositories",
   },
   {
@@ -69,7 +69,7 @@ const roadmapSteps: RoadmapStep[] = [
   {
     step: "10",
     label: "Contact",
-    desc: "Socket komunikasi langsung (Email, WA, LinkedIn)",
+    desc: "Socket komunikasi langsung & media sosial",
     targetId: "#contact",
   },
 ]
@@ -100,12 +100,12 @@ export default function InteractiveJourneyGuide() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 15, scale: 0.95 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="mb-3 w-[320px] sm:w-[360px] rounded-2xl border border-blue-500/40 dark:border-cyan-500/40 bg-background/95 backdrop-blur-xl shadow-2xl p-4 overflow-hidden"
+            className="mb-3 w-[320px] sm:w-[360px] rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-background/95 backdrop-blur-xl shadow-2xl p-4 overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between pb-3 border-b border-zinc-200 dark:border-zinc-800">
               <div className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-blue-500/10 text-blue-600 dark:text-cyan-400">
+                <div className="p-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-foreground">
                   <Compass className="size-4" />
                 </div>
                 <div>
@@ -137,11 +137,11 @@ export default function InteractiveJourneyGuide() {
                   }}
                   className="flex items-start gap-3 p-2 rounded-xl text-left hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors group cursor-pointer"
                 >
-                  <span className="font-mono text-xs font-bold text-blue-600 dark:text-cyan-400 bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-500/20 shrink-0">
+                  <span className="font-mono text-xs font-bold text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-800 shrink-0">
                     {s.step}
                   </span>
                   <div className="flex-1">
-                    <span className="font-sans text-xs font-bold text-foreground group-hover:text-blue-600 dark:group-hover:text-cyan-400 block transition-colors">
+                    <span className="font-sans text-xs font-bold text-foreground group-hover:text-foreground block transition-colors">
                       {s.label}
                     </span>
                     <span className="font-sans text-[11px] text-zinc-500 dark:text-zinc-400 block leading-snug">
@@ -155,7 +155,7 @@ export default function InteractiveJourneyGuide() {
             {/* Footer status */}
             <div className="mt-3 pt-2.5 border-t border-zinc-200/70 dark:border-zinc-800/70 font-mono text-[10px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between">
               <span>Navigasi Jalur Fiber</span>
-              <span className="text-emerald-500 font-semibold">ROUTING ONLINE</span>
+              <span className="text-zinc-500 dark:text-zinc-400 font-semibold">ROUTING ONLINE</span>
             </div>
           </motion.div>
         )}
@@ -164,10 +164,10 @@ export default function InteractiveJourneyGuide() {
       {/* Trigger Button Pill */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-blue-500/40 dark:border-cyan-500/40 bg-background/90 backdrop-blur-md shadow-lg text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-150 cursor-pointer group"
+        className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-background/90 backdrop-blur-md shadow-lg text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-150 cursor-pointer group"
       >
-        <span className="size-2 rounded-full bg-cyan-500" />
-        <Compass className="size-4 text-blue-500 dark:text-cyan-400 group-hover:rotate-45 transition-transform duration-200" />
+        <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
+        <Compass className="size-4 text-zinc-500 dark:text-zinc-400 group-hover:rotate-45 transition-transform duration-200" />
         <span className="font-mono text-xs font-bold">
           {isOpen ? "Tutup Alur" : "Alur Portofolio"}
         </span>

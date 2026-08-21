@@ -106,7 +106,7 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
       )}
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Network Brand Logo (No NODE // 0x01 badge) */}
+        {/* Network Brand Logo */}
         <Link
           href="/"
           onClick={(e) => {
@@ -115,9 +115,9 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
               onLogoClick()
             }
           }}
-          className="flex items-center gap-2 font-mono font-semibold tracking-tight text-base text-foreground hover:text-blue-500 dark:hover:text-cyan-400 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring group cursor-pointer"
+          className="flex items-center gap-2 font-mono font-semibold tracking-tight text-base text-foreground hover:text-foreground transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring group cursor-pointer"
         >
-          <div className="size-7 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-blue-600 dark:text-cyan-400 shadow-xs group-hover:border-blue-500/50 p-1">
+          <div className="size-7 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-foreground shadow-xs group-hover:border-zinc-400 dark:group-hover:border-zinc-700 p-1">
             <NetworkMonogramM className="size-4.5" />
           </div>
           <span className="font-sans font-bold text-lg">Mahija</span>
@@ -131,7 +131,7 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
                 <a
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-xs font-medium font-mono text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring rounded-sm px-1 py-0.5"
+                  className="text-xs font-medium font-mono text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring rounded-sm px-1 py-0.5"
                 >
                   {link.name}
                 </a>
@@ -152,7 +152,7 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
                   title="Switch Language (EN / ID)"
                   aria-label="Switch Language"
                 >
-                  <Languages className="size-3.5 text-blue-500 dark:text-cyan-400" />
+                  <Languages className="size-3.5 text-foreground" />
                   <span>{language.toUpperCase()}</span>
                 </button>
 
@@ -165,9 +165,9 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
                   className="text-zinc-500 dark:text-zinc-400 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-lg border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50 dark:bg-zinc-900/50 cursor-pointer"
                 >
                   {theme === "dark" ? (
-                    <Sun className="size-4 text-amber-400" />
+                    <Sun className="size-4 text-foreground" />
                   ) : (
-                    <Moon className="size-4 text-blue-600" />
+                    <Moon className="size-4 text-foreground" />
                   )}
                 </Button>
               </>
@@ -217,7 +217,7 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
                 className="flex items-center gap-1 px-2 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 text-xs font-mono font-semibold text-foreground"
                 aria-label="Switch Language"
               >
-                <Languages className="size-3 text-blue-500 dark:text-cyan-400" />
+                <Languages className="size-3 text-foreground" />
                 <span>{language.toUpperCase()}</span>
               </button>
               <Button
@@ -228,9 +228,9 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
                 className="text-foreground border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900"
               >
                 {theme === "dark" ? (
-                  <Sun className="size-4 text-amber-400" />
+                  <Sun className="size-4 text-foreground" />
                 ) : (
-                  <Moon className="size-4 text-blue-600" />
+                  <Moon className="size-4 text-foreground" />
                 )}
               </Button>
             </>

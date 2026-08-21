@@ -52,7 +52,7 @@ export default function OrganizationsArchive() {
           {/* Header */}
           <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
             <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-blue-500 dark:bg-cyan-400" />
+              <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
               <Badge 
                 variant="outline" 
                 className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -82,7 +82,7 @@ export default function OrganizationsArchive() {
                 >
                   <div className="flex flex-col gap-3.5">
                     <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                      <span className="font-semibold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
+                      <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
                         {language === "id" ? "Organisasi" : "Organization"}
                       </span>
                       <span>{org.period}</span>

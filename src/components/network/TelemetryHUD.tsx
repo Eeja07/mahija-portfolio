@@ -24,25 +24,25 @@ export default function TelemetryHUD() {
 
         {/* Metric 2: Host Topology */}
         <div className="hidden sm:flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
-          <Cpu className="size-3.5 text-blue-500 dark:text-cyan-400" />
+          <Cpu className="size-3.5 text-zinc-500 dark:text-zinc-400" />
           <span>HOST: Debian 12 (x86_64)</span>
         </div>
 
         {/* Metric 3: Ingress */}
         <div className="hidden md:flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
-          <ShieldCheck className="size-3.5 text-emerald-500" />
+          <ShieldCheck className="size-3.5 text-zinc-500 dark:text-zinc-400" />
           <span>INGRESS: Cloudflare Tunnel (Zero-Trust)</span>
         </div>
 
         {/* Metric 4: Protocol Broker */}
         <div className="hidden lg:flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
-          <Network className="size-3.5 text-blue-500 dark:text-cyan-400" />
+          <Network className="size-3.5 text-zinc-500 dark:text-zinc-400" />
           <span>BROKER: EMQX / MQTTv5 (Port 1883)</span>
         </div>
 
         {/* Metric 5: Live Simulated RTT */}
         <div className="flex items-center gap-1.5 ml-auto">
-          <Activity className="size-3.5 text-emerald-500" />
+          <Activity className="size-3.5 text-zinc-500 dark:text-zinc-400" />
           <span>RTT:</span>
           <span className="font-bold text-foreground">{latency}ms</span>
         </div>

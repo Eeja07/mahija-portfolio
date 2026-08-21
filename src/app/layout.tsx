@@ -80,7 +80,11 @@ const jsonLd = {
   },
   "sameAs": [
     "https://github.com/Eeja07",
-    "https://linkedin.com/in/mahijaibad"
+    "https://linkedin.com/in/mahijaibad",
+    "https://instagram.com/eeja07",
+    "https://x.com/eeja07",
+    "https://facebook.com/eeja07",
+    "https://t.me/eeja07"
   ],
   "knowsAbout": [
     "Docker",

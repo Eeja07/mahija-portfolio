@@ -353,9 +353,16 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     targetId: string
   } | null>(null)
   const [isInteracting, setIsInteracting] = useState(false)
+  const [isTouch, setIsTouch] = useState(false)
   const isDark = resolvedTheme !== "light"
   const isEn = language === "en"
   const t = translations[language].gateway
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768)
+    }
+  }, [])
 
   const handleNodeClick = useCallback(
     (targetId: string) => {
@@ -383,7 +390,9 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
 
     // Setup Scene, Camera, Renderer
     const scene = new THREE.Scene()
-    const initialAspect = container.clientWidth / container.clientHeight
+    const initialWidth = container.clientWidth
+    const initialHeight = container.clientHeight
+    const initialAspect = initialWidth / initialHeight
     const camera = new THREE.PerspectiveCamera(
       42,
       initialAspect,
@@ -392,14 +401,16 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     )
 
     // Dynamic camera distance for mobile & desktop fitting
-    const calculateCameraZ = (aspect: number) => {
-      if (aspect < 0.5) return 44
-      if (aspect < 0.7) return 38
-      if (aspect < 1.0) return 31
-      if (aspect < 1.3) return 27
+    const calculateCameraZ = (aspect: number, width: number) => {
+      if (width < 480) return 46
+      if (width < 640) return 40
+      if (aspect < 0.5) return 42
+      if (aspect < 0.7) return 36
+      if (aspect < 1.0) return 30
+      if (aspect < 1.3) return 26
       return 23
     }
-    const defaultInitZ = calculateCameraZ(initialAspect)
+    const defaultInitZ = calculateCameraZ(initialAspect, initialWidth)
     let targetCameraZ = defaultInitZ
     let currentCameraZ = defaultInitZ
     const minCameraZ = 8.0
@@ -411,7 +422,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       alpha: true,
       powerPreference: "high-performance",
     })
-    renderer.setSize(container.clientWidth, container.clientHeight)
+    renderer.setSize(initialWidth, initialHeight)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = isDark ? 2.15 : 1.3
@@ -480,6 +491,20 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
 
     // --- 3D SCENE GROUP ---
     const portfolioCoreGroup = new THREE.Group()
+    
+    // Mobile responsive 3D group scaling
+    if (initialWidth < 480) {
+      portfolioCoreGroup.scale.set(0.62, 0.62, 0.62)
+    } else if (initialWidth < 640) {
+      portfolioCoreGroup.scale.set(0.72, 0.72, 0.72)
+    } else if (initialWidth < 768) {
+      portfolioCoreGroup.scale.set(0.84, 0.84, 0.84)
+    } else if (initialAspect < 1.0) {
+      portfolioCoreGroup.scale.set(0.92, 0.92, 0.92)
+    } else {
+      portfolioCoreGroup.scale.set(1.0, 1.0, 1.0)
+    }
+    
     scene.add(portfolioCoreGroup)
 
     const raycastableMeshes: THREE.Mesh[] = []
@@ -875,7 +900,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         name: isEn ? "Repositories" : "Repositori",
         category: isEn ? "Blade Server Node" : "Server Komputasi 1U",
         deviceType: "Hypervisor Compute Blade",
-        role: isEn ? "46 public repositories on GitHub" : "46 repositori publik di GitHub",
+        role: isEn ? "50 public repositories on GitHub" : "50 repositori publik di GitHub",
         targetId: "#repositories",
         position: new THREE.Vector3(9.2, -1.0, -0.4),
         portIndex: 6,
@@ -901,7 +926,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         name: isEn ? "Get in Touch" : "Hubungi Saya",
         category: isEn ? "Telecom Gateway" : "Gateway Telekomunikasi",
         deviceType: "Optical Ingress Distribution Unit",
-        role: isEn ? "Email, LinkedIn, GitHub, and WhatsApp" : "Email, LinkedIn, GitHub, dan WhatsApp",
+        role: isEn ? "Email, LinkedIn, GitHub, WhatsApp, and Social Networks" : "Email, LinkedIn, GitHub, WhatsApp, dan Media Sosial",
         targetId: "#contact",
         position: new THREE.Vector3(7.6, -5.6, -1.0),
         portIndex: 8,
@@ -1483,9 +1508,12 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     const raycaster = new THREE.Raycaster()
     const mouseCoord = new THREE.Vector2()
 
-    // Touch Pinch Zoom tracking
+    // Touch Pinch Zoom & Long-press hold tracking
     let initialPinchDist: number | null = null
     let pinchStartZ = targetCameraZ
+    let touchStartCoord = { x: 0, y: 0 }
+    let longPressTimer: ReturnType<typeof setTimeout> | null = null
+    let hitTargetOnTouch: string | null = null
 
     const onPointerDown = (e: MouseEvent | TouchEvent) => {
       if ("button" in e && (e as MouseEvent).button !== 0) return
@@ -1497,11 +1525,48 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       velocity.x = 0
       velocity.y = 0
 
-      if ("touches" in e && e.touches.length === 2) {
-        const dx = e.touches[0].clientX - e.touches[1].clientX
-        const dy = e.touches[0].clientY - e.touches[1].clientY
-        initialPinchDist = Math.sqrt(dx * dx + dy * dy)
-        pinchStartZ = targetCameraZ
+      if ("touches" in e) {
+        if (e.touches.length === 1) {
+          touchStartCoord = { x: clientX, y: clientY }
+
+          const rect = container.getBoundingClientRect()
+          mouseCoord.x = ((clientX - rect.left) / rect.width) * 2 - 1
+          mouseCoord.y = -((clientY - rect.top) / rect.height) * 2 + 1
+          raycaster.setFromCamera(mouseCoord, camera)
+          const intersects = raycaster.intersectObjects(raycastableMeshes)
+
+          if (intersects.length > 0) {
+            const hit = intersects[0].object as THREE.Mesh
+            hitTargetOnTouch = hit.userData.targetId || null
+            setHoveredNode({
+              name: hit.userData.name,
+              category: hit.userData.category,
+              deviceType: hit.userData.deviceType,
+              role: hit.userData.role,
+              targetId: hit.userData.targetId,
+            })
+
+            // Hold on node for 360ms directly navigates to the target section
+            if (longPressTimer) clearTimeout(longPressTimer)
+            longPressTimer = setTimeout(() => {
+              if (hitTargetOnTouch) {
+                handleNodeClick(hitTargetOnTouch)
+              }
+            }, 360)
+          } else {
+            hitTargetOnTouch = null
+            if (longPressTimer) clearTimeout(longPressTimer)
+          }
+        } else if (e.touches.length === 2) {
+          if (longPressTimer) {
+            clearTimeout(longPressTimer)
+            longPressTimer = null
+          }
+          const dx = e.touches[0].clientX - e.touches[1].clientX
+          const dy = e.touches[0].clientY - e.touches[1].clientY
+          initialPinchDist = Math.sqrt(dx * dx + dy * dy)
+          pinchStartZ = targetCameraZ
+        }
       }
     }
 
@@ -1518,6 +1583,17 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
 
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
+
+      if ("touches" in e && e.touches.length === 1) {
+        const dist = Math.hypot(clientX - touchStartCoord.x, clientY - touchStartCoord.y)
+        // If moved more than 8px, cancel long-press hold and treat as drag orbit rotation
+        if (dist > 8) {
+          if (longPressTimer) {
+            clearTimeout(longPressTimer)
+            longPressTimer = null
+          }
+        }
+      }
 
       const rect = container.getBoundingClientRect()
       mouseCoord.x = ((clientX - rect.left) / rect.width) * 2 - 1
@@ -1557,6 +1633,10 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
 
     const onPointerUp = (e: MouseEvent | TouchEvent) => {
       isDragging = false
+      if (longPressTimer) {
+        clearTimeout(longPressTimer)
+        longPressTimer = null
+      }
       if ("touches" in e && e.touches.length < 2) {
         initialPinchDist = null
       }
@@ -1576,8 +1656,10 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     // DOUBLE CLICK ZOOM IN / ZOOM OUT TOGGLE
     const onDblClick = (e: MouseEvent) => {
       e.preventDefault()
-      const aspect = container.clientWidth / container.clientHeight
-      const defZ = calculateCameraZ(aspect)
+      const w = container.clientWidth
+      const h = container.clientHeight
+      const aspect = w / h
+      const defZ = calculateCameraZ(aspect, w)
       if (targetCameraZ > 17.0) {
         targetCameraZ = 12.0
       } else {
@@ -1587,7 +1669,7 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       setTimeout(() => setIsInteracting(false), 800)
     }
 
-    // RIGHT CLICK ONLY triggers navigation into the portfolio
+    // RIGHT CLICK triggers navigation into the portfolio on desktop
     const onContextMenu = (e: MouseEvent) => {
       e.preventDefault()
       const rect = container.getBoundingClientRect()
@@ -1617,11 +1699,26 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
 
     const handleResize = () => {
       if (!container) return
-      const aspect = container.clientWidth / container.clientHeight
+      const w = container.clientWidth
+      const h = container.clientHeight
+      const aspect = w / h
       camera.aspect = aspect
-      targetCameraZ = calculateCameraZ(aspect)
+      targetCameraZ = calculateCameraZ(aspect, w)
       camera.updateProjectionMatrix()
-      renderer.setSize(container.clientWidth, container.clientHeight)
+      renderer.setSize(w, h)
+
+      // Mobile responsive 3D group scaling
+      if (w < 480) {
+        portfolioCoreGroup.scale.set(0.62, 0.62, 0.62)
+      } else if (w < 640) {
+        portfolioCoreGroup.scale.set(0.72, 0.72, 0.72)
+      } else if (w < 768) {
+        portfolioCoreGroup.scale.set(0.84, 0.84, 0.84)
+      } else if (aspect < 1.0) {
+        portfolioCoreGroup.scale.set(0.92, 0.92, 0.92)
+      } else {
+        portfolioCoreGroup.scale.set(1.0, 1.0, 1.0)
+      }
     }
     window.addEventListener("resize", handleResize)
 
@@ -1724,14 +1821,14 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
         className="size-full cursor-grab active:cursor-grabbing touch-none"
       />
 
-      {/* Minimalist Guidance HUD */}
-      <div className="absolute bottom-16 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 font-mono text-xs sm:text-sm font-semibold text-zinc-700 dark:text-zinc-200 bg-background/95 backdrop-blur-md px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-md flex items-center gap-3 max-w-[94vw] truncate pointer-events-none select-none">
+      {/* Minimalist Guidance HUD: Responsive on mobile */}
+      <div className="absolute bottom-12 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 font-mono text-[10px] sm:text-xs md:text-sm font-semibold text-zinc-700 dark:text-zinc-200 bg-background/95 backdrop-blur-md px-4 sm:px-8 py-2 sm:py-3.5 rounded-xl sm:rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-md flex items-center gap-2 sm:gap-3 max-w-[92vw] sm:max-w-none text-center pointer-events-none select-none">
         <span className="truncate">
-          {t.hudGuide}
+          {isTouch ? t.hudGuideMobile : t.hudGuide}
         </span>
       </div>
 
-      {/* CENTERED POPUP on Hover - STRICTLY RIGHT CLICK ONLY FOR ENTRY (No Blue Text / Clean Neutral Styling) */}
+      {/* CENTERED POPUP on Hover / Tap - CLICK, HOLD, OR RIGHT CLICK TO ENTER */}
       {hoveredNode && (
         <div
           onContextMenu={(e) => {
@@ -1739,29 +1836,34 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
             e.stopPropagation()
             handleNodeClick(hoveredNode.targetId)
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 font-mono text-foreground bg-background/95 backdrop-blur-xl p-5 sm:p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl flex flex-col items-center text-center gap-3 animate-in fade-in zoom-in-95 duration-150 max-w-[88vw] sm:max-w-sm w-full select-none pointer-events-auto"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 font-mono text-foreground bg-background/95 backdrop-blur-xl p-4 sm:p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl flex flex-col items-center text-center gap-2.5 sm:gap-3 animate-in fade-in zoom-in-95 duration-150 max-w-[86vw] sm:max-w-sm w-full select-none pointer-events-auto"
         >
-          <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-[9px] sm:text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">
             <span>{t.nodeDetected} &bull; {hoveredNode.category}</span>
           </div>
-          <div className="flex flex-col gap-1">
-            <h3 className="text-xl sm:text-2xl font-bold font-sans text-foreground tracking-tight">
+          <div className="flex flex-col gap-0.5 sm:gap-1">
+            <h3 className="text-lg sm:text-2xl font-bold font-sans text-foreground tracking-tight">
               {hoveredNode.name}
             </h3>
-            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 font-sans max-w-xs mx-auto mt-0.5">
+            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 font-sans max-w-xs mx-auto mt-0.5 leading-snug">
               {hoveredNode.role}
             </p>
           </div>
-          <div 
+          <button 
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              handleNodeClick(hoveredNode.targetId)
+            }}
             onContextMenu={(e) => {
               e.preventDefault()
               e.stopPropagation()
               handleNodeClick(hoveredNode.targetId)
             }}
-            className="mt-1 px-5 py-2.5 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-mono text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm select-none cursor-default border border-zinc-700/40 dark:border-zinc-300/40"
+            className="mt-1 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-mono text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm select-none cursor-pointer border border-zinc-700/40 dark:border-zinc-300/40 hover:opacity-90 active:scale-95 transition-all"
           >
-            <span>{t.rightClickToEnter}</span>
-          </div>
+            <span>{isTouch ? t.holdToEnter : t.rightClickToEnter}</span>
+          </button>
         </div>
       )}
 

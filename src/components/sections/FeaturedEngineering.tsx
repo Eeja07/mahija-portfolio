@@ -76,7 +76,7 @@ export default function FeaturedEngineering() {
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-blue-500 dark:bg-cyan-400" />
+            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
             <Badge 
               variant="outline" 
               className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
@@ -162,7 +162,7 @@ export default function FeaturedEngineering() {
                             className="border border-zinc-200/90 dark:border-zinc-800/90 bg-background/80 dark:bg-zinc-900/60 rounded-xl p-3 flex flex-col justify-center shadow-xs"
                           >
                             <span className="font-mono text-xs font-bold text-foreground leading-none flex items-center gap-1.5">
-                              <Activity className="size-3 text-blue-500 dark:text-cyan-400" />
+                              <Activity className="size-3 text-zinc-500 dark:text-zinc-400" />
                               {val}
                             </span>
                             <span className="font-sans text-[11px] text-zinc-500 dark:text-zinc-400 mt-1 leading-snug">
@@ -233,7 +233,7 @@ export default function FeaturedEngineering() {
                       <div className="flex flex-col gap-3.5 mt-2 pt-2 border-t border-zinc-200/70 dark:border-zinc-800/70">
                         {project.problem && (
                           <div className="flex flex-col text-left">
-                            <span className="font-mono text-xs uppercase tracking-wider text-blue-600 dark:text-cyan-400 font-semibold flex items-center gap-1.5">
+                            <span className="font-mono text-xs uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold flex items-center gap-1.5">
                               <span>&gt;</span> {t.theProblem}
                             </span>
                             <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
@@ -243,7 +243,7 @@ export default function FeaturedEngineering() {
                         )}
                         {project.tradeoffs && (
                           <div className="flex flex-col text-left">
-                            <span className="font-mono text-xs uppercase tracking-wider text-blue-600 dark:text-cyan-400 font-semibold flex items-center gap-1.5">
+                            <span className="font-mono text-xs uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold flex items-center gap-1.5">
                               <span>&gt;</span> {t.tradeoffs}
                             </span>
                             <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
@@ -253,7 +253,7 @@ export default function FeaturedEngineering() {
                         )}
                         {project.outcome && (
                           <div className="flex flex-col text-left">
-                            <span className="font-mono text-xs uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
+                            <span className="font-mono text-xs uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold flex items-center gap-1.5">
                               <span>&gt;</span> {t.outcome}
                             </span>
                             <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
@@ -284,9 +284,9 @@ export default function FeaturedEngineering() {
                           <button
                             onClick={() => toggleArchitecture(project.id)}
                             aria-expanded={activeArchId === project.id}
-                            className="text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-cyan-400 font-medium p-0 h-auto flex items-center gap-2 cursor-pointer"
+                            className="text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400 hover:text-foreground font-medium p-0 h-auto flex items-center gap-2 cursor-pointer"
                           >
-                            <Cpu className="size-3.5 text-blue-500 dark:text-cyan-400" />
+                            <Cpu className="size-3.5 text-zinc-500 dark:text-zinc-400" />
                             <span>{activeArchId === project.id ? t.closeTopology : t.topology}</span>
                             <svg
                               viewBox="0 0 24 24"
@@ -317,7 +317,7 @@ export default function FeaturedEngineering() {
                                   {project.architecture.map((node, index) => (
                                     <React.Fragment key={node}>
                                       {index > 0 && (
-                                        <span className="text-cyan-500 font-mono font-bold">
+                                        <span className="text-zinc-400 dark:text-zinc-500 font-mono font-bold">
                                           &gt;&gt;
                                         </span>
                                       )}
