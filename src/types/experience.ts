@@ -11,6 +11,14 @@ export type ExperienceCategory =
   | "Riset"
   | string;
 
+export interface MediaItem {
+  type: "image" | "video" | "document";
+  url: string;
+  title?: string;
+  caption?: string;
+  thumbnail?: string;
+}
+
 export interface Experience {
   id: string;
   company: string;
@@ -23,4 +31,6 @@ export interface Experience {
   achievements: string[];
   technologies: string[];
   category: ExperienceCategory;
+  media?: MediaItem[];
+  certificateUrl?: string;
 }

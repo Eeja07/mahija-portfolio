@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "motion/react"
 import { getAwards } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
@@ -8,11 +8,15 @@ import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { Trophy } from "lucide-react"
+import { MediaItem } from "@/types/experience"
+import MediaPreviewModal from "@/components/ui/MediaPreviewModal"
+import MediaAttachmentButton from "@/components/ui/MediaAttachmentButton"
 
 export default function Awards() {
   const { language } = useLanguage()
   const t = translations[language].awards
   const awardList = getAwards(language)
+  const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -98,16 +102,34 @@ export default function Awards() {
                   <p className="font-sans text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                     {award.summary}
                   </p>
+
+                  {award.bullets && (
+                    <ul className="list-disc pl-4 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 flex flex-col gap-1.5 leading-relaxed mt-1">
+                      {award.bullets.map((bullet, idx) => (
+                        <li key={idx}>{bullet}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
-                <div className="pt-3 border-t border-zinc-200/70 dark:border-zinc-800/70 font-mono text-[10px] text-zinc-400">
-                  <span>{language === "id" ? "Distingsi Terverifikasi" : "Distinction Verified"}</span>
-                </div>
+                <MediaAttachmentButton
+                  media={award.media}
+                  certificateUrl={award.certificateUrl}
+                  certificateLabel={language === "id" ? "Bukti Prestasi" : "Award Distinction"}
+                  onSelectMedia={(selected) => setPreviewItem(selected)}
+                />
               </NetworkSubsystemNode>
             </motion.div>
           ))}
         </motion.div>
       </div>
+
+      {/* Interactive Media & Document Preview Lightbox Modal */}
+      <MediaPreviewModal
+        isOpen={!!previewItem}
+        onClose={() => setPreviewItem(null)}
+        item={previewItem}
+      />
     </section>
   )
 }

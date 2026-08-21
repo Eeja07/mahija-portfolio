@@ -4,8 +4,7 @@ export interface ResumeVariant {
   language: string
   href: string
   primary: boolean
-  // Backward compatibility field for older component usages
-  file?: string
+  file: string
 }
 
 export interface ResumeMetadata {

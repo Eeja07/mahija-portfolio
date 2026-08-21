@@ -1,3 +1,5 @@
+import { MediaItem } from "./experience";
+
 export type ProjectCategory =
   | "Infrastructure"
   | "IoT"
@@ -38,4 +40,6 @@ export interface Project {
   outcome?: string;
   mediaType?: "video" | "image";
   mediaUrl?: string;
+  mediaGallery?: MediaItem[];
+  certificateUrl?: string;
 }

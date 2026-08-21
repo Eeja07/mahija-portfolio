@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "motion/react"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
@@ -11,11 +11,15 @@ import TopologyBackground from "@/components/network/TopologyBackground"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { Award } from "lucide-react"
+import { MediaItem } from "@/types/experience"
+import MediaPreviewModal from "@/components/ui/MediaPreviewModal"
+import MediaAttachmentButton from "@/components/ui/MediaAttachmentButton"
 
 export default function CommitteesArchive() {
   const { language } = useLanguage()
   const t = translations[language].archives
   const commList = getCommittees(language)
+  const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -110,6 +114,14 @@ export default function CommitteesArchive() {
                       </ul>
                     )}
                   </div>
+
+                  {/* Media & Certificate Attachment Area */}
+                  <MediaAttachmentButton
+                    media={comm.media}
+                    certificateUrl={comm.certificateUrl}
+                    certificateLabel={comm.certificateLabel || (language === "id" ? "Sertifikat Panitia" : "Committee Certificate")}
+                    onSelectMedia={(selected) => setPreviewItem(selected)}
+                  />
                 </NetworkNode>
               </motion.div>
             ))}
@@ -119,6 +131,13 @@ export default function CommitteesArchive() {
       </main>
 
       <Footer />
+
+      {/* Interactive Media & Document Preview Lightbox Modal */}
+      <MediaPreviewModal
+        isOpen={!!previewItem}
+        onClose={() => setPreviewItem(null)}
+        item={previewItem}
+      />
     </div>
   )
 }

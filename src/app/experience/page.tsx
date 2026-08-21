@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "motion/react"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
@@ -11,11 +11,15 @@ import TopologyBackground from "@/components/network/TopologyBackground"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { Briefcase, MapPin } from "lucide-react"
+import { MediaItem } from "@/types/experience"
+import MediaPreviewModal from "@/components/ui/MediaPreviewModal"
+import MediaAttachmentButton from "@/components/ui/MediaAttachmentButton"
 
 export default function ExperienceArchive() {
   const { language } = useLanguage()
   const t = translations[language].archives
   const expList = getExperiences(language)
+  const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -113,15 +117,27 @@ export default function ExperienceArchive() {
                     )}
                   </div>
 
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-200/70 dark:border-zinc-800/70 select-none">
-                    {exp.technologies.map((tech) => (
-                      <span 
-                        key={tech} 
-                        className="border border-zinc-200 dark:border-zinc-800 px-2.5 py-0.5 rounded font-mono text-xs text-zinc-600 dark:text-zinc-400 bg-background/80"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <div className="flex flex-col gap-3 pt-4 border-t border-zinc-200/70 dark:border-zinc-800/70 select-none">
+                    {/* Media attachments */}
+                    <MediaAttachmentButton
+                      media={exp.media}
+                      certificateUrl={exp.certificateUrl}
+                      certificateLabel={language === "id" ? "Sertifikat / Bukti" : "Certificate / Document"}
+                      onSelectMedia={(selected) => setPreviewItem(selected)}
+                      className="border-none pt-0"
+                    />
+
+                    {/* Tech stack */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {exp.technologies.map((tech) => (
+                        <span 
+                          key={tech} 
+                          className="border border-zinc-200 dark:border-zinc-800 px-2.5 py-0.5 rounded font-mono text-xs text-zinc-600 dark:text-zinc-400 bg-background/80"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </NetworkNode>
               </motion.div>
@@ -132,6 +148,13 @@ export default function ExperienceArchive() {
       </main>
 
       <Footer />
+
+      {/* Interactive Media & Document Preview Lightbox Modal */}
+      <MediaPreviewModal
+        isOpen={!!previewItem}
+        onClose={() => setPreviewItem(null)}
+        item={previewItem}
+      />
     </div>
   )
 }

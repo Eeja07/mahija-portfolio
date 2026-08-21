@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "motion/react"
 import { getTraining } from "@/data/career"
 import { Badge } from "@/components/ui/badge"
@@ -10,10 +10,14 @@ import { translations } from "@/data/translations"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { ArrowRight } from "lucide-react"
+import { MediaItem } from "@/types/experience"
+import MediaPreviewModal from "@/components/ui/MediaPreviewModal"
+import MediaAttachmentButton from "@/components/ui/MediaAttachmentButton"
 
 export default function FeaturedTraining() {
   const { language } = useLanguage()
   const t = translations[language].training
+  const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -109,6 +113,13 @@ export default function FeaturedTraining() {
                     </ul>
                   )}
                 </div>
+
+                <MediaAttachmentButton
+                  media={tr.media}
+                  certificateUrl={tr.certificateUrl}
+                  certificateLabel={tr.certificateLabel || (language === "id" ? "Sertifikat SKEM" : "SKEM Certificate")}
+                  onSelectMedia={(selected) => setPreviewItem(selected)}
+                />
               </NetworkSubsystemNode>
             </motion.div>
           ))}
@@ -128,6 +139,13 @@ export default function FeaturedTraining() {
           </a>
         </div>
       </div>
+
+      {/* Interactive Media & Document Preview Lightbox Modal */}
+      <MediaPreviewModal
+        isOpen={!!previewItem}
+        onClose={() => setPreviewItem(null)}
+        item={previewItem}
+      />
     </section>
   )
 }

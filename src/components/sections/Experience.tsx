@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "motion/react"
 import { getExperiences } from "@/data/experience"
 import { Badge } from "@/components/ui/badge"
@@ -10,10 +10,14 @@ import { translations } from "@/data/translations"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { ArrowRight, Briefcase } from "lucide-react"
+import { MediaItem } from "@/types/experience"
+import MediaPreviewModal from "@/components/ui/MediaPreviewModal"
+import MediaAttachmentButton from "@/components/ui/MediaAttachmentButton"
 
 export default function Experience() {
   const { language } = useLanguage()
   const t = translations[language].experience
+  const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -115,16 +119,27 @@ export default function Experience() {
                   </p>
                 </div>
 
-                {/* Tech Pills */}
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-zinc-200/70 dark:border-zinc-800/70 select-none">
-                  {exp.technologies.slice(0, 3).map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="flex flex-col gap-3">
+                  {/* Media & Certificate Attachment Area */}
+                  <MediaAttachmentButton
+                    media={exp.media}
+                    certificateUrl={exp.certificateUrl}
+                    certificateLabel={language === "id" ? "Sertifikat / Dokumen" : "Certificate / Document"}
+                    onSelectMedia={(selected) => setPreviewItem(selected)}
+                    className="border-none pt-0"
+                  />
+
+                  {/* Tech Pills */}
+                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-zinc-200/70 dark:border-zinc-800/70 select-none">
+                    {exp.technologies.slice(0, 3).map((tech) => (
+                      <span 
+                        key={tech} 
+                        className="border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </NetworkSubsystemNode>
             </motion.div>
@@ -145,6 +160,13 @@ export default function Experience() {
           </a>
         </div>
       </div>
+
+      {/* Interactive Media & Document Preview Lightbox Modal */}
+      <MediaPreviewModal
+        isOpen={!!previewItem}
+        onClose={() => setPreviewItem(null)}
+        item={previewItem}
+      />
     </section>
   )
 }

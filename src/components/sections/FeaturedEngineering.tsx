@@ -10,7 +10,10 @@ import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { cn } from "@/lib/utils"
-import { Image as ImageIcon, Cpu, ExternalLink, Activity } from "lucide-react"
+import { Image as ImageIcon, Cpu, ExternalLink, Activity, Maximize2 } from "lucide-react"
+import { MediaItem } from "@/types/experience"
+import MediaPreviewModal from "@/components/ui/MediaPreviewModal"
+import MediaAttachmentButton from "@/components/ui/MediaAttachmentButton"
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -22,6 +25,7 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function FeaturedEngineering() {
   const [activeArchId, setActiveArchId] = useState<string | null>(null)
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({})
+  const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
   const { language } = useLanguage()
   const t = translations[language].projects
 
@@ -117,8 +121,28 @@ export default function FeaturedEngineering() {
                   
                   {/* Left Side: Media Showcase, Telemetry Metrics, Action Links */}
                   <div className="lg:col-span-5 flex flex-col gap-4">
-                    {/* Media Container with Laser Scan Border */}
-                    <div className="relative aspect-video rounded-xl bg-background border border-zinc-200 dark:border-zinc-800 overflow-hidden select-none flex items-center justify-center group shadow-xs">
+                    {/* Media Container with Laser Scan Border - Click to preview */}
+                    <div 
+                      onClick={() => {
+                        if (project.mediaUrl) {
+                          setPreviewItem({
+                            type: "video",
+                            url: project.mediaUrl,
+                            title: `${project.title} - Video Demo`,
+                            caption: project.description,
+                          })
+                        } else {
+                          setPreviewItem({
+                            type: "image",
+                            url: getProjectImagePath(project.id),
+                            title: project.title,
+                            caption: project.description,
+                          })
+                        }
+                      }}
+                      className="relative aspect-video rounded-xl bg-background border border-zinc-200 dark:border-zinc-800 overflow-hidden select-none flex items-center justify-center group shadow-xs cursor-pointer"
+                      title="Click to preview full media"
+                    >
                       {failedImages[project.id] ? (
                         <div className="flex flex-col items-center gap-2 p-4 text-center">
                           <ImageIcon className="size-6 text-zinc-400 dark:text-zinc-500" />
@@ -153,7 +177,22 @@ export default function FeaturedEngineering() {
                         <span className="size-1.5 rounded-full bg-emerald-500" />
                         <span>LIVE PREVIEW</span>
                       </div>
+
+                      {/* Expand indicator on hover */}
+                      <div className="absolute bottom-3 right-3 z-10 p-1 rounded-md bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Maximize2 className="size-3.5" />
+                      </div>
                     </div>
+
+                    {/* Project Additional Media Gallery Strip */}
+                    {project.mediaGallery && project.mediaGallery.length > 0 && (
+                      <MediaAttachmentButton
+                        media={project.mediaGallery}
+                        certificateUrl={project.certificateUrl}
+                        onSelectMedia={(selected) => setPreviewItem(selected)}
+                        className="pt-1 border-none"
+                      />
+                    )}
 
                     {/* Key Metrics Dashboard */}
                     <div className="grid grid-cols-2 gap-2.5">
@@ -345,6 +384,13 @@ export default function FeaturedEngineering() {
           ))}
         </div>
       </div>
+
+      {/* Interactive Media & Document Preview Lightbox Modal */}
+      <MediaPreviewModal
+        isOpen={!!previewItem}
+        onClose={() => setPreviewItem(null)}
+        item={previewItem}
+      />
     </section>
   )
 }
