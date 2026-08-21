@@ -75,7 +75,7 @@ export default function TrainingArchive() {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {trainingList.map((item, idx) => (
+            {trainingList.map((item) => (
               <motion.div key={item.id} variants={itemVariants} className="h-full">
                 <NetworkNode 
                   className="p-6 sm:p-7 flex flex-col justify-between text-left gap-6 h-full"

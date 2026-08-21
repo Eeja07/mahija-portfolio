@@ -78,7 +78,7 @@ export default function FeaturedRepositories() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {featuredRepos.map((repo, idx) => (
+          {featuredRepos.map((repo) => (
             <motion.div key={repo.slug} variants={itemVariants} className="h-full">
               <a 
                 href={`https://github.com/Eeja07/${repo.slug}`}

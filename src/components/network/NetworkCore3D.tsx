@@ -1,10 +1,24 @@
 "use client"
 
-import React, { useEffect, useRef, useState, useCallback } from "react"
+import React, { useEffect, useRef, useState, useCallback, useSyncExternalStore } from "react"
 import * as THREE from "three"
 import { useTheme } from "next-themes"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
+
+function subscribeTouch(callback: () => void) {
+  window.addEventListener("resize", callback)
+  return () => window.removeEventListener("resize", callback)
+}
+
+function getTouchSnapshot() {
+  if (typeof window === "undefined") return false
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768
+}
+
+function getTouchServerSnapshot() {
+  return false
+}
 
 interface PortfolioNodeData {
   id: string
@@ -353,16 +367,10 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     targetId: string
   } | null>(null)
   const [isInteracting, setIsInteracting] = useState(false)
-  const [isTouch, setIsTouch] = useState(false)
+  const isTouch = useSyncExternalStore(subscribeTouch, getTouchSnapshot, getTouchServerSnapshot)
   const isDark = resolvedTheme !== "light"
   const isEn = language === "en"
   const t = translations[language].gateway
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768)
-    }
-  }, [])
 
   const handleNodeClick = useCallback(
     (targetId: string) => {

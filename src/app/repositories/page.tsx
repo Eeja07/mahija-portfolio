@@ -101,7 +101,7 @@ export default function RepositoriesArchive() {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {filteredRepos.map((repo, idx) => (
+            {filteredRepos.map((repo) => (
               <motion.div key={repo.slug || repo.name} variants={itemVariants} className="h-full">
                 <NetworkNode 
                   className="p-6 sm:p-7 flex flex-col justify-between text-left gap-6 h-full"

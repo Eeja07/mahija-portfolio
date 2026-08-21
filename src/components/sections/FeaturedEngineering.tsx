@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import NextImage from "next/image"
 import { motion, AnimatePresence } from "motion/react"
 import { getProjects } from "@/data/projects"
 import { Badge } from "@/components/ui/badge"
@@ -124,9 +125,11 @@ export default function FeaturedEngineering() {
                         </div>
                       ) : (
                         <>
-                          <img
+                          <NextImage
                             src={getProjectImagePath(project.id)}
                             alt={project.title}
+                            width={600}
+                            height={338}
                             onError={() => handleImageError(project.id)}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
                           />

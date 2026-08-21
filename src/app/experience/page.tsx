@@ -75,7 +75,7 @@ export default function ExperienceArchive() {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {expList.map((exp, idx) => (
+            {expList.map((exp) => (
               <motion.div key={exp.id} variants={itemVariants} className="h-full">
                 <NetworkNode 
                   className="p-6 sm:p-7 flex flex-col justify-between text-left gap-6 h-full"

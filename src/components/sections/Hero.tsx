@@ -1,10 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
+import Image from "next/image"
 import { motion } from "motion/react"
 import { buttonVariants } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
@@ -175,11 +175,13 @@ export default function Hero() {
               <div className="absolute -inset-1 rounded-3xl opacity-25 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-zinc-300 via-zinc-400 to-zinc-500 dark:from-zinc-700 dark:via-zinc-600 dark:to-zinc-800 blur-xs" />
 
               <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[350px] lg:h-[350px] rounded-2xl overflow-hidden bg-background/80 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/50 z-10">
-                <img
+                <Image
                   src="/profile.png"
                   alt="Mahija Ibad Pradipta"
+                  width={350}
+                  height={350}
+                  priority
                   className="w-full h-full object-contain filter drop-shadow-md dark:brightness-95 transition-transform duration-300 group-hover:scale-102"
-                  loading="eager"
                 />
               </div>
             </div>
