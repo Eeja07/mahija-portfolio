@@ -150,11 +150,17 @@ export default function MediaPreviewModal({ isOpen, onClose, item }: MediaPrevie
                 </div>
               ) : isPdf ? (
                 <div className="relative w-full h-[65vh] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex flex-col">
-                  <iframe
-                    src={`${item.url}#toolbar=0&navpanes=0`}
-                    title={item.title || "PDF Document"}
+                  <object
+                    data={`${item.url}#toolbar=0&navpanes=0`}
+                    type="application/pdf"
                     className="w-full h-full border-0 bg-white dark:bg-zinc-900"
-                  />
+                  >
+                    <iframe
+                      src={`${item.url}#toolbar=0&navpanes=0`}
+                      title={item.title || "PDF Document"}
+                      className="w-full h-full border-0 bg-white dark:bg-zinc-900"
+                    />
+                  </object>
                 </div>
               ) : item.url && (
                 <div className="relative w-full max-h-[60vh] flex items-center justify-center rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/60 p-2">
