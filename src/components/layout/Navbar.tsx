@@ -183,18 +183,19 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
                 <Download className="size-3.5" />
                 <span>{t.downloadCv}</span>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="border border-zinc-200 dark:border-zinc-800 bg-background shadow-lg p-1.5 rounded-xl font-sans">
+              <DropdownMenuContent align="end" className="border border-zinc-200 dark:border-zinc-800 bg-background shadow-lg p-1.5 rounded-xl font-sans min-w-[200px]">
                 {resumeVariants.map((variant) => (
                   <DropdownMenuItem
                     key={variant.id}
-                    nativeButton={false}
-                    render={
-                      <a
-                        href={variant.href}
-                        download={`Mahija_Resume_${variant.language}.pdf`}
-                      />
-                    }
-                    className="flex items-center gap-2.5 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800/70 text-sm text-foreground rounded-lg px-2.5 py-2"
+                    onClick={() => {
+                      const link = document.createElement("a")
+                      link.href = variant.href
+                      link.download = `Mahija_Resume_${variant.language}.pdf`
+                      document.body.appendChild(link)
+                      link.click()
+                      document.body.removeChild(link)
+                    }}
+                    className="flex items-center gap-2.5 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800/70 text-sm text-foreground rounded-lg px-2.5 py-2 select-none"
                   >
                     <Download className="size-3.5 text-zinc-500 dark:text-zinc-400" />
                     <span>{variant.label}</span>
