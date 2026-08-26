@@ -37,7 +37,7 @@ export const resumeVariants: ResumeVariant[] = [
 
 export const resumeMetadata: ResumeMetadata = {
   version: "v2.4.0",
-  updated: "July 2026",
+  updated: "August 2026",
   atsFriendly: true,
   english: resumeVariants[0],
   indonesian: resumeVariants[1],
