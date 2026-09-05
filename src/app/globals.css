@@ -82,6 +82,29 @@
   --sidebar-accent-foreground: #111827;
   --sidebar-border: #e5e7eb;
   --sidebar-ring: #2563eb;
+
+  /* Digital Infrastructure Gateway & Fiber Optic Tokens - Light Mode */
+  --background-primary: #ffffff;
+  --background-secondary: #f8fafc;
+  --surface-primary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+
+  --gateway-surface: #f1f5f9;
+  --gateway-surface-inner: #e2e8f0;
+  --gateway-border: #cbd5e1;
+  --gateway-accent: #2563eb;
+  --gateway-rail: #94a3b8;
+  --gateway-led: #10b981;
+
+  --fiber-base: #94a3b8;
+  --fiber-core: #2563eb;
+  --fiber-active: #0284c7;
+  --fiber-glow: rgba(37, 99, 235, 0.45);
+  --fiber-junction: #1d4ed8;
+
+  --accent-primary: #2563eb;
+  --accent-secondary: #0ea5e9;
 }
 
 .dark {
@@ -117,6 +140,29 @@
   --sidebar-accent-foreground: #f4f4f5;
   --sidebar-border: #27272a;
   --sidebar-ring: #3b82f6;
+
+  /* Digital Infrastructure Gateway & Fiber Optic Tokens - Dark Mode */
+  --background-primary: #09090b;
+  --background-secondary: #0a0d14;
+  --surface-primary: #0d1117;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+
+  --gateway-surface: #0a0d14;
+  --gateway-surface-inner: #0f141f;
+  --gateway-border: #1e293b;
+  --gateway-accent: #38bdf8;
+  --gateway-rail: #1e293b;
+  --gateway-led: #34d399;
+
+  --fiber-base: #1e293b;
+  --fiber-core: #38bdf8;
+  --fiber-active: #00f0ff;
+  --fiber-glow: rgba(0, 240, 255, 0.65);
+  --fiber-junction: #38bdf8;
+
+  --accent-primary: #38bdf8;
+  --accent-secondary: #00f0ff;
 }
 
 @layer base {
@@ -289,8 +335,33 @@
   }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
+/* Gateway Infrastructure & Fiber Optic Animations */
+@keyframes fiber-beam {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 400;
+  }
+}
+
+.animate-fiber-beam {
+  animation: fiber-beam 4s linear infinite;
+}
+
+.gateway-rack-pattern {
+  background-image: radial-gradient(circle, currentColor 0.75px, transparent 0.75px);
+  background-size: 12px 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fiber-beam,
+  .animate-fiber-pulse,
+  .animate-laser-scan,
+  .animate-packet-stream,
+  .animate-spin-slow {
+    animation: none !important;
+  }
 }
 
 @media print {

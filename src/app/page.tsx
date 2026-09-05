@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import dynamic from "next/dynamic"
 import Navbar from "@/components/layout/Navbar"
 import Hero from "@/components/sections/Hero"
 import FeaturedEngineering from "@/components/sections/FeaturedEngineering"
@@ -14,16 +15,28 @@ import Skills from "@/components/sections/Skills"
 import Resume from "@/components/sections/Resume"
 import Contact from "@/components/sections/Contact"
 import Footer from "@/components/layout/Footer"
-import TopologyBackground from "@/components/network/TopologyBackground"
 import ContinuousNetworkSpine from "@/components/network/ContinuousNetworkSpine"
-import NetworkGatewayGate from "@/components/network/NetworkGatewayGate"
+import PortfolioEntrance from "@/components/entrance/PortfolioEntrance"
 import { AnimatePresence } from "motion/react"
 
+// Lazy-load the heavy Three.js Network Infrastructure experience on-demand
+const NetworkGatewayGate = dynamic(
+  () => import("@/components/network/NetworkGatewayGate"),
+  { ssr: false }
+)
+
+const TopologyBackground = dynamic(
+  () => import("@/components/network/TopologyBackground"),
+  { ssr: false }
+)
+
+type PortfolioStage = "entrance" | "network-3d" | "portfolio-content"
+
 export default function Home() {
-  const [isEntered, setIsEntered] = useState(false)
+  const [stage, setStage] = useState<PortfolioStage>("entrance")
 
   const handleEnterSystem = (targetId?: string) => {
-    setIsEntered(true)
+    setStage("portfolio-content")
     if (targetId && targetId !== "#") {
       setTimeout(() => {
         const targetElement = document.querySelector(targetId)
@@ -42,25 +55,39 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen flex flex-col bg-background text-foreground animate-in fade-in duration-200 overflow-x-hidden">
-      {/* 3D Network Topology Background */}
-      <TopologyBackground />
-
-      {/* INITIAL GATEWAY STAGE: Fullscreen 3D Server Chassis & Cable Hub ONLY */}
-      <AnimatePresence>
-        {!isEntered && (
-          <NetworkGatewayGate onEnter={handleEnterSystem} />
+      {/* 1. STAGE 1: IMMERSIVE DIGITAL GATEWAY & FIBER OPTIC TYPOGRAPHY ENTRANCE */}
+      <AnimatePresence mode="wait">
+        {stage === "entrance" && (
+          <PortfolioEntrance
+            key="entrance-stage"
+            onEnter3D={() => setStage("network-3d")}
+          />
         )}
       </AnimatePresence>
 
-      {/* MAIN PORTFOLIO SECTIONS (Unveiled after entering) */}
-      {isEntered && (
+      {/* 2. STAGE 2: THREE.JS 3D NETWORK INFRASTRUCTURE (LAZY-LOADED) */}
+      <AnimatePresence mode="wait">
+        {stage === "network-3d" && (
+          <NetworkGatewayGate
+            key="network-3d-stage"
+            onEnter={handleEnterSystem}
+            onBackToEntrance={() => setStage("entrance")}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* 3D Network Topology Background for Stages 2 & 3 */}
+      {stage !== "entrance" && <TopologyBackground />}
+
+      {/* 3. STAGE 3: MAIN PORTFOLIO SECTIONS */}
+      {stage === "portfolio-content" && (
         <div className="relative w-full flex flex-col min-h-screen">
           {/* Continuous Spatial Network Fiber Spine spanning all sections and footer */}
           <ContinuousNetworkSpine />
 
           {/* Global Navigation Bar */}
           <header className="w-full">
-            <Navbar onLogoClick={() => setIsEntered(false)} />
+            <Navbar onLogoClick={() => setStage("network-3d")} />
           </header>
 
           {/* Main content sections in complete preserved semantic order */}

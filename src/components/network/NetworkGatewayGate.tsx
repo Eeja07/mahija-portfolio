@@ -7,13 +7,14 @@ import { useTheme } from "next-themes"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { NetworkMonogramM } from "@/components/network/NetworkMonogramM"
-import { Sun, Moon, Languages } from "lucide-react"
+import { Sun, Moon, Languages, ArrowLeft } from "lucide-react"
 
 interface NetworkGatewayGateProps {
   onEnter: (targetId?: string) => void
+  onBackToEntrance?: () => void
 }
 
-export default function NetworkGatewayGate({ onEnter }: NetworkGatewayGateProps) {
+export default function NetworkGatewayGate({ onEnter, onBackToEntrance }: NetworkGatewayGateProps) {
   const { theme, setTheme } = useTheme()
   const { language, toggleLanguage } = useLanguage()
   const [mounted, setMounted] = useState(false)
@@ -40,11 +41,25 @@ export default function NetworkGatewayGate({ onEnter }: NetworkGatewayGateProps)
       {mounted && (
         <header className="absolute top-0 inset-x-0 z-30 flex items-center justify-between p-3 sm:p-6 pointer-events-none gap-2">
           {/* Brand Tag: Clean Monogram and Typography */}
-          <div className="pointer-events-auto flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-background/90 backdrop-blur-md shadow-sm font-mono text-xs sm:text-base font-bold text-foreground truncate max-w-[55vw] sm:max-w-none">
-            <div className="size-6 sm:size-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center p-1 text-foreground shrink-0">
-              <NetworkMonogramM className="size-3.5 sm:size-5.5" />
+          <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-background/90 backdrop-blur-md shadow-sm font-mono text-xs sm:text-base font-bold text-foreground truncate max-w-[45vw] sm:max-w-none">
+              <div className="size-6 sm:size-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center p-1 text-foreground shrink-0">
+                <NetworkMonogramM className="size-3.5 sm:size-5.5" />
+              </div>
+              <span className="tracking-tight truncate">{t.tag}</span>
             </div>
-            <span className="tracking-tight truncate">{t.tag}</span>
+
+            {onBackToEntrance && (
+              <button
+                onClick={onBackToEntrance}
+                className="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-background/90 backdrop-blur-md text-xs font-mono font-semibold text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-150 cursor-pointer shadow-sm"
+                title="Return to Digital Gateway"
+                aria-label="Return to Digital Gateway"
+              >
+                <ArrowLeft className="size-3.5 sm:size-4 text-foreground" />
+                <span className="hidden sm:inline">Gateway</span>
+              </button>
+            )}
           </div>
 
           {/* Theme & Language Controls */}
