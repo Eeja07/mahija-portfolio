@@ -83,16 +83,16 @@ export default function MediaAttachmentButton({
           href={instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-pink-500/20 dark:border-pink-500/30 bg-pink-500/5 dark:bg-pink-500/10 hover:bg-pink-500/15 text-pink-600 dark:text-pink-400 font-mono text-[11px] font-medium transition-colors cursor-pointer ml-auto"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/70 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 hover:border-primary/50 text-foreground hover:text-primary font-mono text-[11px] font-medium transition-all duration-150 cursor-pointer ml-auto shadow-2xs group"
           title="Buka postingan Instagram terkait"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 shrink-0 text-foreground group-hover:text-primary transition-colors">
             <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
             <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
           </svg>
           <span>{instagramLabel}</span>
-          <ExternalLink className="size-3 shrink-0 opacity-70" />
+          <ExternalLink className="size-3 shrink-0 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-transform" />
         </a>
       )}
     </div>

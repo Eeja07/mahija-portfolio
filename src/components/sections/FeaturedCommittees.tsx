@@ -7,8 +7,6 @@ import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
-import { buttonVariants } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 import { ArrowRight, Calendar } from "lucide-react"
 import { MediaItem } from "@/types/experience"
 import MediaPreviewModal from "@/components/ui/MediaPreviewModal"
@@ -130,13 +128,11 @@ export default function FeaturedCommittees() {
         <div className="mt-12 flex justify-center">
           <a
             href="/committees"
-            className={cn(
-              buttonVariants({ variant: "outline", size: "default" }),
-              "font-mono text-xs font-semibold px-6 py-2.5 border-zinc-200 dark:border-zinc-800 text-foreground bg-zinc-100/80 dark:bg-zinc-900/80 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all duration-150 flex items-center gap-2 cursor-pointer shadow-xs rounded-xl"
-            )}
+            className="group inline-flex items-center gap-2.5 font-mono text-xs font-semibold px-6 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 text-foreground hover:text-primary hover:border-primary/60 dark:hover:border-primary/60 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-150 cursor-pointer shadow-xs active:scale-[0.98]"
           >
+            <span className="size-1.5 rounded-full bg-primary/60 group-hover:bg-primary group-hover:scale-125 transition-all" />
             <span>{t.viewAll}</span>
-            <ArrowRight className="size-4 text-zinc-500 dark:text-zinc-400" />
+            <ArrowRight className="size-4 text-zinc-500 dark:text-zinc-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
           </a>
         </div>
       </div>

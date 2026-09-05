@@ -366,7 +366,6 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     role: string
     targetId: string
   } | null>(null)
-  const [isInteracting, setIsInteracting] = useState(false)
   const isTouch = useSyncExternalStore(subscribeTouch, getTouchSnapshot, getTouchServerSnapshot)
   const isDark = resolvedTheme !== "light"
   const isEn = language === "en"
@@ -1526,7 +1525,6 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
     const onPointerDown = (e: MouseEvent | TouchEvent) => {
       if ("button" in e && (e as MouseEvent).button !== 0) return
       isDragging = true
-      setIsInteracting(true)
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
       prevPointer = { x: clientX, y: clientY }
@@ -1648,7 +1646,6 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       if ("touches" in e && e.touches.length < 2) {
         initialPinchDist = null
       }
-      setTimeout(() => setIsInteracting(false), 800)
     }
 
     // MOUSE WHEEL SCROLL ZOOM IN / ZOOM OUT
@@ -1657,8 +1654,6 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       const zoomSpeed = 0.022
       targetCameraZ += e.deltaY * zoomSpeed
       targetCameraZ = Math.max(minCameraZ, Math.min(maxCameraZ, targetCameraZ))
-      setIsInteracting(true)
-      setTimeout(() => setIsInteracting(false), 800)
     }
 
     // DOUBLE CLICK ZOOM IN / ZOOM OUT TOGGLE
@@ -1673,8 +1668,6 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
       } else {
         targetCameraZ = defZ
       }
-      setIsInteracting(true)
-      setTimeout(() => setIsInteracting(false), 800)
     }
 
     // RIGHT CLICK triggers navigation into the portfolio on desktop
@@ -1874,13 +1867,6 @@ export default function NetworkCore3D({ onNodeSelect }: NetworkCore3DProps) {
           </button>
         </div>
       )}
-
-      {/* Minimal interaction state badge */}
-      <div className="absolute bottom-6 right-6 z-20 hidden sm:flex font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background/80 backdrop-blur-xs px-2.5 py-1 rounded-md border border-zinc-300 dark:border-zinc-800 items-center gap-1.5 pointer-events-none select-none">
-        <span className={isInteracting ? "text-foreground font-semibold" : "text-zinc-400"}>
-          {isInteracting ? t.orbitActive : t.ready}
-        </span>
-      </div>
     </div>
   )
 }

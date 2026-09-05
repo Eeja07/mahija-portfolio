@@ -5,7 +5,6 @@ import NextImage from "next/image"
 import { motion, AnimatePresence } from "motion/react"
 import { getProjects } from "@/data/projects"
 import { Badge } from "@/components/ui/badge"
-import { buttonVariants } from "@/components/ui/button"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
@@ -224,12 +223,9 @@ export default function FeaturedEngineering() {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={cn(
-                            buttonVariants({ variant: "outline", size: "sm" }),
-                            "flex-1 border-zinc-200 dark:border-zinc-800 font-mono text-xs text-foreground bg-background hover:bg-zinc-100 dark:hover:bg-zinc-800 font-medium cursor-pointer flex items-center justify-center gap-1.5 rounded-lg"
-                          )}
+                          className="group flex-1 border border-zinc-200 dark:border-zinc-800 font-mono text-xs text-foreground bg-background hover:bg-zinc-100 dark:hover:bg-zinc-800/80 hover:border-primary/50 hover:text-primary font-medium cursor-pointer flex items-center justify-center gap-1.5 rounded-lg py-2 px-3 transition-all duration-150 active:scale-[0.98]"
                         >
-                          <GithubIcon className="size-3.5 text-zinc-500 dark:text-zinc-400" />
+                          <GithubIcon className="size-3.5 text-zinc-500 dark:text-zinc-400 group-hover:text-primary transition-colors" />
                           <span>{t.viewCode}</span>
                         </a>
                       )}
@@ -238,12 +234,9 @@ export default function FeaturedEngineering() {
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={cn(
-                            buttonVariants({ variant: "outline", size: "sm" }),
-                            "flex-1 border-zinc-200 dark:border-zinc-800 font-mono text-xs text-foreground bg-background hover:bg-zinc-100 dark:hover:bg-zinc-800 font-medium cursor-pointer flex items-center justify-center gap-1.5 rounded-lg"
-                          )}
+                          className="group flex-1 border border-zinc-200 dark:border-zinc-800 font-mono text-xs text-foreground bg-background hover:bg-zinc-100 dark:hover:bg-zinc-800/80 hover:border-primary/50 hover:text-primary font-medium cursor-pointer flex items-center justify-center gap-1.5 rounded-lg py-2 px-3 transition-all duration-150 active:scale-[0.98]"
                         >
-                          <ExternalLink className="size-3.5 text-zinc-500 dark:text-zinc-400" />
+                          <ExternalLink className="size-3.5 text-zinc-500 dark:text-zinc-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
                           <span>{t.liveDemo}</span>
                         </a>
                       )}

@@ -3,9 +3,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
 import { useLanguage } from "@/context/LanguageContext"
-import { translations } from "@/data/translations"
-import { NetworkMonogramM } from "@/components/network/NetworkMonogramM"
-import { Sun, Moon, Languages, FastForward } from "lucide-react"
+import { Sun, Moon, Languages } from "lucide-react"
 import { motion } from "motion/react"
 import DigitalGateway from "./DigitalGateway"
 import FiberTypography from "./FiberTypography"
@@ -26,8 +24,6 @@ export default function PortfolioEntrance({ onEnter3D }: PortfolioEntranceProps)
   // Entrance states: 'closed' -> 'opening' -> 'active' -> 'transitioning'
   const [stage, setStage] = useState<"closed" | "opening" | "active" | "transitioning">("closed")
   const heroContentRef = useRef<HTMLDivElement>(null)
-
-  const t = translations[language].gateway
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -70,13 +66,6 @@ export default function PortfolioEntrance({ onEnter3D }: PortfolioEntranceProps)
     setStage("active")
   }
 
-  const handleSkipIntro = () => {
-    setStage("active")
-    if (heroContentRef.current) {
-      gsap.set(heroContentRef.current, { scale: 1, opacity: 1 })
-    }
-  }
-
   const handleEnterClick = () => {
     setStage("transitioning")
   }
@@ -105,35 +94,11 @@ export default function PortfolioEntrance({ onEnter3D }: PortfolioEntranceProps)
         onTransitionComplete={onEnter3D}
       />
 
-      {/* 3. TOP CONTROL BAR (Monogram, Skip, Language, Theme) */}
+      {/* 3. TOP CONTROL BAR (Language & Theme Toggles) */}
       {mounted && (
-        <header className="relative z-30 w-full flex items-center justify-between p-4 sm:p-6 md:p-8 max-w-7xl mx-auto">
-          {/* Brand Tag: Network Monogram & Identifier */}
-          <div className="flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-background/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-xs">
-            <div className="size-6 sm:size-7 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center p-1 text-foreground shrink-0">
-              <NetworkMonogramM className="size-3.5 sm:size-4.5" />
-            </div>
-            <span className="font-mono text-xs sm:text-sm font-bold tracking-tight text-foreground truncate max-w-[40vw] sm:max-w-none">
-              {t.tag}
-            </span>
-          </div>
-
-          {/* Right Controls: Skip Intro (during animation), Language Toggle, Theme Toggle */}
+        <header className="relative z-30 w-full flex items-center justify-end p-4 sm:p-6 md:p-8 max-w-7xl mx-auto">
+          {/* Controls: Language Toggle, Theme Toggle */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Skip Intro button for recruiter convenience */}
-            {stage === "opening" && (
-              <button
-                onClick={handleSkipIntro}
-                type="button"
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-background/80 dark:bg-zinc-900/80 text-[11px] font-mono text-zinc-600 dark:text-zinc-400 hover:text-foreground transition-colors cursor-pointer"
-                title="Skip Entrance Animation"
-                aria-label="Skip Entrance Animation"
-              >
-                <FastForward className="size-3.5" />
-                <span>SKIP</span>
-              </button>
-            )}
-
             {/* Language Mode Toggle (EN / ID) */}
             <button
               onClick={toggleLanguage}

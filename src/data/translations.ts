@@ -7,6 +7,7 @@ export const translations = {
       organizations: "Organizations",
       training: "Training",
       awards: "Awards",
+      certifications: "Certifications",
       repositories: "Repositories",
       resume: "Resume",
       contact: "Contact",
@@ -82,7 +83,12 @@ export const translations = {
       heading: "Featured Training",
       subheading: "Certifications, advanced leadership management, and specialized technical workshops.",
       viewAll: "View All Training",
-      cableLabel: "REPOSITORIES DATA BUS",
+      cableLabel: "CERTIFICATIONS DATA BUS",
+    },
+    certifications: {
+      badge: "Verified Protocol Credentials",
+      heading: "Certifications & Credentials",
+      subheading: "Verified technical certifications, official academic degree statements, and leadership credentials.",
     },
     repositories: {
       badge: "Open Source Codebases",
@@ -152,6 +158,7 @@ export const translations = {
       organizations: "Organisasi",
       training: "Pelatihan",
       awards: "Penghargaan",
+      certifications: "Sertifikasi",
       repositories: "Repositori",
       resume: "Resume",
       contact: "Kontak",
@@ -224,10 +231,15 @@ export const translations = {
     },
     training: {
       badge: "Sertifikasi Protokol & Workshop",
-      heading: "Pelatihan & Sertifikasi",
+      heading: "Pelatihan & Workshop",
       subheading: "Sertifikasi manajerial, kepemimpinan tingkat lanjut, dan pelatihan teknis terspesialisasi.",
       viewAll: "Lihat Semua Pelatihan",
-      cableLabel: "BUS DATA REPOSITORI",
+      cableLabel: "BUS DATA SERTIFIKASI",
+    },
+    certifications: {
+      badge: "Kredensial Protokol Terverifikasi",
+      heading: "Sertifikasi & Kredensial",
+      subheading: "Sertifikasi teknis terverifikasi, surat keterangan kelulusan resmi, dan kredensial kepemimpinan.",
     },
     repositories: {
       badge: "Koleksi Repositori Terbuka",

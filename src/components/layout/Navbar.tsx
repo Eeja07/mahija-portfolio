@@ -45,7 +45,7 @@ export default function Navbar({ onLogoClick }: NavbarProps = {}) {
     { name: t.organizations, href: "/#organizations" },
     { name: t.training, href: "/#training" },
     { name: t.awards, href: "/#awards" },
-    { name: t.repositories, href: "/#repositories" },
+    { name: t.certifications, href: "/#certifications" },
     { name: t.resume, href: "/#resume" },
     { name: t.contact, href: "/#contact" },
   ]

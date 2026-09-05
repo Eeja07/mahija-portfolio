@@ -135,10 +135,10 @@ export default function RepositoriesArchive() {
                       href={`https://github.com/Eeja07/${repo.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 font-mono text-xs text-foreground hover:underline font-medium"
+                      className="group/link inline-flex items-center gap-1.5 font-mono text-xs text-foreground hover:text-primary font-medium transition-colors cursor-pointer"
                     >
                       <span>{tRepo.fetchRepo}</span>
-                      <ExternalLink className="size-3" />
+                      <ExternalLink className="size-3 text-zinc-500 dark:text-zinc-400 group-hover/link:text-primary group-hover/link:translate-x-0.5 transition-all" />
                     </a>
                   </div>
                 </NetworkNode>

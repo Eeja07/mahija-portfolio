@@ -10,6 +10,7 @@ import FeaturedOrganizations from "@/components/sections/FeaturedOrganizations"
 import FeaturedCommittees from "@/components/sections/FeaturedCommittees"
 import Awards from "@/components/sections/Awards"
 import FeaturedTraining from "@/components/sections/FeaturedTraining"
+import Certifications from "@/components/sections/Certifications"
 import FeaturedRepositories from "@/components/sections/FeaturedRepositories"
 import Skills from "@/components/sections/Skills"
 import Resume from "@/components/sections/Resume"
@@ -108,6 +109,7 @@ export default function Home() {
             <FeaturedCommittees />
             <Awards />
             <FeaturedTraining />
+            <Certifications />
             <FeaturedRepositories />
             <Resume />
             <Contact />
