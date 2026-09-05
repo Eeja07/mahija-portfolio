@@ -45,23 +45,23 @@ jobs:
           echo "🚀 [CI/CD] Starting Mahija Portfolio Deployment on Homelab..."
 
           # 1. Ensure homelab directory hierarchy exists
-          mkdir -p /opt/apps/portfolio
-          mkdir -p /opt/homelab/compose/portfolio
-          mkdir -p /opt/homelab/compose/nginx/conf.d
+          mkdir -p /home/storage/apps/portfolio
+          mkdir -p /home/storage/homelab/compose/portfolio
+          mkdir -p /home/storage/homelab/compose/nginx/conf.d
 
-          # 2. Sync latest source code to /opt/apps/portfolio
-          echo "📦 Syncing source code to /opt/apps/portfolio..."
-          rsync -a --delete --exclude '.git' ./ /opt/apps/portfolio/
+          # 2. Sync latest source code to /home/storage/apps/portfolio
+          echo "📦 Syncing source code to /home/storage/apps/portfolio..."
+          rsync -a --delete --exclude '.git' ./ /home/storage/apps/portfolio/
 
           # 3. Sync Compose & Nginx configuration
           echo "⚙️ Syncing Compose and Nginx configs..."
-          cp docker/compose.yml /opt/homelab/compose/portfolio/compose.yml
-          cp docker/nginx-portfolio.conf /opt/homelab/compose/nginx/conf.d/portfolio.conf
-          rm -f /opt/homelab/compose/nginx/conf.d/portflio.conf || true
+          cp docker/compose.yml /home/storage/homelab/compose/portfolio/compose.yml
+          cp docker/nginx-portfolio.conf /home/storage/homelab/compose/nginx/conf.d/portfolio.conf
+          rm -f /home/storage/homelab/compose/nginx/conf.d/portflio.conf || true
 
           # 4. Build and restart Docker container
           echo "🐳 Building and updating container..."
-          cd /opt/homelab/compose/portfolio
+          cd /home/storage/homelab/compose/portfolio
           docker compose up -d --build --remove-orphans
 
           # 5. Reload master Nginx reverse proxy

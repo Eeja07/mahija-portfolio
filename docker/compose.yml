@@ -1,7 +1,7 @@
 services:
   portfolio:
     build:
-      context: /opt/apps/portfolio
+      context: /home/storage/apps/portfolio
       dockerfile: Dockerfile
     container_name: portfolio
     restart: unless-stopped
