@@ -110,15 +110,6 @@ export default function DigitalGateway({ isOpen, onOpenComplete }: DigitalGatewa
           ))}
         </div>
 
-        {/* Top Telemetry Header on Left Panel */}
-        <div className="relative z-10 flex items-center justify-between text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-          <div className="flex items-center gap-2">
-            <span className="inline-block size-2 rounded-full bg-[var(--gateway-led)] animate-pulse" />
-            <span className="tracking-widest uppercase font-semibold">GATEWAY BUS // 01</span>
-          </div>
-          <span className="hidden sm:inline font-mono opacity-60">DEBIAN 12 • NODE SECURE</span>
-        </div>
-
         {/* Center Panel Graphic: Schematic Circuit & Fiber Conduits */}
         <div className="relative z-10 my-auto flex flex-col items-end pr-4 sm:pr-8">
           <svg
@@ -150,12 +141,6 @@ export default function DigitalGateway({ isOpen, onOpenComplete }: DigitalGatewa
             <div className="w-1.5 h-1.5 rounded-full bg-[var(--fiber-active)]" />
           </div>
         </div>
-
-        {/* Bottom Technical Status */}
-        <div className="relative z-10 flex items-center justify-between text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-          <span className="tracking-wider">SYS.ID: MAH-8802</span>
-          <span className="font-mono">INITIALIZING</span>
-        </div>
       </div>
 
       {/* RIGHT GATEWAY PANEL */}
@@ -171,15 +156,6 @@ export default function DigitalGateway({ isOpen, onOpenComplete }: DigitalGatewa
           {Array.from({ length: 12 }).map((_, i) => (
             <div key={`rail-r-${i}`} className="w-1.5 h-1.5 rounded-full bg-[var(--gateway-rail)]/60" />
           ))}
-        </div>
-
-        {/* Top Telemetry Header on Right Panel */}
-        <div className="relative z-10 flex items-center justify-between text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-          <span className="hidden sm:inline font-mono opacity-60">FIBER OPTIC BACKBONE</span>
-          <div className="flex items-center gap-2">
-            <span className="tracking-widest uppercase font-semibold">ACCESS: AUTHORIZED</span>
-            <span className="inline-block size-2 rounded-full bg-[var(--gateway-led)]" />
-          </div>
         </div>
 
         {/* Center Panel Graphic: Symmetrical Schematic */}
@@ -212,12 +188,6 @@ export default function DigitalGateway({ isOpen, onOpenComplete }: DigitalGatewa
             <div className="w-1 h-8 bg-[var(--fiber-core)]/40 rounded-full" />
             <div className="w-1.5 h-1.5 rounded-full bg-[var(--fiber-active)]" />
           </div>
-        </div>
-
-        {/* Bottom Technical Status */}
-        <div className="relative z-10 flex items-center justify-between text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-          <span className="font-mono">PORT 443 // SSL</span>
-          <span className="tracking-wider">LINK STATUS: ACTIVE</span>
         </div>
       </div>
 

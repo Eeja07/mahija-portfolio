@@ -6,6 +6,7 @@ import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { NetworkMonogramM } from "@/components/network/NetworkMonogramM"
 import { Sun, Moon, Languages, FastForward } from "lucide-react"
+import { motion } from "motion/react"
 import DigitalGateway from "./DigitalGateway"
 import FiberTypography from "./FiberTypography"
 import FiberName from "./FiberName"
@@ -22,8 +23,7 @@ export default function PortfolioEntrance({ onEnter3D }: PortfolioEntranceProps)
   const { language, toggleLanguage } = useLanguage()
   const [mounted, setMounted] = useState(false)
 
-  // Entrance states:
-  // 'initial-closed' -> 'doors-opening' -> 'hero-active' -> 'transitioning'
+  // Entrance states: 'closed' -> 'opening' -> 'active' -> 'transitioning'
   const [stage, setStage] = useState<"closed" | "opening" | "active" | "transitioning">("closed")
   const heroContentRef = useRef<HTMLDivElement>(null)
 
@@ -55,6 +55,14 @@ export default function PortfolioEntrance({ onEnter3D }: PortfolioEntranceProps)
         { scale: 0.92, opacity: 0.2 },
         { scale: 1, opacity: 1, duration: 1.4, delay: 0.3, ease: "power2.out" }
       )
+    } else if (stage === "transitioning" && heroContentRef.current) {
+      // Clean forward zoom-fade when transitioning to 3D portfolio
+      gsap.to(heroContentRef.current, {
+        scale: 1.12,
+        opacity: 0,
+        duration: 0.35,
+        ease: "power2.in",
+      })
     }
   }, [stage])
 
@@ -78,7 +86,13 @@ export default function PortfolioEntrance({ onEnter3D }: PortfolioEntranceProps)
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col justify-between items-center bg-[var(--background-primary)] text-foreground overflow-hidden select-none">
+    <motion.div
+      key="portfolio-entrance-root"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35 }}
+      className="fixed inset-0 z-50 flex flex-col justify-between items-center bg-[var(--background-primary)] text-foreground overflow-hidden select-none"
+    >
       {/* 1. CLOSED DIGITAL GATEWAY & DOOR OPENING ANIMATION */}
       <DigitalGateway
         isOpen={stage === "opening" || stage === "active" || stage === "transitioning"}
@@ -153,7 +167,7 @@ export default function PortfolioEntrance({ onEnter3D }: PortfolioEntranceProps)
       {/* 4. MAIN FULL-SCREEN HERO SECTION (Centered Horizontally & Vertically) */}
       <main
         ref={heroContentRef}
-        className="relative z-20 flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 md:px-8 max-w-5xl mx-auto -mt-6 sm:-mt-8"
+        className="relative z-20 flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 md:px-8 max-w-5xl mx-auto"
       >
         {/* Subtle Converging Ambient Grid Lines */}
         <div className="absolute inset-0 bg-radial-gradient opacity-80 pointer-events-none" />
@@ -178,17 +192,8 @@ export default function PortfolioEntrance({ onEnter3D }: PortfolioEntranceProps)
         </div>
       </main>
 
-      {/* 5. BOTTOM MINIMAL INFRASTRUCTURE FOOTER TELEMETRY */}
-      <footer className="relative z-20 w-full flex items-center justify-between px-6 py-4 max-w-7xl mx-auto text-[10px] sm:text-xs font-mono text-zinc-500 dark:text-zinc-400 opacity-60 pointer-events-none">
-        <div className="flex items-center gap-2">
-          <span className="size-1.5 rounded-full bg-[var(--fiber-active)] animate-pulse" />
-          <span>SYS.INFRASTRUCTURE // ONLINE</span>
-        </div>
-        <div className="hidden sm:block tracking-widest">
-          DEBIAN 12 • DOCKER • CLOUDFLARE TUNNELS
-        </div>
-        <div>LATENCY &lt; 1ms</div>
-      </footer>
-    </div>
+      {/* Bottom spacing spacer */}
+      <div className="h-6 sm:h-10 pointer-events-none" aria-hidden="true" />
+    </motion.div>
   )
 }

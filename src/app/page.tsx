@@ -35,6 +35,14 @@ type PortfolioStage = "entrance" | "network-3d" | "portfolio-content"
 export default function Home() {
   const [stage, setStage] = useState<PortfolioStage>("entrance")
 
+  React.useEffect(() => {
+    // Preload heavy 3D network components in background after entrance renders
+    const timer = setTimeout(() => {
+      import("@/components/network/NetworkGatewayGate")
+    }, 800)
+    return () => clearTimeout(timer)
+  }, [])
+
   const handleEnterSystem = (targetId?: string) => {
     setStage("portfolio-content")
     if (targetId && targetId !== "#") {
