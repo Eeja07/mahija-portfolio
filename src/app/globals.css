@@ -341,7 +341,7 @@
     stroke-dashoffset: 0;
   }
   100% {
-    stroke-dashoffset: 400;
+    stroke-dashoffset: -100;
   }
 }
 

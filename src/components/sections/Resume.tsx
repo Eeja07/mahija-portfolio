@@ -157,7 +157,7 @@ export default function Resume() {
             <motion.div variants={itemVariants}>
               <NetworkSubsystemNode className="p-6 sm:p-7 text-left border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/50 rounded-2xl">
                 <div className="flex items-center gap-2.5 mb-4">
-                  <GraduationCap className="size-5 text-primary" />
+                  <GraduationCap className="size-5 text-zinc-500 dark:text-zinc-400" />
                   <h3 className="font-sans text-lg font-bold tracking-tight text-foreground">
                     {language === "id" ? "Surat Keterangan Kelulusan" : "Official Graduation Degree Statement"}
                   </h3>
@@ -166,7 +166,7 @@ export default function Resume() {
                 <div className="p-4 sm:p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-background/80 flex flex-col justify-between gap-3 shadow-2xs">
                   <div className="flex flex-col gap-1.5">
                     <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500">
-                      <span className="uppercase text-primary font-semibold">{graduationCredential.category}</span>
+                      <span className="uppercase text-zinc-700 dark:text-zinc-300 font-semibold">{graduationCredential.category}</span>
                       <span>{graduationCredential.date}</span>
                     </div>
                     <h4 className="font-sans text-sm font-bold text-foreground leading-snug flex items-center gap-1.5">

@@ -48,7 +48,10 @@ export default function NetworkGatewayGate({ onEnter, onBackToEntrance }: Networ
               </div>
               <span className="tracking-tight truncate">{t.tag}</span>
             </div>
+          </div>
 
+          {/* Theme, Language & Gateway Return Controls */}
+          <div className="pointer-events-auto flex items-center gap-1.5 sm:gap-3 shrink-0">
             {onBackToEntrance && (
               <button
                 onClick={onBackToEntrance}
@@ -60,10 +63,7 @@ export default function NetworkGatewayGate({ onEnter, onBackToEntrance }: Networ
                 <span className="hidden sm:inline">Gateway</span>
               </button>
             )}
-          </div>
 
-          {/* Theme & Language Controls */}
-          <div className="pointer-events-auto flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Language Mode Toggle (EN / ID) */}
             <button
               onClick={toggleLanguage}

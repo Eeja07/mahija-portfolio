@@ -134,9 +134,6 @@ export default function PortfolioEntrance({ onEnter3D }: PortfolioEntranceProps)
         ref={heroContentRef}
         className="relative z-20 flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 md:px-8 max-w-5xl mx-auto"
       >
-        {/* Subtle Converging Ambient Grid Lines */}
-        <div className="absolute inset-0 bg-radial-gradient opacity-80 pointer-events-none" />
-
         <div className="relative w-full flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 text-center">
           {/* PRIMARY FOCUS: Fiber Optic Typography "PORTFOLIO" */}
           <FiberTypography

@@ -314,7 +314,7 @@ export default function FiberTypography({
         viewBox="0 0 1000 140"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-auto max-h-[160px] select-none pointer-events-none drop-shadow-sm"
+        className="w-full h-auto max-h-[160px] select-none pointer-events-none"
         aria-label="PORTFOLIO — Network Infrastructure Typography"
         role="img"
       >

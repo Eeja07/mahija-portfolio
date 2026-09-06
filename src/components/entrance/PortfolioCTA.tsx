@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { useLanguage } from "@/context/LanguageContext"
-import { Box, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 interface PortfolioCTAProps {
   onEnter: () => void
@@ -54,7 +54,8 @@ export default function PortfolioCTA({
             fill="none"
             stroke="var(--fiber-active)"
             strokeWidth="1.5"
-            strokeDasharray="40 180"
+            pathLength="100"
+            strokeDasharray="18 82"
             className="animate-fiber-beam"
             opacity={isHovered ? 0.95 : 0.6}
           />
@@ -67,11 +68,6 @@ export default function PortfolioCTA({
           }`}
           aria-hidden="true"
         />
-
-        {/* 3D Infrastructure Cube Icon */}
-        <div className="relative size-5 sm:size-5.5 rounded-md border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center p-0.5 text-[var(--fiber-core)] group-hover:text-[var(--fiber-active)] group-hover:border-[var(--fiber-active)] transition-colors duration-150 shrink-0">
-          <Box className="size-3.5 sm:size-4" />
-        </div>
 
         {/* Button Label */}
         <span className="relative text-zinc-900 dark:text-zinc-100 tracking-widest font-bold">
