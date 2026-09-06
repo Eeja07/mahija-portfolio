@@ -52,7 +52,7 @@ export function NetworkSubsystemNode({
       whileTap={{ scale: 0.99, transition: { duration: 0.1 } }}
       style={style}
       className={cn(
-        "spotlight-card circuit-card relative rounded-xl sm:rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/90 dark:bg-zinc-950/80 backdrop-blur-md p-3.5 sm:p-5 md:p-6 transition-all duration-200 hover:border-zinc-400 dark:hover:border-zinc-700 shadow-sm group flex flex-col justify-between",
+        "spotlight-card circuit-card relative rounded-xl sm:rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/90 dark:bg-zinc-950/80 backdrop-blur-md p-3.5 sm:p-5 md:p-6 transition-all duration-200 hover:border-zinc-400 dark:hover:border-zinc-700 shadow-sm group flex flex-col justify-between w-full h-full",
         className
       )}
       {...props}
@@ -75,7 +75,7 @@ export function NetworkSubsystemNode({
       )}
 
       {/* Content Container */}
-      <div className="relative z-10 w-full flex-1 flex flex-col justify-between">{children}</div>
+      <div className="relative z-10 w-full flex-1 flex flex-col justify-between h-full">{children}</div>
     </motion.div>
   )
 }

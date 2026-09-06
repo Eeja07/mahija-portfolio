@@ -73,29 +73,20 @@ export default function Skills() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
-            <Badge 
-              variant="outline" 
-              className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
-            >
-              {t.badge}
-            </Badge>
-          </div>
+        <div className="flex flex-col gap-3 mb-10 text-center md:text-left items-center md:items-start max-w-3xl mx-auto md:mx-0">
           <h2 
             id="skills-heading"
-            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground text-center md:text-left"
           >
             {t.heading}
           </h2>
-          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed text-center md:text-left mx-auto md:mx-0">
             {t.subheading}
           </p>
         </div>
 
         {/* Category Navigation Pills */}
-        <div className="flex flex-wrap gap-2 mb-8 select-none">
+        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-8 select-none">
           <button
             onClick={() => setSelectedCategory(null)}
             className={`px-3 py-1.5 rounded-lg font-mono text-xs font-medium border transition-all duration-150 cursor-pointer ${

@@ -80,25 +80,15 @@ export default function FeaturedEngineering() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
-            <Badge 
-              variant="outline" 
-              className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
-            >
-              {t.badge}
-            </Badge>
-          </div>
-          
+        <div className="flex flex-col gap-3 mb-12 text-center md:text-left items-center md:items-start max-w-3xl mx-auto md:mx-0">
           <h2 
             id="projects-heading"
-            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground text-center md:text-left"
           >
             {t.heading}
           </h2>
           
-          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed text-center md:text-left mx-auto md:mx-0">
             {t.subheading}
           </p>
         </div>
@@ -266,39 +256,6 @@ export default function FeaturedEngineering() {
                         {project.description}
                       </p>
 
-                      {/* Problem, Tradeoffs, Outcome */}
-                      <div className="flex flex-col gap-3.5 mt-2 pt-2 border-t border-zinc-200/70 dark:border-zinc-800/70">
-                        {project.problem && (
-                          <div className="flex flex-col text-left">
-                            <span className="font-mono text-xs uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold flex items-center gap-1.5">
-                              <span>&gt;</span> {t.theProblem}
-                            </span>
-                            <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
-                              {project.problem}
-                            </p>
-                          </div>
-                        )}
-                        {project.tradeoffs && (
-                          <div className="flex flex-col text-left">
-                            <span className="font-mono text-xs uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold flex items-center gap-1.5">
-                              <span>&gt;</span> {t.tradeoffs}
-                            </span>
-                            <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
-                              {project.tradeoffs}
-                            </p>
-                          </div>
-                        )}
-                        {project.outcome && (
-                          <div className="flex flex-col text-left">
-                            <span className="font-mono text-xs uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold flex items-center gap-1.5">
-                              <span>&gt;</span> {t.outcome}
-                            </span>
-                            <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
-                              {project.outcome}
-                            </p>
-                          </div>
-                        )}
-                      </div>
                     </div>
 
                     {/* Stack & Architecture Snapshot */}

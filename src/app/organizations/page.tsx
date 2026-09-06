@@ -54,16 +54,7 @@ export default function OrganizationsArchive() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           
           {/* Header */}
-          <div className="flex flex-col gap-3 mb-12 text-left max-w-3xl">
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
-              <Badge 
-                variant="outline" 
-                className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
-              >
-                {t.orgBadge}
-              </Badge>
-            </div>
+          <div className="flex flex-col gap-3 mb-12 text-center md:text-left items-center md:items-start max-w-3xl mx-auto md:mx-0">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground">
               {t.orgTitle}
             </h1>

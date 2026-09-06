@@ -15,11 +15,11 @@ export default function Footer() {
       className="w-full border-t border-zinc-200/80 dark:border-zinc-800/80 bg-transparent py-12 md:py-14 relative"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-8 border-b border-zinc-200/70 dark:border-zinc-800/70">
+        <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 pb-8 border-b border-zinc-200/70 dark:border-zinc-800/70 text-center md:text-left">
           
           {/* Brand & Specializations */}
-          <div className="flex flex-col gap-1.5 text-left">
-            <div className="flex items-center gap-2.5">
+          <div className="flex flex-col gap-1.5 text-center md:text-left items-center md:items-start">
+            <div className="flex items-center gap-2.5 justify-center md:justify-start">
               <div className="size-6 rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center p-0.5 text-foreground">
                 <NetworkMonogramM className="size-3.5" />
               </div>
@@ -27,13 +27,13 @@ export default function Footer() {
                 Mahija Ibad Pradipta
               </span>
             </div>
-            <span className="font-sans text-xs text-zinc-500 dark:text-zinc-400">
+            <span className="font-sans text-xs text-zinc-500 dark:text-zinc-400 text-center md:text-left">
               Computer Engineering Graduate &bull; Embedded Systems &bull; Autonomous Robotics &bull; Full-Stack
             </span>
           </div>
 
           {/* Navigation Links */}
-          <nav aria-label="Footer Links" className="flex flex-wrap gap-x-6 gap-y-2">
+          <nav aria-label="Footer Links" className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2">
             {footerLinks.map((link) => (
               <a
                 key={link.name}
@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
 
         {/* Clean Minimalist Bottom Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-6 text-xs text-zinc-500 dark:text-zinc-400 select-none">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-xs text-zinc-500 dark:text-zinc-400 text-center sm:text-left select-none">
           <span className="font-sans text-zinc-400 dark:text-zinc-500">
             &copy; {new Date().getFullYear()} Mahija Ibad Pradipta. All rights reserved.
           </span>

@@ -88,25 +88,15 @@ export default function FeaturedTraining() {
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-10 text-left max-w-3xl">
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-zinc-400 dark:bg-zinc-600" />
-            <Badge 
-              variant="outline" 
-              className="w-fit border-zinc-200 dark:border-zinc-800 py-1 px-3 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 font-mono font-medium text-xs uppercase tracking-wider select-none shadow-xs"
-            >
-              {t.badge}
-            </Badge>
-          </div>
-          
+        <div className="flex flex-col gap-3 mb-10 text-center md:text-left items-center md:items-start max-w-3xl mx-auto md:mx-0">
           <h2 
             id="training-heading"
-            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-foreground text-center md:text-left"
           >
             {t.heading}
           </h2>
           
-          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed text-center md:text-left mx-auto md:mx-0">
             {t.subheading}
           </p>
         </div>
@@ -120,10 +110,10 @@ export default function FeaturedTraining() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.16 }}
-              className="h-full flex flex-col"
+              className="flex-1 w-full flex flex-col self-stretch h-full"
             >
               <NetworkSubsystemNode
-                className="h-full flex flex-col justify-between text-left gap-5 p-5 sm:p-6"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-5 p-5 sm:p-6 h-[530px] sm:h-[540px] self-stretch"
               >
                 <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
