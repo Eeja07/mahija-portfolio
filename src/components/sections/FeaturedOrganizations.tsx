@@ -20,10 +20,65 @@ export default function FeaturedOrganizations() {
 
   const allOrgs = getOrganizations(language)
 
-  const getOrgImage = (id: string): string | undefined => {
-    if (id.includes("banyubramanta")) return "/images/activities/robot-assembly-1.png"
-    if (id.includes("m-iot")) return "/images/activities/iot-dashboard-screenshot.png"
-    return undefined
+  const getOrgSlides = (org: (typeof allOrgs)[0]) => {
+    if (org.id.includes("banyubramanta")) {
+      return [
+        {
+          type: "photo" as const,
+          title: "Tim Robotika Banyubramanta ITS",
+          caption: "Dokumentasi perakitan dan pengujian wahana robot bawah air (AUV) bersama divisi teknis.",
+          image: "/images/activities/robot-assembly-1.png",
+        },
+        {
+          type: "photo" as const,
+          title: "Uji Kolam & Navigasi Banyubramanta",
+          caption: "Pengujian sensor kedalaman, manuver otonom, dan kestabilan wahana robot.",
+          image: "/images/activities/robot-assembly-2.png",
+        },
+        {
+          type: "certificate" as const,
+          title: org.certificatePlaceholder?.title || "Sertifikat Anggota / Pengurus Banyubramanta",
+          caption: org.certificatePlaceholder?.caption || "Sertifikat resmi pengabdian dari Tim Robotika Banyubramanta ITS.",
+        },
+      ]
+    }
+    if (org.id.includes("m-iot")) {
+      return [
+        {
+          type: "photo" as const,
+          title: "Laboratorium M-IOT FTEIC ITS",
+          caption: "Fasilitas pengembangan sistem tertanam, IoT, dan riset komputasi bergerak.",
+          image: "/images/activities/iot-dashboard-screenshot.png",
+        },
+        {
+          type: "photo" as const,
+          title: "Rapat Kerja & Koordinasi Lab M-IOT",
+          caption: "Dokumentasi evaluasi lini masa proyek riset dan pengembangan asisten laboratorium.",
+        },
+        {
+          type: "certificate" as const,
+          title: org.certificatePlaceholder?.title || "SK Koordinator / Asisten Lab M-IOT",
+          caption: org.certificatePlaceholder?.caption || "Surat keputusan resmi penugasan pimpinan laboratorium dari pimpinan departemen.",
+        },
+      ]
+    }
+    return [
+      {
+        type: "photo" as const,
+        title: org.photoPlaceholder?.title || `${org.role} — Foto Forum & Rapat`,
+        caption: org.photoPlaceholder?.caption || "Dokumentasi pelaksanaan rapat kerja, forum musyawarah, atau kegiatan divisi.",
+      },
+      {
+        type: "photo" as const,
+        title: `${org.role} — Kegiatan Lapangan & Evaluasi`,
+        caption: "Dokumentasi pelaksanaan program kerja dan sesi monitoring anggota.",
+      },
+      {
+        type: "certificate" as const,
+        title: org.certificatePlaceholder?.title || `${org.role} — SK Kepengurusan`,
+        caption: org.certificatePlaceholder?.caption || "Surat keputusan resmi kepengurusan organisasi mahasiswa.",
+      },
+    ]
   }
 
   return (
@@ -71,7 +126,7 @@ export default function FeaturedOrganizations() {
               <NetworkSubsystemNode
                 className="h-full flex flex-col justify-between text-left gap-5 p-5 sm:p-6"
               >
-                <div className="flex flex-col gap-3">
+                <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
                     <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
                       {org.period}
@@ -97,13 +152,9 @@ export default function FeaturedOrganizations() {
                   )}
                 </div>
 
-                {/* Direct Visual Preview Slot */}
+                {/* Direct Visual Preview Slot (Multi-photo slider enabled) */}
                 <CardMediaPreview
-                  photoTitle={org.photoPlaceholder?.title || `${org.role} — Foto Dokumentasi`}
-                  photoCaption={org.photoPlaceholder?.caption}
-                  photoImage={getOrgImage(org.id)}
-                  certificateTitle={org.certificatePlaceholder?.title || `${org.role} — Sertifikat / Surat Keputusan`}
-                  certificateCaption={org.certificatePlaceholder?.caption}
+                  slides={getOrgSlides(org)}
                   contextTitle={`${org.title} • ${org.period}`}
                   onSelectMedia={(selected) => setPreviewItem(selected)}
                 />

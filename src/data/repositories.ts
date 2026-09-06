@@ -8,6 +8,55 @@ export interface Repository {
 
 export const repositories: Repository[] = [
   {
+    "name": "mahija-portfolio",
+    "description": "Personal portfolio website with Linear enterprise minimalist aesthetics, Three.js 3D network topology, and full bilingual support.",
+    "language": "TypeScript",
+    "slug": "mahija-portfolio",
+    "featured": true
+  },
+  {
+    "name": "job-tracker",
+    "description": "Recruitment tracking monorepo via Turborepo featuring NestJS REST API, Next.js UI, RBAC security, Gmail API parsing, and automated bots.",
+    "language": "TypeScript",
+    "slug": "job-tracker",
+    "featured": true
+  },
+  {
+    "name": "finance-tracker",
+    "description": "Multi-account financial tracking ledger with WhatsApp bot transaction logging, MinIO S3 receipt storage, and OpenTelemetry observability.",
+    "language": "TypeScript",
+    "slug": "finance-tracker",
+    "featured": true
+  },
+  {
+    "name": "gateway-whatsapp-bot",
+    "description": "Centralized WhatsApp & Telegram microservice notification gateway built with Baileys and multi-stage Alpine Docker builds.",
+    "language": "TypeScript",
+    "slug": "gateway-whatsapp-bot",
+    "featured": true
+  },
+  {
+    "name": "iot-surveillance-platform-web",
+    "description": "Self-hosted DIY Smart CCTV platform on Intel NUC server with ESP32-CAM edge nodes, EMQX MQTT, MinIO, MySQL, and Cloudflare Tunnel.",
+    "language": "JavaScript",
+    "slug": "iot-surveillance-platform-web",
+    "featured": true
+  },
+  {
+    "name": "Swimate",
+    "description": "Mobile application supporting swimming training and performance monitoring using sensor fusion and TensorFlow Lite on Flutter.",
+    "language": "Dart",
+    "slug": "Swimate",
+    "featured": true
+  },
+  {
+    "name": "autonomus-human-search-system-using-drone-final-project-program",
+    "description": "Autonomous human search system combining Raspberry Pi 5, MAVSDK, ONNX, and YOLOv8n for edge target detection.",
+    "language": "Python",
+    "slug": "autonomus-human-search-system-using-drone-final-project-program",
+    "featured": true
+  },
+  {
     "name": "addition-and-subtraction-combination-generator-of-prime-number-program-basic-programming-assignment",
     "description": "Simple program that generated combination of addition and subtraction of prime number \"N...N\" with N as an input, so the combination get an integer result bigger than X and smaller than Y (X and Y is an input)",
     "language": "C",
@@ -64,13 +113,6 @@ export const repositories: Repository[] = [
     "featured": false
   },
   {
-    "name": "autonomus-human-search-system-using-drone-final-project-program",
-    "description": "Autonomous search system software using YOLO for human detection on a Raspberry Pi 5.",
-    "language": "Python",
-    "slug": "autonomus-human-search-system-using-drone-final-project-program",
-    "featured": true
-  },
-  {
     "name": "carvole-simple-2d-car-game-graphics.h-final-project-basic-programming",
     "description": "Simple 2D car game built with C++ using the graphics.h library.",
     "language": "C++",
@@ -119,20 +161,7 @@ export const repositories: Repository[] = [
     "slug": "drawing-2d-car-graphics.h-basic-programming-assignment",
     "featured": false
   },
-  {
-    "name": "finance-tracker",
-    "description": "Personal finance and portfolio management system with account tracking and WhatsApp bot integration.",
-    "language": "TypeScript",
-    "slug": "finance-tracker",
-    "featured": false
-  },
-  {
-    "name": "gateway-whatsapp-bot",
-    "description": "Centralized WhatsApp API Gateway microservice built with Node.js, TypeScript, and Baileys.",
-    "language": "TypeScript",
-    "slug": "gateway-whatsapp-bot",
-    "featured": false
-  },
+
   {
     "name": "guessing-number-memory-game-basic-programming-assignment",
     "description": "Simple program called memory game, the game is to make computer guess our number using C",
@@ -183,20 +212,6 @@ export const repositories: Repository[] = [
     "featured": true
   },
   {
-    "name": "iot-surveillance-platform-web",
-    "description": "React web dashboard for managing and viewing multiple camera streams and configuring notifications.",
-    "language": "JavaScript",
-    "slug": "iot-surveillance-platform-web",
-    "featured": true
-  },
-  {
-    "name": "job-tracker",
-    "description": "Enterprise job application tracking platform with WhatsApp notifications, CI/CD pipeline, and analytics.",
-    "language": "TypeScript",
-    "slug": "job-tracker",
-    "featured": false
-  },
-  {
     "name": "Laser-RPM-Correlation-Analyzer",
     "description": "Telemetry analysis tool evaluating motor RPM and laser sensor correlation data.",
     "language": "Python",
@@ -210,13 +225,7 @@ export const repositories: Repository[] = [
     "slug": "list-file-data-structure-assignment",
     "featured": false
   },
-  {
-    "name": "mahija-portfolio",
-    "description": "Personal portfolio showcasing infrastructure, IoT, edge AI, and software engineering projects.",
-    "language": "TypeScript",
-    "slug": "mahija-portfolio",
-    "featured": true
-  },
+
   {
     "name": "moving-car-2d-animation-graphics.h-basic-programming-assignment",
     "description": "2D moving car animation built with legacy graphics.h in C++.",
@@ -292,13 +301,6 @@ export const repositories: Repository[] = [
     "description": "Autonomous drone flight telemetry dashboard displaying real-time vehicle positioning and speed.",
     "language": "JavaScript",
     "slug": "sarvio-x",
-    "featured": true
-  },
-  {
-    "name": "Swimate",
-    "description": "Swimate: Your Swim Partner",
-    "language": "Dart",
-    "slug": "Swimate",
     "featured": true
   },
   {

@@ -70,17 +70,17 @@ export default function Hero() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center"
+          className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center justify-items-center md:justify-items-stretch w-full"
         >
           {/* Left Column: Network Gateway Identity & Controls */}
-          <div className="md:col-span-7 lg:col-span-8 flex flex-col gap-6 text-left">
+          <div className="md:col-span-7 lg:col-span-8 flex flex-col gap-6 text-center md:text-left items-center md:items-start w-full">
             
             {/* Name Title with Laser Subtitle */}
-            <motion.div variants={itemVariants} className="flex flex-col gap-2.5">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-sans font-bold tracking-tight text-foreground leading-[1.08]">
+            <motion.div variants={itemVariants} className="flex flex-col gap-2.5 items-center md:items-start w-full text-center md:text-left">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-sans font-bold tracking-tight text-foreground leading-[1.08] text-center md:text-left w-full mx-auto">
                 {t.title}
               </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed max-w-2xl">
+              <p className="text-sm sm:text-base lg:text-lg text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed max-w-2xl text-center md:text-left mx-auto md:mx-0">
                 {t.subtitle}
               </p>
             </motion.div>
@@ -88,7 +88,7 @@ export default function Hero() {
             {/* Action CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-3 pt-1"
+              className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-1 w-full"
             >
               <a
                 href="https://github.com/Eeja07"
@@ -142,13 +142,13 @@ export default function Hero() {
             </motion.div>
 
             {/* Bento Metrics Rack: All 8 Categories matching Navbar */}
-            <motion.div variants={itemVariants} className="pt-2">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-2xl">
+            <motion.div variants={itemVariants} className="pt-2 w-full">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-2xl mx-auto md:mx-0">
                 {t.metrics.map((metric) => (
                   <a
                     key={metric.label}
                     href={metric.href}
-                    className="p-3 rounded-xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/90 dark:bg-zinc-950/80 backdrop-blur-md transition-all duration-150 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/90 dark:hover:bg-zinc-900/90 shadow-xs flex flex-col justify-center text-left group cursor-pointer"
+                    className="p-3 rounded-xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/90 dark:bg-zinc-950/80 backdrop-blur-md transition-all duration-150 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/90 dark:hover:bg-zinc-900/90 shadow-xs flex flex-col justify-center text-center sm:text-left group cursor-pointer"
                   >
                     <span className="font-mono text-sm sm:text-base font-bold text-foreground tracking-tight group-hover:text-foreground transition-colors">
                       {metric.label}
@@ -165,7 +165,7 @@ export default function Hero() {
           {/* Right Column: Profile Image */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end select-none relative"
+            className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end select-none relative w-full mx-auto"
           >
             <div className="relative p-3 sm:p-4 rounded-3xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-100/40 dark:bg-zinc-950/40 backdrop-blur-md shadow-2xl group">
               <span className="circuit-corner-tl" />

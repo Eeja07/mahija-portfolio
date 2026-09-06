@@ -63,7 +63,7 @@ export default function Certifications() {
                 status="healthy"
                 className="h-full flex flex-col justify-between text-left gap-5 border-zinc-200/90 dark:border-zinc-800/90 p-5 sm:p-6"
               >
-                <div className="flex flex-col gap-3">
+                <div className="flex-1 flex flex-col gap-3">
                   {/* Category & Date */}
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
                     <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
@@ -105,11 +105,26 @@ export default function Certifications() {
                   )}
                 </div>
 
-                {/* Direct Visual Preview Slot */}
+                {/* Direct Visual Preview Slot (Multi-slide enabled) */}
                 <CardMediaPreview
                   activeType="certificate"
-                  certificateTitle={cert.certificatePlaceholder.title}
-                  certificateCaption={cert.certificatePlaceholder.caption}
+                  slides={[
+                    {
+                      type: "certificate",
+                      title: cert.certificatePlaceholder.title,
+                      caption: cert.certificatePlaceholder.caption,
+                    },
+                    {
+                      type: "photo",
+                      title: `${cert.title} — Lembar Skor & Verifikasi`,
+                      caption: `Verifikasi kredensial: ${cert.credentialId || "VERIFIED"} • ${cert.issuer}`,
+                    },
+                    {
+                      type: "photo",
+                      title: `${cert.title} — Spesifikasi & Kompetensi`,
+                      caption: `Validasi kompetensi teknis: ${cert.skills.slice(0, 3).join(", ")}`,
+                    },
+                  ]}
                   contextTitle={`${cert.issuer} • ${cert.period}`}
                   onSelectMedia={(selected) => setPreviewItem(selected)}
                 />

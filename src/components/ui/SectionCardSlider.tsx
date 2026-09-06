@@ -107,17 +107,17 @@ export default function SectionCardSlider({
         </div>
       </div>
 
-      {/* Horizontal Scroll Snap Track: Exactly 3 items visible on desktop */}
+      {/* Horizontal Scroll Snap Track: Exactly 3 items visible on desktop, centered on mobile */}
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-4 pt-1 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+        className="flex items-stretch gap-5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-4 pt-1 px-[7.5vw] sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 scroll-px-[7.5vw] sm:scroll-px-6 lg:scroll-px-8"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {React.Children.map(children, (child, idx) => (
           <div
             key={idx}
             className={cn(
-              "shrink-0 snap-start w-[88vw] sm:w-[calc(50%-12px)] lg:w-[calc((100%-48px)/3)] h-full flex flex-col",
+              "shrink-0 snap-center sm:snap-start w-[85vw] max-w-[340px] sm:max-w-none sm:w-[calc(50%-12px)] lg:w-[calc((100%-48px)/3)] h-full flex flex-col mx-auto sm:mx-0",
               cardClassName
             )}
           >

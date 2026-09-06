@@ -376,6 +376,48 @@ export const committeesId: CareerItem[] = [
 
 export const training: CareerItem[] = [
   {
+    "id": "mtcna-training",
+    "title": "MikroTik Certified Network Associate (MTCNA) Training — ID-Networkers",
+    "role": "Trainee / Participant",
+    "period": "August 2026",
+    "summary": "Comprehensive enterprise networking training covering MikroTik RouterOS architecture, routing, firewall security, and bridging.",
+    "bullets": [
+      "Configured static routing, dynamic routing protocols, and multi-layer firewall packet filtering rules on RouterOS",
+      "Implemented bandwidth management with simple queues, queue trees, and QoS policies",
+      "Configured network bridges, wireless links, secure tunnels (PPTP, L2TP, SSTP), and network troubleshooting"
+    ],
+    "featured": true,
+    "photoPlaceholder": {
+      "title": "MTCNA Training Session Photo",
+      "caption": "Photo documentation of RouterOS configuration and live network topology labs."
+    },
+    "certificatePlaceholder": {
+      "title": "MTCNA Training Certificate — ID-Networkers",
+      "caption": "Official training completion certificate issued by ID-Networkers."
+    }
+  },
+  {
+    "id": "ccna-training",
+    "title": "Cisco Certified Network Associate (CCNA) Training — ID-Networkers",
+    "role": "Trainee / Participant",
+    "period": "August 2026",
+    "summary": "Enterprise networking training covering IP connectivity, IPv4/IPv6 subnetting, switching, VLANs, and network security architectures.",
+    "bullets": [
+      "Configured enterprise Cisco switches and routers with VLANs, trunking (802.1Q), and inter-VLAN routing",
+      "Implemented OSPFv2, NAT/PAT, ACLs, and spanning-tree protocol (STP) topologies",
+      "Analyzed packet captures and performed enterprise network troubleshooting and automation concepts"
+    ],
+    "featured": true,
+    "photoPlaceholder": {
+      "title": "CCNA Training Lab Session Photo",
+      "caption": "Photo documentation of Cisco enterprise switch & router topology lab sessions."
+    },
+    "certificatePlaceholder": {
+      "title": "CCNA Training Certificate — ID-Networkers",
+      "caption": "Official training completion certificate issued by ID-Networkers."
+    }
+  },
+  {
     "id": "lkmm-tm-training",
     "title": "Latihan Keterampilan Manajemen Mahasiswa Tingkat Menengah (LKMM-TM)",
     "role": "Participant",
@@ -504,6 +546,48 @@ export const training: CareerItem[] = [
 ]
 
 export const trainingId: CareerItem[] = [
+  {
+    "id": "mtcna-training",
+    "title": "Pelatihan MikroTik Certified Network Associate (MTCNA) — ID-Networkers",
+    "role": "Peserta",
+    "period": "Agu 2026",
+    "summary": "Pelatihan jaringan enterprise komprehensif mengenai arsitektur MikroTik RouterOS, routing, firewall security, dan bridging.",
+    "bullets": [
+      "Mengonfigurasi static routing, dynamic routing protocol, dan aturan firewall packet filtering multi-layer pada RouterOS",
+      "Menerapkan manajemen bandwidth dengan simple queue, queue tree, dan kebijakan QoS",
+      "Mengonfigurasi network bridge, link wireless, secure tunnel (PPTP, L2TP, SSTP), dan troubleshooting jaringan"
+    ],
+    "featured": true,
+    "photoPlaceholder": {
+      "title": "Foto Sesi Praktik Pelatihan MTCNA",
+      "caption": "Dokumentasi foto konfigurasi RouterOS dan laboratorium topologi jaringan langsung."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Pelatihan MTCNA — ID-Networkers",
+      "caption": "Sertifikat resmi kelulusan pelatihan dari ID-Networkers."
+    }
+  },
+  {
+    "id": "ccna-training",
+    "title": "Pelatihan Cisco Certified Network Associate (CCNA) — ID-Networkers",
+    "role": "Peserta",
+    "period": "Agu 2026",
+    "summary": "Pelatihan jaringan enterprise mencakup konektivitas IP, subnetting IPv4/IPv6, switching, VLAN, dan arsitektur keamanan jaringan.",
+    "bullets": [
+      "Mengonfigurasi switch dan router enterprise Cisco dengan VLAN, trunking (802.1Q), dan inter-VLAN routing",
+      "Menerapkan topologi OSPFv2, NAT/PAT, ACL, dan Spanning Tree Protocol (STP)",
+      "Menganalisis tangkapan paket data serta melakukan troubleshooting dan otomasi jaringan enterprise"
+    ],
+    "featured": true,
+    "photoPlaceholder": {
+      "title": "Foto Praktik Laboratorium CCNA",
+      "caption": "Dokumentasi foto sesi laboratorium topologi switch & router enterprise Cisco."
+    },
+    "certificatePlaceholder": {
+      "title": "Sertifikat Pelatihan CCNA — ID-Networkers",
+      "caption": "Sertifikat resmi kelulusan pelatihan dari ID-Networkers."
+    }
+  },
   {
     "id": "lkmm-tm-training",
     "title": "Latihan Keterampilan Manajemen Mahasiswa Tingkat Menengah (LKMM-TM)",

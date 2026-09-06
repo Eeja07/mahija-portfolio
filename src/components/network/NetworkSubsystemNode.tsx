@@ -52,7 +52,7 @@ export function NetworkSubsystemNode({
       whileTap={{ scale: 0.99, transition: { duration: 0.1 } }}
       style={style}
       className={cn(
-        "spotlight-card circuit-card relative rounded-xl sm:rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/90 dark:bg-zinc-950/80 backdrop-blur-md p-3.5 sm:p-5 md:p-6 transition-all duration-200 hover:border-zinc-400 dark:hover:border-zinc-700 shadow-sm group",
+        "spotlight-card circuit-card relative rounded-xl sm:rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/90 dark:bg-zinc-950/80 backdrop-blur-md p-3.5 sm:p-5 md:p-6 transition-all duration-200 hover:border-zinc-400 dark:hover:border-zinc-700 shadow-sm group flex flex-col justify-between",
         className
       )}
       {...props}
@@ -63,7 +63,7 @@ export function NetworkSubsystemNode({
 
       {/* Subsystem Port Socket Header */}
       {nodeId && (
-        <div className="flex items-center justify-between pb-2 mb-3.5 sm:mb-4 border-b border-zinc-200/70 dark:border-zinc-800/70 font-mono text-[9px] sm:text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest select-none">
+        <div className="flex items-center justify-between pb-2 mb-3.5 sm:mb-4 border-b border-zinc-200/70 dark:border-zinc-800/70 font-mono text-[9px] sm:text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest select-none shrink-0">
           <div className="flex items-center gap-2">
             <span className={cn("size-1.5 sm:size-2 rounded-full", statusDotColor)} />
             <span className="font-bold text-foreground/90">{nodeId}</span>
@@ -75,7 +75,7 @@ export function NetworkSubsystemNode({
       )}
 
       {/* Content Container */}
-      <div className="relative z-10 size-full">{children}</div>
+      <div className="relative z-10 w-full flex-1 flex flex-col justify-between">{children}</div>
     </motion.div>
   )
 }

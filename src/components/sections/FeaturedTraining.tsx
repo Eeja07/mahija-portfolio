@@ -20,6 +20,66 @@ export default function FeaturedTraining() {
 
   const allTraining = getTraining(language)
 
+  const getTrainingSlides = (tr: (typeof allTraining)[0]) => {
+    if (tr.id === "mtcna-training") {
+      return [
+        {
+          type: "photo" as const,
+          title: "Praktik Konfigurasi RouterOS MikroTik",
+          caption: "Dokumentasi konfigurasi static/dynamic routing, QoS bandwidth management, dan firewall filter.",
+          image: "/images/activities/iot-dashboard-screenshot.png",
+        },
+        {
+          type: "photo" as const,
+          title: "Hands-on Lab Jaringan MikroTik",
+          caption: "Simulasi implementasi bridging, wireless security, dan secure VPN tunneling (PPTP/SSTP).",
+        },
+        {
+          type: "certificate" as const,
+          title: tr.certificatePlaceholder?.title || "Sertifikat Pelatihan MTCNA",
+          caption: tr.certificatePlaceholder?.caption || "Sertifikat resmi kelulusan pelatihan MTCNA dari ID-Networkers.",
+        },
+      ]
+    }
+    if (tr.id === "ccna-training") {
+      return [
+        {
+          type: "photo" as const,
+          title: "Topologi Jaringan Enterprise Cisco",
+          caption: "Konfigurasi switch dan router enterprise mencakup VLAN, 802.1Q trunking, dan inter-VLAN routing.",
+          image: "/images/evidence/tunnel.webp",
+        },
+        {
+          type: "photo" as const,
+          title: "Hands-on Lab OSPF & Network Security",
+          caption: "Penerapan protokol dynamic routing OSPFv2, NAT/PAT, ACL, dan Spanning Tree Protocol (STP).",
+        },
+        {
+          type: "certificate" as const,
+          title: tr.certificatePlaceholder?.title || "Sertifikat Pelatihan CCNA",
+          caption: tr.certificatePlaceholder?.caption || "Sertifikat resmi kelulusan pelatihan CCNA dari ID-Networkers.",
+        },
+      ]
+    }
+    return [
+      {
+        type: "photo" as const,
+        title: tr.photoPlaceholder?.title || `${tr.role} — Foto Pelatihan`,
+        caption: tr.photoPlaceholder?.caption || "Dokumentasi pelaksanaan modul pelatihan dan studi kasus manajemen.",
+      },
+      {
+        type: "photo" as const,
+        title: `${tr.role} — Sesi Praktik & Diskusi`,
+        caption: "Dokumentasi sesi pemecahan masalah teknis dan perumusan strategi kebijakan.",
+      },
+      {
+        type: "certificate" as const,
+        title: tr.certificatePlaceholder?.title || `${tr.role} — Sertifikat Kelulusan`,
+        caption: tr.certificatePlaceholder?.caption || "Sertifikat resmi kelulusan program pelatihan terverifikasi.",
+      },
+    ]
+  }
+
   return (
     <section
       id="training"
@@ -65,7 +125,7 @@ export default function FeaturedTraining() {
               <NetworkSubsystemNode
                 className="h-full flex flex-col justify-between text-left gap-5 p-5 sm:p-6"
               >
-                <div className="flex flex-col gap-3">
+                <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
                     <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
                       {tr.role}
@@ -92,12 +152,9 @@ export default function FeaturedTraining() {
                   )}
                 </div>
 
-                {/* Direct Visual Preview Slot */}
+                {/* Direct Visual Preview Slot (Multi-photo slider enabled) */}
                 <CardMediaPreview
-                  photoTitle={tr.photoPlaceholder?.title || `${tr.role} — Foto Pelatihan`}
-                  photoCaption={tr.photoPlaceholder?.caption}
-                  certificateTitle={tr.certificatePlaceholder?.title || `${tr.role} — Sertifikat Kelulusan`}
-                  certificateCaption={tr.certificatePlaceholder?.caption}
+                  slides={getTrainingSlides(tr)}
                   contextTitle={`${tr.title} • ${tr.period}`}
                   onSelectMedia={(selected) => setPreviewItem(selected)}
                 />

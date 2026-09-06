@@ -19,11 +19,67 @@ export default function Awards() {
   const awardList = getAwards(language)
   const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
 
-  const getAwardImage = (title: string): string | undefined => {
-    if (title.toLowerCase().includes("banyubramanta") || title.toLowerCase().includes("kri")) {
-      return "/images/activities/robot-assembly-1.png"
+  const getAwardSlides = (award: (typeof awardList)[0]) => {
+    if (award.title.toLowerCase().includes("sauvc") || award.competition.toLowerCase().includes("sauvc")) {
+      return [
+        {
+          type: "photo" as const,
+          title: "Uji Kolam Robot AUV di SAUVC Singapura",
+          caption: "Dokumentasi peluncuran dan pengujian manuver robot bawah air di arena kompetisi Singapura.",
+          image: "/images/activities/robot-assembly-1.png",
+        },
+        {
+          type: "photo" as const,
+          title: "Sesi Presentasi Teknis & Tim Banyubramanta",
+          caption: "Pemaparan sistem kendali otonom dan arsitektur penglihatan komputer pada dewan juri internasional.",
+          image: "/images/activities/robot-assembly-2.png",
+        },
+        {
+          type: "certificate" as const,
+          title: award.certificatePlaceholder?.title || "Sertifikat 5th Place SAUVC 2025",
+          caption: award.certificatePlaceholder?.caption || "Sertifikat penghargaan resmi Singapore Autonomous Underwater Vehicle Challenge 2025.",
+        },
+      ]
     }
-    return undefined
+    if (award.title.toLowerCase().includes("nasional") || award.competition.toLowerCase().includes("nasional")) {
+      return [
+        {
+          type: "photo" as const,
+          title: "Podium Juara 1 Nasional KRI 2024",
+          caption: "Penganugerahan Juara 1 Kontes Robot Indonesia Tingkat Nasional Kategori Bawah Air.",
+          image: "/images/activities/robot-assembly-1.png",
+        },
+        {
+          type: "photo" as const,
+          title: "Uji Misi Lapangan Robot Bawah Air",
+          caption: "Eksekusi misi otonom identifikasi target dan navigasi bawah air di kolam kompetisi nasional.",
+          image: "/images/activities/robot-assembly-2.png",
+        },
+        {
+          type: "certificate" as const,
+          title: award.certificatePlaceholder?.title || "Sertifikat Juara 1 Nasional KRI",
+          caption: award.certificatePlaceholder?.caption || "Sertifikat penghargaan resmi dari Balai Pengembangan Talenta Indonesia (BPTI / Kemendikbudristek).",
+        },
+      ]
+    }
+    return [
+      {
+        type: "photo" as const,
+        title: award.photoPlaceholder?.title || `${award.title} — Foto Lomba`,
+        caption: award.photoPlaceholder?.caption || "Dokumentasi sesi pengujian wahana dan kejuaraan kompetisi.",
+        image: "/images/activities/robot-assembly-2.png",
+      },
+      {
+        type: "photo" as const,
+        title: `${award.title} — Dokumentasi Tim`,
+        caption: "Dokumentasi persiapan teknis tim dan kalibrasi sensor sebelum pertandingan.",
+      },
+      {
+        type: "certificate" as const,
+        title: award.certificatePlaceholder?.title || `${award.title} — Sertifikat Juara`,
+        caption: award.certificatePlaceholder?.caption || "Sertifikat resmi penghargaan juara kejuaraan robotika.",
+      },
+    ]
   }
 
   return (
@@ -72,7 +128,7 @@ export default function Awards() {
                 status="healthy"
                 className="h-full flex flex-col justify-between text-left gap-5 border-zinc-200/90 dark:border-zinc-800/90 p-5 sm:p-6"
               >
-                <div className="flex flex-col gap-3">
+                <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
                     <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
                       {award.competition}
@@ -113,13 +169,9 @@ export default function Awards() {
                   )}
                 </div>
 
-                {/* Direct Visual Preview Slot */}
+                {/* Direct Visual Preview Slot (Multi-photo slider enabled) */}
                 <CardMediaPreview
-                  photoTitle={award.photoPlaceholder?.title || `${award.title} — Foto Perlombaan`}
-                  photoCaption={award.photoPlaceholder?.caption}
-                  photoImage={getAwardImage(award.title)}
-                  certificateTitle={award.certificatePlaceholder?.title || `${award.title} — Sertifikat Juara`}
-                  certificateCaption={award.certificatePlaceholder?.caption}
+                  slides={getAwardSlides(award)}
                   contextTitle={`${award.competition} • ${award.period}`}
                   onSelectMedia={(selected) => setPreviewItem(selected)}
                 />
