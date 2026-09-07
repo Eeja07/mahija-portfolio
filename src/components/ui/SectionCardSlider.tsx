@@ -188,7 +188,7 @@ export default function SectionCardSlider({
           <div
             key={idx}
             className={cn(
-              "shrink-0 snap-start w-full sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] flex flex-col h-full self-stretch select-none",
+              "shrink-0 snap-start w-full sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] flex flex-col h-[570px] sm:h-[580px] max-h-[570px] sm:max-h-[580px] self-stretch select-none",
               cardClassName
             )}
           >

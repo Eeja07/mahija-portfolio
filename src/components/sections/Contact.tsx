@@ -2,7 +2,6 @@
 
 import React, { useState } from "react"
 import { motion } from "motion/react"
-import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"

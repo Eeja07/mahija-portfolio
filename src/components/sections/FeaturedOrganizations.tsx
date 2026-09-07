@@ -114,29 +114,29 @@ export default function FeaturedOrganizations() {
               className="flex-1 w-full flex flex-col self-stretch h-full"
             >
               <NetworkSubsystemNode
-                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] max-h-[570px] sm:max-h-[580px] overflow-hidden self-stretch"
               >
-                <div className="flex-1 flex flex-col gap-3">
-                  <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                    <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
+                <div className="flex-1 flex flex-col gap-3 min-h-0">
+                  <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400 h-5 shrink-0">
+                    <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 truncate">
                       {org.period}
                     </span>
                   </div>
 
-                  <div className="min-h-[3.25rem] flex flex-col justify-start">
-                    <h3 className="font-sans text-lg font-bold text-foreground tracking-tight leading-snug line-clamp-2">
+                  <div className="min-h-[3.5rem] max-h-[3.5rem] flex flex-col justify-start overflow-hidden">
+                    <h3 className="font-sans text-base sm:text-lg font-bold text-foreground tracking-tight leading-snug line-clamp-1 sm:line-clamp-2">
                       {org.role}
                     </h3>
                     <div className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 font-medium mt-1">
                       <Users className="size-3.5 text-zinc-500 dark:text-zinc-400 shrink-0" />
-                      <span className="line-clamp-1">{org.title}</span>
+                      <span className="truncate">{org.title}</span>
                     </div>
                   </div>
 
                   {org.bullets && (
-                    <ul className="list-disc pl-4 text-xs text-zinc-500 dark:text-zinc-400 flex flex-col gap-1 leading-relaxed mt-1 line-clamp-3 min-h-[3.75rem]">
+                    <ul className="list-disc pl-4 text-xs text-zinc-500 dark:text-zinc-400 flex flex-col gap-1.5 leading-relaxed mt-1 min-h-[3.75rem] max-h-[3.75rem] overflow-hidden">
                       {org.bullets.slice(0, 2).map((bullet, i) => (
-                        <li key={i}>{bullet}</li>
+                        <li key={i} className="line-clamp-1 sm:line-clamp-2">{bullet}</li>
                       ))}
                     </ul>
                   )}

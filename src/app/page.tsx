@@ -34,7 +34,15 @@ const TopologyBackground = dynamic(
 type PortfolioStage = "entrance" | "network-3d" | "portfolio-content"
 
 export default function Home() {
-  const [stage, setStage] = useState<PortfolioStage>("entrance")
+  const [stage, setStage] = useState<PortfolioStage>(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search)
+      if (params.get("stage") === "portfolio-content" || window.location.hash) {
+        return "portfolio-content"
+      }
+    }
+    return "entrance"
+  })
 
   React.useEffect(() => {
     // Preload heavy 3D network components in background after entrance renders

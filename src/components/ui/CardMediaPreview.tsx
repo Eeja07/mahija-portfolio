@@ -58,7 +58,13 @@ export default function CardMediaPreview({
         }] : []),
       ]
 
-  const [currentIndex, setCurrentIndex] = useState(activeType === "certificate" && slides.length > 1 ? 1 : 0)
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    if (activeType === "certificate") {
+      const certIdx = slides.findIndex((s) => s.type === "certificate")
+      return certIdx >= 0 ? certIdx : 0
+    }
+    return 0
+  })
   const touchStartX = useRef<number | null>(null)
 
   const activeSlide = slides[currentIndex] || slides[0]
@@ -108,8 +114,8 @@ export default function CardMediaPreview({
     <div className={cn("w-full flex flex-col gap-2 pt-3 border-t border-zinc-200/80 dark:border-zinc-800/80 select-none mt-auto", className)}>
       {/* Top Media Tabs / Switcher if more than 1 slide, or reserved slot for height alignment */}
       {slides.length > 1 ? (
-        <div className="flex items-center justify-between gap-2 h-7">
-          <div className="flex items-center gap-1 bg-zinc-100/90 dark:bg-zinc-900/90 p-0.5 rounded-lg border border-zinc-200/80 dark:border-zinc-800/80">
+        <div className="flex items-center justify-between gap-2 h-7 max-h-7 shrink-0">
+          <div className="flex items-center gap-1 bg-zinc-100/90 dark:bg-zinc-900/90 p-0.5 rounded-lg border border-zinc-200/80 dark:border-zinc-800/80 overflow-x-auto no-scrollbar max-w-[calc(100%-48px)]">
             {slides.map((slide, idx) => (
               <button
                 key={idx}
@@ -119,25 +125,25 @@ export default function CardMediaPreview({
                   setCurrentIndex(idx)
                 }}
                 className={cn(
-                  "px-2 py-0.5 rounded-md font-mono text-[10px] transition-all cursor-pointer flex items-center gap-1",
+                  "px-2 py-0.5 rounded-md font-mono text-[10px] transition-all cursor-pointer flex items-center gap-1 shrink-0 whitespace-nowrap",
                   currentIndex === idx
                     ? "bg-background text-foreground shadow-2xs font-bold"
                     : "text-zinc-500 hover:text-foreground font-medium"
                 )}
               >
-                {slide.type === "certificate" ? <Award className="size-3" /> : <ImageIcon className="size-3" />}
-                <span>{slide.type === "certificate" ? "Sertifikat" : `Foto ${slides.filter(s => s.type === "photo").length > 1 ? idx + 1 : ""}`}</span>
+                {slide.type === "certificate" ? <Award className="size-3 shrink-0" /> : <ImageIcon className="size-3 shrink-0" />}
+                <span className="shrink-0">{slide.type === "certificate" ? "Sertifikat" : `Foto ${slides.filter(s => s.type === "photo").length > 1 ? idx + 1 : ""}`}</span>
               </button>
             ))}
           </div>
 
           {/* Slide counter */}
-          <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400">
+          <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 shrink-0">
             {currentIndex + 1} / {slides.length}
           </span>
         </div>
       ) : (
-        <div className="h-7" aria-hidden="true" />
+        <div className="h-7 max-h-7 shrink-0" aria-hidden="true" />
       )}
 
       {/* Embedded Visual Preview Container (Equal fixed height: h-36 sm:h-40) */}

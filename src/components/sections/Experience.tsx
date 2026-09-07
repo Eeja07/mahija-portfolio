@@ -57,12 +57,6 @@ export default function Experience() {
           image: "/images/featured/untern/workflow.webp",
         },
         {
-          type: "photo" as const,
-          title: "Analytics & Monitoring Panel",
-          caption: "Panel analitik interaksi pengguna dan status aplikasi magang.",
-          image: "/images/featured/untern/analytics.webp",
-        },
-        {
           type: "certificate" as const,
           title: exp.certificatePlaceholder?.title || "Surat Keterangan Magang Winnicode",
           caption: exp.certificatePlaceholder?.caption || "Surat keterangan resmi magang Full-Stack Developer PT Winnicode Garuda Indonesia.",
@@ -162,20 +156,20 @@ export default function Experience() {
             >
               <NetworkSubsystemNode
                 status={idx === 0 ? "transmitting" : "healthy"}
-                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] max-h-[570px] sm:max-h-[580px] overflow-hidden self-stretch"
               >
-                <div className="flex-1 flex flex-col gap-3">
-                  <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                    <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
-                      {exp.startDate} &ndash; {exp.current ? "Present" : exp.endDate}
+                <div className="flex-1 flex flex-col gap-3 min-h-0">
+                  <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400 h-5 shrink-0">
+                    <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 truncate">
+                      {exp.startDate} &ndash; {exp.current ? (language === "id" ? "Sekarang" : "Present") : exp.endDate}
                     </span>
-                    <span className="px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-800 text-[10px] bg-background">
+                    <span className="px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-800 text-[10px] bg-background shrink-0">
                       {exp.category}
                     </span>
                   </div>
 
-                  <div className="min-h-[3.25rem] flex flex-col justify-start">
-                    <h3 className="font-sans text-lg font-bold text-foreground tracking-tight leading-snug line-clamp-2">
+                  <div className="min-h-[3.5rem] max-h-[3.5rem] flex flex-col justify-start overflow-hidden">
+                    <h3 className="font-sans text-base sm:text-lg font-bold text-foreground tracking-tight leading-snug line-clamp-1 sm:line-clamp-2">
                       {exp.role}
                     </h3>
                     <div className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 font-medium mt-1">
@@ -186,16 +180,16 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3 min-h-[3.75rem]">
+                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 min-h-[2.5rem] max-h-[2.5rem] overflow-hidden">
                     {exp.description}
                   </p>
 
                   {/* Tech Pills */}
-                  <div className="flex flex-wrap gap-1.5 pt-1 select-none min-h-[1.75rem]">
+                  <div className="flex flex-nowrap overflow-hidden gap-1.5 pt-1 select-none min-h-[1.75rem] max-h-[1.75rem]">
                     {exp.technologies.slice(0, 3).map((tech) => (
                       <span 
                         key={tech} 
-                        className="border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background"
+                        className="border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background whitespace-nowrap shrink-0"
                       >
                         {tech}
                       </span>
