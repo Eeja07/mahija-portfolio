@@ -19,6 +19,12 @@ export default function SectionCardSlider({
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(3)
+
+  const isDragging = useRef(false)
+  const startX = useRef(0)
+  const scrollLeftStart = useRef(0)
+  const hasDragged = useRef(false)
 
   const totalItems = React.Children.count(children)
 
@@ -28,22 +34,44 @@ export default function SectionCardSlider({
     setCanScrollLeft(scrollLeft > 10)
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
 
-    // Estimate current active card index based on scroll offset
-    if (clientWidth > 0) {
-      const cardWidth = scrollWidth / totalItems
-      const activeIdx = Math.round(scrollLeft / cardWidth)
-      setCurrentIndex(Math.min(Math.max(0, activeIdx), totalItems - 1))
+    // Calculate active index based on card width
+    const firstCard = scrollRef.current.firstElementChild as HTMLElement | null
+    if (firstCard) {
+      const cardWidth = firstCard.offsetWidth
+      const style = window.getComputedStyle(scrollRef.current)
+      const gap = parseFloat(style.columnGap || style.gap || "24") || 24
+      const step = cardWidth + gap
+      if (step > 0) {
+        const activeIdx = Math.round(scrollLeft / step)
+        setCurrentIndex(Math.min(Math.max(0, activeIdx), Math.max(0, totalItems - visibleCount)))
+      }
     }
-  }, [totalItems])
+  }, [totalItems, visibleCount])
 
   useEffect(() => {
+    const updateVisibleCount = () => {
+      if (typeof window === "undefined") return
+      if (window.innerWidth < 640) {
+        setVisibleCount(1)
+      } else if (window.innerWidth < 1024) {
+        setVisibleCount(2)
+      } else {
+        setVisibleCount(3)
+      }
+    }
+
+    updateVisibleCount()
     updateScrollState()
+
     const container = scrollRef.current
     if (!container) return
 
     const handleScroll = () => updateScrollState()
     container.addEventListener("scroll", handleScroll, { passive: true })
-    window.addEventListener("resize", updateScrollState)
+    window.addEventListener("resize", () => {
+      updateVisibleCount()
+      updateScrollState()
+    })
 
     return () => {
       container.removeEventListener("scroll", handleScroll)
@@ -54,11 +82,49 @@ export default function SectionCardSlider({
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return
     const container = scrollRef.current
-    const clientWidth = container.clientWidth
+    const firstCard = container.firstElementChild as HTMLElement | null
+    if (!firstCard) return
 
-    // Scroll by roughly 1 card width or viewport width
-    const scrollAmount = direction === "left" ? -clientWidth * 0.75 : clientWidth * 0.75
-    container.scrollBy({ left: scrollAmount, behavior: "smooth" })
+    const cardWidth = firstCard.offsetWidth
+    const style = window.getComputedStyle(container)
+    const gap = parseFloat(style.columnGap || style.gap || "24") || 24
+    const scrollStep = cardWidth + gap
+
+    container.scrollBy({
+      left: direction === "left" ? -scrollStep : scrollStep,
+      behavior: "smooth",
+    })
+  }
+
+  // Mouse Drag to Slide support
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return
+    isDragging.current = true
+    hasDragged.current = false
+    startX.current = e.pageX - scrollRef.current.offsetLeft
+    scrollLeftStart.current = scrollRef.current.scrollLeft
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !scrollRef.current) return
+    const x = e.pageX - scrollRef.current.offsetLeft
+    const dist = x - startX.current
+    if (Math.abs(dist) > 5) {
+      hasDragged.current = true
+      e.preventDefault()
+      scrollRef.current.scrollLeft = scrollLeftStart.current - dist
+    }
+  }
+
+  const handleMouseUpOrLeave = () => {
+    isDragging.current = false
+  }
+
+  const handleClickCapture = (e: React.MouseEvent) => {
+    if (hasDragged.current) {
+      e.stopPropagation()
+      e.preventDefault()
+    }
   }
 
   return (
@@ -69,7 +135,7 @@ export default function SectionCardSlider({
         <div className="flex items-center gap-2 font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
           <span className="inline-block size-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600" />
           <span>
-            {Math.min(currentIndex + 1, totalItems)} &ndash; {Math.min(currentIndex + 3, totalItems)} dari {totalItems} item
+            {Math.min(currentIndex + 1, totalItems)} &ndash; {Math.min(currentIndex + visibleCount, totalItems)} dari {totalItems} item
           </span>
         </div>
 
@@ -107,17 +173,22 @@ export default function SectionCardSlider({
         </div>
       </div>
 
-      {/* Horizontal Scroll Snap Track: Exactly 3 items visible on desktop, centered on mobile */}
+      {/* Horizontal Scroll Snap Track: Strictly max 3 items visible on desktop (lg+), 2 on tablet (sm+), 1 on mobile */}
       <div
         ref={scrollRef}
-        className="flex items-stretch gap-5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-4 pt-1 px-[7.5vw] sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 scroll-px-[7.5vw] sm:scroll-px-6 lg:scroll-px-8"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUpOrLeave}
+        onMouseLeave={handleMouseUpOrLeave}
+        onClickCapture={handleClickCapture}
+        className="flex items-stretch gap-5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-4 pt-1 w-full"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {React.Children.map(children, (child, idx) => (
           <div
             key={idx}
             className={cn(
-              "shrink-0 snap-center sm:snap-start w-[85vw] max-w-[340px] sm:max-w-none sm:w-[calc(50%-12px)] lg:w-[calc((100%-48px)/3)] flex flex-col h-full flex-1 self-stretch mx-auto sm:mx-0",
+              "shrink-0 snap-start w-full sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] flex flex-col h-full self-stretch select-none",
               cardClassName
             )}
           >

@@ -106,9 +106,9 @@ export default function CardMediaPreview({
 
   return (
     <div className={cn("w-full flex flex-col gap-2 pt-3 border-t border-zinc-200/80 dark:border-zinc-800/80 select-none mt-auto", className)}>
-      {/* Top Media Tabs / Switcher if more than 1 slide */}
-      {slides.length > 1 && (
-        <div className="flex items-center justify-between gap-2">
+      {/* Top Media Tabs / Switcher if more than 1 slide, or reserved slot for height alignment */}
+      {slides.length > 1 ? (
+        <div className="flex items-center justify-between gap-2 h-7">
           <div className="flex items-center gap-1 bg-zinc-100/90 dark:bg-zinc-900/90 p-0.5 rounded-lg border border-zinc-200/80 dark:border-zinc-800/80">
             {slides.map((slide, idx) => (
               <button
@@ -136,6 +136,8 @@ export default function CardMediaPreview({
             {currentIndex + 1} / {slides.length}
           </span>
         </div>
+      ) : (
+        <div className="h-7" aria-hidden="true" />
       )}
 
       {/* Embedded Visual Preview Container (Equal fixed height: h-36 sm:h-40) */}

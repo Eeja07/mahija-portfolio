@@ -89,6 +89,7 @@ export const translations = {
       badge: "Verified Protocol Credentials",
       heading: "Certifications & Credentials",
       subheading: "Verified technical certifications, official academic degree statements, and leadership credentials.",
+      cableLabel: "OPEN SOURCE CODEBASE CONDUIT",
     },
     repositories: {
       badge: "Open Source Codebases",
@@ -240,6 +241,7 @@ export const translations = {
       badge: "Kredensial Protokol Terverifikasi",
       heading: "Sertifikasi & Kredensial",
       subheading: "Sertifikasi teknis terverifikasi, surat keterangan kelulusan resmi, dan kredensial kepemimpinan.",
+      cableLabel: "BUS KODE SUMBER TERBUKA",
     },
     repositories: {
       badge: "Koleksi Repositori Terbuka",

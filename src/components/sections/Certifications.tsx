@@ -3,8 +3,8 @@
 import React, { useState } from "react"
 import { motion } from "motion/react"
 import { getCertifications } from "@/data/certifications"
-import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
+import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { Award, ShieldCheck, CheckCircle2 } from "lucide-react"
@@ -52,7 +52,7 @@ export default function Certifications() {
             >
               <NetworkSubsystemNode
                 status="healthy"
-                className="flex-1 w-full flex flex-col justify-between text-left gap-5 border-zinc-200/90 dark:border-zinc-800/90 p-5 sm:p-6 h-[530px] sm:h-[540px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
               >
                 <div className="flex-1 flex flex-col gap-3">
                   {/* Category & Date */}
@@ -64,7 +64,7 @@ export default function Certifications() {
                   </div>
 
                   {/* Title & Issuer */}
-                  <div>
+                  <div className="min-h-[3.25rem] flex flex-col justify-start">
                     <h3 className="font-sans text-base sm:text-lg font-bold text-foreground tracking-tight leading-snug flex items-start gap-2 line-clamp-2">
                       <Award className="size-4 text-zinc-500 dark:text-zinc-400 shrink-0 mt-1" />
                       <span>{cert.title}</span>
@@ -76,29 +76,31 @@ export default function Certifications() {
                   </div>
 
                   {/* Summary */}
-                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
+                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 min-h-[2.5rem]">
                     {cert.summary}
                   </p>
 
                   {/* Verified Skills */}
-                  {cert.skills && (
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {cert.skills.slice(0, 3).map((skill) => (
-                        <span
-                          key={skill}
-                          className="border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background/80 flex items-center gap-1"
-                        >
-                          <CheckCircle2 className="size-2.5 text-zinc-500 dark:text-zinc-400" />
-                          <span className="truncate max-w-[140px]">{skill}</span>
-                        </span>
-                      ))}
-                      {cert.skills.length > 3 && (
-                        <span className="border border-zinc-200 dark:border-zinc-800 px-1.5 py-0.5 rounded font-mono text-[10px] text-zinc-400 bg-background/50">
-                          +{cert.skills.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  )}
+                  <div className="flex flex-wrap gap-1.5 pt-1 min-h-[1.75rem]">
+                    {cert.skills && (
+                      <>
+                        {cert.skills.slice(0, 3).map((skill) => (
+                          <span
+                            key={skill}
+                            className="border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background/80 flex items-center gap-1"
+                          >
+                            <CheckCircle2 className="size-2.5 text-zinc-500 dark:text-zinc-400" />
+                            <span className="truncate max-w-[140px]">{skill}</span>
+                          </span>
+                        ))}
+                        {cert.skills.length > 3 && (
+                          <span className="border border-zinc-200 dark:border-zinc-800 px-1.5 py-0.5 rounded font-mono text-[10px] text-zinc-400 bg-background/50">
+                            +{cert.skills.length - 3}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </div>
                 </div>
 
                 {/* Direct Visual Preview Slot (Multi-slide enabled) */}
@@ -136,6 +138,11 @@ export default function Certifications() {
         onClose={() => setPreviewItem(null)}
         item={previewItem}
       />
+
+      {/* Animated Packet Stream Section Divider */}
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mt-12 sm:mt-16">
+        <SpatialCableBranch direction="left-to-right" label={t.cableLabel} status="transmitting" />
+      </div>
     </section>
   )
 }

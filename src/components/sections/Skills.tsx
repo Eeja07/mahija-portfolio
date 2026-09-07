@@ -3,8 +3,8 @@
 import React, { useState } from "react"
 import { motion } from "motion/react"
 import { getSkillGroups } from "@/data/skills"
-import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
+import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { Server, Database, Code, Eye, Network as NetIcon, Wrench, Layers } from "lucide-react"
@@ -159,6 +159,11 @@ export default function Skills() {
             </motion.div>
           ))}
         </motion.div>
+      </div>
+
+      {/* Animated Packet Stream Section Divider */}
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mt-12 sm:mt-16">
+        <SpatialCableBranch direction="left-to-right" label={t.cableLabel} status="transmitting" />
       </div>
     </section>
   )

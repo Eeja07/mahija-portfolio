@@ -189,7 +189,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="w-full max-w-7xl px-4 mt-12">
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mt-12 sm:mt-16">
         <SpatialCableBranch direction="left-to-right" label={t.cableLabel} status="transmitting" />
       </div>
     </section>

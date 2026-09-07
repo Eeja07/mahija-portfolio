@@ -3,8 +3,8 @@
 import React, { useState } from "react"
 import { motion } from "motion/react"
 import { getExperiences } from "@/data/experience"
-import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
+import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { ArrowRight, Briefcase } from "lucide-react"
@@ -162,7 +162,7 @@ export default function Experience() {
             >
               <NetworkSubsystemNode
                 status={idx === 0 ? "transmitting" : "healthy"}
-                className="flex-1 w-full flex flex-col justify-between text-left gap-5 p-5 sm:p-6 h-[530px] sm:h-[540px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
               >
                 <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
@@ -174,7 +174,7 @@ export default function Experience() {
                     </span>
                   </div>
 
-                  <div>
+                  <div className="min-h-[3.25rem] flex flex-col justify-start">
                     <h3 className="font-sans text-lg font-bold text-foreground tracking-tight leading-snug line-clamp-2">
                       {exp.role}
                     </h3>
@@ -186,12 +186,12 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3">
+                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3 min-h-[3.75rem]">
                     {exp.description}
                   </p>
 
                   {/* Tech Pills */}
-                  <div className="flex flex-wrap gap-1.5 pt-1 select-none">
+                  <div className="flex flex-wrap gap-1.5 pt-1 select-none min-h-[1.75rem]">
                     {exp.technologies.slice(0, 3).map((tech) => (
                       <span 
                         key={tech} 
@@ -233,6 +233,11 @@ export default function Experience() {
         onClose={() => setPreviewItem(null)}
         item={previewItem}
       />
+
+      {/* Animated Packet Stream Section Divider */}
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mt-12 sm:mt-16">
+        <SpatialCableBranch direction="left-to-right" label={t.cableLabel} status="transmitting" />
+      </div>
     </section>
   )
 }

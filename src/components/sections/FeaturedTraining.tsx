@@ -3,8 +3,8 @@
 import React, { useState } from "react"
 import { motion } from "motion/react"
 import { getTraining } from "@/data/career"
-import { Badge } from "@/components/ui/badge"
 import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
+import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { ArrowRight } from "lucide-react"
@@ -113,7 +113,7 @@ export default function FeaturedTraining() {
               className="flex-1 w-full flex flex-col self-stretch h-full"
             >
               <NetworkSubsystemNode
-                className="flex-1 w-full flex flex-col justify-between text-left gap-5 p-5 sm:p-6 h-[530px] sm:h-[540px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
               >
                 <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
@@ -123,18 +123,18 @@ export default function FeaturedTraining() {
                     <span>{tr.period}</span>
                   </div>
 
-                  <div>
+                  <div className="min-h-[3.25rem] flex flex-col justify-start">
                     <h3 className="font-sans text-lg font-bold text-foreground tracking-tight leading-snug line-clamp-2">
                       {tr.title}
                     </h3>
                   </div>
 
-                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
+                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 min-h-[2.5rem]">
                     {tr.summary}
                   </p>
 
                   {tr.bullets && (
-                    <ul className="list-disc pl-4 text-xs text-zinc-500 dark:text-zinc-400 flex flex-col gap-1 leading-relaxed mt-1 line-clamp-2">
+                    <ul className="list-disc pl-4 text-xs text-zinc-500 dark:text-zinc-400 flex flex-col gap-1 leading-relaxed mt-1 line-clamp-2 min-h-[3.75rem]">
                       {tr.bullets.slice(0, 2).map((bullet, i) => (
                         <li key={i}>{bullet}</li>
                       ))}
@@ -172,6 +172,11 @@ export default function FeaturedTraining() {
         onClose={() => setPreviewItem(null)}
         item={previewItem}
       />
+
+      {/* Animated Packet Stream Section Divider */}
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mt-12 sm:mt-16">
+        <SpatialCableBranch direction="left-to-right" label={t.cableLabel} status="transmitting" />
+      </div>
     </section>
   )
 }

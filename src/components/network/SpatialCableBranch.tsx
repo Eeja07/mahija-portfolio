@@ -61,12 +61,22 @@ export function SpatialCableBranch({
       <div className="absolute right-0 top-1/2 -translate-y-1/2 size-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600 shadow-xs" />
       <div
         className={cn(
-          "absolute h-[2px] w-24 bg-gradient-to-r from-transparent to-transparent animate-packet-stream",
+          "absolute h-[2px] w-24 bg-gradient-to-r from-transparent to-transparent",
+          direction === "right-to-left"
+            ? "animate-packet-stream-reverse"
+            : "animate-packet-stream",
           pulseColor
         )}
       />
       {label && (
-        <span className="absolute right-2 sm:right-4 -top-2.5 font-mono text-[8px] sm:text-[9px] text-zinc-400 dark:text-zinc-500 uppercase tracking-widest bg-background px-1.5 max-w-[70vw] truncate">
+        <span
+          className={cn(
+            "absolute -top-2.5 font-mono text-[8px] sm:text-[9px] text-zinc-400 dark:text-zinc-500 uppercase tracking-widest bg-background px-1.5 max-w-[70vw] truncate",
+            direction === "right-to-left"
+              ? "left-2 sm:left-4"
+              : "right-2 sm:right-4"
+          )}
+        >
           {label}
         </span>
       )}
