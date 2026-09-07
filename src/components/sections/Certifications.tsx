@@ -52,22 +52,22 @@ export default function Certifications() {
             >
               <NetworkSubsystemNode
                 status="healthy"
-                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] max-h-[570px] sm:max-h-[580px] overflow-hidden self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
               >
-                <div className="flex-1 flex flex-col gap-3 min-h-0">
+                <div className="flex-1 flex flex-col gap-3">
                   {/* Category & Date */}
-                  <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400 h-5 shrink-0">
-                    <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 truncate">
+                  <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                    <span className="font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
                       {cert.category}
                     </span>
-                    <span className="shrink-0">{cert.period}</span>
+                    <span>{cert.period}</span>
                   </div>
 
                   {/* Title & Issuer */}
-                  <div className="min-h-[3.5rem] max-h-[3.5rem] flex flex-col justify-start overflow-hidden">
-                    <h3 className="font-sans text-base sm:text-lg font-bold text-foreground tracking-tight leading-snug flex items-start gap-2 line-clamp-1 sm:line-clamp-2">
+                  <div className="min-h-[3.25rem] flex flex-col justify-start">
+                    <h3 className="font-sans text-base sm:text-lg font-bold text-foreground tracking-tight leading-snug flex items-start gap-2 line-clamp-2">
                       <Award className="size-4 text-zinc-500 dark:text-zinc-400 shrink-0 mt-1" />
-                      <span className="truncate">{cert.title}</span>
+                      <span>{cert.title}</span>
                     </h3>
                     <p className="font-mono text-xs text-zinc-500 dark:text-zinc-400 mt-1 flex items-center gap-1.5">
                       <ShieldCheck className="size-3.5 text-zinc-400 dark:text-zinc-500 shrink-0" />
@@ -76,25 +76,25 @@ export default function Certifications() {
                   </div>
 
                   {/* Summary */}
-                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 min-h-[2.5rem] max-h-[2.5rem] overflow-hidden">
+                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 min-h-[2.5rem]">
                     {cert.summary}
                   </p>
 
                   {/* Verified Skills */}
-                  <div className="flex flex-nowrap overflow-hidden gap-1.5 pt-1 min-h-[1.75rem] max-h-[1.75rem]">
+                  <div className="flex flex-wrap gap-1.5 pt-1 min-h-[1.75rem]">
                     {cert.skills && (
                       <>
                         {cert.skills.slice(0, 3).map((skill) => (
                           <span
                             key={skill}
-                            className="border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background/80 flex items-center gap-1 whitespace-nowrap shrink-0"
+                            className="border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded font-mono text-[10px] text-zinc-500 dark:text-zinc-400 bg-background/80 flex items-center gap-1"
                           >
                             <CheckCircle2 className="size-2.5 text-zinc-500 dark:text-zinc-400" />
-                            <span className="truncate max-w-[120px]">{skill}</span>
+                            <span className="truncate max-w-[140px]">{skill}</span>
                           </span>
                         ))}
                         {cert.skills.length > 3 && (
-                          <span className="border border-zinc-200 dark:border-zinc-800 px-1.5 py-0.5 rounded font-mono text-[10px] text-zinc-400 bg-background/50 shrink-0">
+                          <span className="border border-zinc-200 dark:border-zinc-800 px-1.5 py-0.5 rounded font-mono text-[10px] text-zinc-400 bg-background/50">
                             +{cert.skills.length - 3}
                           </span>
                         )}
