@@ -20,16 +20,19 @@ export default function Awards() {
   const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
 
   const getAwardSlides = (award: (typeof awardList)[0]) => {
+    const isEn = language === "en"
     return [
       {
         type: "photo" as const,
-        title: award.photoPlaceholder?.title || `${award.title} — Foto Dokumentasi`,
-        caption: award.photoPlaceholder?.caption || "Dokumentasi kejuaraan dan penghargaan resmi.",
+        title: award.photoPlaceholder?.title || (isEn ? `${award.title} — Award Photo` : `${award.title} — Foto Dokumentasi`),
+      },
+      {
+        type: "photo" as const,
+        title: isEn ? `${award.title} — Stage Photo` : `${award.title} — Foto Panggung Juara`,
       },
       {
         type: "certificate" as const,
-        title: award.certificatePlaceholder?.title || `${award.title} — Sertifikat Juara`,
-        caption: award.certificatePlaceholder?.caption || "Sertifikat resmi penghargaan kejuaraan.",
+        title: award.certificatePlaceholder?.title || (isEn ? `${award.title} — Official Certificate` : `${award.title} — Sertifikat Juara`),
       },
     ]
   }

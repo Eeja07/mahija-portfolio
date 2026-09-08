@@ -21,16 +21,19 @@ export default function FeaturedCommittees() {
   const allComms = getCommittees(language)
 
   const getCommSlides = (comm: (typeof allComms)[0]) => {
+    const isEn = language === "en"
     return [
       {
         type: "photo" as const,
-        title: comm.photoPlaceholder?.title || `${comm.role} — Foto Kegiatan`,
-        caption: comm.photoPlaceholder?.caption || "Dokumentasi kegiatan dan pelaksanaan acara.",
+        title: comm.photoPlaceholder?.title || (isEn ? `${comm.role} — Event Photo` : `${comm.role} — Foto Kegiatan`),
+      },
+      {
+        type: "photo" as const,
+        title: isEn ? `${comm.role} — Operational Photo` : `${comm.role} — Dokumentasi Lapangan`,
       },
       {
         type: "certificate" as const,
-        title: comm.certificatePlaceholder?.title || `${comm.role} — Sertifikat Panitia`,
-        caption: comm.certificatePlaceholder?.caption || "Sertifikat resmi pengakuan kontribusi kepanitiaan.",
+        title: comm.certificatePlaceholder?.title || (isEn ? `${comm.role} — Committee Certificate` : `${comm.role} — Sertifikat Panitia`),
       },
     ]
   }

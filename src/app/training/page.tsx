@@ -157,9 +157,9 @@ export default function TrainingArchive() {
 
                   {/* Exactly 2 Placeholders: Foto & Sertifikat/Surat Keterangan */}
                   <MediaAttachmentButton
-                    photoTitle={item.photoPlaceholder?.title || `${item.role} — Foto Pelatihan`}
+                    photoTitle={item.photoPlaceholder?.title || (language === "en" ? `${item.role} — Training Session` : `${item.role} — Foto Pelatihan`)}
                     photoCaption={item.photoPlaceholder?.caption}
-                    certificateTitle={item.certificatePlaceholder?.title || `${item.role} — Sertifikat Kelulusan`}
+                    certificateTitle={item.certificatePlaceholder?.title || (language === "en" ? `${item.role} — Completion Certificate` : `${item.role} — Sertifikat Kelulusan`)}
                     certificateCaption={item.certificatePlaceholder?.caption}
                     contextTitle={`${item.title} • ${item.period}`}
                     onSelectMedia={(selected) => setPreviewItem(selected)}

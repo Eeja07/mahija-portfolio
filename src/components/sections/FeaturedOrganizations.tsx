@@ -21,16 +21,19 @@ export default function FeaturedOrganizations() {
   const allOrgs = getOrganizations(language)
 
   const getOrgSlides = (org: (typeof allOrgs)[0]) => {
+    const isEn = language === "en"
     return [
       {
         type: "photo" as const,
-        title: org.photoPlaceholder?.title || `${org.role} — Foto Dokumentasi`,
-        caption: org.photoPlaceholder?.caption || "Dokumentasi kegiatan organisasi dan rapat kerja.",
+        title: org.photoPlaceholder?.title || (isEn ? `${org.role} — Documentation Photo` : `${org.role} — Foto Dokumentasi`),
+      },
+      {
+        type: "photo" as const,
+        title: isEn ? `${org.role} — Team Photo & Meetings` : `${org.role} — Foto Tim & Rapat`,
       },
       {
         type: "certificate" as const,
-        title: org.certificatePlaceholder?.title || `${org.role} — SK Kepengurusan`,
-        caption: org.certificatePlaceholder?.caption || "Surat keputusan resmi kepengurusan organisasi mahasiswa.",
+        title: org.certificatePlaceholder?.title || (isEn ? `${org.role} — Decree / Appointment Certificate` : `${org.role} — SK Kepengurusan`),
       },
     ]
   }

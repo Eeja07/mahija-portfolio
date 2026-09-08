@@ -6,6 +6,7 @@ import { X, Image as ImageIcon, Award, FileText, ShieldCheck, Download, External
 import { MediaItem } from "@/types/experience"
 import NextImage from "next/image"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/context/LanguageContext"
 
 interface MediaPreviewModalProps {
   isOpen: boolean
@@ -14,6 +15,9 @@ interface MediaPreviewModalProps {
 }
 
 export default function MediaPreviewModal({ isOpen, onClose, item }: MediaPreviewModalProps) {
+  const { language } = useLanguage()
+  const isEn = language === "en"
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
@@ -92,27 +96,27 @@ export default function MediaPreviewModal({ isOpen, onClose, item }: MediaPrevie
                       href={item.url}
                       download
                       className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-foreground text-background text-xs font-mono font-medium hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
-                      title="Download file"
+                      title={isEn ? "Download file" : "Unduh berkas"}
                     >
                       <Download className="size-3" />
-                      <span>Download</span>
+                      <span>{isEn ? "Download" : "Unduh"}</span>
                     </a>
                     <a
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 text-foreground text-xs font-mono font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-                      title="Open in new tab"
+                      title={isEn ? "Open in new tab" : "Buka di tab baru"}
                     >
                       <ExternalLink className="size-3" />
-                      <span>Tab Baru</span>
+                      <span>{isEn ? "New Tab" : "Tab Baru"}</span>
                     </a>
                   </>
                 )}
                 <button
                   onClick={onClose}
                   className="p-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-                  title="Close preview (Esc)"
+                  title={isEn ? "Close preview (Esc)" : "Tutup pratinjau (Esc)"}
                   aria-label="Close"
                 >
                   <X className="size-4" />
@@ -136,16 +140,16 @@ export default function MediaPreviewModal({ isOpen, onClose, item }: MediaPrevie
 
                   <div className="flex flex-col gap-1 max-w-sm">
                     <span className="font-mono text-xs font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
-                      {isCertificate ? "Slot Sertifikat / Surat Keterangan" : "Slot Foto / Dokumentasi"}
+                      {isCertificate ? (isEn ? "Certificate / Official Document Slot" : "Slot Sertifikat / Surat Keterangan") : (isEn ? "Photo / Documentation Slot" : "Slot Foto / Dokumentasi")}
                     </span>
                     <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                      {item.caption || "Placeholder slot untuk dokumentasi visual atau verifikasi dokumen resmi."}
+                      {item.caption || (isEn ? "Placeholder slot for visual documentation or official credential verification." : "Slot placeholder untuk dokumentasi visual atau verifikasi dokumen resmi.")}
                     </p>
                   </div>
 
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-zinc-200 dark:border-zinc-800 bg-background font-mono text-[10px] text-zinc-500 dark:text-zinc-400 mt-2">
                     <ShieldCheck className="size-3 text-emerald-500" />
-                    <span>Slot Siap / Ready for Upload</span>
+                    <span>{isEn ? "Ready for Upload" : "Slot Siap Diunggah"}</span>
                   </div>
                 </div>
               ) : isPdf ? (

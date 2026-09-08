@@ -95,9 +95,9 @@ export default function CommitteesArchive() {
 
                   {/* Exactly 2 Placeholders: Foto & Sertifikat/Surat Keterangan */}
                   <MediaAttachmentButton
-                    photoTitle={comm.photoPlaceholder?.title || `${comm.role} — Foto Kegiatan`}
+                    photoTitle={comm.photoPlaceholder?.title || (language === "en" ? `${comm.role} — Event Photo` : `${comm.role} — Foto Kegiatan`)}
                     photoCaption={comm.photoPlaceholder?.caption}
-                    certificateTitle={comm.certificatePlaceholder?.title || `${comm.role} — Sertifikat Kepanitiaan`}
+                    certificateTitle={comm.certificatePlaceholder?.title || (language === "en" ? `${comm.role} — Committee Certificate` : `${comm.role} — Sertifikat Kepanitiaan`)}
                     certificateCaption={comm.certificatePlaceholder?.caption}
                     contextTitle={`${comm.title} • ${comm.period}`}
                     onSelectMedia={(selected) => setPreviewItem(selected)}

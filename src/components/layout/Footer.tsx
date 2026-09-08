@@ -1,5 +1,8 @@
+"use client"
+
 import React from "react"
 import { NetworkMonogramM } from "@/components/network/NetworkMonogramM"
+import { useLanguage } from "@/context/LanguageContext"
 
 const footerLinks = [
   { name: "GitHub", href: "https://github.com/Eeja07" },
@@ -9,6 +12,7 @@ const footerLinks = [
 ]
 
 export default function Footer() {
+  const { language } = useLanguage()
   return (
     <footer 
       aria-label="Site Footer"
@@ -50,7 +54,7 @@ export default function Footer() {
         {/* Clean Minimalist Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-xs text-zinc-500 dark:text-zinc-400 text-center sm:text-left select-none">
           <span className="font-sans text-zinc-400 dark:text-zinc-500">
-            &copy; {new Date().getFullYear()} Mahija Ibad Pradipta. All rights reserved.
+            &copy; {new Date().getFullYear()} Mahija Ibad Pradipta. {language === "id" ? "Hak cipta dilindungi." : "All rights reserved."}
           </span>
         </div>
       </div>

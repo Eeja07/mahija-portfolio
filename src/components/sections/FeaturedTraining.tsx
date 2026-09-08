@@ -21,16 +21,19 @@ export default function FeaturedTraining() {
   const allTraining = getTraining(language)
 
   const getTrainingSlides = (tr: (typeof allTraining)[0]) => {
+    const isEn = language === "en"
     return [
       {
         type: "photo" as const,
-        title: tr.photoPlaceholder?.title || `${tr.role} — Foto Pelatihan`,
-        caption: tr.photoPlaceholder?.caption || "Dokumentasi kegiatan dan workshop pelatihan.",
+        title: tr.photoPlaceholder?.title || (isEn ? `${tr.role} — Training Session` : `${tr.role} — Foto Pelatihan`),
+      },
+      {
+        type: "photo" as const,
+        title: isEn ? `${tr.role} — Workshop Photo` : `${tr.role} — Dokumentasi Workshop`,
       },
       {
         type: "certificate" as const,
-        title: tr.certificatePlaceholder?.title || `${tr.role} — Sertifikat Kelulusan`,
-        caption: tr.certificatePlaceholder?.caption || "Sertifikat resmi kelulusan program pelatihan terverifikasi.",
+        title: tr.certificatePlaceholder?.title || (isEn ? `${tr.role} — Completion Certificate` : `${tr.role} — Sertifikat Kelulusan`),
       },
     ]
   }

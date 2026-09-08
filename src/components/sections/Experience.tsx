@@ -21,16 +21,19 @@ export default function Experience() {
   const allExperiences = getExperiences(language)
 
   const getExperienceSlides = (exp: (typeof allExperiences)[0]) => {
+    const isEn = language === "en"
     return [
       {
         type: "photo" as const,
-        title: exp.photoPlaceholder?.title || `${exp.role} — Foto Dokumentasi`,
-        caption: exp.photoPlaceholder?.caption || "Dokumentasi pelaksanaan tugas, praktikum, atau kegiatan profesional.",
+        title: exp.photoPlaceholder?.title || (isEn ? `${exp.role} — Documentation Photo` : `${exp.role} — Foto Dokumentasi`),
+      },
+      {
+        type: "photo" as const,
+        title: isEn ? `${exp.role} — Activity Photo` : `${exp.role} — Foto Kegiatan`,
       },
       {
         type: "certificate" as const,
-        title: exp.certificatePlaceholder?.title || `${exp.role} — Sertifikat / Surat Tugas`,
-        caption: exp.certificatePlaceholder?.caption || "Dokumen resmi penugasan atau surat keputusan pengajaran.",
+        title: exp.certificatePlaceholder?.title || (isEn ? `${exp.role} — Assignment Letter / Certificate` : `${exp.role} — Surat Tugas / Sertifikat`),
       },
     ]
   }

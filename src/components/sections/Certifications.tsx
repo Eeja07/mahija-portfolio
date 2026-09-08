@@ -105,12 +105,10 @@ export default function Certifications() {
                     {
                       type: "certificate",
                       title: cert.certificatePlaceholder.title,
-                      caption: cert.certificatePlaceholder.caption,
                     },
                     {
-                      type: "photo",
-                      title: `${cert.title} — Lembar Skor & Verifikasi`,
-                      caption: `Verifikasi kredensial: ${cert.credentialId || "VERIFIED"} • ${cert.issuer}`,
+                      type: "certificate",
+                      title: language === "en" ? `${cert.title} — Score Sheet & Verification` : `${cert.title} — Lembar Skor & Verifikasi`,
                     },
                   ]}
                   contextTitle={`${cert.issuer} • ${cert.period}`}

@@ -95,9 +95,9 @@ export default function OrganizationsArchive() {
 
                   {/* Exactly 2 Placeholders: Foto & Sertifikat/Surat Keterangan */}
                   <MediaAttachmentButton
-                    photoTitle={org.photoPlaceholder?.title || `${org.role} — Foto Dokumentasi`}
+                    photoTitle={org.photoPlaceholder?.title || (language === "en" ? `${org.role} — Documentation Photo` : `${org.role} — Foto Dokumentasi`)}
                     photoCaption={org.photoPlaceholder?.caption}
-                    certificateTitle={org.certificatePlaceholder?.title || `${org.role} — Sertifikat / Surat Keputusan`}
+                    certificateTitle={org.certificatePlaceholder?.title || (language === "en" ? `${org.role} — Decree / Appointment Certificate` : `${org.role} — Sertifikat / Surat Keputusan`)}
                     certificateCaption={org.certificatePlaceholder?.caption}
                     contextTitle={`${org.title} • ${org.period}`}
                     onSelectMedia={(selected) => setPreviewItem(selected)}

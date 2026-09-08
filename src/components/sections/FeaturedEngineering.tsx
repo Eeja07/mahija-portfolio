@@ -9,7 +9,7 @@ import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { cn } from "@/lib/utils"
-import { Cpu, ExternalLink, Activity } from "lucide-react"
+import { Cpu, ExternalLink } from "lucide-react"
 import { MediaItem } from "@/types/experience"
 import MediaPreviewModal from "@/components/ui/MediaPreviewModal"
 import CardMediaPreview from "@/components/ui/CardMediaPreview"
@@ -87,44 +87,24 @@ export default function FeaturedEngineering() {
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                   
-                  {/* Left Side: Media Showcase, Telemetry Metrics, Action Links */}
+                  {/* Left Side: Media Showcase & Action Links */}
                   <div className="lg:col-span-5 flex flex-col gap-4">
-                    {/* Direct Visual Preview Slot */}
+                    {/* Direct Visual Preview Slot (Multi-photo slider enabled) */}
                     <CardMediaPreview
                       slides={[
                         {
                           type: "photo",
-                          title: `${project.title} — Foto / Snapshot`,
-                          caption: `Pratinjau visual rekayasa subsistem ${project.title}.`,
+                          title: language === "en" ? `${project.title} — System Snapshot` : `${project.title} — Foto / Snapshot`,
+                        },
+                        {
+                          type: "photo",
+                          title: language === "en" ? `${project.title} — Architecture View` : `${project.title} — Tampilan Arsitektur`,
                         },
                       ]}
                       contextTitle={project.category}
                       onSelectMedia={(selected) => setPreviewItem(selected)}
                       className="border-none pt-0 mt-0"
                     />
-
-                    {/* Key Metrics Dashboard */}
-                    <div className="grid grid-cols-2 gap-2.5">
-                      {project.metrics.slice(0, 2).map((metric, i) => {
-                        const parts = metric.split(" ")
-                        const val = parts[0]
-                        const desc = parts.slice(1).join(" ")
-                        return (
-                          <div
-                            key={i}
-                            className="border border-zinc-200/90 dark:border-zinc-800/90 bg-background/80 dark:bg-zinc-900/60 rounded-xl p-3 flex flex-col justify-center shadow-xs"
-                          >
-                            <span className="font-mono text-xs font-bold text-foreground leading-none flex items-center gap-1.5">
-                              <Activity className="size-3 text-zinc-500 dark:text-zinc-400" />
-                              {val}
-                            </span>
-                            <span className="font-sans text-[11px] text-zinc-500 dark:text-zinc-400 mt-1 leading-snug">
-                              {desc}
-                            </span>
-                          </div>
-                        )
-                      })}
-                    </div>
 
                     {/* Action Links */}
                     <div className="flex gap-2.5 select-none pt-1">
