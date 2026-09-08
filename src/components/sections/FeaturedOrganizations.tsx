@@ -21,57 +21,11 @@ export default function FeaturedOrganizations() {
   const allOrgs = getOrganizations(language)
 
   const getOrgSlides = (org: (typeof allOrgs)[0]) => {
-    if (org.id.includes("banyubramanta")) {
-      return [
-        {
-          type: "photo" as const,
-          title: "Tim Robotika Banyubramanta ITS",
-          caption: "Dokumentasi perakitan dan pengujian wahana robot bawah air (AUV) bersama divisi teknis.",
-          image: "/images/activities/robot-assembly-1.png",
-        },
-        {
-          type: "photo" as const,
-          title: "Uji Kolam & Navigasi Banyubramanta",
-          caption: "Pengujian sensor kedalaman, manuver otonom, dan kestabilan wahana robot.",
-          image: "/images/activities/robot-assembly-2.png",
-        },
-        {
-          type: "certificate" as const,
-          title: org.certificatePlaceholder?.title || "Sertifikat Anggota / Pengurus Banyubramanta",
-          caption: org.certificatePlaceholder?.caption || "Sertifikat resmi pengabdian dari Tim Robotika Banyubramanta ITS.",
-        },
-      ]
-    }
-    if (org.id.includes("m-iot")) {
-      return [
-        {
-          type: "photo" as const,
-          title: "Laboratorium M-IOT FTEIC ITS",
-          caption: "Fasilitas pengembangan sistem tertanam, IoT, dan riset komputasi bergerak.",
-          image: "/images/activities/iot-dashboard-screenshot.png",
-        },
-        {
-          type: "photo" as const,
-          title: "Rapat Kerja & Koordinasi Lab M-IOT",
-          caption: "Dokumentasi evaluasi lini masa proyek riset dan pengembangan asisten laboratorium.",
-        },
-        {
-          type: "certificate" as const,
-          title: org.certificatePlaceholder?.title || "SK Koordinator / Asisten Lab M-IOT",
-          caption: org.certificatePlaceholder?.caption || "Surat keputusan resmi penugasan pimpinan laboratorium dari pimpinan departemen.",
-        },
-      ]
-    }
     return [
       {
         type: "photo" as const,
-        title: org.photoPlaceholder?.title || `${org.role} — Foto Forum & Rapat`,
-        caption: org.photoPlaceholder?.caption || "Dokumentasi pelaksanaan rapat kerja, forum musyawarah, atau kegiatan divisi.",
-      },
-      {
-        type: "photo" as const,
-        title: `${org.role} — Kegiatan Lapangan & Evaluasi`,
-        caption: "Dokumentasi pelaksanaan program kerja dan sesi monitoring anggota.",
+        title: org.photoPlaceholder?.title || `${org.role} — Foto Dokumentasi`,
+        caption: org.photoPlaceholder?.caption || "Dokumentasi kegiatan organisasi dan rapat kerja.",
       },
       {
         type: "certificate" as const,
@@ -114,7 +68,7 @@ export default function FeaturedOrganizations() {
               className="flex-1 w-full flex flex-col self-stretch h-full"
             >
               <NetworkSubsystemNode
-                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[400px] sm:h-[410px] self-stretch"
               >
                 <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
@@ -132,14 +86,6 @@ export default function FeaturedOrganizations() {
                       <span className="line-clamp-1">{org.title}</span>
                     </div>
                   </div>
-
-                  {org.bullets && (
-                    <ul className="list-disc pl-4 text-xs text-zinc-500 dark:text-zinc-400 flex flex-col gap-1 leading-relaxed mt-1 line-clamp-3 min-h-[3.75rem]">
-                      {org.bullets.slice(0, 2).map((bullet, i) => (
-                        <li key={i}>{bullet}</li>
-                      ))}
-                    </ul>
-                  )}
                 </div>
 
                 {/* Direct Visual Preview Slot (Multi-photo slider enabled) */}

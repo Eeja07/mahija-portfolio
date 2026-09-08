@@ -21,56 +21,11 @@ export default function FeaturedCommittees() {
   const allComms = getCommittees(language)
 
   const getCommSlides = (comm: (typeof allComms)[0]) => {
-    if (comm.id.includes("mage")) {
-      return [
-        {
-          type: "photo" as const,
-          title: "Pelaksanaan Event & Workshop MAGE",
-          caption: "Dokumentasi koordinasi divisi acara, pameran inovasi, dan workshop multimedia.",
-          image: "/images/activities/robot-assembly-2.png",
-        },
-        {
-          type: "photo" as const,
-          title: "Opening & Closing Ceremony MAGE",
-          caption: "Dokumentasi pelaksanaan seremoni pembukaan, talkshow teknologi, dan penganugerahan pemenang.",
-        },
-        {
-          type: "certificate" as const,
-          title: comm.certificatePlaceholder?.title || "Sertifikat Kepanitiaan MAGE",
-          caption: comm.certificatePlaceholder?.caption || "Sertifikat resmi penghargaan panitia dari Departemen Teknik Komputer FTEIC ITS.",
-        },
-      ]
-    }
-    if (comm.id.includes("hgts")) {
-      return [
-        {
-          type: "photo" as const,
-          title: "Pengajaran Deteksi Objek & Pose Siswa",
-          caption: "Dokumentasi penyampaian materi konsep AI dan demonstrasi deteksi interaktif pada siswa MTs 19.",
-          image: "/images/activities/robot-assembly-1.png",
-        },
-        {
-          type: "photo" as const,
-          title: "Praktik Interaktif & Diskusi Kelas",
-          caption: "Sesi tanya jawab dan bimbingan langsung kepada peserta didik seputar teknologi cerdas.",
-        },
-        {
-          type: "certificate" as const,
-          title: comm.certificatePlaceholder?.title || "Sertifikat Panitia & Pengajar HGTS",
-          caption: comm.certificatePlaceholder?.caption || "Sertifikat resmi pengabdian masyarakat dari HIMATEKKOM ITS.",
-        },
-      ]
-    }
     return [
       {
         type: "photo" as const,
         title: comm.photoPlaceholder?.title || `${comm.role} — Foto Kegiatan`,
-        caption: comm.photoPlaceholder?.caption || "Dokumentasi pelaksanaan acara, koordinasi divisi, atau pengawasan operasional.",
-      },
-      {
-        type: "photo" as const,
-        title: `${comm.role} — Sesi Lapangan & Rundown`,
-        caption: "Dokumentasi briefing teknis lapangan dan kelancaran alur rundown kegiatan.",
+        caption: comm.photoPlaceholder?.caption || "Dokumentasi kegiatan dan pelaksanaan acara.",
       },
       {
         type: "certificate" as const,
@@ -113,7 +68,7 @@ export default function FeaturedCommittees() {
               className="flex-1 w-full flex flex-col self-stretch h-full"
             >
               <NetworkSubsystemNode
-                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[400px] sm:h-[410px] self-stretch"
               >
                 <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
@@ -131,14 +86,6 @@ export default function FeaturedCommittees() {
                       <span className="line-clamp-1">{comm.title}</span>
                     </div>
                   </div>
-
-                  {comm.bullets && (
-                    <ul className="list-disc pl-4 text-xs text-zinc-500 dark:text-zinc-400 flex flex-col gap-1 leading-relaxed mt-1 line-clamp-3 min-h-[3.75rem]">
-                      {comm.bullets.slice(0, 2).map((bullet, i) => (
-                        <li key={i}>{bullet}</li>
-                      ))}
-                    </ul>
-                  )}
                 </div>
 
                 {/* Direct Visual Preview Slot (Multi-photo slider enabled) */}

@@ -269,44 +269,44 @@
 
 @keyframes packet-stream {
   0% {
-    left: -6rem;
+    left: -7rem;
     opacity: 0;
   }
-  15% {
+  5% {
     opacity: 1;
   }
-  85% {
+  95% {
     opacity: 1;
   }
   100% {
-    left: 100%;
+    left: calc(100% + 7rem);
     opacity: 0;
   }
 }
 
 @keyframes packet-stream-reverse {
   0% {
-    right: -6rem;
+    right: -7rem;
     opacity: 0;
   }
-  15% {
+  5% {
     opacity: 1;
   }
-  85% {
+  95% {
     opacity: 1;
   }
   100% {
-    right: 100%;
+    right: calc(100% + 7rem);
     opacity: 0;
   }
 }
 
 .animate-packet-stream {
-  animation: packet-stream 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: packet-stream 2.2s linear infinite;
 }
 
 .animate-packet-stream-reverse {
-  animation: packet-stream-reverse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: packet-stream-reverse 2.2s linear infinite;
 }
 
 /* Circuit corner brackets */

@@ -16,7 +16,7 @@ export const translations = {
     },
     hero: {
       title: "Mahija Ibad Pradipta",
-      subtitle: "Building self-hosted systems, IoT platforms, autonomous robotics, and infrastructure.",
+      subtitle: "Computer Engineering graduate from ITS specializing in full-stack software development, IT infrastructure, DevOps, and networking. Experienced in building scalable web & mobile applications, containerized systems, and autonomous edge IoT/robotics solutions.",
       github: "GitHub Node",
       downloadCv: "Download CV",
       metrics: [
@@ -121,7 +121,7 @@ export const translations = {
       tag: "MAHIJA IBAD PRADIPTA",
       badge: "Interactive 3D Portfolio",
       title: "Mahija Ibad Pradipta",
-      subtitle: "Full-Stack Infrastructure, Edge AI & IoT Engineer",
+      subtitle: "Network, IoT, Robotics, Full-Stack, Managerial & AI Engineer",
       hudGuide: "3D PORTFOLIO • DRAG TO ROTATE • RIGHT CLICK TO ENTER",
       hudGuideMobile: "3D PORTFOLIO • DRAG TO ROTATE • HOLD TO ENTER",
       nodeDetected: "SECTION PREVIEW",
@@ -168,7 +168,7 @@ export const translations = {
     },
     hero: {
       title: "Mahija Ibad Pradipta",
-      subtitle: "Membangun sistem mandiri (self-hosted), platform IoT, robotika otonom, dan infrastruktur.",
+      subtitle: "Lulusan S1 Teknik Komputer ITS dengan keahlian mendalam di bidang full-stack software development, infrastruktur IT, DevOps, dan jaringan komputer. Berpengalaman membangun aplikasi web & mobile scalable, sistem kontainer, serta solusi IoT/robotika otonom pada edge device.",
       github: "Node GitHub",
       downloadCv: "Unduh CV",
       metrics: [
@@ -273,7 +273,7 @@ export const translations = {
       tag: "MAHIJA IBAD PRADIPTA",
       badge: "Portofolio Interaktif 3D",
       title: "Mahija Ibad Pradipta",
-      subtitle: "Insinyur Infrastruktur Full-Stack, Edge AI & IoT",
+      subtitle: "Insinyur Jaringan, IoT, Robotika, Full-Stack, Manajerial & AI",
       hudGuide: "PORTOFOLIO 3D • GESER UNTUK ROTASI • KLIK KANAN UNTUK MASUK",
       hudGuideMobile: "PORTOFOLIO 3D • GESER UNTUK ROTASI • TAHAN UNTUK MASUK",
       nodeDetected: "PRATINJAU BAGIAN",

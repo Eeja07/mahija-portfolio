@@ -93,18 +93,6 @@ export default function ExperienceArchive() {
                         {exp.location}
                       </p>
                     </div>
-
-                    <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed mt-1">
-                      {exp.description}
-                    </p>
-
-                    {exp.achievements && exp.achievements.length > 0 && (
-                      <ul className="list-disc pl-4 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 flex flex-col gap-1.5 leading-relaxed mt-1">
-                        {exp.achievements.map((bullet, i) => (
-                          <li key={i}>{bullet}</li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
 
                   <div className="flex flex-col gap-3 pt-4 border-t border-zinc-200/70 dark:border-zinc-800/70 select-none">

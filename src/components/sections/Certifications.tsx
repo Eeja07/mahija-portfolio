@@ -52,7 +52,7 @@ export default function Certifications() {
             >
               <NetworkSubsystemNode
                 status="healthy"
-                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[400px] sm:h-[410px] self-stretch"
               >
                 <div className="flex-1 flex flex-col gap-3">
                   {/* Category & Date */}
@@ -74,11 +74,6 @@ export default function Certifications() {
                       <span className="truncate">{cert.issuer}</span>
                     </p>
                   </div>
-
-                  {/* Summary */}
-                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 min-h-[2.5rem]">
-                    {cert.summary}
-                  </p>
 
                   {/* Verified Skills */}
                   <div className="flex flex-wrap gap-1.5 pt-1 min-h-[1.75rem]">
@@ -116,11 +111,6 @@ export default function Certifications() {
                       type: "photo",
                       title: `${cert.title} — Lembar Skor & Verifikasi`,
                       caption: `Verifikasi kredensial: ${cert.credentialId || "VERIFIED"} • ${cert.issuer}`,
-                    },
-                    {
-                      type: "photo",
-                      title: `${cert.title} — Spesifikasi & Kompetensi`,
-                      caption: `Validasi kompetensi teknis: ${cert.skills.slice(0, 3).join(", ")}`,
                     },
                   ]}
                   contextTitle={`${cert.issuer} • ${cert.period}`}

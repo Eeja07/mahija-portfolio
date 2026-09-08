@@ -88,10 +88,6 @@ export default function FeaturedRepositories() {
                       </div>
                       <ExternalLink className="size-3.5 text-zinc-400 opacity-0 group-hover:opacity-100 transition-opacity duration-150 shrink-0 ml-2" />
                     </div>
-
-                    <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed line-clamp-3">
-                      {repo.description}
-                    </p>
                   </div>
 
                   <div className="pt-3 border-t border-zinc-200/70 dark:border-zinc-800/70 flex items-center justify-between select-none">

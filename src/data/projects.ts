@@ -41,9 +41,7 @@ export const projects: Project[] = [
     "approach": "Built a localized edge-processing pipeline that performs object detection directly on a low-power Raspberry Pi 4, only transmitting metadata alerts when human presence is verified.",
     "tradeoffs": "Selected pruned TensorFlow Lite models over full PyTorch equivalents to maintain a 10 FPS throughput on CPU, sacrificing 2% detection accuracy for real-time responsiveness.",
     "challenges": "Thermal throttling on the Pi 4 under continuous inference. Resolved by implementing adaptive frame-skipping and custom aluminum heatsink cooling, lowering operating temperatures by 15°C.",
-    "outcome": "A fully private, offline-first home security platform processing three camera feeds simultaneously with local notification triggers in under 120ms.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/cctv-demo.webm"
+    "outcome": "A fully private, offline-first home security platform processing three camera feeds simultaneously with local notification triggers in under 120ms."
   },
   {
     "id": "human-search-drone",
@@ -83,9 +81,7 @@ export const projects: Project[] = [
     "approach": "Designed a companion-computer payload (Raspberry Pi 5) communicating via MAVLink with a PX4 flight controller, running localized real-time YOLOv8 person detection.",
     "tradeoffs": "Chose the YOLOv8nano variant compiled with ONNX precision, preferring lower model footprint and high latency stability over the higher recall of larger models.",
     "challenges": "Sensor drift in GPS-denied forest canopies. Solved by fusing optical flow downward-facing velocity data with LiDAR altimeter logs within the PX4 EKF2 filter.",
-    "outcome": "An autonomous aerial unit capable of flying pre-programmed search paths and locating targets inside a 100x100m grid completely offline within 6 minutes.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/drone-demo.webm"
+    "outcome": "An autonomous aerial unit capable of flying pre-programmed search paths and locating targets inside a 100x100m grid completely offline within 6 minutes."
   },
   {
     "id": "job-tracker",
@@ -128,9 +124,7 @@ export const projects: Project[] = [
     "approach": "Built a unified enterprise monorepo platform featuring automated Gmail inbox monitoring, multi-stage application pipeline boards, salary negotiation logging, and instant WhatsApp alerts.",
     "tradeoffs": "Chose NestJS with Prisma and Argon2id over lightweight Express to guarantee strict type-safety, dependency injection architecture, and enterprise-grade session encryption.",
     "challenges": "Parsing unpredictable interview invitation email structures from various HR platforms. Solved by designing a resilient regex and keyword extraction pipeline with sender domain verification.",
-    "outcome": "A robust production platform processing job pipelines with 100% automated test coverage, sub-180MB minimal container images, and instantaneous WhatsApp push notifications.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/jobtracker-demo.webm"
+    "outcome": "A robust production platform processing job pipelines with 100% automated test coverage, sub-180MB minimal container images, and instantaneous WhatsApp push notifications."
   },
   {
     "id": "finance-tracker",
@@ -243,9 +237,7 @@ export const projects: Project[] = [
     "approach": "Established a bare-metal hypervisor node running Proxmox VE. Leveraged Docker Compose within Debian VMs and linked access routing using a secure egress-only Cloudflare Tunnel.",
     "tradeoffs": "Opted for Cloudflare Tunnels over standard port-forwarding with DynDNS, trading centralized transit traffic control for absolute security against direct IP scanning.",
     "challenges": "Achieving zero-downtime container updates. Solved by writing automated health-check endpoints and configuring Nginx proxy rules to balance traffic to standby container clones during updates.",
-    "outcome": "Secure hosting for 10+ internal services (MQTT brokers, databases, dashboards, web apps) operating on 99.99% uptime with automated remote storage backups.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/homelab-demo.webm"
+    "outcome": "Secure hosting for 10+ internal services (MQTT brokers, databases, dashboards, web apps) operating on 99.99% uptime with automated remote storage backups."
   },
   {
     "id": "untern-platform",
@@ -282,9 +274,7 @@ export const projects: Project[] = [
     "approach": "Designed a high-density, centralized full-stack application featuring reactive search indices, recruiter dashboard tools, and status notification workers.",
     "tradeoffs": "Utilized managed Postgres indexes and stored procedures instead of importing a heavy Elasticsearch deployment, keeping computing footprints inside our resource limits.",
     "challenges": "Syncing job listings with third-party web scrapers. Solved by building a rate-limited queue system using Redis to queue import workers and prevent database locking.",
-    "outcome": "A production job portal facilitating over 500 validated internship matches with under 50ms listing search latency.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/untern-demo.webm"
+    "outcome": "A production job portal facilitating over 500 validated internship matches with under 50ms listing search latency."
   },
   {
     "id": "swimate",
@@ -453,9 +443,7 @@ export const projectsId: Project[] = [
     "approach": "Membangun alur pemrosesan edge lokal yang melakukan deteksi objek langsung pada perangkat berdaya rendah, hanya mengirimkan peringatan metadata saat keberadaan manusia terverifikasi.",
     "tradeoffs": "Memilih model inferensi teroptimasi untuk menjaga throughput tinggi pada CPU lokal, mengorbankan sedikit akurasi demi responsivitas waktu nyata.",
     "challenges": "Penurunan performa akibat panas pada pengoperasian inferensi kontinu. Diselesaikan dengan menerapkan frame-skipping adaptif dan sistem pendingin khusus yang menurunkan suhu sebesar 15°C.",
-    "outcome": "Platform keamanan rumah pribadi yang memproses feed kamera secara simultan dengan pemicu notifikasi lokal dalam waktu kurang dari 120ms.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/cctv-demo.webm"
+    "outcome": "Platform keamanan rumah pribadi yang memproses feed kamera secara simultan dengan pemicu notifikasi lokal dalam waktu kurang dari 120ms."
   },
   {
     "id": "human-search-drone",
@@ -495,9 +483,7 @@ export const projectsId: Project[] = [
     "approach": "Merancang payload komputer pendamping (Raspberry Pi 5) yang berkomunikasi via MAVLink dengan flight controller PX4, menjalankan deteksi manusia YOLOv8 lokal waktu nyata.",
     "tradeoffs": "Memilih varian YOLOv8 nano yang dikompilasi dengan presisi ONNX, mengutamakan konsumsi daya rendah dan stabilitas latensi tinggi dibanding model berukuran besar.",
     "challenges": "Drift sensor pada lingkungan tanpa GPS. Diselesaikan dengan memadukan data kecepatan downward optical flow dengan altimeter LiDAR di dalam filter EKF2 PX4.",
-    "outcome": "Unit drone otonom yang mampu terbang menyusuri jalur pencarian terprogram dan menemukan target di area 100x100m secara offline dalam waktu 6 menit.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/drone-demo.webm"
+    "outcome": "Unit drone otonom yang mampu terbang menyusuri jalur pencarian terprogram dan menemukan target di area 100x100m secara offline dalam waktu 6 menit."
   },
   {
     "id": "job-tracker",
@@ -540,9 +526,7 @@ export const projectsId: Project[] = [
     "approach": "Membangun platform monorepo terpadu dengan pemantauan otomatis inbox Gmail, papan pipeline lamaran multi-tahap, pencatatan negosiasi gaji, dan peringatan instan WhatsApp.",
     "tradeoffs": "Memilih NestJS dengan Prisma dan Argon2id daripada Express demi menjamin type-safety ketat, arsitektur dependency injection, dan enkripsi sesi berstandar enterprise.",
     "challenges": "Parsing struktur email undangan interview yang bervariasi dari berbagai sistem HR. Diselesaikan dengan membangun regex ekstraksi tangguh dan verifikasi domain pengirim.",
-    "outcome": "Platform produksi handal yang memproses pipeline lamaran kerja dengan 100% test coverage, ukuran kontainer di bawah 180MB, dan notifikasi push WhatsApp seketika.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/jobtracker-demo.webm"
+    "outcome": "Platform produksi handal yang memproses pipeline lamaran kerja dengan 100% test coverage, ukuran kontainer di bawah 180MB, dan notifikasi push WhatsApp seketika."
   },
   {
     "id": "finance-tracker",
@@ -655,9 +639,7 @@ export const projectsId: Project[] = [
     "approach": "Membangun node hypervisor fisik, memanfaatkan Docker Compose di dalam VM Debian, dan menghubungkan rute akses menggunakan Cloudflare Tunnel yang aman.",
     "tradeoffs": "Memilih Cloudflare Tunnel daripada port-forwarding biasa dengan DynDNS untuk keamanan mutlak dari pemindaian IP langsung.",
     "challenges": "Mencapai pembaruan kontainer tanpa downtime. Diselesaikan dengan konfigurasi health-check otomatis dan aturan proksi Nginx.",
-    "outcome": "Hosting aman untuk 10+ layanan internal (broker MQTT, basis data, dashboard, aplikasi web) beroperasi dengan ketersediaan tinggi dan pencadangan otomatis.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/homelab-demo.webm"
+    "outcome": "Hosting aman untuk 10+ layanan internal (broker MQTT, basis data, dashboard, aplikasi web) beroperasi dengan ketersediaan tinggi dan pencadangan otomatis."
   },
   {
     "id": "untern-platform",
@@ -694,9 +676,7 @@ export const projectsId: Project[] = [
     "approach": "Merancang aplikasi full-stack terpusat dengan indeks pencarian reaktif, alat dashboard perekrut, dan notifikasi otomatis.",
     "tradeoffs": "Memanfaatkan indeks terkelola PostgreSQL dan prosedur tersimpan dibanding Elasticsearch besar, menjaga konsumsi sumber daya tetap hemat.",
     "challenges": "Sinkronisasi data lowongan kerja. Diselesaikan dengan membangun antrean berbatas laju menggunakan Redis untuk mencegah penguncian basis data.",
-    "outcome": "Portal kerja produksi yang memfasilitasi pencocokan magang terverifikasi dengan latensi pencarian di bawah 50ms.",
-    "mediaType": "video",
-    "mediaUrl": "/videos/untern-demo.webm"
+    "outcome": "Portal kerja produksi yang memfasilitasi pencocokan magang terverifikasi dengan latensi pencarian di bawah 50ms."
   },
   {
     "id": "swimate",

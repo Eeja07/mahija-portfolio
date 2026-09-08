@@ -21,99 +21,11 @@ export default function Experience() {
   const allExperiences = getExperiences(language)
 
   const getExperienceSlides = (exp: (typeof allExperiences)[0]) => {
-    if (exp.id === "robotics-extracurricular-instructor") {
-      return [
-        {
-          type: "photo" as const,
-          title: "Perakitan Robot & Pembelajaran Modul",
-          caption: "Dokumentasi perakitan modul 4-Wheel Obstacle Avoidance Robot bersama siswa.",
-          image: "/images/activities/robot-assembly-1.png",
-        },
-        {
-          type: "photo" as const,
-          title: "Uji Coba Navigasi Robot Lapangan",
-          caption: "Pengujian sensor ultrasonik dan manuver halangan robot di arena praktik.",
-          image: "/images/activities/robot-assembly-2.png",
-        },
-        {
-          type: "certificate" as const,
-          title: exp.certificatePlaceholder?.title || "Sertifikat Pengajar Robotika",
-          caption: exp.certificatePlaceholder?.caption || "Sertifikat resmi pengajar ekstrakurikuler robotika.",
-        },
-      ]
-    }
-    if (exp.id === "winnicode-garuda-intern") {
-      return [
-        {
-          type: "photo" as const,
-          title: "UNTERN Web Application Dashboard",
-          caption: "Antarmuka platform penghubung pencari magang dengan perusahaan mitra.",
-          image: "/images/featured/untern/home.webp",
-        },
-        {
-          type: "photo" as const,
-          title: "Workflow & Recruitment Pipeline",
-          caption: "Alur verifikasi pelamar kerja dan manajemen rekrutmen magang.",
-          image: "/images/featured/untern/workflow.webp",
-        },
-        {
-          type: "certificate" as const,
-          title: exp.certificatePlaceholder?.title || "Surat Keterangan Magang Winnicode",
-          caption: exp.certificatePlaceholder?.caption || "Surat keterangan resmi magang Full-Stack Developer PT Winnicode Garuda Indonesia.",
-        },
-      ]
-    }
-    if (exp.id === "lintasarta-intern") {
-      return [
-        {
-          type: "photo" as const,
-          title: "Infrastruktur Jaringan & Server Gateway",
-          caption: "Dokumentasi konfigurasi gateway jaringan dan tunnel komunikasi aman.",
-          image: "/images/evidence/tunnel.webp",
-        },
-        {
-          type: "photo" as const,
-          title: "Penyimpanan & Manajemen Node Server",
-          caption: "Pengelolaan storage cluster dan integrasi layanan infrastruktur IT.",
-          image: "/images/evidence/storage.webp",
-        },
-        {
-          type: "certificate" as const,
-          title: exp.certificatePlaceholder?.title || "Surat Keterangan Magang PT Lintasarta",
-          caption: exp.certificatePlaceholder?.caption || "Surat keterangan resmi magang IT Services Management Lintasarta.",
-        },
-      ]
-    }
-    if (exp.id === "dsp-lab-course-ta") {
-      return [
-        {
-          type: "photo" as const,
-          title: "Visualisasi & Pengolahan Sinyal Digital",
-          caption: "Dashboard pemantauan spektrum frekuensi sinyal dan simulasi data lab.",
-          image: "/images/activities/iot-dashboard-screenshot.png",
-        },
-        {
-          type: "photo" as const,
-          title: "Sesi Praktikum Pengolahan Sinyal Digital",
-          caption: "Dokumentasi bimbingan praktikum sinyal dan evaluasi laporan mahasiswa.",
-        },
-        {
-          type: "certificate" as const,
-          title: exp.certificatePlaceholder?.title || "Surat Tugas Asisten Lab DSP",
-          caption: exp.certificatePlaceholder?.caption || "Surat tugas resmi Asisten Laboratorium DSP M-IOT FTEIC ITS.",
-        },
-      ]
-    }
     return [
       {
         type: "photo" as const,
         title: exp.photoPlaceholder?.title || `${exp.role} — Foto Dokumentasi`,
         caption: exp.photoPlaceholder?.caption || "Dokumentasi pelaksanaan tugas, praktikum, atau kegiatan profesional.",
-      },
-      {
-        type: "photo" as const,
-        title: `${exp.role} — Evaluasi & Bimbingan`,
-        caption: "Sesi evaluasi proyek, asistensi modul, dan bimbingan teknis mahasiswa.",
       },
       {
         type: "certificate" as const,
@@ -156,7 +68,7 @@ export default function Experience() {
             >
               <NetworkSubsystemNode
                 status={idx === 0 ? "transmitting" : "healthy"}
-                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[400px] sm:h-[410px] self-stretch"
               >
                 <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
@@ -179,10 +91,6 @@ export default function Experience() {
                       <span className="font-normal text-zinc-500 shrink-0">{exp.location}</span>
                     </div>
                   </div>
-
-                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3 min-h-[3.75rem]">
-                    {exp.description}
-                  </p>
 
                   {/* Tech Pills */}
                   <div className="flex flex-wrap gap-1.5 pt-1 select-none min-h-[1.75rem]">

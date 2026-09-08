@@ -40,8 +40,8 @@ export default function CardMediaPreview({
   className = "",
   activeType = "photo",
 }: CardMediaPreviewProps) {
-  // Construct slides list if not provided directly
-  const slides: MediaSlide[] = propSlides && propSlides.length > 0
+  // Construct raw slides if not provided directly
+  const allSlides: MediaSlide[] = propSlides && propSlides.length > 0
     ? propSlides
     : [
         ...(photoTitle ? [{
@@ -58,26 +58,47 @@ export default function CardMediaPreview({
         }] : []),
       ]
 
-  const [currentIndex, setCurrentIndex] = useState(() => {
-    if (activeType === "certificate") {
-      const certIdx = slides.findIndex((s) => s.type === "certificate")
-      return certIdx >= 0 ? certIdx : 0
-    }
-    return 0
+  // Group strictly by category: "Foto" and "Sertifikat"
+  const photoSlides = allSlides.filter((s) => s.type === "photo")
+  const certSlides = allSlides.filter((s) => s.type === "certificate")
+
+  const hasPhotos = photoSlides.length > 0
+  const hasCerts = certSlides.length > 0
+
+  const [selectedCategory, setSelectedCategory] = useState<"photo" | "certificate">(() => {
+    if (activeType === "certificate" && hasCerts) return "certificate"
+    if (hasPhotos) return "photo"
+    return "certificate"
   })
+
+  // Track slide index per category independently
+  const [photoIndex, setPhotoIndex] = useState(0)
+  const [certIndex, setCertIndex] = useState(0)
   const touchStartX = useRef<number | null>(null)
 
-  const activeSlide = slides[currentIndex] || slides[0]
-  const isCertificate = activeSlide?.type === "certificate"
+  const currentCategorySlides = selectedCategory === "photo" ? photoSlides : certSlides
+  const currentSlideIndex = selectedCategory === "photo" ? photoIndex : certIndex
+  const activeSlide = currentCategorySlides[currentSlideIndex] || currentCategorySlides[0]
+  const isCertificate = selectedCategory === "certificate"
 
   const handleNext = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation()
-    setCurrentIndex((prev) => (prev + 1) % slides.length)
+    if (currentCategorySlides.length <= 1) return
+    if (selectedCategory === "photo") {
+      setPhotoIndex((prev) => (prev + 1) % photoSlides.length)
+    } else {
+      setCertIndex((prev) => (prev + 1) % certSlides.length)
+    }
   }
 
   const handlePrev = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation()
-    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length)
+    if (currentCategorySlides.length <= 1) return
+    if (selectedCategory === "photo") {
+      setPhotoIndex((prev) => (prev - 1 + photoSlides.length) % photoSlides.length)
+    } else {
+      setCertIndex((prev) => (prev - 1 + certSlides.length) % certSlides.length)
+    }
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -87,7 +108,7 @@ export default function CardMediaPreview({
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return
     const diffX = touchStartX.current - e.changedTouches[0].clientX
-    if (Math.abs(diffX) > 40 && slides.length > 1) {
+    if (Math.abs(diffX) > 40 && currentCategorySlides.length > 1) {
       if (diffX > 0) {
         handleNext()
       } else {
@@ -112,39 +133,57 @@ export default function CardMediaPreview({
 
   return (
     <div className={cn("w-full flex flex-col gap-2 pt-3 border-t border-zinc-200/80 dark:border-zinc-800/80 select-none mt-auto", className)}>
-      {/* Top Media Tabs / Switcher if more than 1 slide, or reserved slot for height alignment */}
-      {slides.length > 1 ? (
-        <div className="flex items-center justify-between gap-2 h-7 max-h-7 shrink-0">
-          <div className="flex items-center gap-1 bg-zinc-100/90 dark:bg-zinc-900/90 p-0.5 rounded-lg border border-zinc-200/80 dark:border-zinc-800/80 overflow-x-auto no-scrollbar max-w-[calc(100%-48px)]">
-            {slides.map((slide, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setCurrentIndex(idx)
-                }}
-                className={cn(
-                  "px-2 py-0.5 rounded-md font-mono text-[10px] transition-all cursor-pointer flex items-center gap-1 shrink-0 whitespace-nowrap",
-                  currentIndex === idx
-                    ? "bg-background text-foreground shadow-2xs font-bold"
-                    : "text-zinc-500 hover:text-foreground font-medium"
-                )}
-              >
-                {slide.type === "certificate" ? <Award className="size-3 shrink-0" /> : <ImageIcon className="size-3 shrink-0" />}
-                <span className="shrink-0">{slide.type === "certificate" ? "Sertifikat" : `Foto ${slides.filter(s => s.type === "photo").length > 1 ? idx + 1 : ""}`}</span>
-              </button>
-            ))}
-          </div>
+      {/* Top Category Switcher: Strictly Category-based ("Foto" & "Sertifikat") */}
+      <div className="flex items-center justify-between gap-2 h-7 max-h-7 shrink-0">
+        <div className="flex items-center gap-1 bg-zinc-100/90 dark:bg-zinc-900/90 p-0.5 rounded-lg border border-zinc-200/80 dark:border-zinc-800/80">
+          {hasPhotos && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                setSelectedCategory("photo")
+              }}
+              className={cn(
+                "px-2.5 py-0.5 rounded-md font-mono text-[10px] transition-all cursor-pointer flex items-center gap-1 shrink-0 whitespace-nowrap",
+                selectedCategory === "photo"
+                  ? "bg-background text-foreground shadow-2xs font-bold"
+                  : "text-zinc-500 hover:text-foreground font-medium"
+              )}
+            >
+              <ImageIcon className="size-3 shrink-0" />
+              <span>Foto</span>
+            </button>
+          )}
 
-          {/* Slide counter */}
-          <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 shrink-0">
-            {currentIndex + 1} / {slides.length}
-          </span>
+          {hasCerts && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                setSelectedCategory("certificate")
+              }}
+              className={cn(
+                "px-2.5 py-0.5 rounded-md font-mono text-[10px] transition-all cursor-pointer flex items-center gap-1 shrink-0 whitespace-nowrap",
+                selectedCategory === "certificate"
+                  ? "bg-background text-foreground shadow-2xs font-bold"
+                  : "text-zinc-500 hover:text-foreground font-medium"
+              )}
+            >
+              <Award className="size-3 shrink-0" />
+              <span>Sertifikat</span>
+            </button>
+          )}
         </div>
-      ) : (
-        <div className="h-7 max-h-7 shrink-0" aria-hidden="true" />
-      )}
+
+        {/* Category Slide counter if more than 1 item in the active category */}
+        {currentCategorySlides.length > 1 ? (
+          <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 shrink-0">
+            {currentSlideIndex + 1} / {currentCategorySlides.length}
+          </span>
+        ) : (
+          <div className="h-4" aria-hidden="true" />
+        )}
+      </div>
 
       {/* Embedded Visual Preview Container (Equal fixed height: h-36 sm:h-40) */}
       <div
@@ -225,14 +264,14 @@ export default function CardMediaPreview({
           </>
         )}
 
-        {/* In-Card Slide Navigation Arrows (< and >) if multiple slides exist */}
-        {slides.length > 1 && (
+        {/* In-Card Slide Navigation Arrows (< and >) if multiple items in the selected category */}
+        {currentCategorySlides.length > 1 && (
           <>
             <div className="absolute inset-y-0 inset-x-1.5 flex items-center justify-between pointer-events-none z-20">
               <button
                 type="button"
                 onClick={handlePrev}
-                aria-label="Foto sebelumnya"
+                aria-label="Item sebelumnya"
                 className="pointer-events-auto p-1.5 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 text-white opacity-85 hover:opacity-100 transition-all cursor-pointer active:scale-95 shadow-md"
               >
                 <ChevronLeft className="size-3.5" />
@@ -241,7 +280,7 @@ export default function CardMediaPreview({
               <button
                 type="button"
                 onClick={handleNext}
-                aria-label="Foto selanjutnya"
+                aria-label="Item selanjutnya"
                 className="pointer-events-auto p-1.5 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 text-white opacity-85 hover:opacity-100 transition-all cursor-pointer active:scale-95 shadow-md"
               >
                 <ChevronRight className="size-3.5" />
@@ -250,12 +289,12 @@ export default function CardMediaPreview({
 
             {/* Pagination Dots indicator */}
             <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 pointer-events-none">
-              {slides.map((_, i) => (
+              {currentCategorySlides.map((_, i) => (
                 <span
                   key={i}
                   className={cn(
                     "h-1 rounded-full transition-all duration-200",
-                    currentIndex === i
+                    currentSlideIndex === i
                       ? "w-3.5 bg-white shadow-xs"
                       : "w-1 bg-white/40"
                   )}

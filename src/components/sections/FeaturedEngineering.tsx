@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from "react"
-import NextImage from "next/image"
 import { motion, AnimatePresence } from "motion/react"
 import { getProjects } from "@/data/projects"
 import { Badge } from "@/components/ui/badge"
@@ -10,10 +9,10 @@ import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
 import { cn } from "@/lib/utils"
-import { Image as ImageIcon, Cpu, ExternalLink, Activity, Maximize2 } from "lucide-react"
+import { Cpu, ExternalLink, Activity } from "lucide-react"
 import { MediaItem } from "@/types/experience"
 import MediaPreviewModal from "@/components/ui/MediaPreviewModal"
-import MediaAttachmentButton from "@/components/ui/MediaAttachmentButton"
+import CardMediaPreview from "@/components/ui/CardMediaPreview"
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -24,7 +23,6 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export default function FeaturedEngineering() {
   const [activeArchId, setActiveArchId] = useState<string | null>(null)
-  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({})
   const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
   const { language } = useLanguage()
   const t = translations[language].projects
@@ -50,26 +48,6 @@ export default function FeaturedEngineering() {
         ease: "easeOut" as const,
       },
     },
-  }
-
-  const handleImageError = (id: string) => {
-    setFailedImages((prev) => ({ ...prev, [id]: true }))
-  }
-
-  const getProjectImagePath = (id: string) => {
-    if (id === "smart-cctv") return "/images/featured/cctv/inference.webp"
-    if (id === "human-search-drone") return "/images/featured/drone/flight.webp"
-    if (id === "job-tracker") return "/images/featured/jobtracker/dashboard.webp"
-    if (id === "homelab-infra") return "/images/featured/homelab/portainer.webp"
-    return "/images/featured/untern/home.webp"
-  }
-
-  const getProjectFallbackLabel = (id: string) => {
-    if (id === "smart-cctv") return "featured/cctv/inference.webp"
-    if (id === "human-search-drone") return "featured/drone/flight.webp"
-    if (id === "job-tracker") return "featured/jobtracker/dashboard.webp"
-    if (id === "homelab-infra") return "featured/homelab/portainer.webp"
-    return "featured/untern/home.webp"
   }
 
   return (
@@ -111,77 +89,18 @@ export default function FeaturedEngineering() {
                   
                   {/* Left Side: Media Showcase, Telemetry Metrics, Action Links */}
                   <div className="lg:col-span-5 flex flex-col gap-4">
-                    {/* Media Container with Laser Scan Border - Click to preview */}
-                    <div 
-                      onClick={() => {
-                        if (project.mediaUrl) {
-                          setPreviewItem({
-                            type: "video",
-                            url: project.mediaUrl,
-                            title: `${project.title} - Video Demo`,
-                            caption: project.description,
-                          })
-                        } else {
-                          setPreviewItem({
-                            type: "image",
-                            url: getProjectImagePath(project.id),
-                            title: project.title,
-                            caption: project.description,
-                          })
-                        }
-                      }}
-                      className="relative aspect-video rounded-xl bg-background border border-zinc-200 dark:border-zinc-800 overflow-hidden select-none flex items-center justify-center group shadow-xs cursor-pointer"
-                      title="Click to preview full media"
-                    >
-                      {failedImages[project.id] ? (
-                        <div className="flex flex-col items-center gap-2 p-4 text-center">
-                          <ImageIcon className="size-6 text-zinc-400 dark:text-zinc-500" />
-                          <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">[{getProjectFallbackLabel(project.id)}]</span>
-                          <span className="font-sans text-[11px] text-zinc-400">Node Snapshot</span>
-                        </div>
-                      ) : (
-                        <>
-                          <NextImage
-                            src={getProjectImagePath(project.id)}
-                            alt={project.title}
-                            width={600}
-                            height={338}
-                            onError={() => handleImageError(project.id)}
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
-                          />
-                          {project.mediaUrl && (
-                            <video
-                              src={project.mediaUrl}
-                              className="absolute inset-0 size-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                              autoPlay
-                              muted
-                              loop
-                              playsInline
-                            />
-                          )}
-                        </>
-                      )}
-                      
-                      {/* Port LED pill overlay */}
-                      <div className="absolute top-3 left-3 z-10 font-mono text-[9px] bg-background/90 border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5">
-                        <span className="size-1.5 rounded-full bg-emerald-500" />
-                        <span>LIVE PREVIEW</span>
-                      </div>
-
-                      {/* Expand indicator on hover */}
-                      <div className="absolute bottom-3 right-3 z-10 p-1 rounded-md bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Maximize2 className="size-3.5" />
-                      </div>
-                    </div>
-
-                    {/* Project Photo / Screenshot Placeholder */}
-                    <MediaAttachmentButton
-                      photoTitle={`${project.title} — Foto / Screenshot`}
-                      photoCaption={project.description}
-                      showCertificate={false}
+                    {/* Direct Visual Preview Slot */}
+                    <CardMediaPreview
+                      slides={[
+                        {
+                          type: "photo",
+                          title: `${project.title} — Foto / Snapshot`,
+                          caption: `Pratinjau visual rekayasa subsistem ${project.title}.`,
+                        },
+                      ]}
                       contextTitle={project.category}
                       onSelectMedia={(selected) => setPreviewItem(selected)}
-                      className="pt-1 border-none"
+                      className="border-none pt-0 mt-0"
                     />
 
                     {/* Key Metrics Dashboard */}
@@ -252,11 +171,6 @@ export default function FeaturedEngineering() {
                       <h3 className="font-sans text-xl sm:text-2xl font-bold text-foreground tracking-tight">
                         {project.title}
                       </h3>
-
-                      <p className="text-base text-zinc-600 dark:text-zinc-400 font-sans font-normal leading-relaxed">
-                        {project.description}
-                      </p>
-
                     </div>
 
                     {/* Stack & Architecture Snapshot */}

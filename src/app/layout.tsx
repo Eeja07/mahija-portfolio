@@ -73,7 +73,7 @@ const jsonLd = {
   "name": "Mahija Ibad Pradipta",
   "url": "https://portfolio.eeja.fun",
   "image": "https://portfolio.eeja.fun/og.png",
-  "jobTitle": "Computer Engineering Graduate",
+  "jobTitle": "Network, IoT, Robotics, Full-Stack, Managerial & AI Engineer",
   "alumniOf": {
     "@type": "EducationalOrganization",
     "name": "Institut Teknologi Sepuluh Nopember (ITS)"

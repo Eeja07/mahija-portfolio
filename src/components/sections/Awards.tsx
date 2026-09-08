@@ -20,64 +20,16 @@ export default function Awards() {
   const [previewItem, setPreviewItem] = useState<MediaItem | null>(null)
 
   const getAwardSlides = (award: (typeof awardList)[0]) => {
-    if (award.title.toLowerCase().includes("sauvc") || award.competition.toLowerCase().includes("sauvc")) {
-      return [
-        {
-          type: "photo" as const,
-          title: "Uji Kolam Robot AUV di SAUVC Singapura",
-          caption: "Dokumentasi peluncuran dan pengujian manuver robot bawah air di arena kompetisi Singapura.",
-          image: "/images/activities/robot-assembly-1.png",
-        },
-        {
-          type: "photo" as const,
-          title: "Sesi Presentasi Teknis & Tim Banyubramanta",
-          caption: "Pemaparan sistem kendali otonom dan arsitektur penglihatan komputer pada dewan juri internasional.",
-          image: "/images/activities/robot-assembly-2.png",
-        },
-        {
-          type: "certificate" as const,
-          title: award.certificatePlaceholder?.title || "Sertifikat 5th Place SAUVC 2025",
-          caption: award.certificatePlaceholder?.caption || "Sertifikat penghargaan resmi Singapore Autonomous Underwater Vehicle Challenge 2025.",
-        },
-      ]
-    }
-    if (award.title.toLowerCase().includes("nasional") || award.competition.toLowerCase().includes("nasional")) {
-      return [
-        {
-          type: "photo" as const,
-          title: "Podium Juara 1 Nasional KRI 2024",
-          caption: "Penganugerahan Juara 1 Kontes Robot Indonesia Tingkat Nasional Kategori Bawah Air.",
-          image: "/images/activities/robot-assembly-1.png",
-        },
-        {
-          type: "photo" as const,
-          title: "Uji Misi Lapangan Robot Bawah Air",
-          caption: "Eksekusi misi otonom identifikasi target dan navigasi bawah air di kolam kompetisi nasional.",
-          image: "/images/activities/robot-assembly-2.png",
-        },
-        {
-          type: "certificate" as const,
-          title: award.certificatePlaceholder?.title || "Sertifikat Juara 1 Nasional KRI",
-          caption: award.certificatePlaceholder?.caption || "Sertifikat penghargaan resmi dari Balai Pengembangan Talenta Indonesia (BPTI / Kemendikbudristek).",
-        },
-      ]
-    }
     return [
       {
         type: "photo" as const,
-        title: award.photoPlaceholder?.title || `${award.title} — Foto Lomba`,
-        caption: award.photoPlaceholder?.caption || "Dokumentasi sesi pengujian wahana dan kejuaraan kompetisi.",
-        image: "/images/activities/robot-assembly-2.png",
-      },
-      {
-        type: "photo" as const,
-        title: `${award.title} — Dokumentasi Tim`,
-        caption: "Dokumentasi persiapan teknis tim dan kalibrasi sensor sebelum pertandingan.",
+        title: award.photoPlaceholder?.title || `${award.title} — Foto Dokumentasi`,
+        caption: award.photoPlaceholder?.caption || "Dokumentasi kejuaraan dan penghargaan resmi.",
       },
       {
         type: "certificate" as const,
         title: award.certificatePlaceholder?.title || `${award.title} — Sertifikat Juara`,
-        caption: award.certificatePlaceholder?.caption || "Sertifikat resmi penghargaan juara kejuaraan robotika.",
+        caption: award.certificatePlaceholder?.caption || "Sertifikat resmi penghargaan kejuaraan.",
       },
     ]
   }
@@ -116,7 +68,7 @@ export default function Awards() {
             >
               <NetworkSubsystemNode
                 status="healthy"
-                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[570px] sm:h-[580px] self-stretch"
+                className="flex-1 w-full flex flex-col justify-between text-left gap-4 sm:gap-5 p-5 sm:p-6 h-[400px] sm:h-[410px] self-stretch"
               >
                 <div className="flex-1 flex flex-col gap-3">
                   <div className="flex items-center justify-between font-mono text-xs text-zinc-500 dark:text-zinc-400">
@@ -132,18 +84,6 @@ export default function Awards() {
                       <span>{award.title}</span>
                     </h3>
                   </div>
-
-                  <p className="font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
-                    {award.summary}
-                  </p>
-
-                  {award.bullets && (
-                    <ul className="list-disc pl-4 text-xs text-zinc-500 dark:text-zinc-400 flex flex-col gap-1 leading-relaxed mt-1 line-clamp-2">
-                      {award.bullets.slice(0, 2).map((bullet, idx) => (
-                        <li key={idx}>{bullet}</li>
-                      ))}
-                    </ul>
-                  )}
 
                   {/* Instagram Post Link if provided */}
                   <div className="min-h-[1.75rem] flex items-center">

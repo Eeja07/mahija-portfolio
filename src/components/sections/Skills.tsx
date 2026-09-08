@@ -136,10 +136,6 @@ export default function Skills() {
                         {group.items.length} {language === "id" ? "item" : "units"}
                       </span>
                     </div>
-
-                    <p className="font-sans text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-normal leading-relaxed">
-                      {group.description}
-                    </p>
                   </div>
 
                   {/* Skills Pills */}

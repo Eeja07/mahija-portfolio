@@ -91,18 +91,6 @@ export default function OrganizationsArchive() {
                         {org.title}
                       </p>
                     </div>
-
-                    <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed">
-                      {org.summary}
-                    </p>
-
-                    {org.bullets && org.bullets.length > 0 && (
-                      <ul className="list-disc pl-4 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 flex flex-col gap-1.5 leading-relaxed mt-2">
-                        {org.bullets.map((bullet, i) => (
-                          <li key={i}>{bullet}</li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
 
                   {/* Exactly 2 Placeholders: Foto & Sertifikat/Surat Keterangan */}
