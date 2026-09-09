@@ -91,6 +91,17 @@ export default function OrganizationsArchive() {
                         {org.title}
                       </p>
                     </div>
+
+                    {/* Activities from CV */}
+                    {org.bullets && org.bullets.length > 0 && (
+                      <ul className="space-y-1.5 pt-2 text-xs text-zinc-600 dark:text-zinc-400 font-sans list-disc list-outside ml-4">
+                        {org.bullets.map((item, i) => (
+                          <li key={i} className="leading-relaxed">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
 
                   {/* Exactly 2 Placeholders: Foto & Sertifikat/Surat Keterangan */}

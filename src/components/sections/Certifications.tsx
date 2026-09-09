@@ -104,11 +104,11 @@ export default function Certifications() {
                   slides={[
                     {
                       type: "certificate",
-                      title: cert.certificatePlaceholder.title,
+                      title: cert.certificatePlaceholder?.title || cert.title,
                     },
                     {
                       type: "certificate",
-                      title: language === "en" ? `${cert.title} — Score Sheet & Verification` : `${cert.title} — Lembar Skor & Verifikasi`,
+                      title: language === "en" ? `${cert.title} — Official Verification` : `${cert.title} — Lembar Verifikasi`,
                     },
                   ]}
                   contextTitle={`${cert.issuer} • ${cert.period}`}

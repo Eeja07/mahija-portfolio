@@ -31,12 +31,9 @@ export default function FeaturedEngineering() {
     setActiveArchId(activeArchId === id ? null : id)
   }
 
-  // Filter precisely to the 3 featured engineering projects
+  // Render all 11 engineering projects from the CV
   const allProjects = getProjects(language)
-  const allowedProjectIds = ["smart-cctv", "human-search-drone", "job-tracker"]
-  const featuredProjects = allowedProjectIds
-    .map((id) => allProjects.find((p) => p.id === id))
-    .filter((p): p is NonNullable<typeof p> => !!p)
+  const featuredProjects = allProjects
 
   const itemVariants = {
     hidden: { opacity: 0, y: 16 },
@@ -151,6 +148,17 @@ export default function FeaturedEngineering() {
                       <h3 className="font-sans text-xl sm:text-2xl font-bold text-foreground tracking-tight">
                         {project.title}
                       </h3>
+
+                      {/* Highlights / Activities from CV */}
+                      {project.highlights && project.highlights.length > 0 && (
+                        <ul className="space-y-1.5 pt-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans list-disc list-outside ml-4">
+                          {project.highlights.map((bullet, bIdx) => (
+                            <li key={bIdx} className="leading-relaxed">
+                              {bullet}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
 
                     {/* Stack & Architecture Snapshot */}

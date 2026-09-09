@@ -93,6 +93,17 @@ export default function ExperienceArchive() {
                         {exp.location}
                       </p>
                     </div>
+
+                    {/* Activities / Responsibilities from CV */}
+                    {exp.achievements && exp.achievements.length > 0 && (
+                      <ul className="space-y-1.5 pt-2 text-xs text-zinc-600 dark:text-zinc-400 font-sans list-disc list-outside ml-4">
+                        {exp.achievements.map((item, i) => (
+                          <li key={i} className="leading-relaxed">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
 
                   <div className="flex flex-col gap-3 pt-4 border-t border-zinc-200/70 dark:border-zinc-800/70 select-none">

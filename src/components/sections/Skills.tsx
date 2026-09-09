@@ -7,7 +7,7 @@ import { NetworkSubsystemNode } from "@/components/network/NetworkSubsystemNode"
 import { SpatialCableBranch } from "@/components/network/SpatialCableBranch"
 import { useLanguage } from "@/context/LanguageContext"
 import { translations } from "@/data/translations"
-import { Server, Database, Code, Eye, Network as NetIcon, Wrench, Layers } from "lucide-react"
+import { Server, Database, Code, Eye, Network as NetIcon, Wrench, Layers, Globe, Smartphone, Languages } from "lucide-react"
 
 export default function Skills() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -43,23 +43,29 @@ export default function Skills() {
 
   const getCategoryIcon = (title: string) => {
     const lower = title.toLowerCase()
-    if (lower.includes("infrastruktur") || lower.includes("infrastructure")) {
+    if (lower.includes("infrastructure") || lower.includes("infrastruktur")) {
       return <Server className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
-    if (lower.includes("backend")) {
-      return <Database className="size-4 text-zinc-500 dark:text-zinc-400" />
+    if (lower.includes("mobile")) {
+      return <Smartphone className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
-    if (lower.includes("frontend")) {
+    if (lower.includes("web")) {
+      return <Globe className="size-4 text-zinc-500 dark:text-zinc-400" />
+    }
+    if (lower.includes("programming")) {
       return <Code className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
     if (lower.includes("ai") || lower.includes("vision")) {
       return <Eye className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
-    if (lower.includes("jaringan") || lower.includes("networking") || lower.includes("iot")) {
+    if (lower.includes("networking") || lower.includes("jaringan")) {
       return <NetIcon className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
-    if (lower.includes("perkakas") || lower.includes("tools")) {
+    if (lower.includes("tools") || lower.includes("perkakas")) {
       return <Wrench className="size-4 text-zinc-500 dark:text-zinc-400" />
+    }
+    if (lower.includes("language") || lower.includes("bahasa")) {
+      return <Languages className="size-4 text-zinc-500 dark:text-zinc-400" />
     }
     return <Layers className="size-4 text-zinc-500 dark:text-zinc-400" />
   }
