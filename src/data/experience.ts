@@ -68,6 +68,28 @@ export const experiences: Experience[] = [
       "Learned enterprise network architecture and IT service management practices within a corporate environment",
     ],
     technologies: ["Infrastructure", "Networking", "ITSM"],
+    photos: [
+      {
+        url: "/experience/lintasarta/foto_lintasarta_1.jpg",
+        title: "PT Lintasarta — IT Infrastructure Deployment",
+        caption: "Hardware & infrastructure deployment activity at PT Lintasarta Corporate IT Division.",
+      },
+      {
+        url: "/experience/lintasarta/foto_lintasarta_2.jpg",
+        title: "PT Lintasarta — Enterprise Hardware Operations",
+        caption: "Setup, maintenance, and technical inspection of enterprise IT hardware.",
+      },
+      {
+        url: "/experience/lintasarta/foto_lintasarta_3.jpg",
+        title: "PT Lintasarta — Infrastructure Operations & Monitoring",
+        caption: "Operational workflow and system infrastructure support session.",
+      },
+      {
+        url: "/experience/lintasarta/foto_lintasarta_4.jpg",
+        title: "PT Lintasarta — IT Services Management Team",
+        caption: "Corporate IT Services Management Department team documentation.",
+      },
+    ],
   },
   {
     id: "intro-programming-ta-staff",

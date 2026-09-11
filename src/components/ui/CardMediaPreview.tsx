@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react"
 import NextImage from "next/image"
 import { motion, AnimatePresence } from "motion/react"
-import { Image as ImageIcon, Award, Maximize2, ChevronLeft, ChevronRight } from "lucide-react"
+import { Image as ImageIcon, Award, FileText, Maximize2, ChevronLeft, ChevronRight } from "lucide-react"
 import { MediaItem } from "@/types/experience"
 import { useLanguage } from "@/context/LanguageContext"
 import { cn } from "@/lib/utils"
@@ -13,6 +13,7 @@ export interface MediaSlide {
   title: string
   caption?: string
   image?: string
+  url?: string
 }
 
 interface CardMediaPreviewProps {
@@ -184,11 +185,13 @@ export default function CardMediaPreview({
 
   const handlePreviewClick = () => {
     if (isDragging.current || !activeSlide) return
+    const mediaUrl = activeSlide.url || activeSlide.image
+    const isPdf = !!mediaUrl && mediaUrl.toLowerCase().endsWith(".pdf")
     onSelectMedia({
-      type: activeSlide.image ? (isCertificate ? "certificate" : "image") : "placeholder",
-      category: isCertificate ? "certificate" : "photo",
-      isPlaceholder: !activeSlide.image,
-      url: activeSlide.image,
+      type: mediaUrl ? (isCertificate ? "certificate" : isPdf ? "document" : "image") : "placeholder",
+      category: isCertificate ? "certificate" : isPdf ? "document" : "photo",
+      isPlaceholder: !mediaUrl,
+      url: mediaUrl,
       title: activeSlide.title,
       caption: activeSlide.caption,
       contextTitle,
@@ -275,21 +278,54 @@ export default function CardMediaPreview({
             transition={{ duration: 0.15, ease: "easeOut" }}
             className="absolute inset-0 size-full flex flex-col items-center justify-center p-3 pointer-events-none"
           >
-            {activeSlide?.image ? (
-              <>
-                <NextImage
-                  src={activeSlide.image}
-                  alt={activeSlide.title}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-102"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
-                <div className="relative z-10 mt-auto text-left w-full text-white">
-                  <span className="font-mono text-xs font-semibold line-clamp-1 drop-shadow-xs">
-                    {activeSlide.title}
-                  </span>
-                </div>
-              </>
+            {activeSlide?.image || activeSlide?.url ? (
+              (() => {
+                const fileUrl = activeSlide.image || activeSlide.url || ""
+                const isPdf = fileUrl.toLowerCase().endsWith(".pdf")
+                if (isPdf) {
+                  return (
+                    <div className="relative size-full flex flex-col justify-between p-3.5 rounded-lg bg-zinc-100/90 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800/80">
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-mono text-[9px] font-bold tracking-wider uppercase">
+                          <FileText className="size-3" />
+                          <span>{isEn ? "Verified PDF Document" : "Dokumen PDF Terverifikasi"}</span>
+                        </div>
+                        <span className="font-mono text-[9px] text-zinc-400">PDF</span>
+                      </div>
+                      <div className="flex flex-col gap-1 text-left my-auto">
+                        <span className="font-sans text-xs font-bold text-foreground line-clamp-2 leading-snug">
+                          {activeSlide.title}
+                        </span>
+                        {activeSlide.caption && (
+                          <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 line-clamp-1">
+                            {activeSlide.caption}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 pt-1 border-t border-zinc-200/60 dark:border-zinc-800/60">
+                        <span>{isEn ? "Click to view document" : "Klik untuk melihat dokumen"}</span>
+                      </div>
+                    </div>
+                  )
+                }
+                return (
+                  <>
+                    <NextImage
+                      src={fileUrl}
+                      alt={activeSlide.title}
+                      fill
+                      unoptimized
+                      className="object-cover transition-transform duration-300 group-hover:scale-102"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                    <div className="relative z-10 mt-auto text-left w-full text-white">
+                      <span className="font-mono text-xs font-semibold line-clamp-1 drop-shadow-xs">
+                        {activeSlide.title}
+                      </span>
+                    </div>
+                  </>
+                )
+              })()
             ) : (
               /* Clean Minimalist Placeholder (No telemetry/buzzwords, no explanation text) */
               <>

@@ -107,12 +107,14 @@ export default function ExperienceArchive() {
                   </div>
 
                   <div className="flex flex-col gap-3 pt-4 border-t border-zinc-200/70 dark:border-zinc-800/70 select-none">
-                    {/* Exactly 2 Placeholders: Foto & Sertifikat/Surat Keterangan */}
+                    {/* Exactly 2 Buttons: Foto & Sertifikat/Surat Keterangan */}
                     <MediaAttachmentButton
                       photoTitle={exp.photoPlaceholder?.title || (language === "en" ? `${exp.role} — Documentation Photo` : `${exp.role} — Foto Dokumentasi`)}
                       photoCaption={exp.photoPlaceholder?.caption}
+                      photos={exp.photos}
                       certificateTitle={exp.certificatePlaceholder?.title || (language === "en" ? `${exp.role} — Certificate / Assignment Letter` : `${exp.role} — Sertifikat / Surat Keterangan`)}
                       certificateCaption={exp.certificatePlaceholder?.caption}
+                      documents={exp.documents}
                       contextTitle={`${exp.company} • ${exp.startDate} - ${exp.endDate || (language === "id" ? "Sekarang" : "Present")}`}
                       onSelectMedia={(selected) => setPreviewItem(selected)}
                       className="border-none pt-0"

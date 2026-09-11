@@ -22,20 +22,51 @@ export default function FeaturedCommittees() {
 
   const getCommSlides = (comm: (typeof allComms)[0]) => {
     const isEn = language === "en"
-    return [
-      {
-        type: "photo" as const,
+    const slides: Array<{
+      type: "photo" | "certificate"
+      title: string
+      caption?: string
+      image?: string
+      url?: string
+    }> = []
+
+    if (comm.photos && comm.photos.length > 0) {
+      comm.photos.forEach((p) => {
+        slides.push({
+          type: "photo",
+          title: p.title,
+          caption: p.caption,
+          image: p.url,
+          url: p.url,
+        })
+      })
+    } else {
+      slides.push({
+        type: "photo",
         title: comm.photoPlaceholder?.title || (isEn ? `${comm.role} — Event Photo` : `${comm.role} — Foto Kegiatan`),
-      },
-      {
-        type: "photo" as const,
-        title: isEn ? `${comm.role} — Operational Photo` : `${comm.role} — Dokumentasi Lapangan`,
-      },
-      {
-        type: "certificate" as const,
+        caption: comm.photoPlaceholder?.caption,
+      })
+    }
+
+    if (comm.documents && comm.documents.length > 0) {
+      comm.documents.forEach((d) => {
+        slides.push({
+          type: "certificate",
+          title: d.title,
+          caption: d.caption,
+          image: d.url,
+          url: d.url,
+        })
+      })
+    } else {
+      slides.push({
+        type: "certificate",
         title: comm.certificatePlaceholder?.title || (isEn ? `${comm.role} — Committee Certificate` : `${comm.role} — Sertifikat Panitia`),
-      },
-    ]
+        caption: comm.certificatePlaceholder?.caption,
+      })
+    }
+
+    return slides
   }
 
   return (

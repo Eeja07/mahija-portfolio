@@ -21,20 +21,59 @@ export default function Awards() {
 
   const getAwardSlides = (award: (typeof awardList)[0]) => {
     const isEn = language === "en"
-    return [
-      {
-        type: "photo" as const,
+    const slides: Array<{
+      type: "photo" | "certificate"
+      title: string
+      caption?: string
+      image?: string
+      url?: string
+    }> = []
+
+    if (award.photos && award.photos.length > 0) {
+      award.photos.forEach((p) => {
+        slides.push({
+          type: "photo",
+          title: p.title,
+          caption: p.caption,
+          image: p.url,
+          url: p.url,
+        })
+      })
+    } else {
+      slides.push({
+        type: "photo",
         title: award.photoPlaceholder?.title || (isEn ? `${award.title} — Award Photo` : `${award.title} — Foto Dokumentasi`),
-      },
-      {
-        type: "photo" as const,
-        title: isEn ? `${award.title} — Stage Photo` : `${award.title} — Foto Panggung Juara`,
-      },
-      {
-        type: "certificate" as const,
+        caption: award.photoPlaceholder?.caption,
+      })
+    }
+
+    if (award.documents && award.documents.length > 0) {
+      award.documents.forEach((d) => {
+        slides.push({
+          type: "certificate",
+          title: d.title,
+          caption: d.caption,
+          image: d.url,
+          url: d.url,
+        })
+      })
+    } else if (award.certificateUrl) {
+      slides.push({
+        type: "certificate",
         title: award.certificatePlaceholder?.title || (isEn ? `${award.title} — Official Certificate` : `${award.title} — Sertifikat Juara`),
-      },
-    ]
+        caption: award.certificatePlaceholder?.caption,
+        image: award.certificateUrl,
+        url: award.certificateUrl,
+      })
+    } else {
+      slides.push({
+        type: "certificate",
+        title: award.certificatePlaceholder?.title || (isEn ? `${award.title} — Official Certificate` : `${award.title} — Sertifikat Juara`),
+        caption: award.certificatePlaceholder?.caption,
+      })
+    }
+
+    return slides
   }
 
   return (

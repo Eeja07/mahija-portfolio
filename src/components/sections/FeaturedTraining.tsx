@@ -22,20 +22,51 @@ export default function FeaturedTraining() {
 
   const getTrainingSlides = (tr: (typeof allTraining)[0]) => {
     const isEn = language === "en"
-    return [
-      {
-        type: "photo" as const,
+    const slides: Array<{
+      type: "photo" | "certificate"
+      title: string
+      caption?: string
+      image?: string
+      url?: string
+    }> = []
+
+    if (tr.photos && tr.photos.length > 0) {
+      tr.photos.forEach((p) => {
+        slides.push({
+          type: "photo",
+          title: p.title,
+          caption: p.caption,
+          image: p.url,
+          url: p.url,
+        })
+      })
+    } else {
+      slides.push({
+        type: "photo",
         title: tr.photoPlaceholder?.title || (isEn ? `${tr.role} — Training Session` : `${tr.role} — Foto Pelatihan`),
-      },
-      {
-        type: "photo" as const,
-        title: isEn ? `${tr.role} — Workshop Photo` : `${tr.role} — Dokumentasi Workshop`,
-      },
-      {
-        type: "certificate" as const,
+        caption: tr.photoPlaceholder?.caption,
+      })
+    }
+
+    if (tr.documents && tr.documents.length > 0) {
+      tr.documents.forEach((d) => {
+        slides.push({
+          type: "certificate",
+          title: d.title,
+          caption: d.caption,
+          image: d.url,
+          url: d.url,
+        })
+      })
+    } else {
+      slides.push({
+        type: "certificate",
         title: tr.certificatePlaceholder?.title || (isEn ? `${tr.role} — Completion Certificate` : `${tr.role} — Sertifikat Kelulusan`),
-      },
-    ]
+        caption: tr.certificatePlaceholder?.caption,
+      })
+    }
+
+    return slides
   }
 
   return (

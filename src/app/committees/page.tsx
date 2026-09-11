@@ -104,12 +104,14 @@ export default function CommitteesArchive() {
                     )}
                   </div>
 
-                  {/* Exactly 2 Placeholders: Foto & Sertifikat/Surat Keterangan */}
+                  {/* Exactly 2 Buttons: Foto & Sertifikat/Surat Keterangan */}
                   <MediaAttachmentButton
                     photoTitle={comm.photoPlaceholder?.title || (language === "en" ? `${comm.role} — Event Photo` : `${comm.role} — Foto Kegiatan`)}
                     photoCaption={comm.photoPlaceholder?.caption}
+                    photos={comm.photos}
                     certificateTitle={comm.certificatePlaceholder?.title || (language === "en" ? `${comm.role} — Committee Certificate` : `${comm.role} — Sertifikat Kepanitiaan`)}
                     certificateCaption={comm.certificatePlaceholder?.caption}
+                    documents={comm.documents}
                     contextTitle={`${comm.title} • ${comm.period}`}
                     onSelectMedia={(selected) => setPreviewItem(selected)}
                   />

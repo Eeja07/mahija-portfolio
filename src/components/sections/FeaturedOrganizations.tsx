@@ -22,20 +22,51 @@ export default function FeaturedOrganizations() {
 
   const getOrgSlides = (org: (typeof allOrgs)[0]) => {
     const isEn = language === "en"
-    return [
-      {
-        type: "photo" as const,
+    const slides: Array<{
+      type: "photo" | "certificate"
+      title: string
+      caption?: string
+      image?: string
+      url?: string
+    }> = []
+
+    if (org.photos && org.photos.length > 0) {
+      org.photos.forEach((p) => {
+        slides.push({
+          type: "photo",
+          title: p.title,
+          caption: p.caption,
+          image: p.url,
+          url: p.url,
+        })
+      })
+    } else {
+      slides.push({
+        type: "photo",
         title: org.photoPlaceholder?.title || (isEn ? `${org.role} — Documentation Photo` : `${org.role} — Foto Dokumentasi`),
-      },
-      {
-        type: "photo" as const,
-        title: isEn ? `${org.role} — Team Photo & Meetings` : `${org.role} — Foto Tim & Rapat`,
-      },
-      {
-        type: "certificate" as const,
+        caption: org.photoPlaceholder?.caption,
+      })
+    }
+
+    if (org.documents && org.documents.length > 0) {
+      org.documents.forEach((d) => {
+        slides.push({
+          type: "certificate",
+          title: d.title,
+          caption: d.caption,
+          image: d.url,
+          url: d.url,
+        })
+      })
+    } else {
+      slides.push({
+        type: "certificate",
         title: org.certificatePlaceholder?.title || (isEn ? `${org.role} — Decree / Appointment Certificate` : `${org.role} — SK Kepengurusan`),
-      },
-    ]
+        caption: org.certificatePlaceholder?.caption,
+      })
+    }
+
+    return slides
   }
 
   return (

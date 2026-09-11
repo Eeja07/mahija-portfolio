@@ -30,5 +30,7 @@ export interface Experience {
     title: string
     caption: string
   }
+  photos?: Array<{ url: string; title?: string; caption?: string }>
+  documents?: Array<{ url: string; title?: string; caption?: string }>
   media?: MediaItem[]
 }

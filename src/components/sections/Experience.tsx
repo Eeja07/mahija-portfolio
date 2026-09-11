@@ -22,20 +22,51 @@ export default function Experience() {
 
   const getExperienceSlides = (exp: (typeof allExperiences)[0]) => {
     const isEn = language === "en"
-    return [
-      {
-        type: "photo" as const,
+    const slides: Array<{
+      type: "photo" | "certificate"
+      title: string
+      caption?: string
+      image?: string
+      url?: string
+    }> = []
+
+    if (exp.photos && exp.photos.length > 0) {
+      exp.photos.forEach((p) => {
+        slides.push({
+          type: "photo",
+          title: p.title || (isEn ? `${exp.role} — Documentation Photo` : `${exp.role} — Foto Dokumentasi`),
+          caption: p.caption,
+          image: p.url,
+          url: p.url,
+        })
+      })
+    } else {
+      slides.push({
+        type: "photo",
         title: exp.photoPlaceholder?.title || (isEn ? `${exp.role} — Documentation Photo` : `${exp.role} — Foto Dokumentasi`),
-      },
-      {
-        type: "photo" as const,
-        title: isEn ? `${exp.role} — Activity Photo` : `${exp.role} — Foto Kegiatan`,
-      },
-      {
-        type: "certificate" as const,
+        caption: exp.photoPlaceholder?.caption,
+      })
+    }
+
+    if (exp.documents && exp.documents.length > 0) {
+      exp.documents.forEach((d) => {
+        slides.push({
+          type: "certificate",
+          title: d.title || (isEn ? `${exp.role} — Assignment Letter / Certificate` : `${exp.role} — Surat Tugas / Sertifikat`),
+          caption: d.caption,
+          image: d.url,
+          url: d.url,
+        })
+      })
+    } else {
+      slides.push({
+        type: "certificate",
         title: exp.certificatePlaceholder?.title || (isEn ? `${exp.role} — Assignment Letter / Certificate` : `${exp.role} — Surat Tugas / Sertifikat`),
-      },
-    ]
+        caption: exp.certificatePlaceholder?.caption,
+      })
+    }
+
+    return slides
   }
 
   return (

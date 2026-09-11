@@ -3,6 +3,12 @@ export interface PlaceholderSlot {
   caption: string
 }
 
+export interface CareerMediaFile {
+  url: string
+  title: string
+  caption?: string
+}
+
 export interface CareerItem {
   id: string
   title: string
@@ -12,6 +18,8 @@ export interface CareerItem {
   summary?: string
   bullets: string[]
   featured: boolean
+  photos?: CareerMediaFile[]
+  documents?: CareerMediaFile[]
   photoPlaceholder?: PlaceholderSlot
   certificatePlaceholder?: PlaceholderSlot
 }
@@ -22,6 +30,9 @@ export interface AwardItem {
   period: string
   summary?: string
   bullets?: string[]
+  certificateUrl?: string
+  documents?: CareerMediaFile[]
+  photos?: CareerMediaFile[]
   photoPlaceholder?: PlaceholderSlot
   certificatePlaceholder?: PlaceholderSlot
   instagramUrl?: string
@@ -79,6 +90,20 @@ export const organizations: CareerItem[] = [
       "Ensured smooth execution of the team’s administrative and non-technical operations",
     ],
     featured: true,
+    photos: [
+      {
+        url: "/organizations/head_banyubramanta/Head_Banyubramanta ITS.jpg",
+        title: "Head of Official Division — Banyubramanta Robotics Team ITS",
+        caption: "Documentation photo for Head of Official Division at Banyubramanta Robotics Team ITS.",
+      },
+    ],
+    documents: [
+      {
+        url: "/organizations/head_banyubramanta/Head_Banyubramanta ITS.pdf",
+        title: "SK Kepengurusan Head of Official Division — Banyubramanta ITS",
+        caption: "Decree / appointment certificate of Head of Official Division, Banyubramanta Robotics Team ITS.",
+      },
+    ],
   },
   {
     id: "himatekkom-sec-treasurer",
@@ -118,6 +143,13 @@ export const organizations: CareerItem[] = [
       "Prepared accountability reports, financial reports, and budget plans",
     ],
     featured: false,
+    documents: [
+      {
+        url: "/organizations/senior_banyubramanta/Senior_Banyubramanta ITS.pdf",
+        title: "SK Kepengurusan Senior Finance Staff — Banyubramanta ITS",
+        caption: "Decree / appointment certificate of Senior Finance Staff, Banyubramanta Robotics Team ITS.",
+      },
+    ],
   },
   {
     id: "banyubramanta-finance-intern",
@@ -131,6 +163,20 @@ export const organizations: CareerItem[] = [
       "Created content for the team’s social media platforms",
     ],
     featured: false,
+    photos: [
+      {
+        url: "/organizations/senior_banyubramanta/Intern_Banyubramanta ITS.jpg",
+        title: "Finance & Administration Intern — Banyubramanta Robotics Team ITS",
+        caption: "Documentation photo during internship at Banyubramanta Robotics Team ITS.",
+      },
+    ],
+    documents: [
+      {
+        url: "/organizations/senior_banyubramanta/Intern_Banyubramanta ITS.pdf",
+        title: "Sertifikat Intern Finance & Administration — Banyubramanta ITS",
+        caption: "Official internship certificate for Finance & Administration subdivision, Banyubramanta Robotics Team ITS.",
+      },
+    ],
   },
   {
     id: "its-robotics-club",
@@ -153,6 +199,20 @@ export const organizations: CareerItem[] = [
       "Actively participated in organizational programs and activities",
     ],
     featured: false,
+    photos: [
+      {
+        url: "/organizations/ibc/Mahija Ibad Pradipta_Sertif_IBC Anggota 2022.png",
+        title: "Sertifikat Anggota Aktif UKM IBC ITS 2022",
+        caption: "Sertifikat keanggotaan aktif UKM Badminton (IBC) ITS Kabinet Metamorfosa 2022.",
+      },
+    ],
+    documents: [
+      {
+        url: "/organizations/ibc/Mahija Ibad Pradipta_Sertif_IBC Anggota 2022.png",
+        title: "Sertifikat Anggota Aktif UKM IBC ITS 2022",
+        caption: "Sertifikat keanggotaan aktif UKM Badminton (IBC) ITS Kabinet Metamorfosa 2022.",
+      },
+    ],
   },
 ]
 
@@ -169,6 +229,20 @@ export const committees: CareerItem[] = [
       "Supervised and evaluated the implementation of workshops, talk shows, exhibitions, opening ceremonies, and closing events",
     ],
     featured: true,
+    photos: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Foto Kegiatan_Kadiv Mage X.jpg",
+        title: "Kadiv MAGE X — Foto Kegiatan MAGE 10",
+        caption: "Dokumentasi kegiatan Kepala Divisi Acara MAGE X, Teknik Komputer ITS.",
+      },
+    ],
+    documents: [
+      {
+        url: "/committees/Mahija Ibad_Sertif_Kadiv Mage X.pdf",
+        title: "Sertifikat Kadiv MAGE X — HIMATEKKOM ITS",
+        caption: "Sertifikat penghargaan Kepala Divisi Acara Multimedia and Game Event (MAGE) X.",
+      },
+    ],
   },
   {
     id: "mage-9",
@@ -182,6 +256,20 @@ export const committees: CareerItem[] = [
       "Served as the person in charge of one workshop",
     ],
     featured: true,
+    photos: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Foto Kegiatan_Panitia MAGE 9 2023.jpg",
+        title: "Panitia MAGE 9 2023 — Foto Kegiatan",
+        caption: "Dokumentasi kegiatan Panitia Divisi Kesekretariatan MAGE 9.",
+      },
+    ],
+    documents: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Sertif_Panitia MAGE 9 2023.pdf",
+        title: "Sertifikat Panitia MAGE 9 2023 — HIMATEKKOM ITS",
+        caption: "Sertifikat kepanitiaan Divisi Kesekretariatan MAGE 9, Teknik Komputer ITS.",
+      },
+    ],
   },
   {
     id: "hgts-se-8",
@@ -195,6 +283,20 @@ export const committees: CareerItem[] = [
       "Taught image detection and pose detection topics to students of MTs 19 Surabaya",
     ],
     featured: true,
+    photos: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Foto Kegiatan_Panitia HGTSxSE8.0 2023.jpg",
+        title: "Panitia HGTS x SE 8.0 2023 — Foto Kegiatan",
+        caption: "Dokumentasi kegiatan pengajaran image detection dan pose detection pada HGTS x SE 8.0.",
+      },
+    ],
+    documents: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Sertif_Panitia HGTSxSE8.0 2023.pdf",
+        title: "Sertifikat Panitia HGTS x SE 8.0 2023 — HIMATEKKOM ITS",
+        caption: "Sertifikat kepanitiaan Divisi Pengajar HGTS x SE 8.0 HIMATEKKOM ITS.",
+      },
+    ],
   },
   {
     id: "isc-63rd",
@@ -208,6 +310,20 @@ export const committees: CareerItem[] = [
       "Managed documentation and match result records",
     ],
     featured: true,
+    photos: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Foto Kegiatan_Panitia ISC Dies Natalis ITS 63 2023.jpg",
+        title: "Panitia ISC Dies Natalis ITS 63 — Foto Kegiatan",
+        caption: "Dokumentasi operasional pertandingan bulutangkis antar fakultas pada ISC Dies Natalis ITS ke-63.",
+      },
+    ],
+    documents: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Sertif_Panitia ISC Dies Natalis ITS 63 2023.pdf",
+        title: "Sertifikat Panitia ISC Dies Natalis ITS 63 — ITS",
+        caption: "Sertifikat penghargaan panitia pelaksana cabang olahraga bulutangkis ISC Dies Natalis ITS ke-63.",
+      },
+    ],
   },
   {
     id: "tdc-summit-2023",
@@ -221,6 +337,20 @@ export const committees: CareerItem[] = [
       "Served as Master of Ceremony (MC) during startup bootcamp mentoring sessions",
     ],
     featured: true,
+    photos: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Foto Kegiatan_Panitia TDC Summit Fest 2023.png",
+        title: "Panitia TDC Summit Fest 2023 — Foto Kegiatan",
+        caption: "Dokumentasi kegiatan dan sesi Master of Ceremony bootcamp mentoring TDC Summit Fest 2023.",
+      },
+    ],
+    documents: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Sertif_Panitia TDC Summit Fest 2023.pdf",
+        title: "Sertifikat Panitia TDC Summit Fest 2023 — TDC ITS",
+        caption: "Sertifikat kepanitiaan TDC For Startup Event Division pada TDC Summit Fest 2023.",
+      },
+    ],
   },
   {
     id: "sps-128",
@@ -234,6 +364,20 @@ export const committees: CareerItem[] = [
       "Served as Liaison Officer for the Head of the Computer Engineering Department",
     ],
     featured: true,
+    photos: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Foto Kegiatan_Panitia SPS 128 2023.jpg",
+        title: "Panitia SPS 128 2023 — Foto Kegiatan",
+        caption: "Dokumentasi kepanitiaan dan Liaison Officer pada Syukuran Purna Sarjana (SPS) 128 FTE ITS.",
+      },
+    ],
+    documents: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Sertif_Panitia SPS 128 2023.pdf",
+        title: "Sertifikat Panitia SPS 128 2023 — HIMATEKKOM ITS",
+        caption: "Sertifikat kepanitiaan Divisi Acara Syukuran Purna Sarjana 128 FTEIC ITS.",
+      },
+    ],
   },
   {
     id: "inclenation-2023",
@@ -247,6 +391,46 @@ export const committees: CareerItem[] = [
       "Served as an internalization facilitator during Inclenation 2023",
     ],
     featured: true,
+    photos: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Foto Kegiatan_Panitia Inclenation 2023.jpg",
+        title: "Panitia Inclenation 2023 — Foto Kegiatan",
+        caption: "Dokumentasi sesi mentoring dan fasilitasi mahasiswa baru pada Inclenation FTEIC ITS 2023.",
+      },
+    ],
+    documents: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Sertif_Panitia Inclenation 2023.pdf",
+        title: "Sertifikat Panitia Inclenation 2023 — BEM FTEIC ITS",
+        caption: "Sertifikat kepanitiaan Divisi Mentor Inclenation 2023 BEM FTEIC ITS.",
+      },
+    ],
+  },
+  {
+    id: "ok2bk-2022",
+    title: "OKKBK Teknik Komputer ITS 2022 — HIMATEKKOM ITS",
+    role: "Participant",
+    period: "August 2022",
+    location: "On-site",
+    bullets: [
+      "Participated in Curriculum-Based Scientific and Professional Orientation (OKKBK) 2022 organized by HIMATEKKOM ITS",
+      "Completed introduction to computer engineering discipline, department ethics, and academic community development",
+    ],
+    featured: false,
+    photos: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Sertif_OK2BK Teknik Komputer ITS 2022.png",
+        title: "Sertifikat OKKBK Teknik Komputer ITS 2022",
+        caption: "Sertifikat kepesertaan Orientasi Keilmiahan dan Keprofesian Berbasis Kurikulum (OKKBK) Teknik Komputer ITS 2022.",
+      },
+    ],
+    documents: [
+      {
+        url: "/committees/Mahija Ibad Pradipta_Sertif_OK2BK Teknik Komputer ITS 2022.png",
+        title: "Sertifikat OKKBK Teknik Komputer ITS 2022",
+        caption: "Sertifikat kepesertaan Orientasi Keilmiahan dan Keprofesian Berbasis Kurikulum (OKKBK) Teknik Komputer ITS 2022.",
+      },
+    ],
   },
 ]
 
@@ -255,6 +439,14 @@ export const awards: AwardItem[] = [
     title: "5th Place - Singapore Autonomous Underwater Vehicle Challenge (SAUVC) 2025",
     competition: "With Banyubramanta ITS",
     period: "March 2025",
+    certificateUrl: "/awards/Sertifikat_SAUVC2025.pdf",
+    documents: [
+      {
+        url: "/awards/Sertifikat_SAUVC2025.pdf",
+        title: "SAUVC 2025 Certificate — 5th Place",
+        caption: "Official finalist and 5th place certificate from the Singapore Autonomous Underwater Vehicle Challenge 2025.",
+      },
+    ],
     instagramUrl: "https://www.instagram.com/banyubramanta.its/",
   },
   {
@@ -279,6 +471,13 @@ export const training: CareerItem[] = [
     period: "August 2026",
     bullets: [],
     featured: true,
+    documents: [
+      {
+        url: "/training/mtcna/Mahija Ibad Pradipta_MTCNA_IDN Training.pdf",
+        title: "MTCNA Training Certificate — ID-Networkers",
+        caption: "Sertifikat pelatihan MikroTik Certified Network Associate dari ID-Networkers.",
+      },
+    ],
   },
   {
     id: "ccna-training",
@@ -287,6 +486,13 @@ export const training: CareerItem[] = [
     period: "August 2026",
     bullets: [],
     featured: true,
+    documents: [
+      {
+        url: "/training/ccna/Mahija Ibad Pradipta_CCNA_IDN Training.pdf",
+        title: "CCNA Training Certificate — ID-Networkers",
+        caption: "Sertifikat pelatihan Cisco Certified Network Associate dari ID-Networkers.",
+      },
+    ],
   },
   {
     id: "lkmm-tm",
@@ -295,6 +501,13 @@ export const training: CareerItem[] = [
     period: "August 2024",
     bullets: [],
     featured: true,
+    documents: [
+      {
+        url: "/training/lkmm_tm/Mahija Ibad_Student Report - 136_LKMM TM ITS_XI_2024.pdf",
+        title: "LKMM-TM Student Report & Verification — ITS",
+        caption: "Laporan evaluasi dan lembar kelulusan Pelatihan Keterampilan Manajemen Mahasiswa Tingkat Menengah (LKMM-TM) ITS.",
+      },
+    ],
   },
   {
     id: "lkmm-td",
@@ -303,6 +516,13 @@ export const training: CareerItem[] = [
     period: "November 2023",
     bullets: [],
     featured: true,
+    documents: [
+      {
+        url: "/training/lkmm_td/Mahija Ibad Pradipta_Sertif_Pelatihan LKMM TD.pdf",
+        title: "Sertifikat Pelatihan LKMM-TD — ITS",
+        caption: "Sertifikat kelulusan Pelatihan Keterampilan Manajemen Mahasiswa Tingkat Dasar (LKMM-TD) ITS.",
+      },
+    ],
   },
   {
     id: "lkmm-pre-basic",
@@ -311,6 +531,13 @@ export const training: CareerItem[] = [
     period: "September 2023",
     bullets: [],
     featured: true,
+    documents: [
+      {
+        url: "/training/lkmm_pratd/Mahija Ibad Pradipta_SK Lulus_Pelatihan LKMM PRA-TD.pdf",
+        title: "SK Kelulusan Pelatihan LKMM PRA-TD — ITS",
+        caption: "Surat Keputusan dan sertifikat kelulusan Pelatihan LKMM Pra-Dasar ITS.",
+      },
+    ],
   },
   {
     id: "mage-9-workshop",
@@ -319,6 +546,20 @@ export const training: CareerItem[] = [
     period: "August 2023",
     bullets: [],
     featured: true,
+    photos: [
+      {
+        url: "/training/mage_9/Mahija Ibad Pradipta_Foto Kegiatan_Peserta Workshop Multimedia MAGE 9 2023.png",
+        title: "Peserta Workshop Multimedia MAGE 9 2023",
+        caption: "Dokumentasi keikutsertaan sebagai peserta Workshop Multimedia MAGE 9.",
+      },
+    ],
+    documents: [
+      {
+        url: "/training/mage_9/Mahija Ibad Pradipta_Sertif_Peserta Workshop Multimedia MAGE 9 2023.pdf",
+        title: "Sertifikat Peserta Workshop Multimedia MAGE 9 2023",
+        caption: "Sertifikat kepesertaan Workshop Multimedia MAGE 9, Teknik Komputer ITS.",
+      },
+    ],
   },
   {
     id: "lkmw-td",
@@ -327,6 +568,13 @@ export const training: CareerItem[] = [
     period: "November 2022",
     bullets: [],
     featured: true,
+    documents: [
+      {
+        url: "/training/pkti_td/Mahija Ibad Pradipta_Sertifikat LKMW 2022.pdf",
+        title: "Sertifikat Pelatihan LKMW 2022 — ITS",
+        caption: "Sertifikat Pelatihan Keterampilan Manajemen Wirausaha (LKMW) 2022 Direktorat Kemahasiswaan ITS.",
+      },
+    ],
   },
   {
     id: "pkti-td",
@@ -335,6 +583,13 @@ export const training: CareerItem[] = [
     period: "October 2022",
     bullets: [],
     featured: true,
+    documents: [
+      {
+        url: "/training/pkti_td/Mahija Ibad Pradipta_Sertif_Pelatihan PKTI-TD.pdf",
+        title: "Sertifikat Pelatihan PKTI-TD — ITS",
+        caption: "Sertifikat Pelatihan Karya Tulis Ilmiah Tingkat Dasar (PKTI-TD) ITS.",
+      },
+    ],
   },
 ]
 

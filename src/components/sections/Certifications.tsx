@@ -105,10 +105,9 @@ export default function Certifications() {
                     {
                       type: "certificate",
                       title: cert.certificatePlaceholder?.title || cert.title,
-                    },
-                    {
-                      type: "certificate",
-                      title: language === "en" ? `${cert.title} — Official Verification` : `${cert.title} — Lembar Verifikasi`,
+                      caption: cert.certificatePlaceholder?.caption,
+                      image: cert.documentUrl,
+                      url: cert.documentUrl,
                     },
                   ]}
                   contextTitle={`${cert.issuer} • ${cert.period}`}
