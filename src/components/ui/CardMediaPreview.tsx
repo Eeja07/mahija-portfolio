@@ -14,6 +14,7 @@ export interface MediaSlide {
   caption?: string
   image?: string
   url?: string
+  thumbnail?: string
 }
 
 interface CardMediaPreviewProps {
@@ -183,15 +184,29 @@ export default function CardMediaPreview({
     }, 60)
   }
 
+  const getPreviewImage = (slide?: MediaSlide): string | undefined => {
+    if (!slide) return undefined
+    if (slide.thumbnail) return slide.thumbnail
+    if (slide.image && !slide.image.toLowerCase().endsWith(".pdf")) return slide.image
+    const rawUrl = slide.url || slide.image
+    if (rawUrl && rawUrl.toLowerCase().endsWith(".pdf")) {
+      const cleanUrl = rawUrl.startsWith("/") ? rawUrl.slice(1) : rawUrl
+      return `/thumbnails/${cleanUrl.replace(/\.pdf$/i, ".webp")}`
+    }
+    return undefined
+  }
+
   const handlePreviewClick = () => {
     if (isDragging.current || !activeSlide) return
     const mediaUrl = activeSlide.url || activeSlide.image
     const isPdf = !!mediaUrl && mediaUrl.toLowerCase().endsWith(".pdf")
+    const thumb = getPreviewImage(activeSlide)
     onSelectMedia({
       type: mediaUrl ? (isCertificate ? "certificate" : isPdf ? "document" : "image") : "placeholder",
       category: isCertificate ? "certificate" : isPdf ? "document" : "photo",
       isPlaceholder: !mediaUrl,
       url: mediaUrl,
+      thumbnail: thumb,
       title: activeSlide.title,
       caption: activeSlide.caption,
       contextTitle,
@@ -278,46 +293,23 @@ export default function CardMediaPreview({
             transition={{ duration: 0.15, ease: "easeOut" }}
             className="absolute inset-0 size-full flex flex-col items-center justify-center p-3 pointer-events-none"
           >
-            {activeSlide?.image || activeSlide?.url ? (
-              (() => {
-                const fileUrl = activeSlide.image || activeSlide.url || ""
-                const isPdf = fileUrl.toLowerCase().endsWith(".pdf")
-                if (isPdf) {
-                  return (
-                    <div className="relative size-full flex flex-col justify-between p-3.5 rounded-lg bg-zinc-100/90 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800/80">
-                      <div className="flex items-center justify-between w-full">
-                        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-mono text-[9px] font-bold tracking-wider uppercase">
-                          <FileText className="size-3" />
-                          <span>{isEn ? "Verified PDF Document" : "Dokumen PDF Terverifikasi"}</span>
-                        </div>
-                        <span className="font-mono text-[9px] text-zinc-400">PDF</span>
-                      </div>
-                      <div className="flex flex-col gap-1 text-left my-auto">
-                        <span className="font-sans text-xs font-bold text-foreground line-clamp-2 leading-snug">
-                          {activeSlide.title}
-                        </span>
-                        {activeSlide.caption && (
-                          <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 line-clamp-1">
-                            {activeSlide.caption}
-                          </span>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-1 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 pt-1 border-t border-zinc-200/60 dark:border-zinc-800/60">
-                        <span>{isEn ? "Click to view document" : "Klik untuk melihat dokumen"}</span>
-                      </div>
-                    </div>
-                  )
-                }
+            {(() => {
+              const previewImg = getPreviewImage(activeSlide)
+              const hasRawMedia = activeSlide?.image || activeSlide?.url
+              if (previewImg) {
                 return (
                   <>
                     <NextImage
-                      src={fileUrl}
+                      src={previewImg}
                       alt={activeSlide.title}
                       fill
                       unoptimized
-                      className="object-cover transition-transform duration-300 group-hover:scale-102"
+                      className={cn(
+                        "object-cover transition-transform duration-300 group-hover:scale-102",
+                        isCertificate ? "object-top" : "object-center"
+                      )}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/5" />
                     <div className="relative z-10 mt-auto text-left w-full text-white">
                       <span className="font-mono text-xs font-semibold line-clamp-1 drop-shadow-xs">
                         {activeSlide.title}
@@ -325,25 +317,53 @@ export default function CardMediaPreview({
                     </div>
                   </>
                 )
-              })()
-            ) : (
-              /* Clean Minimalist Placeholder (No telemetry/buzzwords, no explanation text) */
-              <>
-                <div className="absolute inset-0 bg-grid-pattern opacity-20" />
-                <div className="relative z-10 flex flex-col items-center justify-center gap-2 text-center w-full px-4">
-                  <div className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-background/90 text-zinc-500 dark:text-zinc-400 shadow-2xs">
-                    {isCertificate ? (
-                      <Award className="size-5" />
-                    ) : (
-                      <ImageIcon className="size-5" />
-                    )}
+              }
+              if (hasRawMedia) {
+                return (
+                  <div className="relative size-full flex flex-col justify-between p-3.5 rounded-lg bg-zinc-100/90 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800/80">
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800/70 text-zinc-600 dark:text-zinc-400 font-mono text-[9px] font-bold tracking-wider uppercase">
+                        <FileText className="size-3" />
+                        <span>PDF</span>
+                      </div>
+                      <span className="font-mono text-[9px] text-zinc-400">
+                        {isCertificate ? (isEn ? "Certificate" : "Sertifikat") : "Document"}
+                      </span>
+                    </div>
+                    <div className="flex flex-col gap-1 text-left my-auto">
+                      <span className="font-sans text-xs font-bold text-foreground line-clamp-2 leading-snug">
+                        {activeSlide.title}
+                      </span>
+                      {activeSlide.caption && (
+                        <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 line-clamp-1">
+                          {activeSlide.caption}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-1 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 pt-1 border-t border-zinc-200/60 dark:border-zinc-800/60">
+                      <span>{isEn ? "Click to view document" : "Klik untuk melihat dokumen"}</span>
+                    </div>
                   </div>
-                  <span className="font-mono text-xs font-semibold text-foreground line-clamp-1">
-                    {activeSlide?.title}
-                  </span>
-                </div>
-              </>
-            )}
+                )
+              }
+              return (
+                <>
+                  <div className="absolute inset-0 bg-grid-pattern opacity-20" />
+                  <div className="relative z-10 flex flex-col items-center justify-center gap-2 text-center w-full px-4">
+                    <div className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-background/90 text-zinc-500 dark:text-zinc-400 shadow-2xs">
+                      {isCertificate ? (
+                        <Award className="size-5" />
+                      ) : (
+                        <ImageIcon className="size-5" />
+                      )}
+                    </div>
+                    <span className="font-mono text-xs font-semibold text-foreground line-clamp-1">
+                      {activeSlide?.title}
+                    </span>
+                  </div>
+                </>
+              )
+            })()}
           </motion.div>
         </AnimatePresence>
 
